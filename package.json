@@ -1,0 +1,23 @@
+{
+  "name": "plnbb-loopback",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/loopback": "^3.2.6",
+    "loopback-typescript-core": "git+https://github.com/bejorock/loopback-typescript-core.git"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^2.8.8",
+    "express": "^4.16.3",
+    "jasmine": "^3.2.0",
+    "loopback-connector-kv-redis": "^3.0.0",
+    "loopback-connector-redis": "^3.0.0",
+    "loopback-typescript-redis-connector": "git+https://github.com/bejorock/loopback-typescript-redis-connector.git#v1.0.1"
+  }
+}
