@@ -1,0 +1,88 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body 
+	height: 100%
+	width: 100%
+
+body 
+	background-color: rgb(247, 247, 247) !important	
+
+.fullheight
+	height: 100% !important
+
+.fullwidth
+	width: 100% !important
+
+.ui.input.red input 
+  color: red
+
+app-root
+  display: block
+  height: 100%
+
+.clear
+	clear: both
+
+.vertical-middle
+	display: flex
+  align-items: center
+
+.footer
+	position: fixed
+	bottom: 0
+
+.Site 
+  display: flex
+  min-height: 100vh
+  flex-direction: column
+
+.Site-content 
+  flex: 1
+
+$mt-slug: mt !default
+$mb-slug: mb !default
+$ml-slug: ml !default
+$mr-slug: mr !default
+
+@for $i from 0 through 20
+  .#{$mt-slug}-#{$i}
+    margin-top: 0em + $i !important
+
+@for $i from 0 through 20
+  .#{$mb-slug}-#{$i}
+    margin-bottom: 0em + $i !important
+
+@for $i from 0 through 20
+  .#{$ml-slug}-#{$i}
+    margin-left: 0em + $i !important
+
+@for $i from 0 through 20
+  .#{$mr-slug}-#{$i}
+    margin-right: 0em + $i !important
+
+$w-slug: w !default
+
+@for $i from 0 through 4
+	.#{$w-slug}-#{$i * 25}
+		width: 0% + $i * 25 !important
+
+$pt-slug: pt !default
+$pb-slug: pb !default
+$pl-slug: pl !default
+$pr-slug: pr !default
+
+@for $i from 0 through 20
+  .#{$pt-slug}-#{$i}
+    padding-top: 0em + $i !important
+
+@for $i from 0 through 20
+  .#{$pb-slug}-#{$i}
+    padding-bottom: 0em + $i !important
+
+@for $i from 0 through 20
+  .#{$pl-slug}-#{$i}
+    padding-left: 0em + $i !important
+
+@for $i from 0 through 20
+  .#{$pr-slug}-#{$i}
+    padding-right: 0em + $i !important
