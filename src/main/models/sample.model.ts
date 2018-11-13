@@ -1,5 +1,5 @@
 import { PersistedDao, PersistedModel } from 'loopback-typescript-core/dist/models/persisted.model';
-import { injectable } from 'inversify';
+import { injectable,inject } from 'inversify';
 import { CommonModel, Property, Relation } from 'loopback-typescript-core/dist/models/decorators';
 
 @injectable()
@@ -9,17 +9,22 @@ export class SampleDao extends PersistedDao
 	static modelName = 'Sample'
 
 	ModelClass = SampleModel
+
+	greet() {
+		return `greeting...`
+	}
 }
 
 @injectable()
 @CommonModel({
 	name: SampleDao.modelName,
 	dao: SampleDao,
-	dataSource: 'db',
+	dataSource: 'mypostgresdb',
 	settings: {
 		plural: 'samples',
-		mongodb: {
-			collection: SampleDao.tableName
+		postgresql: {
+			schema: "public",
+			table: "account"
 		},
 
 		mixins: {}
@@ -34,5 +39,6 @@ export class SampleModel extends PersistedModel
 	address:string
 
 	@Property('date')
-    description:Date
+	description:Date
+
 }

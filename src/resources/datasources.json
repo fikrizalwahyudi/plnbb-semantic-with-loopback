@@ -2,5 +2,19 @@
     "db": {
         "name": "db",
         "connector": "memory"
-      }
+      },
+    "mypostgresdb": {
+        "host": "localhost",
+        "port": 5432,
+        "url": "postgres://postgres:12345678@localhost:5432/plnbbdb?ssl=false",
+        "database": "plnbbdb",
+        "password": "12345678",
+        "name": "mypostgresdb",
+        "user": "postgres",
+        "connector": "postgresql",
+        "min": 5,
+        "max": 200,
+        "idleTimeoutMillis": 60000,
+        "ssl": false
+    }
 }
