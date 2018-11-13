@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { AdminComponent } from './admin/admin.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -15,7 +16,8 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    AdminComponent
   ],
   imports: [
     FormsModule,
