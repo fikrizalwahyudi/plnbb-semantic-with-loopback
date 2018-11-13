@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-<<<<<<< HEAD
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
@@ -12,16 +11,10 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', component: LoginComponent}
 ];
-=======
-
-
-import { AppComponent } from './app.component';
->>>>>>> master
 
 
 @NgModule({
   declarations: [
-<<<<<<< HEAD
     AppComponent,
     LoginComponent,
     AdminComponent
@@ -35,13 +28,6 @@ import { AppComponent } from './app.component';
   exports: [
     RouterModule
   ],
-=======
-    AppComponent
-  ],
-  imports: [
-    BrowserModule
-  ],
->>>>>>> master
   providers: [],
   bootstrap: [AppComponent]
 })
