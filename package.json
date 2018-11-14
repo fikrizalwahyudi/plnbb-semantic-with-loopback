@@ -10,10 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/loopback": "^3.2.6",
-<<<<<<< HEAD
-=======
     "loopback-connector-postgresql": "^3.4.0",
->>>>>>> master
     "loopback-typescript-core": "git+https://github.com/bejorock/loopback-typescript-core.git"
   },
   "devDependencies": {

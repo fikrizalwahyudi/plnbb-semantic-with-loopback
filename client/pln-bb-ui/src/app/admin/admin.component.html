@@ -1,3 +1,39 @@
-<p>
-  admin works!
-</p>
+<div class="ui container mt-2">
+  <div class="ui grid">
+    <div class="three wide column">
+      <div class="ui four vertical menu">
+        <a (click)="onSelect('dashboard')" id="dashboard" class="item">
+          Dashboard
+        </a>
+        <a (click)="onSelect('ref')" id="ref" class="item">
+          Referensi Kontrak
+        </a>
+        <a (click)="onSelect('role')" id="role" class="item">
+          Role
+        </a>
+        <a (click)="onSelect('tambang')" id="tambang" class="item">
+          Tambang
+        </a>
+        <a (click)="onSelect('user')" id="user" class="item">
+          User
+        </a>
+      </div>
+    </div>
+    <div class="thirteen wide computer sixteen wide mobile column">
+      <div class="ui blue segment">
+        <ng-container *ngIf="id == 'role'">
+          <master-role></master-role>
+        </ng-container>
+        <ng-container *ngIf="id == 'tambang'">
+          <master-tambang></master-tambang>
+        </ng-container>
+        <ng-container *ngIf="id == 'user'">
+          <master-user></master-user>
+        </ng-container>
+        <ng-container *ngIf="id == 'dashboard'">
+          
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

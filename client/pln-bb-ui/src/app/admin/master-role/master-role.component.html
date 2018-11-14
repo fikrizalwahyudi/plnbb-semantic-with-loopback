@@ -1,0 +1,66 @@
+<div class="ui secondary menu">
+  <a class="item" (click)="addNew()">
+    <i class="plus icon"></i> Register
+  </a>
+  <div class="right menu">
+    <div class="item">
+      <div class="ui icon input">
+        <input (click)="onSearch()" type="text" #queryBox placeholder="Search..." (keyup.enter)="onSearch(queryBox.value)">
+        <i class="search link icon"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="new_role">
+  <div class="ui inverted segment">
+    <div class="ui inverted form">
+      <div class="fields">
+        <div class="field">
+          <label>Role ID</label>
+          <input readonly="true" placeholder="Role ID" type="text" [(ngModel)]="dummyUser.id">
+        </div>
+      </div>
+      <div class="two fields">
+        <div class="field">
+          <label>Role Name</label>
+          <input placeholder="Role Name" type="text" [(ngModel)]="dummyUser.name">
+        </div>
+        <div class="field">
+          <label>Role Description</label>
+          <input placeholder="Role Description" type="text" [(ngModel)]="dummyUser.description">
+        </div>
+      </div>
+      <div class="fields">
+        <div class="field">
+          <label>Role Status</label>
+          <input placeholder="Role Status" type="text" [(ngModel)]="dummyUser.status">
+        </div>
+      </div>
+      <div (click)="onSubmit()" class="ui submit button">Submit</div>
+    </div>
+  </div>
+</ng-container>
+
+<table class="ui sortable single line striped table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of userMasterRole">
+      <td>
+        {{item.name}}
+      </td>
+      <td>
+        {{item.description}}
+      </td>
+      <td>
+        {{item.status}}
+      </td>
+    </tr>
+  </tbody>
+</table>

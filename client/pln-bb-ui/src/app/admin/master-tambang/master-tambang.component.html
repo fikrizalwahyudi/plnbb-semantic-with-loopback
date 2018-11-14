@@ -1,0 +1,40 @@
+<div class="ui secondary menu">
+  <a class="item" [routerLink]="['/master-form']">
+    <i class="plus icon"></i> Register
+  </a>
+  <div class="right menu">
+    <div class="item">
+      <div class="ui icon input">
+        <input type="text" #queryBox placeholder="Search..." (keyup.enter)="load(queryBox.value)">
+        <i class="search link icon"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table class="ui sortable single line striped table">
+  <thead>
+    <tr>
+      <th>Nama </th>
+      <th>Sertifikat</th>
+      <th>Jenis Tambang</th>
+      <th>Lokasi</th>
+      <th>Tanggal Berlaku</th>
+      <th>Tanggal Habis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of tambang">
+      <td>
+        {{item.name}}
+      </td>
+      <td>
+        {{item.description}}
+      </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
