@@ -2,10 +2,6 @@
     "db": {
         "name": "db",
         "connector": "memory"
-<<<<<<< HEAD
-      }
-}
-=======
       },
     "mypostgresdb": {
         "host": "localhost",
@@ -22,4 +18,3 @@
         "ssl": false
     }
 }
->>>>>>> master
