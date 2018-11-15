@@ -1,0 +1,134 @@
+<div class="ui container mt-2 mb-5">
+  <div class="ui top attached blue segment">
+    <h4 class="ui left floated header" style="margin-bottom: 0;">
+      <i class="settings icon"></i>
+      <div class="content">
+        Rencana Pasokan Mitra 2018
+      </div>
+    </h4>
+    <button class="ui right floated blue compact basic button">
+      Lock Changes
+    </button>
+    <!-- <button class="ui right floated green compact basic button">
+      Preview
+    </button> -->
+    <button class="ui right floated grey compact basic button">
+      Back
+    </button>
+    <br class="clear">
+  </div>
+  <div class="ui attached segment">
+    <form [formGroup]="fg" class="ui form" novalidate (ngSubmit)="submit()" (keydown.enter)="$event.preventDefault()">
+      <div class="ui grid">
+        <div class="row">
+          <div class="four wide column">
+            <h5 class="ui dividing header">
+              Form Pasokan
+            </h5>
+            <div class="field">
+              <label>Tahun - Bulan</label>
+              <div class="two fields">
+                <div class="field">
+                  <input type="text" name="" placeholder="tahun" formControlName="tahun" readonly>
+                </div>
+                <div class="field">
+                  <select class="ui dropdown" formControlName="bulan">
+                    <option value="">Pilih Bulan</option>
+                    <option *ngFor="let item of months; let index = index" [value]="index">{{item}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+  
+            <div class="field">
+              <label>No. Kontrak</label>
+              <input type="text" name="first-name" placeholder="no kontrak" formControlName="referensi">
+            </div>
+            <div class="field">
+              <label>PLTU</label>
+              <select class="ui dropdown" formControlName="pltu">
+                <option [value]="null">Pilih PLTU</option>
+                <option *ngFor="let item of pltu; let index = index" [value]="item.id">{{item.name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="four wide column">
+            <h5 class="ui dividing header">
+              Input Detail Pasokan
+            </h5>
+  
+            <div class="field">
+              <label>Tgl. Pengiriman</label>
+              <div class="ui calendar" uiCalendar formControlName="tgl">
+                <div class="ui input left icon">
+                  <i class="calendar icon"></i>
+                  <input type="text" placeholder="Date/Time">
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <label>Tipe</label>
+              <select class="ui dropdown" formControlName="tipe">
+                <option value="1">LRC</option>
+                <option value="2">MRC</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Mode</label>
+              <select class="ui dropdown" formControlName="mode">
+                <option value="1">Tongkang</option>
+                <option value="2">Vessels</option>
+                <option value="3">Trucking</option>
+              </select>
+            </div>
+          </div>
+          <div class="four wide column">
+              <h5 class="ui dividing header">
+                &nbsp;
+              </h5>
+            <div class="field">
+              <label>Jumlah Tonnase</label>
+              <input type="text" name="first-name" placeholder="tonnase" formControlName="jumlah">
+            </div>
+  
+            <button class="ui blue button" type="submit" [disabled]="!fg.valid">Submit</button>
+            <button class="ui button" type="button">Reset</button>
+          </div>
+        </div>
+        <!-- <div class="row">
+          <div class="sixteen wide column">
+            
+          </div>
+        </div> -->
+      </div>
+    </form>
+  </div>
+  <table class="ui bottom attached table">
+    <thead>
+      <tr>
+        <th class="collapsing">Bulan</th>
+        <th>PLTU</th>
+        <th>Tgl.</th>
+        <th>Tipe</th>
+        <th>Mode</th>
+        <th class="right aligned collapsing">Jumlah</th>
+        <th class="right aligned collapsing">&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of records; let index = index">
+        <td class="collapsing">{{item.bulan}}</td>
+        <td>{{item.pltu}}</td>
+        <td>{{item.tgl | date:'dd'}}</td>
+        <td>{{item.tipe}}</td>
+        <td>{{item.mode}}</td>
+        <td class="right aligned collapsing">{{item.jumlah}}</td>
+        <td class="right aligned collapsing">
+          <a href="javascript:void(0)" (click)="delete(item)"><i class="trash link icon"></i></a>
+          <a href="javascript:void(0)" (click)="edit(item)"><i class="edit link icon"></i></a>
+          <!-- <a href="javascript:void(0)" (click)="process(item)"><i class="truck link icon"></i></a> -->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

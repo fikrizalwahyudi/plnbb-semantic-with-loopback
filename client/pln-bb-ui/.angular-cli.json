@@ -20,11 +20,13 @@
       "prefix": "app",
       "styles": [
         "styles.sass",
-        "../semantic/out/semantic.min.css"
+        "../semantic/out/semantic.min.css",
+        "../node_modules/semantic-ui-calendar/dist/calendar.min.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
-        "../semantic/out/semantic.min.js"
+        "../semantic/out/semantic.min.js",
+        "../node_modules/semantic-ui-calendar/dist/calendar.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
