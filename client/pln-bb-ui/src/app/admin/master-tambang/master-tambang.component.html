@@ -1,5 +1,5 @@
 <div class="ui secondary menu">
-  <a class="item" [routerLink]="['/master-form']">
+  <a class="item" (click)="addNew()">
     <i class="plus icon"></i> Register
   </a>
   <div class="right menu">
@@ -11,6 +11,52 @@
     </div>
   </div>
 </div>
+
+<ng-container *ngIf="new_tambang">
+  <div class="ui inverted segment">
+    <div class="ui inverted form">
+      <div class="two fields">
+        <div class="field">
+          <label>Nama</label>
+          <input placeholder="Nama" type="text" [(ngModel)]="dummy_tambang.name">
+        </div>
+        <div class="field">
+          <label>Sertifikat</label>
+          <input placeholder="Sertifikat" type="text" [(ngModel)]="dummy_tambang.sertifikat">
+        </div>
+      </div>
+      <div class="two fields">
+        <div class="field">
+          <label>Jenis Tambang</label>
+          <select class="ui dropdown" [(ngModel)]="dummy_tambang.jenis_tambang_id">
+            <option value="">Jenis Tambang</option>
+            <option value="1">Tambang 1</option>
+            <option value="0">Tambang 2</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Lokasi</label>
+          <select class="ui dropdown" [(ngModel)]="dummy_tambang.lokasi_id">
+            <option value="">Lokasi</option>
+            <option value="1">Lokasi Tambang 1</option>
+            <option value="0">Lokasi Tambang 2</option>
+          </select>
+        </div>
+      </div>
+      <div class="two fields">
+        <div class="field">
+          <label>Tanggal Berlaku</label>
+          <input [(ngModel)]="dummy_tambang.tanggal_berlaku" placeholder="Nama" type="date">
+        </div>
+        <div class="field">
+          <label>Tanggal Habis</label>
+          <input [(ngModel)]="dummy_tambang.tanggal_habis" placeholder="Sertifikat" type="date">
+        </div>
+      </div>
+      <div (click)="onSubmit()" class="ui submit button">Submit</div>
+    </div>
+  </div>
+</ng-container>
 
 <table class="ui sortable single line striped table">
   <thead>
@@ -24,17 +70,25 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of tambang">
+    <tr *ngFor="let item of user_tambang">
       <td>
         {{item.name}}
       </td>
       <td>
-        {{item.description}}
+        {{item.sertifikat}}
       </td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>
+          {{item.jenis_tambang_id}}
+      </td>
+      <td>
+          {{item.lokasi_id}}
+      </td>
+      <td>
+          {{item.tanggal_berlaku}}
+      </td>
+      <td>
+          {{item.tanggal_habis}}
+      </td>
     </tr>
   </tbody>
 </table>

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable, Inject } from '@angular/core';
 import { userMasterRole } from '../../user/user';
+import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
+import { inject } from '@angular/core/src/render3';
 
 declare var $: any;
 @Component({
@@ -12,7 +14,7 @@ export class MasterRoleComponent implements OnInit {
   userMasterRole: any = [];
   new_role: boolean = false;
   public dummyUser: any = userMasterRole;
-  constructor() {
+  constructor(@Inject(LOCAL_STORAGE) private storage: WebStorageService) {
     // dummy user
     this.dummyUser.id = "1";
     this.dummyUser.name = "Adi Maulana Triadi";
@@ -20,13 +22,16 @@ export class MasterRoleComponent implements OnInit {
     this.dummyUser.status = "Melajang";
 
     this.userMasterRole.push(Object.assign({}, this.dummyUser));
+    this.storage.set('dataUser', this.userMasterRole);
     this.dummyUser.id = this.userMasterRole.length + 1;
     this.dummyUser.name = "";
     this.dummyUser.description = "";
     this.dummyUser.status = "";
+    this.userMasterRole = this.storage.get('dataUser');
   }
 
   ngOnInit() {
+    this.userMasterRole = this.storage.get('dataUser');
   }
 
   addNew() {
@@ -40,6 +45,8 @@ export class MasterRoleComponent implements OnInit {
 
   onSubmit() {
     this.userMasterRole.push(Object.assign({}, this.dummyUser));
+    this.storage.set('dataUser', this.userMasterRole);
+    this.ngOnInit();
     this.dummyUser.id = this.userMasterRole.length + 1;
     this.dummyUser.name = "";
     this.dummyUser.description = "";
