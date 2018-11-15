@@ -24,3 +24,12 @@ export const users = {
     "role_id": "",
     "status": ""
 }
+
+export const pltu = {
+    "id": "",
+    "code": "",
+    "name": "",
+    "address":"",
+    "npwp": "",
+    "status":"",
+}

@@ -6,6 +6,7 @@ import { MasterReferensiKontrakComponent } from './master-referensi-kontrak/mast
 import { MasterTambangComponent } from './master-tambang/master-tambang.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MasterPltuComponent } from './master-pltu/master-pltu.component';
 
 @NgModule({
   imports: [
@@ -18,13 +19,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MasterUserComponent, 
     MasterRoleComponent, 
     MasterReferensiKontrakComponent, 
-    MasterTambangComponent
+    MasterTambangComponent, MasterPltuComponent
   ],
   exports : [
     MasterUserComponent, 
     MasterRoleComponent, 
     MasterReferensiKontrakComponent, 
-    MasterTambangComponent
+    MasterTambangComponent,
+    MasterPltuComponent
   ]
 })
 export class AdminModule { }
