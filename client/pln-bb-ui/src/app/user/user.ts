@@ -14,3 +14,13 @@ export const userMasterTambang = {
     "tanggal_berlaku": "",
     "tanggal_habis": ""
 }
+
+export const users = {
+    "id": "",
+    "email": "",
+    "username": "",
+    "password": "",
+    "name": "",
+    "role_id": "",
+    "status": ""
+}
