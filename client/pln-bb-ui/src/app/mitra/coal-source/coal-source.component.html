@@ -1,0 +1,37 @@
+<div class="ui container mt-2 mb-5">
+  <div class="ui segment">
+    <form class="ui form" [formGroup]="siForm" novalidate (ngSubmit)="submit()" (keydown.enter)="$event.preventDefault()">
+      <div class="ui grid">
+        <div class="row">
+          <div class="eight wide column">
+            <div class="field">
+              <label>Sumber Tambang</label>
+              <div class="two fields" *ngFor="let entryForm of entries.controls; let i=index; let first = first; let last = last" [formGroup]="entryForm" [ngClass]="{'mb-1': !last}">
+                <div class="field">
+                  <select class="ui dropdown" formControlName="tambang">
+                    <option [value]="null">Select Tambang</option>
+                    <option *ngFor="let m of tambang" [value]="m.id">{{m.name}}</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <div class="ui action input">
+                    <input type="text" placeholder="amount" formControlName="amount">
+                    <button *ngIf="last" class="ui icon button" (click)="add()">
+                      <i class="plus icon"></i>
+                    </button>
+                    <button *ngIf="!last" class="ui icon button" (click)="del(i)">
+                      <i class="minus icon"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button class="ui blue button" type="submit" [disabled]="!siForm.valid">Submit</button>
+            <button class="ui button" type="button">Reset</button>
+          </div>          
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
