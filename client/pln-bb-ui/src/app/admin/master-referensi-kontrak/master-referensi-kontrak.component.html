@@ -1,3 +1,99 @@
-<p>
-  master-referensi-kontrak works!
-</p>
+<div class="ui secondary menu">
+  <a class="item" (click)="addNew()">
+    <i class="plus icon"></i> Register
+  </a>
+  <div class="right menu">
+    <div class="item">
+      <div class="ui icon input">
+        <input type="text" #queryBox placeholder="Search..." (keyup.enter)="load(queryBox.value)">
+        <i class="search link icon"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="new_ref">
+  <div class="ui inverted segment">
+    <div class="ui inverted form">
+      <div class="fields">
+        <div class="field">
+          <label>Nomor Kontrak</label>
+          <input placeholder="Input Nomor Kontrak" type="number" [(ngModel)]="data_ref_kontrak.no">
+        </div>
+      </div>
+      <div class="two fields">
+        <div class="field">
+          <label>Nama Pekerjaan</label>
+          <input placeholder="Input Nama Pekerjaan" type="text" [(ngModel)]="data_ref_kontrak.nama_pekerjaan">
+        </div>
+        <div class="field">
+          <label>Tanggal Pekerjaan</label>
+          <input placeholder="Input tanggal pekerjaan" type="date" [(ngModel)]="data_ref_kontrak.tanggal">
+        </div>
+      </div>
+      <div class="three fields">
+        <div class="field">
+          <label>PLTU</label>
+          <select name="pltu" class="ui dropdown" id="pltu" [(ngModel)]="data_ref_kontrak.pltu_id">
+            <option value="">Pilih PLTU</option>
+            <option *ngFor="let pltu of master_pltu" value="{{pltu.id}}">{{pltu.name}}</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Mitra</label>
+          <select name="mitra" class="ui dropdown" id="mitra" [(ngModel)]="data_ref_kontrak.mitra_id">
+            <option value="">Pilih Mitra</option>
+            <option *ngFor="let pltu of master_pltu" value="{{pltu.id}}">{{pltu.name}}</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Jenis</label>
+          <select name="jenis" class="ui dropdown" id="jenis" [(ngModel)]="data_ref_kontrak.jenis">
+            <option value="">Pilih Jenis</option>
+            <option value="cif">CIF</option>
+            <option value="dob">FOB</option>
+          </select>
+        </div>
+      </div>
+      <div class="fields">
+        
+      </div>
+      <div (click)="onSubmit()" class="ui submit button">Submit</div>
+    </div>
+  </div>
+</ng-container>
+
+<table class="ui sortable single line striped table">
+  <thead>
+    <tr>
+      <th>No Kontrak </th>
+      <th>Nama Pekerjaan</th>
+      <th>Tanggal Pekerjaan</th>
+      <th>PLTU</th>
+      <th>Mitra</th>
+      <th>Jenis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of master_ref_kontrak">
+      <td>
+        {{item.no}}
+      </td>
+      <td>
+        {{item.nama_pekerjaan}}
+      </td>
+      <td>
+        {{item.tanggal}}
+      </td>
+      <td>
+        {{item.name_pltu}}
+      </td>
+      <td>
+        {{item.mitra_id}}
+      </td>
+      <td>{{item.jenis}}</td>
+    </tr>
+  </tbody>
+</table>

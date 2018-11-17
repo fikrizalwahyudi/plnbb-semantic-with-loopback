@@ -29,7 +29,17 @@ export const pltu = {
     "id": "",
     "code": "",
     "name": "",
-    "address":"",
+    "address": "",
     "npwp": "",
-    "status":"",
+    "status": "",
+}
+
+export const ref_kontrak = {
+    "id": "",
+    "no": "",
+    "nama_pekerjaan": "",
+    "pltu_id": "",
+    "mitra_id": "",
+    "jenis": "",
+    "tanggal":""
 }

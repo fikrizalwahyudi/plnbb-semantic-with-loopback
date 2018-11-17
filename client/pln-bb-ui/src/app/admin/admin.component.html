@@ -24,6 +24,9 @@
     </div>
     <div class="thirteen wide computer sixteen wide mobile column">
       <div class="ui blue segment">
+        <ng-container *ngIf="id == 'ref'">
+          <master-referensi-kontrak></master-referensi-kontrak>
+        </ng-container>
         <ng-container *ngIf="id == 'role'">
           <master-role></master-role>
         </ng-container>
