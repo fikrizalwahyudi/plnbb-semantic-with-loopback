@@ -3,12 +3,12 @@ import { injectable,inject } from 'inversify';
 import { CommonModel, Property, Relation, Remote } from 'loopback-typescript-core/dist/models/decorators';
 
 @injectable()
-export class SampleDao extends PersistedDao
+export class UsersDao extends PersistedDao
 {
-	static tableName = 'sample'
-	static modelName = 'Sample'
+	static tableName = 'users'
+	static modelName = 'Users'
 
-	ModelClass = SampleModel
+	ModelClass = UsersModel
 
 	
 	@Remote({
@@ -23,29 +23,43 @@ export class SampleDao extends PersistedDao
 
 @injectable()
 @CommonModel({
-	name: SampleDao.modelName,
-	dao: SampleDao,
+	name: UsersDao.modelName,
+	dao: UsersDao,
 	dataSource: 'mypostgresdb',
 	settings: {
-		plural: 'samples',
+		plural: 'users',
 		postgresql: {
 			schema: "plnbbdb",
-			table: "account"
+			table: "users"
 		},
-
+		idInjection:true,
+		forceId:false,
 		mixins: {}
 	}
 })
-export class SampleModel extends PersistedModel
-{
-	@Property('string')
-	name:string
+export class UsersModel extends PersistedModel
+{	
 
-	@Property('string')
-	address:string
+	@Property('Number')
+	id:Number
 
-	@Property('date')
-	description:Date
+	@Property('String')
+	email:String
+
+	@Property('String')
+	username:String
+
+	@Property('String')
+	password:String
+
+	@Property('String')
+	name:String
+
+	@Property('Number')
+	role_id:Number
+
+	@Property('Number')
+	status:Number
 
 	@Remote({
 		accepts: [{arg: 'msg', type: 'string'}],
