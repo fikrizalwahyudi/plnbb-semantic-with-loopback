@@ -6,11 +6,11 @@ import { StorageServiceModule} from 'angular-webstorage-service';
 import { MitraModule } from './mitra/mitra.module';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
+import { AuthenticatedGuard } from './shared/guards/authenticated.guard';
 
 import { FormKesanggupanComponent } from './mitra/form-kesanggupan/form-kesanggupan.component';
 import { DaftarKesanggupanComponent } from './mitra/daftar-kesanggupan/daftar-kesanggupan.component';
 import { CoalSourceComponent } from './mitra/coal-source/coal-source.component';
-import { HeaderComponent } from './shared/ui/header/header.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
@@ -27,28 +27,30 @@ import { RealisasiShippingComponent } from './pln/realisasi-shipping/realisasi-s
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'rencana-pasokan', component: FormKesanggupanComponent },
-  { path: 'realisasi-pengiriman', component: DaftarKesanggupanComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthenticatedGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'admin', component: AdminComponent, loadChildren: './admin/admin.module#AdminModule' },
-  { path: 'coal-source/:id', component: CoalSourceComponent },
-  { path: 'realisasi-info/:id', component: FormKebutuhanKesanggupanComponent },
-  { path: 'realisasi-loading/:id', component: RealisasiLoadingComponent },
-  { path: 'realisasi-sailing/:id', component: RealisasiShippingComponent },
-  { path: 'realisasi-unloading/:id', component: RealisasiUnloadingComponent },
+  { path: 'rencana-pasokan', component: FormKesanggupanComponent, canActivate: [AuthenticatedGuard] },
+  { path: 'realisasi-pengiriman', component: DaftarKesanggupanComponent, canActivate: [AuthenticatedGuard] },
 
-  { path: 'request-si/:id', component: SiComponent },
+  { path: 'coal-source/:id', component: CoalSourceComponent, canActivate: [AuthenticatedGuard] },
+  { path: 'realisasi-info/:id', component: FormKebutuhanKesanggupanComponent, canActivate: [AuthenticatedGuard] },
+  { path: 'realisasi-loading/:id', component: RealisasiLoadingComponent, canActivate: [AuthenticatedGuard] },
+  { path: 'realisasi-sailing/:id', component: RealisasiShippingComponent, canActivate: [AuthenticatedGuard] },
+  { path: 'realisasi-unloading/:id', component: RealisasiUnloadingComponent, canActivate: [AuthenticatedGuard] },
 
-  { path: 'pln-rencana-pasokan', component: FormKebutuhanComponent },
-  { path: 'pln-realisasi-pengiriman', component: DaftarKebutuhanComponent },
+  { path: 'request-si/:id', component: SiComponent, canActivate: [AuthenticatedGuard] },
 
-  { path: 'pln-realisasi-info/:id', component: FormKebutuhanKesanggupanComponent },
-  { path: 'pln-realisasi-loading/:id', component: RealisasiLoadingComponent },
-  { path: 'pln-realisasi-sailing/:id', component: RealisasiShippingComponent },
-  { path: 'pln-realisasi-unloading/:id', component: RealisasiUnloadingComponent },
+  { path: 'pln-rencana-pasokan', component: FormKebutuhanComponent, canActivate: [AuthenticatedGuard] },
+  { path: 'pln-realisasi-pengiriman', component: DaftarKebutuhanComponent, canActivate: [AuthenticatedGuard] },
 
-  { path: 'pln-approve-si/:id', component: SiComponent },
+  { path: 'pln-realisasi-info/:id', component: FormKebutuhanKesanggupanComponent, canActivate: [AuthenticatedGuard] },
+  { path: 'pln-realisasi-loading/:id', component: RealisasiLoadingComponent, canActivate: [AuthenticatedGuard] },
+  { path: 'pln-realisasi-sailing/:id', component: RealisasiShippingComponent, canActivate: [AuthenticatedGuard] },
+  { path: 'pln-realisasi-unloading/:id', component: RealisasiUnloadingComponent, canActivate: [AuthenticatedGuard] },
+
+  { path: 'pln-approve-si/:id', component: SiComponent, canActivate: [AuthenticatedGuard] },
+
 
 ];
 
