@@ -1,0 +1,151 @@
+<div class="ui container mt-2">
+  <div class="ui top attached blue segment">
+    <h4 class="ui left floated header" style="margin-bottom: 0;">
+      <i class="settings icon"></i>
+      <div class="content">
+        Info Unloading Realisasi Pengiriman
+      </div>
+    </h4>
+    <button *ngIf="!isMitraInput && hasMitraInput && !selected._plnUnloadingDetails" class="ui right floated green compact basic button" (click)="toggle()">
+      <ng-container *ngIf="!toggleView">
+        From Vendor
+      </ng-container>
+      <ng-container *ngIf="toggleView">
+        Cancel
+      </ng-container>
+    </button>
+    <button class="ui right floated blue compact basic button" (click)="submit()">
+      Save Changes
+    </button>
+    <button class="ui right floated grey compact basic button" (click)="back()">
+      Back
+    </button>
+    <br class="clear">
+  </div>
+  <div class="ui bottom attached segment">
+    <form [formGroup]="fg" class="ui form" novalidate (ngSubmit)="submit()" (keydown.enter)="$event.preventDefault()">
+      <div class="ui grid">
+        <div class="row">
+            <div class="four wide column">    
+              <h5 class="ui dividing header">
+                Input Detail Unloading
+              </h5>
+
+              <!-- <div class="field">
+                <label>Id Pengiriman</label>
+                <input type="text" name="" placeholder="tgl. pengiriman" [value]="selected.id" disabled>
+              </div> -->
+    
+              <div class="field">
+                <label>Time Arrival</label>
+                <div class="ui calendar" uiTime formControlName="ta">
+                  <div class="ui input left icon">
+                    <i class="calendar icon"></i>
+                    <input type="text" placeholder="Date/Time">
+                  </div>
+                </div>
+              </div>
+
+              <div class="field">
+                <label>Berthing</label>
+                <div class="ui calendar" uiTime formControlName="berthing">
+                  <div class="ui input left icon">
+                    <i class="calendar icon"></i>
+                    <input type="text" placeholder="Date/Time">
+                  </div>
+                </div>
+              </div>
+
+              <div class="field">
+                <label>Commence Unloading</label>
+                <div class="ui calendar" uiTime formControlName="tglMulai">
+                  <div class="ui input left icon">
+                    <i class="calendar icon"></i>
+                    <input type="text" placeholder="Date/Time">
+                  </div>
+                </div>
+              </div>
+
+              <div class="field">
+                <label>Complete Unloading</label>
+                <div class="ui calendar" uiTime formControlName="tglSelesai">
+                  <div class="ui input left icon">
+                    <i class="calendar icon"></i>
+                    <input type="text" placeholder="Date/Time">
+                  </div>
+                </div>
+              </div>
+    
+            </div>
+
+            <div class="four wide column">
+              <h5 class="ui dividing header">
+                &nbsp;
+              </h5>
+
+              <div class="field">
+                <label>B/L (Metric/Ton)</label>
+                <input type="text" name="" placeholder="realisasi" formControlName="bl">
+              </div>
+
+              <div class="field">
+                <label>GCV</label>
+                <input type="text" name="" placeholder="tb/bg" formControlName="gcv">
+              </div>
+
+              <div class="field">
+                <label>TM</label>
+                <input type="text" name="" placeholder="no. si" formControlName="tm">
+              </div>
+              
+            </div>
+
+            <div class="four wide column">
+              <h5 class="ui dividing header">
+                &nbsp;
+              </h5>
+
+              <div class="field">
+                <label>ASH</label>
+                <input type="text" name="" placeholder="laycan" formControlName="ash">
+              </div>
+
+              <div class="field">
+                <label>TS</label>
+                <input type="text" name="" placeholder="jetty" formControlName="ts">
+              </div>
+    
+              <div class="field">
+                <label>HGI</label>
+                <input type="text" name="" placeholder="jetty" formControlName="hgi">
+              </div>
+
+            </div>
+
+            <div class="four wide column">
+              <h5 class="ui dividing header">
+                &nbsp;
+              </h5>
+
+              <div class="field">
+                <label>IDT</label>
+                <input type="text" name="" placeholder="jetty" formControlName="idt">
+              </div>
+
+              <div class="field">
+                <label>720 mm (%)</label>
+                <input type="text" name="" placeholder="jetty" formControlName="mm1">
+              </div>
+
+              <div class="field">
+                <label>2.38 mm (%)</label>
+                <input type="text" name="" placeholder="jetty" formControlName="mm2">
+              </div>
+
+            </div>
+        </div>
+        
+      </div>
+    </form>
+  </div>
+</div>
