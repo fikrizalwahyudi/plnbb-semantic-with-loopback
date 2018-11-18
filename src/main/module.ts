@@ -13,7 +13,12 @@ import { RolesModel } from './models/roles.model';
 import { TokensModel } from './models/tokens.model';
 import { TypesModel } from './models/types.model';
 import { UserMitraModel } from './models/user_mitra.model';
-
+import { JenisTambangModel } from './models/jenis_tambang.model';
+import { LoadingRealisasiKirimModel } from './models/loading_realisasi_kirim.model';
+import { LocationsModel } from './models/locations.model';
+import { SumberTambangModel } from './models/sumber_tambang.model';
+import { TambangModel } from './models/tambang.model';
+import { UnloadingRealisasiKirimModel } from './models/unloading_realisasi_kirim.model';
 
 @injectable()
 @CommonModule({
@@ -30,7 +35,13 @@ import { UserMitraModel } from './models/user_mitra.model';
 		RolesModel,
 		TokensModel,
 		TypesModel,
-		UserMitraModel
+		UserMitraModel,
+		JenisTambangModel,
+		LoadingRealisasiKirimModel,
+		LocationsModel,
+		SumberTambangModel,
+		TambangModel,
+		UnloadingRealisasiKirimModel
 		
 	]
 })
