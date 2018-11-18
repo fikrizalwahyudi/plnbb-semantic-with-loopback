@@ -12,6 +12,7 @@ export class SampleDao extends PersistedDao
 	greet() {
 		return `greeting...`
 	}
+	
 }
 
 @injectable()
@@ -22,7 +23,7 @@ export class SampleDao extends PersistedDao
 	settings: {
 		plural: 'samples',
 		postgresql: {
-			schema: "public",
+			schema: "plnbbdb",
 			table: "account"
 		},
 

@@ -1,0 +1,136 @@
+<div class="ui container mt-2">
+  <div class="ui top attached blue segment">
+    <h4 class="ui left floated header" style="margin-bottom: 0;">
+      <i class="settings icon"></i>
+      <div class="content">
+        Info Sailing Realisasi Pengiriman
+      </div>
+    </h4>
+    <button *ngIf="!isMitraInput && hasMitraInput && !selected._plnLoadingDetails" class="ui right floated green compact basic button" (click)="toggle()">
+      <ng-container *ngIf="!toggleView">
+        From Vendor
+      </ng-container>
+      <ng-container *ngIf="toggleView">
+        Cancel
+      </ng-container>
+    </button>
+    <button class="ui right floated blue compact basic button" (click)="submit()">
+      Save Changes
+    </button>
+    <button class="ui right floated grey compact basic button" (click)="back()">
+      Back
+    </button>
+    <br class="clear">
+  </div>
+  <div class="ui bottom attached segment">
+    <form [formGroup]="fg" class="ui form" novalidate (ngSubmit)="submit()" (keydown.enter)="$event.preventDefault()">
+      <div class="ui grid">
+        <div class="row">
+            <div class="four wide column">    
+              <h5 class="ui dividing header">
+                Input Detail Sailing
+              </h5>
+
+              <div class="field">
+                <label>Time Arrival</label>
+                <div class="ui calendar" uiTime formControlName="ta">
+                  <div class="ui input left icon">
+                    <i class="calendar icon"></i>
+                    <input type="text" placeholder="Date/Time">
+                  </div>
+                </div>
+              </div>
+
+              <div class="field">
+                <label>Berthing</label>
+                <div class="ui calendar" uiTime formControlName="berthing">
+                  <div class="ui input left icon">
+                    <i class="calendar icon"></i>
+                    <input type="text" placeholder="Date/Time">
+                  </div>
+                </div>
+              </div>
+
+              <div class="field">
+                <label>Commence Loading</label>
+                <div class="ui calendar" uiTime formControlName="tglMulai">
+                  <div class="ui input left icon">
+                    <i class="calendar icon"></i>
+                    <input type="text" placeholder="Date/Time">
+                  </div>
+                </div>
+              </div>
+     
+            </div>
+
+            <div class="four wide column">
+              <h5 class="ui dividing header">
+                &nbsp;
+              </h5>
+
+              <div class="field">
+                <label>Complete Loading</label>
+                <div class="ui calendar" uiTime formControlName="tglSelesai">
+                  <div class="ui input left icon">
+                    <i class="calendar icon"></i>
+                    <input type="text" placeholder="Date/Time">
+                  </div>
+                </div>
+              </div>
+
+              <div class="field">
+                <label>Sailing</label>
+                <div class="ui calendar" uiTime formControlName="sailing">
+                  <div class="ui input left icon">
+                    <i class="calendar icon"></i>
+                    <input type="text" placeholder="Date/Time">
+                  </div>
+                </div>
+              </div>
+    
+              <div class="field">
+                <label>ETA</label>
+                <div class="ui calendar" uiTime formControlName="eta">
+                  <div class="ui input left icon">
+                    <i class="calendar icon"></i>
+                    <input type="text" placeholder="Date/Time">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="four wide column">
+              <h5 class="ui dividing header">
+                &nbsp;
+              </h5>
+              
+              <input type="file" multiple style="display: none;" (change)="logoChange($event)" #file1>
+              <div class="field">
+                <label>Upload NOR</label>
+                <div class="ui action input">
+                  <input type="text" placeholder="Browse file..." readonly>
+                  <button type="button" class="ui icon button" (click)="file1.click()">
+                    Browse
+                  </button>
+                </div>
+              </div>
+
+              <input type="file" multiple style="display: none;" (change)="logoChange($event)" #file2>
+              <div class="field">
+                <label>Upload Timesheet</label>
+                <div class="ui action input">
+                  <input type="text" placeholder="Browse file..." readonly>
+                  <button type="button" class="ui icon button" (click)="file2.click()">
+                    Browse
+                  </button>
+                </div>
+              </div>
+
+            </div>
+        </div>
+        
+      </div>
+    </form>
+  </div>
+</div>

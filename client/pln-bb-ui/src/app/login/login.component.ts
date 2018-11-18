@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { CacheService } from '../shared/services/cache.service';
+import { Router } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,10 +12,10 @@ export class LoginComponent implements OnInit {
 
   loginForm: any;
 
-  constructor(private fb:FormBuilder) {
+  constructor(private cache:CacheService, private router:Router, private fb:FormBuilder) { 
     this.loginForm = fb.group({
-      username: [null],
-      password: [null]
+      username: [null, [Validators.required]],
+      password: [null, [Validators.required]]
     })
   }
 
@@ -22,14 +24,12 @@ export class LoginComponent implements OnInit {
 
   login() {
     let credentials = this.loginForm.value
-    // this.cache.users.forEach(user => {
-      if(credentials.username !== null && credentials.password !== null) {
-        // this.cache.db.set('user', user)
-        // return this.router.navigate(['home'])
-        console.log('success');
-        return true
+    this.cache.users.forEach(user => {
+      if(user.username === credentials.username && user.password === credentials.password) {
+        this.cache.db.set('user', user)
+        return this.router.navigate(['home'])
       }
-    // })
+    })
 
     return false
   }

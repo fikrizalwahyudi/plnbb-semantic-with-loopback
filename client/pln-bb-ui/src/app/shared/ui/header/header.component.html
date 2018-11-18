@@ -4,6 +4,20 @@
       Login
     </a>
   </ng-container>
+  <ng-container *ngIf="isAuthenticated && isPlnbb">
+    <a class="item" [routerLink]="['/home']" routerLinkActive="active">
+      Home
+    </a>
+    <a class="item" [routerLink]="['/pln-rencana-pasokan']" routerLinkActive="active">
+      Rencana Pasokan
+    </a>
+    <a class="item" [routerLink]="['/pln-realisasi-pengiriman']" routerLinkActive="active">
+      Realisasi Pengiriman
+    </a>
+    <!-- <a class="item" (click)="report()">
+      Laporan Bulanan
+    </a> -->
+  </ng-container>
   
   <ng-container *ngIf="isAuthenticated && isMitra">
     <a class="item" [routerLink]="['/home']" routerLinkActive="active">
@@ -20,6 +34,39 @@
     </a> -->
   </ng-container>
 
+  <ng-container *ngIf="isAuthenticated && !isMitra && isMitraShipping">
+    <a class="item" [routerLink]="['/home']" routerLinkActive="active">
+      Dashboard
+    </a>
+    <a class="item" [routerLink]="['/realisasi-pengiriman']" routerLinkActive="active">
+      Realisasi Pengiriman
+    </a>
+    <!-- <a class="item" [routerLink]="['/laporan-bulanan']" routerLinkActive="active">
+      Laporan Bulanan
+    </a> -->
+  </ng-container>
+
+  <ng-container *ngIf="isAuthenticated && isAdmin">
+    <a class="item" [routerLink]="['/home']" routerLinkActive="active">
+      Home
+    </a>
+    <a class="item" [routerLink]="['/admin']" routerLinkActive="active">
+      Data Referensi
+    </a>
+  </ng-container>
+
+  <!-- <a class="item" [routerLink]="['/mitra']" routerLinkActive="active">
+    Mitra
+  </a>
+  <a class="item" [routerLink]="['/pln']" routerLinkActive="active">
+    PLN BB
+  </a>
+  <a class="item" [routerLink]="['/operator']" routerLinkActive="active">
+    Operator
+  </a>
+  <a class="item" [routerLink]="['/management']" routerLinkActive="active">
+    Management
+  </a> -->
   <ng-container *ngIf="isAuthenticated">
     <div class="right menu">
       <div class="item">

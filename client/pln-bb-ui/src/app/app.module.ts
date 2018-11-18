@@ -6,24 +6,52 @@ import { StorageServiceModule} from 'angular-webstorage-service';
 import { MitraModule } from './mitra/mitra.module';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
+import { AuthenticatedGuard } from './shared/guards/authenticated.guard';
 
 import { FormKesanggupanComponent } from './mitra/form-kesanggupan/form-kesanggupan.component';
 import { DaftarKesanggupanComponent } from './mitra/daftar-kesanggupan/daftar-kesanggupan.component';
 import { CoalSourceComponent } from './mitra/coal-source/coal-source.component';
-import { HeaderComponent } from './shared/ui/header/header.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminModule } from './admin/admin.module';
+import { PlnModule } from './pln/pln.module';
+import { DaftarKebutuhanComponent } from './pln/daftar-kebutuhan/daftar-kebutuhan.component';
+import { FormKebutuhanComponent } from './pln/form-kebutuhan/form-kebutuhan.component';
+import { FormKebutuhanKesanggupanComponent } from './pln/form-kebutuhan-kesanggupan/form-kebutuhan-kesanggupan.component';
+import { RealisasiLoadingComponent } from './pln/realisasi-loading/realisasi-loading.component';
+import { RealisasiUnloadingComponent } from './pln/realisasi-unloading/realisasi-unloading.component';
+import { SiComponent } from './mitra/si/si.component';
+import { RealisasiShippingComponent } from './pln/realisasi-shipping/realisasi-shipping.component';
+
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'rencana-pasokan', component: FormKesanggupanComponent },
-  { path: 'realisasi-pengiriman', component: DaftarKesanggupanComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthenticatedGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'admin', component: AdminComponent, loadChildren: './admin/admin.module#AdminModule' },
-  { path: 'coal-source/:id', component: CoalSourceComponent }
+  { path: 'rencana-pasokan', component: FormKesanggupanComponent, canActivate: [AuthenticatedGuard] },
+  { path: 'realisasi-pengiriman', component: DaftarKesanggupanComponent, canActivate: [AuthenticatedGuard] },
+
+  { path: 'coal-source/:id', component: CoalSourceComponent, canActivate: [AuthenticatedGuard] },
+  { path: 'realisasi-info/:id', component: FormKebutuhanKesanggupanComponent, canActivate: [AuthenticatedGuard] },
+  { path: 'realisasi-loading/:id', component: RealisasiLoadingComponent, canActivate: [AuthenticatedGuard] },
+  { path: 'realisasi-sailing/:id', component: RealisasiShippingComponent, canActivate: [AuthenticatedGuard] },
+  { path: 'realisasi-unloading/:id', component: RealisasiUnloadingComponent, canActivate: [AuthenticatedGuard] },
+
+  { path: 'request-si/:id', component: SiComponent, canActivate: [AuthenticatedGuard] },
+
+  { path: 'pln-rencana-pasokan', component: FormKebutuhanComponent, canActivate: [AuthenticatedGuard] },
+  { path: 'pln-realisasi-pengiriman', component: DaftarKebutuhanComponent, canActivate: [AuthenticatedGuard] },
+
+  { path: 'pln-realisasi-info/:id', component: FormKebutuhanKesanggupanComponent, canActivate: [AuthenticatedGuard] },
+  { path: 'pln-realisasi-loading/:id', component: RealisasiLoadingComponent, canActivate: [AuthenticatedGuard] },
+  { path: 'pln-realisasi-sailing/:id', component: RealisasiShippingComponent, canActivate: [AuthenticatedGuard] },
+  { path: 'pln-realisasi-unloading/:id', component: RealisasiUnloadingComponent, canActivate: [AuthenticatedGuard] },
+
+  { path: 'pln-approve-si/:id', component: SiComponent, canActivate: [AuthenticatedGuard] },
+
+
 ];
 
 @NgModule({
@@ -42,6 +70,7 @@ const appRoutes: Routes = [
     AdminModule,
     SharedModule,
     MitraModule,
+    PlnModule,
     StorageServiceModule
   ],
   exports: [

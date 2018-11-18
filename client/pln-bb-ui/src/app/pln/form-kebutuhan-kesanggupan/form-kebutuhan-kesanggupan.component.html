@@ -1,0 +1,107 @@
+<div class="ui container mt-2">
+  <div class="ui top attached blue segment">
+    <h4 class="ui left floated header" style="margin-bottom: 0;">
+      <i class="settings icon"></i>
+      <div class="content">
+        Info Realisasi Pengiriman
+      </div>
+    </h4>
+    <button *ngIf="hasMitraInput && !selected._plnShippingDetails" class="ui right floated green compact basic button" (click)="toggle()">
+      <ng-container *ngIf="!toggleView">
+        From Vendor
+      </ng-container>
+      <ng-container *ngIf="toggleView">
+        Cancel
+      </ng-container>
+    </button>
+    <button class="ui right floated blue compact basic button" (click)="submit()">
+      Save Changes
+    </button>
+    <button class="ui right floated grey compact basic button" (click)="back()">
+      Back
+    </button>
+    <br class="clear">
+  </div>
+  <div class="ui bottom attached segment">
+    <form [formGroup]="fg" class="ui form" novalidate (ngSubmit)="submit()" (keydown.enter)="$event.preventDefault()">
+      <div class="ui grid">
+        <div class="row">
+            <div class="four wide column">    
+              <h5 class="ui dividing header">
+                Input Detail Pengiriman
+              </h5>
+
+              <div class="field">
+                <label>Id Pengiriman</label>
+                <input type="text" name="" placeholder="tgl. pengiriman" [value]="selected.id" disabled>
+              </div>
+    
+              <div class="field">
+                <label>Tgl. Pengiriman</label>
+                <div class="ui calendar" uiCalendar formControlName="tglDikirim">
+                  <div class="ui input left icon">
+                    <i class="calendar icon"></i>
+                    <input type="text" placeholder="Date/Time">
+                  </div>
+                </div>
+              </div>
+    
+              <div class="field">
+                <label>Realisasi Pengiriman</label>
+                <input type="text" name="" placeholder="realisasi" formControlName="jumlahDikirim">
+              </div>
+    
+            </div>
+
+            <div class="four wide column">
+              <h5 class="ui dividing header">
+                &nbsp;
+              </h5>
+
+              <div class="field">
+                <label>Tb/Bg</label>
+                <input type="text" name="" placeholder="tb/bg" formControlName="tbBg">
+              </div>
+
+              <div class="field">
+                <label>No. SI</label>
+                <input type="text" name="" placeholder="no. si" formControlName="noSi">
+              </div>
+    
+              <div class="field">
+                <label>Laycan</label>
+                <input type="text" name="" placeholder="laycan" formControlName="laycan">
+              </div>
+    
+            </div>
+
+            <div class="four wide column">
+              <h5 class="ui dividing header">
+                &nbsp;
+              </h5>
+
+              <div class="field">
+                <label>Jetty</label>
+                <input type="text" name="" placeholder="jetty" formControlName="jetty">
+              </div>
+
+              <input type="file" multiple style="display: none;" (change)="logoChange($event)" #file>
+              <div class="field">
+                <label>Upload Dokumen</label>
+                <div class="ui action input">
+                  <input type="text" placeholder="Browse file..." readonly>
+                  <button type="button" class="ui icon button" (click)="file.click()">
+                    Browse
+                  </button>
+                </div>
+              </div>
+
+              <!-- <button class="ui primary button" type="submit" [disabled]="!fg.valid">Submit</button>
+              <button class="ui button" type="button">Reset</button> -->
+            </div>
+        </div>
+        
+      </div>
+    </form>
+  </div>
+</div>
