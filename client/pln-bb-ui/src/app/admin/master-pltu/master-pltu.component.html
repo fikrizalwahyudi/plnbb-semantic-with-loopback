@@ -1,0 +1,78 @@
+<div class="ui secondary menu">
+  <a class="item" (click)="addNew()">
+    <i class="plus icon"></i> Register
+  </a>
+  <div class="right menu">
+    <div class="item">
+      <div class="ui icon input">
+        <input (click)="onSearch()" type="text" #queryBox placeholder="Search..." (keyup.enter)="onSearch(queryBox.value)">
+        <i class="search link icon"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="new_pltu">
+  <div class="ui inverted segment">
+    <div class="ui inverted form">
+      <div class="fields">
+        <div class="field">
+          <label>PLTU Code</label>
+          <input placeholder="Input PLTU Code" type="text" [(ngModel)]="masterPLTU.code">
+        </div>
+      </div>
+      <div class="two fields">
+        <div class="field">
+          <label>PLTU Name</label>
+          <input placeholder="Input PLTU Name" type="text" [(ngModel)]="masterPLTU.name">
+        </div>
+        <div class="field">
+          <label>PLTU Address</label>
+          <input placeholder="Input PLTU Address" type="text" [(ngModel)]="masterPLTU.address"> 
+        </div>
+      </div>
+      <div class="two fields">
+        <div class="field">
+          <label>PLTU NPWP</label>
+          <input placeholder="Input PLTU NPWP" type="text" [(ngModel)]="masterPLTU.npwp">
+        </div>
+        <div class="field">
+          <label>PLTU Status</label>
+          <input placeholder="Input PLTU Status" type="text" [(ngModel)]="masterPLTU.status">
+        </div>
+      </div>
+      <div (click)="onSubmit()" class="ui submit button">Submit</div>
+    </div>
+  </div>
+</ng-container>
+
+<table class="ui sortable single line striped table">
+  <thead>
+    <tr>
+      <th>PLTU Code</th>
+      <th>PLTU Name</th>
+      <th>PLTU Address</th>
+      <th>PLTU NPWP</th>
+      <th>PLTU Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of data_pltu">
+      <td>
+        {{item.code}}
+      </td>
+      <td>
+        {{item.name}}
+      </td>
+      <td>
+        {{item.address}}
+      </td>
+      <td>
+          {{item.npwp}}
+      </td>
+      <td>
+          {{item.status}}
+      </td>
+    </tr>
+  </tbody>
+</table>

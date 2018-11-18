@@ -1,0 +1,86 @@
+<div class="ui secondary menu">
+  <a class="item" (click)="addNew()">
+    <i class="plus icon"></i> Register
+  </a>
+  <div class="right menu">
+    <div class="item">
+      <div class="ui icon input">
+        <input type="text" #queryBox placeholder="Search..." (keyup.enter)="load(queryBox.value)">
+        <i class="search link icon"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="new_user">
+  <div class="ui inverted segment">
+    <div class="ui inverted form">
+      <div class="two fields">
+        <div class="field">
+          <label>Nama</label>
+          <input placeholder="Input Nama" type="text" [(ngModel)]="dummyMasterUser.name">
+        </div>
+        <div class="field">
+          <label>E-mail</label>
+          <input placeholder="Input e-mail" type="text" [(ngModel)]="dummyMasterUser.email">
+        </div>
+      </div>
+      <div class="two fields">
+        <div class="field">
+          <label>Username</label>
+          <input placeholder="Input username" type="text" [(ngModel)]="dummyMasterUser.username">
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input placeholder="Input password" type="password" [(ngModel)]="dummyMasterUser.password">
+        </div>
+      </div>
+      <div class="two fields">
+        <div class="field">
+          <label>Role</label>
+          <select class="ui dropdown" [(ngModel)]="dummyMasterUser.role_id">
+            <option value="">Role</option>
+            <option value="1">Role 1</option>
+            <option value="0">Role 2</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Status</label>
+          <input placeholder="Input Status" type="text" [(ngModel)]="dummyMasterUser.status">
+        </div>
+      </div>
+      <div (click)="onSubmit()" class="ui submit button">Submit</div>
+    </div>
+  </div>
+</ng-container>
+
+<table class="ui sortable single line striped table">
+  <thead>
+    <tr>
+      <th>Nama </th>
+      <th>E-Mail</th>
+      <th>username</th>
+      <th>Role</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of arrUsers">
+      <td>
+        {{item.name}}
+      </td>
+      <td>
+        {{item.email}}
+      </td>
+      <td>
+        {{item.username}}
+      </td>
+      <td>
+        {{item.role_id}}
+      </td>
+      <td>
+        {{item.status}}
+      </td>
+    </tr>
+  </tbody>
+</table>

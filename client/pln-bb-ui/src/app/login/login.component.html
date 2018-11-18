@@ -1,0 +1,27 @@
+<div class="ui grid container logincontainer" style="padding-top: 7%">
+  <div class="middle aligned five wide column centered">
+    <div class="ui segment">
+      <h3 class="ui center aligned icon header">
+        <i class="circular spy icon"></i>
+        Sign In
+      </h3>
+      <form [formGroup]="loginForm" class="ui form" novalidate (submit)="login()">
+        <div class="field">
+          <label>Username</label>
+          <input type="text" name="username" placeholder="username" formControlName="username">
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input type="password" name="password" placeholder="password" formControlName="password">
+        </div>
+        <div class="field">
+          <div class="ui checkbox">
+            <input type="checkbox" tabindex="0" class="hidden" checked>
+            <label>Remember Me</label>
+          </div>
+        </div>
+        <button class="ui positive button fullwidth" type="submit" [disabled]="!loginForm.valid">Sign In</button>
+      </form>
+    </div>
+  </div>
+</div>

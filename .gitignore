@@ -17,4 +17,8 @@
 coverage
 node_modules
 npm-debug.log
-package-log.json
+/client/pln-bb-ui/semantic
+package-lock.json
+package.json
+/package-lock.json
+/client/pln-bb-ui/package-lock.json

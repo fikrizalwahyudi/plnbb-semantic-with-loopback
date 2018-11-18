@@ -13,7 +13,7 @@
       "compressed": "out/components/",
       "themes": "out/themes/"
     },
-    "clean": "dist/"
+    "clean": "out/"
   },
   "permission": false,
   "autoInstall": false,
