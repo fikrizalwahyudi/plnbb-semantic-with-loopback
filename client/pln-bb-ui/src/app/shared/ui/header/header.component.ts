@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CacheService } from '../../services/cache.service';
+import { Router } from '@angular/router';
+import { promptDialog } from '../../modals/prompt.modal';
 
 @Component({
   selector: 'ui-header',
@@ -7,30 +10,47 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  //isAuthenticated
+  //isMitra
+  //isPlnbb
 
-  ngOnInit() {
+  constructor(private cache:CacheService, private router:Router) { 
+    
   }
 
-  get username() { return null }
+  ngOnInit() {
 
-  get isAuthenticated() { return true }
+  }
 
-  get isMitra() { return true }
+  get username() { return this.cache.db.get('user') && this.cache.db.get('user').username }
 
-  get isPlnbb() { return false }
+  get isAuthenticated() { return !!this.cache.db.get('user') }
 
-  get isMitraShipping() { return false }
+  get isMitra() { return this.isAuthenticated && this.cache.db.get('user').role.find(r => r === 'mitra') }
 
-  get isAdmin() { return false }
+  get isPlnbb() { return this.isAuthenticated && this.cache.db.get('user').role.find(r => r === 'plnbb') }
+
+  get isMitraShipping() { return this.isAuthenticated && this.cache.db.get('user').role.find(r => r === 'transport') }
+
+  get isAdmin() { return this.isAuthenticated && this.cache.db.get('user').role.find(r => r === 'admin') }
 
   report() {
-    return;
     // window.open('assets/sample.xlsx')
+    return false;
   }
 
   signOut() {
-    return;
+    promptDialog('Sign Out', 'Do you want to clear saved data?', () => {
+      //localStorage.clear()
+      this.cache.db.del('user')
+      document.location.href = '/'
+    }, () => {
+      this.cache.db.del('user')
+      document.location.href = '/'
+    })
+
+    //this.cache.db.del('user')
+    //this.router.navigate(['login'])
   }
 
 }

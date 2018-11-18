@@ -1,0 +1,140 @@
+<div class="ui container mt-2">
+  <div class="ui top attached blue segment">
+    <h4 class="ui left floated header" style="margin-bottom: 0;">
+      <i class="settings icon"></i>
+      <div class="content">
+        Info Loading Realisasi Pengiriman
+      </div>
+    </h4>
+    <button *ngIf="!isMitraInput && hasMitraInput && !selected._plnLoadingDetails" class="ui right floated green compact basic button" (click)="toggle()">
+      <ng-container *ngIf="!toggleView">
+        From Vendor
+      </ng-container>
+      <ng-container *ngIf="toggleView">
+        Cancel
+      </ng-container>
+    </button>
+    <button class="ui right floated blue compact basic button" (click)="submit()">
+      Save Changes
+    </button>
+    <button class="ui right floated grey compact basic button" (click)="back()">
+      Back
+    </button>
+    <br class="clear">
+  </div>
+  <div class="ui bottom attached segment">
+    <form [formGroup]="fg" class="ui form" novalidate (ngSubmit)="submit()" (keydown.enter)="$event.preventDefault()">
+      <div class="ui grid">
+        <div class="row">
+            <div class="four wide column">    
+              <h5 class="ui dividing header">
+                Input Detail Loading
+              </h5>
+    
+              <div class="field">
+                <label>B/L (Metric/Ton)</label>
+                <input type="text" name="" placeholder="realisasi" formControlName="bl">
+              </div>
+
+              <div class="field">
+                <label>GCV</label>
+                <input type="text" name="" placeholder="tb/bg" formControlName="gcv">
+              </div>
+
+              <div class="field">
+                <label>TM</label>
+                <input type="text" name="" placeholder="no. si" formControlName="tm">
+              </div>
+    
+            </div>
+
+            <div class="four wide column">
+              <h5 class="ui dividing header">
+                &nbsp;
+              </h5>
+
+              <div class="field">
+                <label>ASH</label>
+                <input type="text" name="" placeholder="laycan" formControlName="ash">
+              </div>
+
+              <div class="field">
+                <label>TS</label>
+                <input type="text" name="" placeholder="jetty" formControlName="ts">
+              </div>
+    
+              <div class="field">
+                <label>HGI</label>
+                <input type="text" name="" placeholder="jetty" formControlName="hgi">
+              </div>
+              
+            </div>
+
+            <div class="four wide column">
+              <h5 class="ui dividing header">
+                &nbsp;
+              </h5>
+
+              <div class="field">
+                <label>IDT</label>
+                <input type="text" name="" placeholder="jetty" formControlName="idt">
+              </div>
+
+              <div class="field">
+                <label>720 mm (%)</label>
+                <input type="text" name="" placeholder="jetty" formControlName="mm1">
+              </div>
+
+              <div class="field">
+                <label>2.38 mm (%)</label>
+                <input type="text" name="" placeholder="jetty" formControlName="mm2">
+              </div>
+              <!-- <button class="ui primary button" type="submit" [disabled]="!fg.valid">Submit</button>
+              <button class="ui button" type="button">Reset</button> -->
+            </div>
+
+            <div class="four wide column">
+              <h5 class="ui dividing header">
+                &nbsp;
+              </h5>
+              
+              <input type="file1" multiple style="display: none;" (change)="logoChange($event)" #file1>
+              <div class="field">
+                <label>Upload BL</label>
+                <div class="ui action input">
+                  <input type="text" placeholder="Browse file..." readonly>
+                  <button type="button" class="ui icon button" (click)="file1.click()">
+                    Browse
+                  </button>
+                </div>
+              </div>
+
+              <input type="file2" multiple style="display: none;" (change)="logoChange($event)" #file2>
+              <div class="field">
+                <label>Upload CM</label>
+                <div class="ui action input">
+                  <input type="text" placeholder="Browse file..." readonly>
+                  <button type="button" class="ui icon button" (click)="file2.click()">
+                    Browse
+                  </button>
+                </div>
+              </div>
+
+              <input type="file3" multiple style="display: none;" (change)="logoChange($event)" #file3>
+              <div class="field">
+                <label>Upload SKAB</label>
+                <div class="ui action input">
+                  <input type="text" placeholder="Browse file..." readonly>
+                  <button type="button" class="ui icon button" (click)="file3.click()">
+                    Browse
+                  </button>
+                </div>
+              </div>
+
+            </div>
+        </div>
+        
+      </div>
+    </form>
+  </div>
+</div>
