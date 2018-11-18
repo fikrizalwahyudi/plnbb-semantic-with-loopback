@@ -46,6 +46,15 @@
     </a> -->
   </ng-container>
 
+  <ng-container *ngIf="isAuthenticated && isAdmin">
+    <a class="item" [routerLink]="['/home']" routerLinkActive="active">
+      Home
+    </a>
+    <a class="item" [routerLink]="['/admin']" routerLinkActive="active">
+      Data Referensi
+    </a>
+  </ng-container>
+
   <!-- <a class="item" [routerLink]="['/mitra']" routerLinkActive="active">
     Mitra
   </a>
