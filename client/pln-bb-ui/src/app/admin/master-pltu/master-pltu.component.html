@@ -18,29 +18,32 @@
       <div class="fields">
         <div class="field">
           <label>PLTU Code</label>
-          <input placeholder="Input PLTU Code" type="text" [(ngModel)]="masterPLTU.code">
+          <input placeholder="Input PLTU Code" type="text" [(ngModel)]="masterPLTU.code" id="pltu_code">
         </div>
       </div>
       <div class="two fields">
         <div class="field">
           <label>PLTU Name</label>
-          <input placeholder="Input PLTU Name" type="text" [(ngModel)]="masterPLTU.name">
+          <input placeholder="Input PLTU Name" type="text" [(ngModel)]="masterPLTU.name" id="pltu_name">
         </div>
         <div class="field">
           <label>PLTU Address</label>
-          <input placeholder="Input PLTU Address" type="text" [(ngModel)]="masterPLTU.address"> 
+          <input placeholder="Input PLTU Address" type="text" [(ngModel)]="masterPLTU.address" id="pltu_address">
         </div>
       </div>
       <div class="two fields">
         <div class="field">
           <label>PLTU NPWP</label>
-          <input placeholder="Input PLTU NPWP" type="text" [(ngModel)]="masterPLTU.npwp">
+          <input placeholder="Input PLTU NPWP" type="text" [(ngModel)]="masterPLTU.npwp" id="pltu_npwp">
         </div>
         <div class="field">
           <label>PLTU Status</label>
-          <input placeholder="Input PLTU Status" type="text" [(ngModel)]="masterPLTU.status">
+          <input placeholder="Input PLTU Status" type="text" [(ngModel)]="masterPLTU.status" id="pltu_status">
         </div>
       </div>
+      <!-- Show error when form invalid -->
+      <div class="ui error message"></div>
+      <!-- -- -->
       <div (click)="onSubmit()" class="ui submit button">Submit</div>
     </div>
   </div>
@@ -68,10 +71,10 @@
         {{item.address}}
       </td>
       <td>
-          {{item.npwp}}
+        {{item.npwp}}
       </td>
       <td>
-          {{item.status}}
+        {{item.status}}
       </td>
     </tr>
   </tbody>
