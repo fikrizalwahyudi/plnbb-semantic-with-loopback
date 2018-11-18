@@ -3,50 +3,47 @@ import { injectable,inject } from 'inversify';
 import { CommonModel, Property, Relation, Remote } from 'loopback-typescript-core/dist/models/decorators';
 
 @injectable()
-export class UsersDao extends PersistedDao
+export class MitraDao extends PersistedDao
 {
-	static tableName = 'users'
-	static modelName = 'Users'
+	static tableName = 'mitra'
+	static modelName = 'Mitra'
 
-	ModelClass = UsersModel
+	ModelClass = MitraModel
 }
 
 @injectable()
 @CommonModel({
-	name: UsersDao.modelName,
-	dao: UsersDao,
+	name: MitraDao.modelName,
+	dao: MitraDao,
 	dataSource: 'mypostgresdb',
 	settings: {
-		plural: 'users',
+		plural: 'mitra',
 		postgresql: {
 			schema: "plnbbdb",
-			table: UsersDao.tableName
+			table: MitraDao.tableName
 		},
 		idInjection:true,
 		forceId:false,
 		mixins: {}
 	}
 })
-export class UsersModel extends PersistedModel
+export class MitraModel extends PersistedModel
 {	
 
 	@Property('Number')
 	id:Number
 
 	@Property('String')
-	email:String
-
-	@Property('String')
-	username:String
-
-	@Property('String')
-	password:String
+	code:String
 
 	@Property('String')
 	name:String
 
-	@Property('Number')
-	role_id:Number
+	@Property('String')
+	address:String
+
+	@Property('String')
+	npwp:String
 
 	@Property('Number')
 	status:Number

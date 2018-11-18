@@ -3,50 +3,53 @@ import { injectable,inject } from 'inversify';
 import { CommonModel, Property, Relation, Remote } from 'loopback-typescript-core/dist/models/decorators';
 
 @injectable()
-export class UsersDao extends PersistedDao
+export class RequestShippingDao extends PersistedDao
 {
-	static tableName = 'users'
-	static modelName = 'Users'
+	static tableName = 'request_shipping'
+	static modelName = 'RequestShipping'
 
-	ModelClass = UsersModel
+	ModelClass = RequestShippingModel
 }
 
 @injectable()
 @CommonModel({
-	name: UsersDao.modelName,
-	dao: UsersDao,
+	name: RequestShippingDao.modelName,
+	dao: RequestShippingDao,
 	dataSource: 'mypostgresdb',
 	settings: {
-		plural: 'users',
+		plural: 'request_shipping',
 		postgresql: {
 			schema: "plnbbdb",
-			table: UsersDao.tableName
+			table: RequestShippingDao.tableName
 		},
 		idInjection:true,
 		forceId:false,
 		mixins: {}
 	}
 })
-export class UsersModel extends PersistedModel
+export class RequestShippingModel extends PersistedModel
 {	
 
 	@Property('Number')
 	id:Number
 
-	@Property('String')
-	email:String
-
-	@Property('String')
-	username:String
-
-	@Property('String')
-	password:String
-
-	@Property('String')
-	name:String
+	@Property('Number')
+	realisasi_kirim_id:Number
 
 	@Property('Number')
-	role_id:Number
+	mitra_id:Number
+
+	@Property('String')
+	no_si:String
+
+	@Property('String')
+	laycan:String
+
+	@Property('String')
+	jetty:String
+
+	@Property('String')
+	nama_kapal:String
 
 	@Property('Number')
 	status:Number
