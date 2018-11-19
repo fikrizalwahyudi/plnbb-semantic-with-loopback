@@ -8,12 +8,12 @@
       "themes": "src/themes/"
     },
     "output": {
-      "packaged": "out/",
-      "uncompressed": "out/components/",
-      "compressed": "out/components/",
-      "themes": "out/themes/"
+      "packaged": "out\\",
+      "uncompressed": "out\\components\\",
+      "compressed": "out\\components\\",
+      "themes": "out\\themes\\"
     },
-    "clean": "out/"
+    "clean": "dist/"
   },
   "permission": false,
   "autoInstall": false,

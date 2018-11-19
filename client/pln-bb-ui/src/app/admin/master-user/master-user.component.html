@@ -40,8 +40,7 @@
           <label>Role</label>
           <select class="ui dropdown" [(ngModel)]="dummyMasterUser.role_id">
             <option value="">Role</option>
-            <option value="1">Role 1</option>
-            <option value="0">Role 2</option>
+            <option ngFor="let data of data_role" value="{{data.id}}">{{data.name}}</option>
           </select>
         </div>
         <div class="field">
@@ -65,7 +64,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of arrUsers">
+    <tr *ngFor="let item of data_user">
       <td>
         {{item.name}}
       </td>
@@ -76,7 +75,7 @@
         {{item.username}}
       </td>
       <td>
-        {{item.role_id}}
+        {{item.role_name}}
       </td>
       <td>
         {{item.status}}

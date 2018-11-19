@@ -3,6 +3,7 @@ import { months } from '../../user/source/month/month';
 import { dummy_pltu } from '../../user/source/dummy-pltu';
 import { dummy_ref_kontrak } from '../../user/source/dummy-ref-kontrak';
 import { ref_kontrak } from '../../user/user';
+import { refKontrakValidation } from '../../shared/validation/validation';
 declare var $: any;
 @Component({
   selector: 'master-referensi-kontrak',
@@ -44,11 +45,20 @@ export class MasterReferensiKontrakComponent implements OnInit {
   }
 
   onSubmit(){
-    this.data_ref_kontrak.id = this.master_ref_kontrak.length + 1;
-    //Using push to add new data to array
-    //Soon - submit into database
-    this.master_ref_kontrak.push(Object.assign({}, this.data_ref_kontrak));
-    this.clearArray();
+    let val = refKontrakValidation();
+    if (val){
+      this.new_ref = false;
+      setTimeout(() => {
+        this.new_ref = true;
+      }, 10)
+      this.data_ref_kontrak.id = this.master_ref_kontrak.length + 1;
+      //Using push to add new data to array
+      //Soon - submit into database
+      this.master_ref_kontrak.push(Object.assign({}, this.data_ref_kontrak));
+      this.clearArray();
+    } else {
+      console.log('form invalid');
+    }
   }
 
   clearArray(){
