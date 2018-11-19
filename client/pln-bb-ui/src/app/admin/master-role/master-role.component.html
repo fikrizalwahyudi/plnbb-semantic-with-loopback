@@ -18,19 +18,22 @@
       <div class="two fields">
         <div class="field">
           <label>Role Name</label>
-          <input placeholder="Role Name" type="text" [(ngModel)]="dummyUser.name">
+          <input placeholder="Role Name" id="role_name" type="text" [(ngModel)]="dummyUser.name">
         </div>
         <div class="field">
           <label>Role Description</label>
-          <input placeholder="Role Description" type="text" [(ngModel)]="dummyUser.description">
+          <input placeholder="Role Description" id="role_desc" type="text" [(ngModel)]="dummyUser.description">
         </div>
       </div>
       <div class="fields">
         <div class="field">
           <label>Role Status</label>
-          <input placeholder="Role Status" type="text" [(ngModel)]="dummyUser.status">
+          <input placeholder="Role Status" id="role_status" type="text" [(ngModel)]="dummyUser.status">
         </div>
       </div>
+      <!-- Show error when form invalid -->
+      <div class="ui error message"></div>
+      <!-- -- -->
       <div (click)="onSubmit()" class="ui submit button">Submit</div>
     </div>
   </div>

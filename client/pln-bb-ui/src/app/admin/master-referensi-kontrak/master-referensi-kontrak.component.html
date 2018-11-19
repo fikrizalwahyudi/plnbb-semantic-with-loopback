@@ -18,17 +18,17 @@
       <div class="fields">
         <div class="field">
           <label>Nomor Kontrak</label>
-          <input placeholder="Input Nomor Kontrak" type="number" [(ngModel)]="data_ref_kontrak.no">
+          <input placeholder="Input Nomor Kontrak" id="no_kontrak" type="number" [(ngModel)]="data_ref_kontrak.no">
         </div>
       </div>
       <div class="two fields">
         <div class="field">
           <label>Nama Pekerjaan</label>
-          <input placeholder="Input Nama Pekerjaan" type="text" [(ngModel)]="data_ref_kontrak.nama_pekerjaan">
+          <input placeholder="Input Nama Pekerjaan" id="name" type="text" [(ngModel)]="data_ref_kontrak.nama_pekerjaan">
         </div>
         <div class="field">
           <label>Tanggal Pekerjaan</label>
-          <input placeholder="Input tanggal pekerjaan" type="date" [(ngModel)]="data_ref_kontrak.tanggal">
+          <input placeholder="Input tanggal pekerjaan" id="tgl_pekerjaan" type="date" [(ngModel)]="data_ref_kontrak.tanggal">
         </div>
       </div>
       <div class="three fields">
@@ -57,9 +57,9 @@
           </select>
         </div>
       </div>
-      <div class="fields">
-        
-      </div>
+      <!-- Show error when form invalid -->
+      <div class="ui error message"></div>
+      <!-- -- -->
       <div (click)="onSubmit()" class="ui submit button">Submit</div>
     </div>
   </div>

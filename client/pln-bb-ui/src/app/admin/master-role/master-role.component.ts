@@ -1,8 +1,8 @@
 import { Component, OnInit, Injectable, Inject } from '@angular/core';
 import { userMasterRole } from '../../user/user';
 import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
-import { inject } from '@angular/core/src/render3';
 import { dummy_role } from '../../user/source/dummy-role';
+import { roleValidation } from '../../shared/validation/validation';
 
 declare var $: any;
 @Component({
@@ -34,10 +34,17 @@ export class MasterRoleComponent implements OnInit {
   }
 
   onSubmit() {
-    this.dummyUser.id = this.data_role.length + 1;
-    //Soon submit to database
-    this.data_role.push(Object.assign({}, this.dummyUser));
-    this.clearArray();
+    let val = roleValidation();
+    if (val){
+      this.new_role = false;
+      setTimeout(() => {
+        this.new_role = true;
+      }, 10)
+      this.dummyUser.id = this.data_role.length + 1;
+      //Soon submit to database
+      this.data_role.push(Object.assign({}, this.dummyUser));
+      this.clearArray();
+    }
   }
 
   onSearch() {
