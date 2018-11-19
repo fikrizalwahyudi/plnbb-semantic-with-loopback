@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 // import { CacheService } from '../../shared/services/cache.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import uuidv1 = require('uuid/v1')
+import uuidv1 = require('uuid/v1');
+import {PltuService} from '../../shared/services/pltu.service';
 
 @Component({
   selector: 'app-form-kesanggupan',
@@ -19,7 +20,7 @@ export class FormKesanggupanComponent implements OnInit {
 
   fg:FormGroup
 
-  constructor(private fb:FormBuilder) { 
+  constructor(private fb:FormBuilder, private pltuService:PltuService) { 
     // this.pltu = this.cache.pltu
 
     this.fg = this.fb.group({
@@ -42,6 +43,9 @@ export class FormKesanggupanComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.pltuService.getAllPltu().subscribe(pltu=>{
+      this.pltu = pltu;
+    })
   }
 
   get Id() { return 1 }//`${FormKesanggupanComponent.key}.${this.cache.currentUser.id}` }

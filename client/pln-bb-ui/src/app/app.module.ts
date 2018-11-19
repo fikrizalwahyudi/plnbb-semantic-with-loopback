@@ -2,11 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { HttpModule } from '@angular/http';
+
 import { StorageServiceModule} from 'angular-webstorage-service';
 import { MitraModule } from './mitra/mitra.module';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { AuthenticatedGuard } from './shared/guards/authenticated.guard';
+import { PltuService } from './shared/services/pltu.service';
 
 import { FormKesanggupanComponent } from './mitra/form-kesanggupan/form-kesanggupan.component';
 import { DaftarKesanggupanComponent } from './mitra/daftar-kesanggupan/daftar-kesanggupan.component';
@@ -71,12 +74,13 @@ const appRoutes: Routes = [
     SharedModule,
     MitraModule,
     PlnModule,
-    StorageServiceModule
+    StorageServiceModule,
+    HttpModule
   ],
   exports: [
     RouterModule
   ],
-  providers: [],
+  providers: [PltuService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
