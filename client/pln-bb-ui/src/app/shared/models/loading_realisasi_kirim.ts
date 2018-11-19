@@ -1,0 +1,20 @@
+export class Loading_realisasi_kirim {
+	id=0;
+	realisasi_kirim_id=0;
+	bl="";
+	ash="";
+	idt="";
+	gcv="";
+	ts="";
+	"720mm"="";
+	tm="";
+	hgi="";
+	"238mm"="";
+	upload_bl="";
+	upload_cm="";
+	upload_skab="";
+  
+    constructor(values: Object = {}) {
+      Object.assign(this, values);
+    }
+}
