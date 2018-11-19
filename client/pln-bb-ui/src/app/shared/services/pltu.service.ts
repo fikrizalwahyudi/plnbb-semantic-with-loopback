@@ -18,7 +18,7 @@ export class PltuService {
 
     public getAllPltu(): Observable<Pltu[]> {
         return this.http
-        .get(API_URL + '/api/pltu')
+        .get(API_URL + '/pltu')
         .map(response => {
             const listPltu = response.json();
             return listPltu.map((pltu) => new Pltu(pltu));
@@ -26,39 +26,39 @@ export class PltuService {
         .catch(this.handleError);
     }
 
-//   public createTodo(todo: Todo): Observable<Todo> {
-//     return this.http
-//       .post(API_URL + '/todos', todo)
-//       .map(response => {
-//         return new Todo(response.json());
-//       })
-//       .catch(this.handleError);
-//   }
+    public createPltu(pltu: Pltu): Observable<Pltu> {
+        return this.http
+        .post(API_URL + '/pltu', pltu)
+        .map(response => {
+            return new Pltu(response.json());
+        })
+        .catch(this.handleError);
+    }
 
-//   public getTodoById(todoId: number): Observable<Todo> {
-//     return this.http
-//       .get(API_URL + '/todos/' + todoId)
-//       .map(response => {
-//         return new Todo(response.json());
-//       })
-//       .catch(this.handleError);
-//   }
+    public getPltuById(pltuId: number): Observable<Pltu> {
+        return this.http
+        .get(API_URL + '/pltu/' + pltuId)
+        .map(response => {
+            return new Pltu(response.json());
+        })
+        .catch(this.handleError);
+    }
 
-//   public updateTodo(todo: Todo): Observable<Todo> {
-//     return this.http
-//       .put(API_URL + '/todos/' + todo.id, todo)
-//       .map(response => {
-//         return new Todo(response.json());
-//       })
-//       .catch(this.handleError);
-//   }
+    public updatePltu(pltu: Pltu): Observable<Pltu> {
+        return this.http
+        .put(API_URL + '/pltu/' + pltu.id, pltu)
+        .map(response => {
+            return new Pltu(response.json());
+        })
+        .catch(this.handleError);
+    }
 
-//   public deleteTodoById(todoId: number): Observable<null> {
-//     return this.http
-//       .delete(API_URL + '/todos/' + todoId)
-//       .map(response => null)
-//       .catch(this.handleError);
-//   }
+    public deletePltuById(pltuId: number): Observable<null> {
+        return this.http
+        .delete(API_URL + '/pltu/' + pltuId)
+        .map(response => null)
+        .catch(this.handleError);
+    }
 
     private handleError (error: Response | any) {
         console.error('ApiService::handleError', error);
