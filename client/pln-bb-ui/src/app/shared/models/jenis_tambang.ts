@@ -1,7 +1,7 @@
 export class Jenis_tambang {
-    id=0;
+    id:number;
 	name="";
-	status0;
+	status=0;
   
     constructor(values: Object = {}) {
       Object.assign(this, values);

@@ -1,9 +1,9 @@
 export class Tambang {
-    id=0;
+    id:number;
     name="";
     sertifikat="";
-    jenis_tambang_id=0;
-    location_id=0;
+    jenis_tambang_id:number;
+    location_id:number;
     tanggal_berlaku:Date;
     tanggal_habis:Date;
   

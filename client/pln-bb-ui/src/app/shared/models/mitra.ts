@@ -1,5 +1,5 @@
 export class Mitra {
-    id=0;
+    id:number;
     code="";
     name="";
     address="";

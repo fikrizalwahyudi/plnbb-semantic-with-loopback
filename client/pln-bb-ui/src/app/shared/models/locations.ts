@@ -1,5 +1,5 @@
 export class Locations {
-    id=0;
+    id:number;
     name="";
     status=0;
   

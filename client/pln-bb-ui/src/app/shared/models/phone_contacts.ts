@@ -1,8 +1,8 @@
 export class Phone_contacts {
-    id=0;
-    owner_id=0;
+    id:number;
+    owner_id:number;
     owner_name="";
-    phone_number=0;
+    phone_number="";
   
     constructor(values: Object = {}) {
       Object.assign(this, values);

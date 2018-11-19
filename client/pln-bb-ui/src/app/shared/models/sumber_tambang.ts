@@ -1,7 +1,7 @@
 export class Sumber_tambang {
- 	id=0;
-	realisasi_kirim_id=0;
-	tambang_id=0;
+ 	id:number;
+	realisasi_kirim_id:number;
+	tambang_id:number;
 	ammount=0;
   
     constructor(values: Object = {}) {

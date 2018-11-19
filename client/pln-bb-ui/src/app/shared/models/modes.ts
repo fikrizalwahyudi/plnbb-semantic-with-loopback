@@ -1,5 +1,5 @@
 export class Modes {
-    id=0;
+    id:number;
     name="";
     status=0;
   

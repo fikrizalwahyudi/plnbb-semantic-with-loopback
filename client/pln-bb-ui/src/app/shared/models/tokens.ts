@@ -1,7 +1,7 @@
 export class Tokens {
-    id=0;
+    id:number;
     token="";
-    user_id=0;
+    user_id:number;
   
     constructor(values: Object = {}) {
       Object.assign(this, values);

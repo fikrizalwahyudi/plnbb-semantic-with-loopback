@@ -1,6 +1,6 @@
 export class Loading_realisasi_kirim {
-	id=0;
-	realisasi_kirim_id=0;
+	id:number;
+	realisasi_kirim_id:number;
 	bl="";
 	ash="";
 	idt="";

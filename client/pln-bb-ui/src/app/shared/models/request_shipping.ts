@@ -1,7 +1,7 @@
 export class Request_shipping {
-   	id=0;
-    realisasi_kirim_id=0;
-    mitra_id=0;
+   	id:number;
+    realisasi_kirim_id:number;
+    mitra_id:number;
     no_si="";
     laycan="";
     jetty="";

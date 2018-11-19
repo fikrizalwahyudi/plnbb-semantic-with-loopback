@@ -1,5 +1,5 @@
 export class Roles {
-    id=0;
+    id:number;
     name="";
     description="";
     role_auth="";

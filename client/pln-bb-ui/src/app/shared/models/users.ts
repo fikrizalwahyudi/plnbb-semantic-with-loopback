@@ -1,10 +1,10 @@
 export class Users {
-    id=0;
+    id:number;
     email="";
     username="";
     password="";
     name="";
-    role_id=0;
+    role_id:number;
     status=0;
   
     constructor(values: Object = {}) {
