@@ -1,4 +1,4 @@
-export class User_mitra {
+export class UserMitra {
     id:number;
     user_id:number;
     mitra_id:number;

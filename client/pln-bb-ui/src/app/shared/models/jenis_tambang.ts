@@ -1,4 +1,4 @@
-export class Jenis_tambang {
+export class JenisTambang {
     id:number;
 	name="";
 	status=0;

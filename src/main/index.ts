@@ -6,19 +6,22 @@ import loopback from 'loopback';
 import http from 'http';
 import fs from 'fs';
 
-(function(){
+process.on('unhandledRejection', (reason, promise) => {
+	//console.log(promise)
+	console.log('Unhandled Rejection at:', reason.stack || reason)
+	// Recommended: send the information to sentry.io
+	// or whatever crash reporting service you use
+	process.exit()
+})
 
-	process.on('unhandledRejection', (reason, promise) => {
-		//console.log(promise)
-		console.log('Unhandled Rejection at:', reason.stack || reason)
-		// Recommended: send the information to sentry.io
-		// or whatever crash reporting service you use
-		process.exit()
-	})
+export = (function(){
+	console.log("masuk function")
+	let argv = require('yargs').argv
 
 	let app = loopback()
-	let configDir = path.resolve(process.cwd(), './src/resources')
-
+	// let configDir = path.resolve(process.cwd(), './src/resources');
+	let configDir = path.resolve(process.cwd(), (argv.config ? argv.config : './src/resources'));
+	console.log("masuk function2")
 	Module.boot(SampleModule, {
 		appRootDir: process.cwd(),
 		appConfigRootDir: configDir,
@@ -30,9 +33,12 @@ import fs from 'fs';
 			path.resolve(__dirname, './mixins')
 		]
 	}, app).then((module)  => {
+		console.log("masuk module boot");
+		module.getContext().emit('module booted', module);
+		if(!argv.server)
+			return module.getContext().getParentContext()
 		// start the web server
 		let port = module.getContext().getConfig('port')
-		
 		let server = http.createServer(module.getContext().getParentContext())
 		
 		let handleOnStart = (startedPort) => {
@@ -45,4 +51,6 @@ import fs from 'fs';
 
 		server.listen(port, () => {handleOnStart(port)})
 	});
+	console.log("masuk function 3")
+	return app;
 })()

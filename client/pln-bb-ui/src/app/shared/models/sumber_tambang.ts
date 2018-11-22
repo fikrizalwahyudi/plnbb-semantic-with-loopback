@@ -1,4 +1,4 @@
-export class Sumber_tambang {
+export class SumberTambang {
  	id:number;
 	realisasi_kirim_id:number;
 	tambang_id:number;

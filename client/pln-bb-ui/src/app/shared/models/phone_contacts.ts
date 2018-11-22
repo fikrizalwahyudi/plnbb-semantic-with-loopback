@@ -1,4 +1,4 @@
-export class Phone_contacts {
+export class PhoneContacts {
     id:number;
     owner_id:number;
     owner_name="";
