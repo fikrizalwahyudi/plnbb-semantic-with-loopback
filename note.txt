@@ -1,0 +1,24 @@
+- user mitra 
+    condition : 
+        - untuk input detail pasokan semua terdisabled
+        - PLTU terdisabled
+        - ketika tahun / bulan di pilih akan memunculkan list nomor kontrak berdasarkan bulan / tahun tersebut
+        - ketika no kontrak di input tanpa memilih bulan / tahun , bulan dan tahun akan mengikuti sesuai dengan nomor kontrak yang di pilih
+        - list rencana pasokan akan tampil berdasarkan bulan / tahun
+        - input detail akan ter enabled ketika no kontrak telah di isi
+
+- Admin 
+    - Referensi kontrak
+        - 1 Referensi Kontrak bisa banyak PLTU
+        - 1 Referensi kontrak bisa banyak mitra
+        - No kontrak harus uniq
+        
+- Role 
+    - 1 User boleh memiliki lebih dari 1 Role
+
+- apakah 1 mitra wajib punya user ?
+
+- PLN BB 
+    - bulan dan tahun wajib di isi pertama kali
+    - tanggal pengiriman bisa di isi ketika mitra dan pltu di pilih
+    - ketika mitra dipilih pertama kali, pltu akan menyesuaikan dengan mitra tersebut dan sebaliknya

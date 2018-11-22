@@ -86,6 +86,7 @@ export class FormKesanggupanComponent implements OnInit {
   // }
 
   submit() {
+    console.log(this.fg.value.tgl.getTime());
     //console.log(this.fg.value)
     // let records = this._records //this.cache.db.get(FormKesanggupanComponent.key)
     // let model = this.fg.value

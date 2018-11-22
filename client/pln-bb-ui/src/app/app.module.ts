@@ -10,6 +10,7 @@ import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { AuthenticatedGuard } from './shared/guards/authenticated.guard';
 import { PltuService } from './shared/services/pltu.service';
+import { RencanaPasokanService } from './shared/services/rencana_pasokan.service';
 
 import { FormKesanggupanComponent } from './mitra/form-kesanggupan/form-kesanggupan.component';
 import { DaftarKesanggupanComponent } from './mitra/daftar-kesanggupan/daftar-kesanggupan.component';
@@ -80,7 +81,7 @@ const appRoutes: Routes = [
   exports: [
     RouterModule
   ],
-  providers: [PltuService],
+  providers: [PltuService,RencanaPasokanService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
