@@ -1,28 +1,36 @@
-<div class="ui container mt-2">
-  <div class="ui grid">
-    <div class="three wide column">
-      <div class="ui four vertical menu">
-        <a (click)="onSelect('dashboard')" id="dashboard" class="item">
-          Dashboard
-        </a>
-        <a (click)="onSelect('pltu')" id="pltu" class="item">
-          PLTU
-        </a>
-        <a (click)="onSelect('ref')" id="ref" class="item">
-          Referensi Kontrak
-        </a>
-        <a (click)="onSelect('role')" id="role" class="item">
-          Role
-        </a>
-        <a (click)="onSelect('tambang')" id="tambang" class="item">
-          Tambang
-        </a>
-        <a (click)="onSelect('user')" id="user" class="item">
-          User
-        </a>
-      </div>
+<div class="ui bottom attached segment pushable">
+  <div class="ui visible inverted left vertical sidebar menu">
+      <img class="center" style="width:35%; padding-top: 3%" src="http://erp.plnbatubara.co.id/assets/gfx/web_news/1450433146.png">
+    <a (click)="onSelect('dashboard')" id="dashboard" class="item">
+      <i class="home icon"></i>
+      Dashboard
+    </a>
+    <a (click)="onSelect('pltu')" id="pltu" class="item">
+      <i class="block layout icon"></i>
+      PLTU
+    </a>
+    <a (click)="onSelect('ref')" id="ref" class="item">
+      <i class="smile icon"></i>
+      Referensi Kontrak
+    </a>
+    <a (click)="onSelect('role')" id="role" class="item">
+      <i class="calendar icon"></i>
+      Role
+    </a>
+    <a (click)="onSelect('tambang')" id="tambang" class="item">
+      <i class="calendar icon"></i>
+      Tambang
+    </a>
+    <a (click)="onSelect('user')" id="user" class="item">
+      <i class="calendar icon"></i>
+      User
+    </a>
+  </div>
+  <div class="pusher">
+    <div class="ui basic segment">
+      <h3 class="ui header">Application Content</h3>
     </div>
-    <div class="thirteen wide computer sixteen wide mobile column">
+    <div class="thirteen wide computer sixteen wide mobile column container">
       <div class="ui blue segment">
         <ng-container *ngIf="id == 'ref'">
           <master-referensi-kontrak></master-referensi-kontrak>
@@ -43,3 +51,11 @@
     </div>
   </div>
 </div>
+
+<!-- <footer> -->
+  <!-- <div class="ui bottom footer">
+    <div class="ui red segment">
+      <p>Copyright &copy; 2018 PT. PLN Batu Bara All Right Reserved</p>
+    </div>
+  </div> -->
+<!-- </footer> -->
