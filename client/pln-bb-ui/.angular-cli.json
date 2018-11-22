@@ -19,7 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.sass",
+        "styles.css",
         "../semantic/out/semantic.min.css",
         "../node_modules/semantic-ui-calendar/dist/calendar.min.css"
       ],
@@ -60,7 +60,7 @@
     }
   },
   "defaults": {
-    "styleExt": "sass",
+    "styleExt": "css",
     "component": {}
   }
 }

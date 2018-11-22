@@ -31,12 +31,11 @@ import { RealisasiShippingComponent } from './pln/realisasi-shipping/realisasi-s
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent, canActivate: [AuthenticatedGuard] },
   { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthenticatedGuard] },
   { path: 'admin', component: AdminComponent, loadChildren: './admin/admin.module#AdminModule' },
   { path: 'rencana-pasokan', component: FormKesanggupanComponent, canActivate: [AuthenticatedGuard] },
   { path: 'realisasi-pengiriman', component: DaftarKesanggupanComponent, canActivate: [AuthenticatedGuard] },
-
   { path: 'coal-source/:id', component: CoalSourceComponent, canActivate: [AuthenticatedGuard] },
   { path: 'realisasi-info/:id', component: FormKebutuhanKesanggupanComponent, canActivate: [AuthenticatedGuard] },
   { path: 'realisasi-loading/:id', component: RealisasiLoadingComponent, canActivate: [AuthenticatedGuard] },
@@ -54,8 +53,6 @@ const appRoutes: Routes = [
   { path: 'pln-realisasi-unloading/:id', component: RealisasiUnloadingComponent, canActivate: [AuthenticatedGuard] },
 
   { path: 'pln-approve-si/:id', component: SiComponent, canActivate: [AuthenticatedGuard] },
-
-
 ];
 
 @NgModule({
