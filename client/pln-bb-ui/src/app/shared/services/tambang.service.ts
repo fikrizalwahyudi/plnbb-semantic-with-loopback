@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Http, Response } from '@angular/http';
-import { Users } from '../models/users';
+import { Tambang } from '../models/tambang';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -10,52 +10,52 @@ import 'rxjs/add/observable/throw';
 const API_URL = environment.apiUrl;
 
 @Injectable()
-export class UsersService {
+export class TambangService {
 
     constructor(private http: Http) {
 
     }
 
-    public getAllUsers(): Observable<Users[]> {
+    public getAllTambang(): Observable<Tambang[]> {
         return this.http
-        .get(API_URL + '/users')
+        .get(API_URL + '/tambang')
         .map(response => {
-            const listUsers = response.json();
-            return listUsers.map((users) => new Users(users));
+            const listTambang = response.json();
+            return listTambang.map((tambang) => new Tambang(tambang));
         })
         .catch(this.handleError);
     }
 
-    public createUsers(users: Users): Observable<Users> {
+    public createTambang(tambang: Tambang): Observable<Tambang> {
         return this.http
-        .post(API_URL + '/users', users)
+        .post(API_URL + '/tambang', tambang)
         .map(response => {
-            return new Users(response.json());
+            return new Tambang(response.json());
         })
         .catch(this.handleError);
     }
 
-    public getUsersById(usersId: number): Observable<Users> {
+    public getTambangById(tambangId: number): Observable<Tambang> {
         return this.http
-        .get(API_URL + '/users/' + usersId)
+        .get(API_URL + '/tambang/' + tambangId)
         .map(response => {
-            return new Users(response.json());
+            return new Tambang(response.json());
         })
         .catch(this.handleError);
     }
 
-    public updateUsers(users: Users): Observable<Users> {
+    public updateTambang(tambang: Tambang): Observable<Tambang> {
         return this.http
-        .put(API_URL + '/users/' + users.id, users)
+        .put(API_URL + '/tambang/' + tambang.id, tambang)
         .map(response => {
-            return new Users(response.json());
+            return new Tambang(response.json());
         })
         .catch(this.handleError);
     }
 
-    public deleteUsersById(usersId: number): Observable<null> {
+    public deleteTambangById(tambangId: number): Observable<null> {
         return this.http
-        .delete(API_URL + '/users/' + usersId)
+        .delete(API_URL + '/tambang/' + tambangId)
         .map(response => null)
         .catch(this.handleError);
     }

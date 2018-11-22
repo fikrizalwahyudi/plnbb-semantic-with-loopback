@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Http, Response } from '@angular/http';
-import { Users } from '../models/users';
+import { Modes } from '../models/modes';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -10,52 +10,52 @@ import 'rxjs/add/observable/throw';
 const API_URL = environment.apiUrl;
 
 @Injectable()
-export class UsersService {
+export class ModesService {
 
     constructor(private http: Http) {
 
     }
 
-    public getAllUsers(): Observable<Users[]> {
+    public getAllModes(): Observable<Modes[]> {
         return this.http
-        .get(API_URL + '/users')
+        .get(API_URL + '/modes')
         .map(response => {
-            const listUsers = response.json();
-            return listUsers.map((users) => new Users(users));
+            const listModes = response.json();
+            return listModes.map((modes) => new Modes(modes));
         })
         .catch(this.handleError);
     }
 
-    public createUsers(users: Users): Observable<Users> {
+    public createModes(modes: Modes): Observable<Modes> {
         return this.http
-        .post(API_URL + '/users', users)
+        .post(API_URL + '/modes', modes)
         .map(response => {
-            return new Users(response.json());
+            return new Modes(response.json());
         })
         .catch(this.handleError);
     }
 
-    public getUsersById(usersId: number): Observable<Users> {
+    public getModesById(modesId: number): Observable<Modes> {
         return this.http
-        .get(API_URL + '/users/' + usersId)
+        .get(API_URL + '/modes/' + modesId)
         .map(response => {
-            return new Users(response.json());
+            return new Modes(response.json());
         })
         .catch(this.handleError);
     }
 
-    public updateUsers(users: Users): Observable<Users> {
+    public updateModes(modes: Modes): Observable<Modes> {
         return this.http
-        .put(API_URL + '/users/' + users.id, users)
+        .put(API_URL + '/modes/' + modes.id, modes)
         .map(response => {
-            return new Users(response.json());
+            return new Modes(response.json());
         })
         .catch(this.handleError);
     }
 
-    public deleteUsersById(usersId: number): Observable<null> {
+    public deleteModesById(modesId: number): Observable<null> {
         return this.http
-        .delete(API_URL + '/users/' + usersId)
+        .delete(API_URL + '/modes/' + modesId)
         .map(response => null)
         .catch(this.handleError);
     }

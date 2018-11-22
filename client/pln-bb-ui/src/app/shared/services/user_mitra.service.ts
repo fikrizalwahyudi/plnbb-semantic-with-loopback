@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Http, Response } from '@angular/http';
-import { Users } from '../models/users';
+import { UserMitra } from '../models/user_mitra';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -10,52 +10,52 @@ import 'rxjs/add/observable/throw';
 const API_URL = environment.apiUrl;
 
 @Injectable()
-export class UsersService {
+export class UserMitraService {
 
     constructor(private http: Http) {
 
     }
 
-    public getAllUsers(): Observable<Users[]> {
+    public getAllUserMitra(): Observable<UserMitra[]> {
         return this.http
-        .get(API_URL + '/users')
+        .get(API_URL + '/user_mitra')
         .map(response => {
-            const listUsers = response.json();
-            return listUsers.map((users) => new Users(users));
+            const listUserMitra = response.json();
+            return listUserMitra.map((userMitra) => new UserMitra(userMitra));
         })
         .catch(this.handleError);
     }
 
-    public createUsers(users: Users): Observable<Users> {
+    public createUserMitra(userMitra: UserMitra): Observable<UserMitra> {
         return this.http
-        .post(API_URL + '/users', users)
+        .post(API_URL + '/user_mitra', userMitra)
         .map(response => {
-            return new Users(response.json());
+            return new UserMitra(response.json());
         })
         .catch(this.handleError);
     }
 
-    public getUsersById(usersId: number): Observable<Users> {
+    public getUserMitraById(userMitraId: number): Observable<UserMitra> {
         return this.http
-        .get(API_URL + '/users/' + usersId)
+        .get(API_URL + '/user_mitra/' + userMitraId)
         .map(response => {
-            return new Users(response.json());
+            return new UserMitra(response.json());
         })
         .catch(this.handleError);
     }
 
-    public updateUsers(users: Users): Observable<Users> {
+    public updateUserMitra(userMitra: UserMitra): Observable<UserMitra> {
         return this.http
-        .put(API_URL + '/users/' + users.id, users)
+        .put(API_URL + '/user_mitra/' + userMitra.id, userMitra)
         .map(response => {
-            return new Users(response.json());
+            return new UserMitra(response.json());
         })
         .catch(this.handleError);
     }
 
-    public deleteUsersById(usersId: number): Observable<null> {
+    public deleteUserMitraById(userMitraId: number): Observable<null> {
         return this.http
-        .delete(API_URL + '/users/' + usersId)
+        .delete(API_URL + '/user_mitra/' + userMitraId)
         .map(response => null)
         .catch(this.handleError);
     }
