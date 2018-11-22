@@ -2,18 +2,22 @@
   "name": "plnbb-loopback",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/main/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "ts-node . --server true --log debug",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sdk:ng2": "ts-node ./node_modules/.bin/lb-sdk ./src/main/index.ts ./client/pln-bb-ui/src/app/shared/sdk -d ng2web -v enabled -w enabled --log debug"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@types/loopback": "^3.2.6",
     "loopback-connector-postgresql": "^3.4.0",
-    "loopback-typescript-core": "git+https://github.com/bejorock/loopback-typescript-core.git"
+    "loopback-typescript-core": "git+https://github.com/bejorock/loopback-typescript-core.git",
+    "yargs": "^12.0.5"
   },
   "devDependencies": {
+    "@mean-expert/loopback-sdk-builder": "^2.3.1",
     "@types/jasmine": "^2.8.8",
     "express": "^4.16.3",
     "jasmine": "^3.2.0",

@@ -1,4 +1,4 @@
-export class Rencana_pasokan {
+export class RencanaPasokan {
 		id:number;
 		no_kontrak="";
 		tahun=0;
