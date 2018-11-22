@@ -3,9 +3,9 @@
     <i class="plus icon"></i> Register
   </a>
   <div class="right menu">
-    <div class="item">
+    <div class="ui category search">
       <div class="ui icon input">
-        <input (click)="onSearch()" type="text" #queryBox placeholder="Search..." (keyup.enter)="onSearch(queryBox.value)">
+        <input class="prompt" type="text" #queryBox placeholder="Search..." [(ngModel)]="keyword">
         <i class="search link icon"></i>
       </div>
     </div>
@@ -60,7 +60,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of data_pltu">
+    <tr *ngFor="let item of data_pltu | searchPLTU: keyword">
       <td>
         {{item.code}}
       </td>

@@ -15,6 +15,7 @@ export class MasterRoleComponent implements OnInit {
   data_role: any = [];
   new_role: boolean = false;
   public dummyUser: any = userMasterRole;
+  keyword = "";
   constructor(@Inject(LOCAL_STORAGE) private storage: WebStorageService) {
     //Soon assign data_role with data from database
     this.data_role = dummy_role;

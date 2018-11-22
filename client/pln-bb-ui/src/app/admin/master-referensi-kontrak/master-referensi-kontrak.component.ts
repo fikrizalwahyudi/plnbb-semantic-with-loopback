@@ -4,6 +4,7 @@ import { dummy_pltu } from '../../user/source/dummy-pltu';
 import { dummy_ref_kontrak } from '../../user/source/dummy-ref-kontrak';
 import { ref_kontrak } from '../../user/user';
 import { refKontrakValidation } from '../../shared/validation/validation';
+
 declare var $: any;
 @Component({
   selector: 'master-referensi-kontrak',
@@ -16,16 +17,15 @@ export class MasterReferensiKontrakComponent implements OnInit {
   master_pltu: any = [];
   master_ref_kontrak: any = [];
   data_ref_kontrak = ref_kontrak;
-
+  keyword = "";
 
   constructor(
   ) {
 
-    
+
     // Assign master_ref_kontrak and master_pltu with data from table kontrak and pltu in database
     this.master_ref_kontrak = dummy_ref_kontrak;
     this.master_pltu = dummy_pltu;
-    
     // Looping for change pltu_id with pltu name
     for (let i = 0; i < this.master_ref_kontrak.length; i++) {
       this.onChangeNamePLTU(this.master_ref_kontrak[i].pltu_id, i);
@@ -34,19 +34,21 @@ export class MasterReferensiKontrakComponent implements OnInit {
   }
 
   ngOnInit() {
+    // multipleSelect();
   }
 
   addNew() {
     if (this.new_ref) {
       this.new_ref = false;
     } else {
+      this.multipleSelect();
       this.new_ref = true;
     }
   }
 
-  onSubmit(){
+  onSubmit() {
     let val = refKontrakValidation();
-    if (val){
+    if (val) {
       this.new_ref = false;
       setTimeout(() => {
         this.new_ref = true;
@@ -61,7 +63,7 @@ export class MasterReferensiKontrakComponent implements OnInit {
     }
   }
 
-  clearArray(){
+  clearArray() {
     this.data_ref_kontrak.id = "";
     this.data_ref_kontrak.no = "";
     this.data_ref_kontrak.nama_pekerjaan = "";
@@ -79,6 +81,19 @@ export class MasterReferensiKontrakComponent implements OnInit {
   onChangeNamePLTU(selectedPLTU: any, index: any) {
     this.master_ref_kontrak[index]['name_pltu'] = this.getSingleValue(selectedPLTU, this.master_pltu, "id").name;
     console.log(this.master_ref_kontrak[index]['name_pltu']);
+  }
+
+  onSelect() {
+    this.multipleSelect();
+    console.log(this.data_ref_kontrak.mitra_id);
+  }
+
+  multipleSelect(){
+    $(document)
+      .ready(function () {
+        $('.label.ui.dropdown')
+          .dropdown();
+      });
   }
 
 }
