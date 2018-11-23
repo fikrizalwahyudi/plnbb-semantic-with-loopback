@@ -1,4 +1,4 @@
-export class Loading_realisasi_kirim {
+export class LoadingRealisasiKirim {
 	id:number;
 	realisasi_kirim_id:number;
 	bl="";

@@ -3,6 +3,7 @@ import { CacheService } from '../shared/services/cache.service';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { loginValidation } from '../shared/validation/validation';
+import { TouchSequence } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +13,10 @@ import { loginValidation } from '../shared/validation/validation';
 export class LoginComponent implements OnInit {
 
   loginForm: any;
+  email:any;
+  password:any
 
-  constructor(private router:Router) { 
+  constructor(private cache:CacheService, private router:Router) { 
    
   }
 
@@ -21,16 +24,9 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    let a = loginValidation();
-    // let credentials = this.loginForm.value
-    // this.cache.users.forEach(user => {
-    //   if(user.username === credentials.username && user.password === credentials.password) {
-    //     this.cache.db.set('user', user)
-    //     return this.router.navigate(['home'])
-    //   }
-    // })
-
-    return false
+    let valid = loginValidation();
+    // let credentials = this.loginForm.valuez
+    return this.router.navigate(['admin']);
   }
 
 }

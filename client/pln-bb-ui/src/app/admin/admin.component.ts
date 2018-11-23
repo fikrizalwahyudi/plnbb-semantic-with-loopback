@@ -4,7 +4,7 @@ declare var $: any;
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.sass']
+  styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
   id: string = 'dashboard';

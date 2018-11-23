@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { HeaderComponent } from './ui/header/header.component';
 import { RouterModule } from '@angular/router';
 import { DropdownDirective } from './ui/dropdown.directive';
 import { CommonModule } from '@angular/common';
@@ -14,8 +13,8 @@ import { AuthenticatedGuard } from './guards/authenticated.guard';
     RouterModule,
     CommonModule
 	],
-  exports: [HeaderComponent, DropdownDirective, CalendarDirective, PopupDirective, TimeDirective],
-  declarations: [HeaderComponent, DropdownDirective, CalendarDirective, PopupDirective, TimeDirective],
+  exports: [DropdownDirective, CalendarDirective, PopupDirective, TimeDirective],
+  declarations: [DropdownDirective, CalendarDirective, PopupDirective, TimeDirective],
   providers: [CacheService, AuthenticatedGuard]
 })
 export class SharedModule { }
