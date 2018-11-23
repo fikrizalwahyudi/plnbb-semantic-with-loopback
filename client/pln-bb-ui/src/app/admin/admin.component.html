@@ -1,5 +1,5 @@
-<div class="ui bottom attached segment pushable" >
-  <div class="ui visible sticky inverted left vertical sidebar menu ">
+<!-- <div class="ui bottom attached segment pushable" > -->
+  <div class="ui visible inverted vertical left sidebar menu ">
     <img class="center" style="width:35%; padding-top: 3%" src="http://erp.plnbatubara.co.id/assets/gfx/web_news/1450433146.png">
     <a (click)="onSelect('dashboard')" id="dashboard" class="item">
       <i class="dashboard icon"></i>
@@ -30,7 +30,7 @@
     <div class="ui basic segment">
       <h3 class="ui header">PT PLN BATUBARA</h3>
     </div>
-    <div class="thirteen wide computer sixteen wide mobile column container" >
+    <div class="thirteen wide computer sixteen wide mobile column container" style="margin-bottom: 5%" >
       <div class="ui blue segment">
         <ng-container *ngIf="id == 'ref'">
           <master-referensi-kontrak></master-referensi-kontrak>
@@ -50,4 +50,12 @@
       </div>
     </div>
   </div>
-</div>
+
+  <!-- <footer> -->
+    <!-- <div class="ui bottom fixed fullwidth">
+      <div class="ui segment fullwidth ">
+        <p>Copyright &copy; 2018 PT. PLN Batu Bara All Right Reserved</p>
+      </div>
+    </div> -->
+  <!-- </footer> -->
+<!-- </div> -->
