@@ -23,6 +23,7 @@ import { UserMitraService } from './shared/services/user_mitra.service';
 const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'mitra', component: MitraComponent, loadChildren: './mitra/mitra.module#MitraModule' },
   { path: 'admin', redirectTo: 'admin/dashboard', pathMatch: 'full' },
   { path: 'admin/:id', component: AdminComponent}
 ];
