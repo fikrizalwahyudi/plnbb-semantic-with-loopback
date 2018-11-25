@@ -1,27 +1,27 @@
 <!-- <div class="ui bottom attached segment pushable" > -->
   <div class="ui visible inverted vertical left sidebar menu ">
     <img class="center" style="width:35%; padding-top: 3%" src="http://erp.plnbatubara.co.id/assets/gfx/web_news/1450433146.png">
-    <a (click)="onSelect('dashboard')" id="dashboard" class="item">
+    <a [routerLink]="['/admin/dashboard']" id="dashboard" class="item">
       <i class="dashboard icon"></i>
       Dashboard
     </a>
-    <a (click)="onSelect('pltu')" id="pltu" class="item">
+    <a [routerLink]="['/admin/pltu']" id="pltu" class="item">
       <i class="building layout icon"></i>
       PLTU
     </a>
-    <a (click)="onSelect('ref')" id="ref" class="item">
+    <a [routerLink]="['/admin/ref']" id="ref" class="item">
       <i class="file alternate icon"></i>
       Referensi Kontrak
     </a>
-    <a (click)="onSelect('role')" id="role" class="item">
+    <a [routerLink]="['/admin/role']" id="role" class="item">
       <i class="sitemap icon"></i>
       Role
     </a>
-    <a (click)="onSelect('tambang')" id="tambang" class="item">
+    <a [routerLink]="['/admin/tambang']" id="tambang" class="item">
       <i class="building icon"></i>
       Tambang
     </a>
-    <a (click)="onSelect('user')" id="user" class="item">
+    <a [routerLink]="['/admin/user']" id="user" class="item">
       <i class="user icon"></i>
       User
     </a>

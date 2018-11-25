@@ -36,6 +36,7 @@ export class MasterUserComponent implements OnInit {
 
       for (let i = 0; i < this.data_user.length; i++) {
         this.onChangeRoleName(this.data_user[i].role_id, i);
+        this.onChangeStatus(this.data_user[i].status, i)
       }
     })
 
@@ -61,7 +62,7 @@ export class MasterUserComponent implements OnInit {
     let userValid = userValidation();
     let mitraValid = (this.is_mitra) ? userMitraValidation() : true;
     if (userValid && mitraValid) {
-      // this.objPltu = this.masterPLTU;
+      this.masterUser.status = 1;
       this.userService.createUsers(this.masterUser).subscribe(e => {
         if(isMitra){
           masterUserMitra.user_id = e.id
@@ -89,6 +90,14 @@ export class MasterUserComponent implements OnInit {
 
   onChangeRoleName(selectedRoleID: any, index: any) {
     this.data_user[index]['role_name'] = this.gs.getSingleValue(selectedRoleID, this.data_role, "id").name;
+  }
+
+  onChangeStatus(value: any, index: any){
+    var status = "Tidak Aktif"
+    if(value == 1)
+      status = "Aktif"
+
+    this.data_user[index]['status_name'] = status
   }
 
 }
