@@ -15,7 +15,7 @@ export class UsersDao extends PersistedDao
 @CommonModel({
 	name: UsersDao.modelName,
 	dao: UsersDao,
-	base: 'User',
+	// base: 'User',
 	dataSource: 'mypostgresdb',
 	settings: {
 		plural: 'users',
