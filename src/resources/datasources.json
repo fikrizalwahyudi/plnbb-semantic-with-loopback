@@ -6,9 +6,9 @@
     "mypostgresdb": {
         "host": "localhost",
         "port": 5432,
-        "url": "postgres://postgres:12345678@localhost:5432/postgres?ssl=false",
-        "database": "postgres",
-        "password": "12345678",
+        "url": "postgres://postgres:kosonginaja@localhost:5432/plnbb?ssl=false",
+        "database": "plnbb",
+        "password": "kosonginaja",
         "name": "mypostgresdb",
         "user": "postgres",
         "connector": "postgresql",
