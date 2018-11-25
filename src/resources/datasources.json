@@ -6,8 +6,8 @@
     "mypostgresdb": {
         "host": "localhost",
         "port": 5432,
-        "url": "postgres://postgres:12345678@localhost:5432/postgres?ssl=false",
-        "database": "postgres",
+        "url": "postgres://postgres:12345678@localhost:5432/plnbbdb?ssl=false",
+        "database": "plnbbdb",
         "password": "12345678",
         "name": "mypostgresdb",
         "user": "postgres",
