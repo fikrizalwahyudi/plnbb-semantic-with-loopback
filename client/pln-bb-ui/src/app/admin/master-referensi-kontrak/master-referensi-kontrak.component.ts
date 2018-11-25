@@ -4,6 +4,10 @@ import { dummy_pltu } from '../../user/source/dummy-pltu';
 import { dummy_ref_kontrak } from '../../user/source/dummy-ref-kontrak';
 import { ref_kontrak } from '../../user/user';
 import { refKontrakValidation } from '../../shared/validation/validation';
+import { ReferensiKontrakService } from '../../shared/services/referensi_kontrak.service';
+import { resolve, reject } from 'q';
+import { PltuService } from '../../shared/services/pltu.service';
+import { MitraService } from '../../shared/services/mitra.service';
 
 declare var $: any;
 @Component({
@@ -15,26 +19,46 @@ export class MasterReferensiKontrakComponent implements OnInit {
   new_ref: boolean = false;
   master_pltu: any = [];
   master_ref_kontrak: any = [];
+  master_mitra: any = [];
   data_ref_kontrak = ref_kontrak;
   keyword = "";
 
-  constructor(
-  ) {
-
-
-    // Assign master_ref_kontrak and master_pltu with data from table kontrak and pltu in database
-    this.master_ref_kontrak = dummy_ref_kontrak;
-    this.master_pltu = dummy_pltu;
+  constructor( private refKontrakServices: ReferensiKontrakService, private pltuServices: PltuService, private mitraServices: MitraService) {
     // Looping for change pltu_id with pltu name
-    for (let i = 0; i < this.master_ref_kontrak.length; i++) {
-      this.onChangeNamePLTU(this.master_ref_kontrak[i].pltu_id, i);
-    }
-    console.log(this.master_ref_kontrak, this.master_pltu);
+    
   }
 
   ngOnInit() {
-    this.master_ref_kontrak = dummy_ref_kontrak;
-    this.master_pltu = dummy_pltu;
+    Promise.all([
+      new Promise((resolve, reject) => {
+        this.refKontrakServices.getAllReferensiKontrak().subscribe((response) => {
+          resolve(response);
+        }, (err) => {
+          reject(err);
+        });
+      }),
+      new Promise((resolve, reject) => {
+        this.pltuServices.getAllPltu().subscribe((response) => {
+          resolve(response);
+        }, (err) => {
+          reject(err);
+        })
+      }),
+      new Promise((resolve, reject) => {
+        this.mitraServices.getAllMitra().subscribe((response) => {
+          resolve(response);
+        }, (err) => {
+          reject(err);
+        })
+      })
+    ]).then((responses) => {
+      //Response Ref Kontrak
+      this.master_ref_kontrak = responses[0];
+      this.master_pltu = responses[1];
+      this.master_mitra = responses[2];
+      console.log(this.master_ref_kontrak, this.master_pltu, this.master_mitra)
+    })
+    
     // Looping for change pltu_id with pltu name
     for (let i = 0; i < this.master_ref_kontrak.length; i++) {
       this.onChangeNamePLTU(this.master_ref_kontrak[i].pltu_id, i);

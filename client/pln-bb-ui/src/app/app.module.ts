@@ -15,14 +15,13 @@ import { RencanaPasokanService } from './shared/services/rencana_pasokan.service
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminModule } from './admin/admin.module';
-<<<<<<< HEAD
 import { RolesService } from './shared/services/roles.service';
-=======
 import { MitraComponent } from './mitra/mitra.component';
 import { MitraModule } from './mitra/mitra.module';
 import { UsersService } from './shared/services/users.service';
 import { UserMitraService } from './shared/services/user_mitra.service';
->>>>>>> 069afe8b72a9cb9202c495c33228a51fbd2524a6
+import { ReferensiKontrakService } from './shared/services/referensi_kontrak.service';
+import { MitraService } from './shared/services/mitra.service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -53,11 +52,7 @@ const appRoutes: Routes = [
   exports: [
     RouterModule
   ],
-<<<<<<< HEAD
-  providers: [PltuService,RencanaPasokanService,RolesService],
-=======
-  providers: [PltuService,RencanaPasokanService, GlobalService, UsersService, UserMitraService],
->>>>>>> 069afe8b72a9cb9202c495c33228a51fbd2524a6
+  providers: [PltuService,RencanaPasokanService, RolesService, GlobalService, UsersService, UserMitraService, ReferensiKontrakService, MitraService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

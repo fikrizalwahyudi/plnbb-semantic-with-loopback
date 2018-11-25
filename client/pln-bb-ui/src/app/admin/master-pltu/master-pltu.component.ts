@@ -26,6 +26,7 @@ export class MasterPltuComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isEdit = false;
     this.pltuService.getAllPltu().subscribe(e => {
       console.log(e);
       this.data_pltu = e;
@@ -47,7 +48,7 @@ export class MasterPltuComponent implements OnInit {
 
     if (this.validationForm) {
       // this.objPltu = this.masterPLTU;
-      if (edit){
+      if (this.isEdit){
         this.pltuService.updatePltu(this.masterPLTU).subscribe(e => {
           console.log(e);
           this.clearArray();
@@ -74,7 +75,7 @@ export class MasterPltuComponent implements OnInit {
     this.masterPLTU.address = this.data_pltu[index].address;
     this.masterPLTU.npwp = this.data_pltu[index].npwp;
     this.masterPLTU.status = this.data_pltu[index].status;
-    
+    this.isEdit = true;
   }
 
   onDelete(id: any) {

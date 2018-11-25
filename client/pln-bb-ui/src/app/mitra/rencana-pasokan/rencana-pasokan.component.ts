@@ -2,9 +2,9 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { pltu } from '../../user/user';
 import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
 import { dummy_pltu } from '../../user/source/dummy-pltu';
-import { pltuValidation } from '../../shared/validation/validation';
 import { PltuService } from '../../shared/services/pltu.service';
 import { Pltu } from '../../shared/models/pltu';
+import { pltuValidation } from '../../shared/validation/master-pltu.validation';
 
 declare var $: any;
 
