@@ -2,8 +2,9 @@
   "name": "plnbb-loopback",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/main/index.ts",
   "scripts": {
+    "start": "ts-node . --server true --log debug",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
