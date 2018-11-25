@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 
 declare var $: any;
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  selector: 'app-mitra',
+  templateUrl: './mitra.component.html',
+  styleUrls: ['./mitra.component.css']
 })
-export class AdminComponent implements OnInit {
+export class MitraComponent implements OnInit {
   id: string = 'dashboard';
-  constructor(private route: ActivatedRoute) {
+  constructor() {
     $(document)
       .ready(function () {
         $('.ui.menu .ui.dropdown').dropdown({
@@ -26,11 +25,6 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {      
-       if(params["id"]){
-          this.id = params["id"];
-       }
-    })
   }
 
   onSelect(dummy: string) {
