@@ -13,7 +13,6 @@ declare var $: any;
 })
 export class MasterReferensiKontrakComponent implements OnInit {
   new_ref: boolean = false;
-  master_months = months;
   master_pltu: any = [];
   master_ref_kontrak: any = [];
   data_ref_kontrak = ref_kontrak;
@@ -34,7 +33,12 @@ export class MasterReferensiKontrakComponent implements OnInit {
   }
 
   ngOnInit() {
-    // multipleSelect();
+    this.master_ref_kontrak = dummy_ref_kontrak;
+    this.master_pltu = dummy_pltu;
+    // Looping for change pltu_id with pltu name
+    for (let i = 0; i < this.master_ref_kontrak.length; i++) {
+      this.onChangeNamePLTU(this.master_ref_kontrak[i].pltu_id, i);
+    }
   }
 
   addNew() {
@@ -51,12 +55,14 @@ export class MasterReferensiKontrakComponent implements OnInit {
     if (val) {
       this.new_ref = false;
       setTimeout(() => {
+        this.multipleSelect();
         this.new_ref = true;
       }, 10)
       this.data_ref_kontrak.id = this.master_ref_kontrak.length + 1;
       //Using push to add new data to array
       //Soon - submit into database
       this.master_ref_kontrak.push(Object.assign({}, this.data_ref_kontrak));
+      this.ngOnInit();
       this.clearArray();
     } else {
       console.log('form invalid');

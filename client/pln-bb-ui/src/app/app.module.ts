@@ -14,6 +14,7 @@ import { RencanaPasokanService } from './shared/services/rencana_pasokan.service
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminModule } from './admin/admin.module';
+import { RolesService } from './shared/services/roles.service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -40,7 +41,7 @@ const appRoutes: Routes = [
   exports: [
     RouterModule
   ],
-  providers: [PltuService,RencanaPasokanService],
+  providers: [PltuService,RencanaPasokanService,RolesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

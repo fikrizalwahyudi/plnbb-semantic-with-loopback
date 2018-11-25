@@ -1,10 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { pltu } from '../../user/user';
 import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
-import { pltuValidation } from '../../shared/validation/validation';
 import { PltuService } from '../../shared/services/pltu.service';
 import { Pltu } from '../../shared/models/pltu';
 import { promptDialog } from '../../shared/modals/prompt.modal';
+import { pltuValidation } from '../../shared/validation/master-pltu.validation';
 
 @Component({
   selector: 'master-pltu',
@@ -49,7 +49,6 @@ export class MasterPltuComponent implements OnInit {
       // this.objPltu = this.masterPLTU;
       if (edit){
         this.pltuService.updatePltu(this.masterPLTU).subscribe(e => {
-          console.log(e);
           console.log(e);
           this.clearArray();
           this.ngOnInit();
