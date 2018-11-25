@@ -19,6 +19,7 @@ import { LocationsModel } from './models/locations.model';
 import { SumberTambangModel } from './models/sumber_tambang.model';
 import { TambangModel } from './models/tambang.model';
 import { UnloadingRealisasiKirimModel } from './models/unloading_realisasi_kirim.model';
+import { ReferensiKontrakModel } from './models/referensi_kontrak.model';
 
 @injectable()
 @CommonModule({
@@ -41,8 +42,8 @@ import { UnloadingRealisasiKirimModel } from './models/unloading_realisasi_kirim
 		LocationsModel,
 		SumberTambangModel,
 		TambangModel,
-		UnloadingRealisasiKirimModel
-		
+		UnloadingRealisasiKirimModel,
+		ReferensiKontrakModel
 	]
 })
 export class SampleModule extends Module
