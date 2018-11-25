@@ -1,4 +1,4 @@
-export class Request_shipping {
+export class RequestShipping {
    	id:number;
     realisasi_kirim_id:number;
     mitra_id:number;

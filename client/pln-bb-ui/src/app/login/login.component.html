@@ -1,27 +1,30 @@
-<div class="ui grid container logincontainer" style="padding-top: 7%">
-  <div class="middle aligned five wide column centered">
-    <div class="ui segment">
-      <h3 class="ui center aligned icon header">
-        <i class="circular spy icon"></i>
-        Sign In
-      </h3>
-      <form [formGroup]="loginForm" class="ui form" novalidate (submit)="login()">
-        <div class="field">
-          <label>Username</label>
-          <input type="text" name="username" placeholder="username" formControlName="username">
+<div class="ui middle aligned center aligned grid logincontainer">
+  <div class="column" >
+    <form method="get" class="ui large form">
+      <div class="ui stacked   segment">
+        <div class="ui center aligned icon header" >
+          <img src="../../assets/img/plnbblogo.png" alt="" style="width:30%">
         </div>
+        <h3 style="margin-top:0px">
+            <div class="content">
+              PT PLN BARUBARA
+            </div>
+        </h3>
         <div class="field">
-          <label>Password</label>
-          <input type="password" name="password" placeholder="password" formControlName="password">
-        </div>
-        <div class="field">
-          <div class="ui checkbox">
-            <input type="checkbox" tabindex="0" class="hidden" checked>
-            <label>Remember Me</label>
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input type="text" [(ngModel)]="email" name="email" placeholder="E-mail address">
           </div>
         </div>
-        <button class="ui positive button fullwidth" type="submit" [disabled]="!loginForm.valid">Sign In</button>
-      </form>
-    </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input type="password" [(ngModel)]="password" name="password" placeholder="Password">
+          </div>
+        </div>
+        <div class="ui error message"></div>
+        <div class="ui fluid large teal submit button" (click)="login()">Login</div>
+      </div>
+    </form>
   </div>
 </div>

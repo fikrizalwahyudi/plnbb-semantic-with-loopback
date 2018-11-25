@@ -3,9 +3,9 @@
     <i class="plus icon"></i> Register
   </a>
   <div class="right menu">
-    <div class="item">
+    <div class="ui category search">
       <div class="ui icon input">
-        <input type="text" #queryBox placeholder="Search..." (keyup.enter)="load(queryBox.value)">
+        <input class="prompt" type="text" #queryBox placeholder="Search..." [(ngModel)]="keyword">
         <i class="search link icon"></i>
       </div>
     </div>
@@ -34,7 +34,7 @@
       <div class="three fields">
         <div class="field">
           <label>PLTU</label>
-          <select name="pltu" class="ui dropdown" id="pltu" [(ngModel)]="data_ref_kontrak.pltu_id">
+          <select name="pltu" multiple="" class="label ui selection fluid dropdown" id="pltu" [(ngModel)]="data_ref_kontrak.pltu_id" (change)="onSelect($event)">
             <option value="">Pilih PLTU</option>
             <option *ngFor="let pltu of master_pltu" value="{{pltu.id}}">{{pltu.name}}</option>
           </select>
@@ -42,7 +42,8 @@
 
         <div class="field">
           <label>Mitra</label>
-          <select name="mitra" class="ui dropdown" id="mitra" [(ngModel)]="data_ref_kontrak.mitra_id">
+          <select id="multi-select" multiple="" name="mitra" class="label ui selection fluid dropdown" id="mitra" [(ngModel)]="data_ref_kontrak.mitra_id"
+            (change)="onSelect($event)">
             <option value="">Pilih Mitra</option>
             <option *ngFor="let pltu of master_pltu" value="{{pltu.id}}">{{pltu.name}}</option>
           </select>
@@ -77,7 +78,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of master_ref_kontrak">
+    <tr *ngFor="let item of master_ref_kontrak | searchRefKontrak: keyword">
       <td>
         {{item.no}}
       </td>

@@ -3,8 +3,8 @@ import { pltu } from '../../user/user';
 import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
 import { dummy_pltu } from '../../user/source/dummy-pltu';
 import { pltuValidation } from '../../shared/validation/validation';
-import {PltuService} from '../../shared/services/pltu.service';
-import {Pltu} from '../../shared/models/pltu';
+import { PltuService } from '../../shared/services/pltu.service';
+import { Pltu } from '../../shared/models/pltu';
 
 @Component({
   selector: 'master-pltu',
@@ -16,16 +16,17 @@ export class MasterPltuComponent implements OnInit {
   public masterPLTU: any = pltu;
   public objPltu = new Pltu();
   data_pltu: any = [];
+  keyword = "";
 
-  constructor(@Inject(LOCAL_STORAGE) private storage: WebStorageService,private pltuService:PltuService) {
+  constructor(@Inject(LOCAL_STORAGE) private storage: WebStorageService, private pltuService: PltuService) {
 
     //Soon assign data_pltu with data master pltu from database
     this.data_pltu = dummy_pltu;
     console.log(this.data_pltu);
-   }
+  }
 
   ngOnInit() {
-    this.pltuService.getAllPltu().subscribe(e=>{
+    this.pltuService.getAllPltu().subscribe(e => {
       console.log(e);
       this.data_pltu = e;
     })
@@ -40,13 +41,13 @@ export class MasterPltuComponent implements OnInit {
     }
   }
 
-  onSubmit(){
+  onSubmit() {
     let a = pltuValidation();
 
-    if (a){
+    if (a) {
       // this.objPltu = this.masterPLTU;
       console.log(this.masterPLTU);
-      this.pltuService.createPltu(this.masterPLTU).subscribe(e=>{
+      this.pltuService.createPltu(this.masterPLTU).subscribe(e => {
         console.log(e);
         this.new_pltu = false;
         this.ngOnInit();
@@ -68,7 +69,7 @@ export class MasterPltuComponent implements OnInit {
     }
   }
 
-  clearArray(){
+  clearArray() {
     this.masterPLTU.id = "";
     this.masterPLTU.code = "";
     this.masterPLTU.name = "";

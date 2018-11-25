@@ -3,9 +3,9 @@
     <i class="plus icon"></i> Register
   </a>
   <div class="right menu">
-    <div class="item">
+    <div class="ui category search">
       <div class="ui icon input">
-        <input type="text" #queryBox placeholder="Search..." (keyup.enter)="load(queryBox.value)">
+        <input class="prompt" type="text" #queryBox placeholder="Search..." [(ngModel)]="keyword">
         <i class="search link icon"></i>
       </div>
     </div>

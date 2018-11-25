@@ -1,5 +1,43 @@
 declare var $: any;
 
+export function loginValidation() {
+  $('.ui.form').form({
+    fields: {
+      email: {
+        identifier  : 'email',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please enter your e-mail'
+          },
+          {
+            type   : 'email',
+            prompt : 'Please enter a valid e-mail'
+          }
+        ]
+      },
+      password: {
+        identifier  : 'password',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please enter your password'
+          },
+          {
+            type   : 'length[6]',
+            prompt : 'Your password must be at least 6 characters'
+          }
+        ]
+      }
+    }
+  });
+  if ($('.ui.form').form('is valid')) {
+    return true;
+  } else {
+    return 0;
+  }
+}
+
 export function pltuValidation() {
   $('.ui.form')
     .form({
@@ -129,44 +167,44 @@ export function refKontrakValidation() {
   }
 }
 
-  export function roleValidation() {
-    $('.ui.form')
-      .form({
-        fields: {
-          role_name: {
-            identifier: 'role_name',
-            rules: [
-              {
-                type: 'empty',
-                prompt: 'Please enter your role name'
-              }
-            ]
-          },
-          role_desc: {
-            identifier: 'role_desc',
-            rules: [
-              {
-                type: 'empty',
-                prompt: 'Please enter your role description'
-              }
-            ]
-          },
-          role_status: {
-            identifier: 'role_status',
-            rules: [
-              {
-                type: 'empty',
-                prompt: 'Please enter your role status'
+export function roleValidation() {
+  $('.ui.form')
+    .form({
+      fields: {
+        role_name: {
+          identifier: 'role_name',
+          rules: [
+            {
+              type: 'empty',
+              prompt: 'Please enter your role name'
+            }
+          ]
+        },
+        role_desc: {
+          identifier: 'role_desc',
+          rules: [
+            {
+              type: 'empty',
+              prompt: 'Please enter your role description'
+            }
+          ]
+        },
+        role_status: {
+          identifier: 'role_status',
+          rules: [
+            {
+              type: 'empty',
+              prompt: 'Please enter your role status'
 
-              }
-            ]
-          }
+            }
+          ]
         }
-      })
-      ;
-    if ($('.ui.form').form('is valid')) {
-      return true;
-    } else {
-      return 0;
-    }
+      }
+    })
+    ;
+  if ($('.ui.form').form('is valid')) {
+    return true;
+  } else {
+    return 0;
   }
+}

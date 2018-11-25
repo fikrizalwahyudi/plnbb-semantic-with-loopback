@@ -7,6 +7,9 @@ import { MasterTambangComponent } from './master-tambang/master-tambang.componen
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MasterPltuComponent } from './master-pltu/master-pltu.component';
+import { SearchRefKontrakPipe } from '../shared/search/ref-kontrak-search.pipe';
+import { SearchPLTUPipe } from '../shared/search/pltu-search.pipe';
+import { SearchRolePipe } from '../shared/search/role-search.pipe';
 
 @NgModule({
   imports: [
@@ -19,7 +22,8 @@ import { MasterPltuComponent } from './master-pltu/master-pltu.component';
     MasterUserComponent, 
     MasterRoleComponent, 
     MasterReferensiKontrakComponent, 
-    MasterTambangComponent, MasterPltuComponent
+    MasterTambangComponent, MasterPltuComponent,
+    SearchRefKontrakPipe, SearchPLTUPipe, SearchRolePipe
   ],
   exports : [
     MasterUserComponent, 

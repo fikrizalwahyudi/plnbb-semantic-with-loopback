@@ -1,4 +1,4 @@
-export class Realisasi_kirim {
+export class RealisasiKirim {
     id:number;
 	rencana_pasokan_id:number;
     tanggal_dikirim:Date;
