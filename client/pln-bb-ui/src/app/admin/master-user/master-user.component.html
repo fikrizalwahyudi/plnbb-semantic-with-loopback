@@ -18,36 +18,41 @@
       <div class="two fields">
         <div class="field">
           <label>Nama</label>
-          <input placeholder="Input Nama" type="text" [(ngModel)]="dummyMasterUser.name">
+          <input placeholder="Input Nama" type="text" [(ngModel)]="masterUser.name" id="name">
         </div>
         <div class="field">
           <label>E-mail</label>
-          <input placeholder="Input e-mail" type="text" [(ngModel)]="dummyMasterUser.email">
+          <input placeholder="Input e-mail" type="text" [(ngModel)]="masterUser.email" id="email">
         </div>
       </div>
       <div class="two fields">
         <div class="field">
           <label>Username</label>
-          <input placeholder="Input username" type="text" [(ngModel)]="dummyMasterUser.username">
+          <input placeholder="Input username" type="text" [(ngModel)]="masterUser.username" id="username">
         </div>
         <div class="field">
           <label>Password</label>
-          <input placeholder="Input password" type="password" [(ngModel)]="dummyMasterUser.password">
+          <input placeholder="Input password" type="password" [(ngModel)]="masterUser.password" id="password">
         </div>
       </div>
       <div class="two fields">
         <div class="field">
-          <label>Role</label>
-          <select class="ui dropdown" [(ngModel)]="dummyMasterUser.role_id">
-            <option value="">Role</option>
-            <option ngFor="let data of data_role" value="{{data.id}}">{{data.name}}</option>
+          <label>Role </label>
+          <select class="ui dropdown" [(ngModel)]="masterUser.role_id" (change)="onChangeRole($event.target.value)" id="role_id">
+            <option value="">Pilih Role</option>
+            <option *ngFor="let data of data_role" value="{{data.id}}">{{data.name}}</option>
           </select>
         </div>
-        <div class="field">
-          <label>Status</label>
-          <input placeholder="Input Status" type="text" [(ngModel)]="dummyMasterUser.status">
+        <div class="field" *ngIf="is_mitra">
+          <label>Mitra</label>
+          <select class="ui dropdown" [(ngModel)]="masterUserMitra.mitra_id" id="mitra_id">
+            <option value="">Pilih Mitra</option>
+            <option *ngFor="let data of data_mitra" value="{{data.id}}">{{data.name}}</option>
+          </select>
         </div>
       </div>
+      <div class="ui error message"></div>
+
       <div (click)="onSubmit()" class="ui submit button">Submit</div>
     </div>
   </div>

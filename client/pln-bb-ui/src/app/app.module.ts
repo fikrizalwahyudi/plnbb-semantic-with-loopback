@@ -8,12 +8,15 @@ import { StorageServiceModule} from 'angular-webstorage-service';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { AuthenticatedGuard } from './shared/guards/authenticated.guard';
+import { GlobalService } from './shared/services/global.service';
 import { PltuService } from './shared/services/pltu.service';
 import { RencanaPasokanService } from './shared/services/rencana_pasokan.service';
 
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminModule } from './admin/admin.module';
+import { UsersService } from './shared/services/users.service';
+import { UserMitraService } from './shared/services/user_mitra.service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -40,7 +43,7 @@ const appRoutes: Routes = [
   exports: [
     RouterModule
   ],
-  providers: [PltuService,RencanaPasokanService],
+  providers: [PltuService,RencanaPasokanService, GlobalService, UsersService, UserMitraService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

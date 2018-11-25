@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { users } from '../../user/user';
 import { dummy_users } from '../../user/source/dummy-user';
 import { dummy_role } from '../../user/source/dummy-role';
+import { dummy_mitra } from '../../user/source/dummy-mitra';
+import { GlobalService } from '../../shared/services/global.service';
+import { Users } from '../../shared/models/users';
+import { userValidation, userMitraValidation } from '../../shared/validation/user.validation';
+import { UsersService } from '../../shared/services/users.service';
+import { UserMitraService } from '../../shared/services/user_mitra.service';
 
 @Component({
   selector: 'master-user',
@@ -10,21 +15,30 @@ import { dummy_role } from '../../user/source/dummy-role';
 })
 export class MasterUserComponent implements OnInit {
   new_user: boolean = false;
+  is_mitra: boolean = false;
   data_user: any = [];
-  data_role: any = []
-  dummyMasterUser: any = users;
+  data_role: any = [];
+  data_mitra: any = [];
+  masterUser: any = new Users();
+  masterUserMitra: any = {};
 
-  constructor() {
+  constructor(private gs: GlobalService, private userService: UsersService, private userMitraService: UserMitraService) {
     //Soon assign data_role and data_user with data from database
     this.data_role = dummy_role;
-    this.data_user = dummy_users;
-    for (let i = 0; i < this.data_user.length; i++) {
-      this.onChangeRoleName(this.data_user[i].role_id, i);
-    }
+    this.data_mitra = dummy_mitra;
+    this.masterUserMitra = {mitra_id: null, user_id: null};
+
   }
 
   ngOnInit() {
-    
+    this.userService.getAllUsers().subscribe(e => {
+      this.data_user = e;
+
+      for (let i = 0; i < this.data_user.length; i++) {
+        this.onChangeRoleName(this.data_user[i].role_id, i);
+      }
+    })
+
   }
 
   addNew() {
@@ -36,29 +50,45 @@ export class MasterUserComponent implements OnInit {
   }
 
   clearArray(){
-    this.dummyMasterUser.name = "";
-    this.dummyMasterUser.email = "";
-    this.dummyMasterUser.password = "";
-    this.dummyMasterUser.username = "";
-    this.dummyMasterUser.role_id = "";
+    this.masterUser = new Users();
+    this.masterUserMitra = { mitra_id: null, user_id: null}
+    this.is_mitra = false;
   }
 
   onSubmit(){
-    this.dummyMasterUser.id = this.data_user.length + 1;
-    //Soon submit to database
-    this.data_user.push(Object.assign({}, this.dummyMasterUser));
-    console.log(this.data_user);
+    let isMitra = this.is_mitra;
+    let masterUserMitra = this.masterUserMitra
+    let userValid = userValidation();
+    let mitraValid = (this.is_mitra) ? userMitraValidation() : true;
+    if (userValid && mitraValid) {
+      // this.objPltu = this.masterPLTU;
+      this.userService.createUsers(this.masterUser).subscribe(e => {
+        if(isMitra){
+          masterUserMitra.user_id = e.id
+          this.userMitraService.createUserMitra(masterUserMitra).subscribe(m => {
+          })
+        }
+        this.new_user = false;
+        this.ngOnInit();
+      });
     this.clearArray();
+    } else {
+      console.log('form invalid');
+    }
   }
 
-  getSingleValue(identifier: any, source: any[], keySource: string) {
-    console.log(identifier, source, keySource)
-    return source.find((item) => item[keySource] == identifier);
+  onChangeRole(id: any){
+    var name = this.data_role.find(x => x.id === id).name;
+    if(name && name.toLowerCase() == 'mitra')
+      this.is_mitra = true;
+    else{
+      this.is_mitra = false;
+      this.masterUserMitra = { mitra_id: null, user_id: null}
+    }
   }
 
   onChangeRoleName(selectedRoleID: any, index: any) {
-    this.data_user[index]['role_name'] = this.getSingleValue(selectedRoleID, this.data_role, "id").name;
-    console.log(this.data_user[index]['role_name']);
+    this.data_user[index]['role_name'] = this.gs.getSingleValue(selectedRoleID, this.data_role, "id").name;
   }
 
 }
