@@ -49,7 +49,7 @@ export class ReferensiKontrakModel extends PersistedModel
 	mitra_id:Number
 
 	@Property('Number')
-	Jenis:Number
+	jenis:Number
 
 	@Property('Number')
 	status:Number
