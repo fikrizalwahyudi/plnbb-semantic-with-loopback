@@ -15,7 +15,7 @@ export class ReferensiKontrakMitraDao extends PersistedDao
 @CommonModel({
 	name: ReferensiKontrakMitraDao.modelName,
 	dao: ReferensiKontrakMitraDao,
-	dataSource: 'mypostgresdb',
+	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'referensi_kontrak_mitra',
 		postgresql: {
