@@ -36,10 +36,11 @@ export const pltu = {
 
 export const ref_kontrak = {
     "id": "",
-    "no": "",
-    "nama_pekerjaan": "",
-    "pltu_id": "",
-    "mitra_id": "",
     "jenis": "",
-    "tanggal":""
+    "mitra_id": "",
+    "nama_pekerjaan": "",
+    "nomor_kontrak": "",
+    "pltu_id": "",
+    "status": "",
+    "tanggal_pekerjaan":""
 }
