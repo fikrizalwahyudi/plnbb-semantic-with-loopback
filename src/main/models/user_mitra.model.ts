@@ -33,10 +33,15 @@ export class UserMitraModel extends PersistedModel
 	@Property('Number')
 	id:Number
 
-	@Property('Number')
-	user_id:Number
+	@Property('String')
+	user_id:String
 
-	@Property('Number')
-	mitra_id:Number
+	@Property('String')
+	mitra_id:String
 
+	@Relation("belongsTo", "Users", "user_id")
+	user
+
+	@Relation("belongsTo", "Mitra", "mitra_id")
+	mitra
 }

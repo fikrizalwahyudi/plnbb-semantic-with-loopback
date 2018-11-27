@@ -38,11 +38,11 @@ export class TambangModel extends PersistedModel
 	@Property('string')
 	sertifikat:string
 
-	@Property('number')
-	jenis_tambang_id:number
+	@Property('String')
+	jenis_tambang_id:String
 
-	@Property('number')
-	location_id:number
+	@Property('String')
+	location_id:String
 
 	@Property('Date')
 	tanggal_berlaku:Date

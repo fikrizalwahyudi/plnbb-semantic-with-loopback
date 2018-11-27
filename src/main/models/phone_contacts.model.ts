@@ -33,8 +33,8 @@ export class PhoneContactsModel extends PersistedModel
 	@Property('Number')
 	id:Number
 
-	@Property('Number')
-	owner_id:Number
+	@Property('String')
+	owner_id:String
 
 	@Property('String')
 	owner_name:String

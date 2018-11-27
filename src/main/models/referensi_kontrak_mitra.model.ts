@@ -33,11 +33,11 @@ export class ReferensiKontrakMitraModel extends PersistedModel
 	@Property('Number')
     id:Number
     
-	@Property('Number')
-	referensi_kontrak_id:Number
+	@Property('String')
+	referensi_kontrak_id:String
 
-    @Property('Number')
-    mitra_id:Number
+    @Property('String')
+    mitra_id:String
     
    
 

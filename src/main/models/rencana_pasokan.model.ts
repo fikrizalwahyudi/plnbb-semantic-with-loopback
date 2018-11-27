@@ -45,20 +45,20 @@ export class RencanaPasokanModel extends PersistedModel
 	@Property('Date')
 	tanggal_kirim:Date
 
-	@Property('Number')
-	pltu_id:Number
+	@Property('String')
+	pltu_id:String
 
-	@Property('Number')
-	tipe_id:Number
+	@Property('String')
+	tipe_id:String
 
-	@Property('Number')
-	mode_id:Number
+	@Property('String')
+	mode_id:String
 
 	@Property('Number')
 	tonnase:Number
 
-	@Property('Number')
-	user_id:Number
+	@Property('String')
+	user_id:String
 
 	@Property('Number')
 	status:Number

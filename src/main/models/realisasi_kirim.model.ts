@@ -33,8 +33,8 @@ export class RealisasiKirimModel extends PersistedModel
 	@Property('Number')
 	id:Number
 	
-	@Property('Number')
-	rencana_pasokan_id:Number
+	@Property('String')
+	rencana_pasokan_id:String
 
 	@Property('Date')
 	tanggal_dikirim:Date
@@ -42,8 +42,8 @@ export class RealisasiKirimModel extends PersistedModel
 	@Property('Number')
 	realisasi:Number
 
-	@Property('Number')
-	user_id:Number
+	@Property('String')
+	user_id:String
 
 	@Property('Number')
 	status:Number

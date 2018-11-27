@@ -42,11 +42,11 @@ export class ReferensiKontrakModel extends PersistedModel
     @Property('Date')
     tanggal_pekerjaan:Date
     
-    @Property('Number')
-    pltu_id:Number
+    @Property('String')
+    pltu_id:String
     
-    @Property('Number')
-	mitra_id:Number
+    @Property('String')
+	mitra_id:String
 
 	@Property('Number')
 	jenis:Number

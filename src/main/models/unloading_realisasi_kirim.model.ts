@@ -32,8 +32,8 @@ export class UnloadingRealisasiKirimModel extends PersistedModel
 	@Property('Number')
 	id:Number
 
-	@Property('Number')
-	realisasi_kirim_id:Number
+	@Property('String')
+	realisasi_kirim_id:String
 
 	@Property('string')
 	bl:string

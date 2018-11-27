@@ -36,7 +36,7 @@ export class TokensModel extends PersistedModel
 	@Property('String')
 	token:String
 
-	@Property('Number')
-	user_id:Number
+	@Property('String')
+	user_id:String
 
 }

@@ -33,11 +33,11 @@ export class ReferensiKontrakPltuModel extends PersistedModel
 	@Property('Number')
     id:Number
     
-	@Property('Number')
-	referensi_kontrak_id:Number
+	@Property('String')
+	referensi_kontrak_id:String
 
-    @Property('Number')
-    pltu_id:Number
+    @Property('String')
+    pltu_id:String
     
    
 
