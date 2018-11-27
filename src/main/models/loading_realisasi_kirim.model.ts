@@ -16,7 +16,7 @@ export class LoadingRealisasiKirimDao extends PersistedDao
 @CommonModel({
 	name: LoadingRealisasiKirimDao.modelName,
 	dao: LoadingRealisasiKirimDao,
-	dataSource: 'mypostgresdb',
+	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'loading_realisasi_kirim',
 		postgresql: {

@@ -15,7 +15,7 @@ export class RencanaPasokanDao extends PersistedDao
 @CommonModel({
 	name: RencanaPasokanDao.modelName,
 	dao: RencanaPasokanDao,
-	dataSource: 'mypostgresdb',
+	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'rencana_pasokan',
 		postgresql: {

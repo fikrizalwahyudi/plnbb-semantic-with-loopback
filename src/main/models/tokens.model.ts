@@ -15,7 +15,7 @@ export class TokensDao extends PersistedDao
 @CommonModel({
 	name: TokensDao.modelName,
 	dao: TokensDao,
-	dataSource: 'mypostgresdb',
+	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'tokens',
 		postgresql: {

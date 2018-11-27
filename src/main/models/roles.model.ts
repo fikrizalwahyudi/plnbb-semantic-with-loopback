@@ -15,7 +15,7 @@ export class RolesDao extends PersistedDao
 @CommonModel({
 	name: RolesDao.modelName,
 	dao: RolesDao,
-	dataSource: 'mypostgresdb',
+	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'roles',
 		postgresql: {

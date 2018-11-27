@@ -16,7 +16,7 @@ export class UsersDao extends PersistedDao
 	name: UsersDao.modelName,
 	dao: UsersDao,
 	// base: 'User',
-	dataSource: 'mypostgresdb',
+	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'users',
 		postgresql: {

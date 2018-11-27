@@ -16,7 +16,7 @@ export class JenisTambangDao extends PersistedDao
 @CommonModel({
 	name: JenisTambangDao.modelName,
 	dao: JenisTambangDao,
-	dataSource: 'mypostgresdb',
+	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'jenis_tambang',
 		postgresql: {

@@ -16,7 +16,7 @@ export class SumberTambangDao extends PersistedDao
 @CommonModel({
 	name: SumberTambangDao.modelName,
 	dao: SumberTambangDao,
-	dataSource: 'mypostgresdb',
+	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'sumber_tambang',
 		postgresql: {

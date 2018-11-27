@@ -15,7 +15,7 @@ export class PhoneContactsDao extends PersistedDao
 @CommonModel({
 	name: PhoneContactsDao.modelName,
 	dao: PhoneContactsDao,
-	dataSource: 'mypostgresdb',
+	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'phone_contacts',
 		postgresql: {

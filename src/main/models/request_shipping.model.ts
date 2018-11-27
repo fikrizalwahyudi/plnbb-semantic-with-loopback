@@ -15,7 +15,7 @@ export class RequestShippingDao extends PersistedDao
 @CommonModel({
 	name: RequestShippingDao.modelName,
 	dao: RequestShippingDao,
-	dataSource: 'mypostgresdb',
+	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'request_shipping',
 		postgresql: {

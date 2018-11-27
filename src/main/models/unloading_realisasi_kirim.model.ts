@@ -16,7 +16,7 @@ export class UnloadingRealisasiKirimDao extends PersistedDao
 @CommonModel({
 	name: UnloadingRealisasiKirimDao.modelName,
 	dao: UnloadingRealisasiKirimDao,
-	dataSource: 'mypostgresdb',
+	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'unloading_realisasi_kirim',
 		postgresql: {
