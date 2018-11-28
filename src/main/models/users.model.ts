@@ -52,7 +52,8 @@ export class UsersModel extends PersistedModel
 	@Property('Number')
 	status:Number
 
-	@Relation("belongsTo", "Roles", "role_id")
-	role
+	@Relation("hasAndBelongsToMany","Mitra")
+	mitra
+	
 
 }
