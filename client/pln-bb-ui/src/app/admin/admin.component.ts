@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 declare var $: any;
 @Component({
@@ -8,7 +9,7 @@ declare var $: any;
 })
 export class AdminComponent implements OnInit {
   id: string = 'dashboard';
-  constructor() {
+  constructor(private route: ActivatedRoute) {
     $(document)
       .ready(function () {
         $('.ui.menu .ui.dropdown').dropdown({
@@ -25,6 +26,11 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {      
+       if(params["id"]){
+          this.id = params["id"];
+       }
+    })
   }
 
   onSelect(dummy: string) {

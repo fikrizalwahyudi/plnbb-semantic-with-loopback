@@ -15,7 +15,7 @@ export class MitraDao extends PersistedDao
 @CommonModel({
 	name: MitraDao.modelName,
 	dao: MitraDao,
-	dataSource: 'mypostgresdb',
+	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'mitra',
 		postgresql: {

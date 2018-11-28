@@ -15,7 +15,7 @@ export class PltuDao extends PersistedDao
 @CommonModel({
 	name: PltuDao.modelName,
 	dao: PltuDao,
-	dataSource: 'mypostgresdb',
+	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'pltu',
 		postgresql: {

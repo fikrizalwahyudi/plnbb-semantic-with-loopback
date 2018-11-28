@@ -15,7 +15,7 @@ export class TokensDao extends PersistedDao
 @CommonModel({
 	name: TokensDao.modelName,
 	dao: TokensDao,
-	dataSource: 'mypostgresdb',
+	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'tokens',
 		postgresql: {
@@ -36,7 +36,7 @@ export class TokensModel extends PersistedModel
 	@Property('String')
 	token:String
 
-	@Property('Number')
-	user_id:Number
+	@Property('String')
+	user_id:String
 
 }

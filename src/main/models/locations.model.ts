@@ -20,7 +20,7 @@ export class LocationsDao extends PersistedDao
 	name: LocationsDao.modelName,
 	dao: LocationsDao,
 	
-	dataSource: 'mypostgresdb',
+	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'locations',
 		postgresql: {

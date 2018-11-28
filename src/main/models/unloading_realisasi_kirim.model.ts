@@ -16,7 +16,7 @@ export class UnloadingRealisasiKirimDao extends PersistedDao
 @CommonModel({
 	name: UnloadingRealisasiKirimDao.modelName,
 	dao: UnloadingRealisasiKirimDao,
-	dataSource: 'mypostgresdb',
+	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'unloading_realisasi_kirim',
 		postgresql: {
@@ -32,8 +32,8 @@ export class UnloadingRealisasiKirimModel extends PersistedModel
 	@Property('Number')
 	id:Number
 
-	@Property('Number')
-	realisasi_kirim_id:Number
+	@Property('String')
+	realisasi_kirim_id:String
 
 	@Property('string')
 	bl:string

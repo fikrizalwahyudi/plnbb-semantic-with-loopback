@@ -19,12 +19,15 @@ import { LocationsModel } from './models/locations.model';
 import { SumberTambangModel } from './models/sumber_tambang.model';
 import { TambangModel } from './models/tambang.model';
 import { UnloadingRealisasiKirimModel } from './models/unloading_realisasi_kirim.model';
+import { ReferensiKontrakModel } from './models/referensi_kontrak.model';
+import { ReferensiKontrakMitraModel } from './models/referensi_kontrak_mitra.model';
+import { ReferensiKontrakPltuModel } from './models/referensi_kontrak_pltu.model';
 
 @injectable()
 @CommonModule({
 	models: [
 		SampleModel,
-		UsersModel,
+		//UsersModel,
 		MitraModel,
 		ModesModel,
 		PhoneContactsModel,
@@ -32,7 +35,7 @@ import { UnloadingRealisasiKirimModel } from './models/unloading_realisasi_kirim
 		RealisasiKirimModel,
 		RencanaPasokanModel,
 		RequestShippingModel,
-		RolesModel,
+		//RolesModel,
 		TokensModel,
 		TypesModel,
 		UserMitraModel,
@@ -41,8 +44,10 @@ import { UnloadingRealisasiKirimModel } from './models/unloading_realisasi_kirim
 		LocationsModel,
 		SumberTambangModel,
 		TambangModel,
-		UnloadingRealisasiKirimModel
-		
+		UnloadingRealisasiKirimModel,
+		ReferensiKontrakModel,
+		ReferensiKontrakMitraModel,
+		ReferensiKontrakPltuModel
 	]
 })
 export class SampleModule extends Module

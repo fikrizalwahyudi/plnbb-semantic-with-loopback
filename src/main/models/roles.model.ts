@@ -1,6 +1,7 @@
 import { PersistedDao, PersistedModel } from 'loopback-typescript-core/dist/models/persisted.model';
 import { injectable,inject } from 'inversify';
 import { CommonModel, Property, Relation, Remote } from 'loopback-typescript-core/dist/models/decorators';
+import { UsersModel } from './users.model';
 
 @injectable()
 export class RolesDao extends PersistedDao
@@ -15,7 +16,8 @@ export class RolesDao extends PersistedDao
 @CommonModel({
 	name: RolesDao.modelName,
 	dao: RolesDao,
-	dataSource: 'mypostgresdb',
+	base: 'Role',
+	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'roles',
 		postgresql: {
@@ -30,19 +32,15 @@ export class RolesDao extends PersistedDao
 export class RolesModel extends PersistedModel
 {	
 
-	@Property('Number')
-	id:Number
+	@Property('string', true)
+	name: string;	
 
-	@Property('String')
-	name:String
+	@Property('string')
+	description: string;
 
-	@Property('String')
-	description:String
+	@Property('boolean')
+	enabled: boolean;
 
-	@Property('String')
-	role_auth:String
-
-	@Property('Number')
-	status:Number
-
+	@Relation('hasMany', 'Account', 'roleId', '', 'eRoleMapping')
+	users: UsersModel[];
 }

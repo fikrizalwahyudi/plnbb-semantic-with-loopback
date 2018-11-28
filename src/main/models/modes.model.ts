@@ -15,7 +15,7 @@ export class ModesDao extends PersistedDao
 @CommonModel({
 	name: ModesDao.modelName,
 	dao: ModesDao,
-	dataSource: 'mypostgresdb',
+	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'modes',
 		postgresql: {

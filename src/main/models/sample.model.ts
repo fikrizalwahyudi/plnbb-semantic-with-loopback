@@ -19,7 +19,7 @@ export class SampleDao extends PersistedDao
 @CommonModel({
 	name: SampleDao.modelName,
 	dao: SampleDao,
-	dataSource: 'mypostgresdb',
+	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'samples',
 		postgresql: {

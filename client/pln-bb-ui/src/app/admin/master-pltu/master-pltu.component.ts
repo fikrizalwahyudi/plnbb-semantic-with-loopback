@@ -1,10 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { pltu } from '../../user/user';
 import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
-import { dummy_pltu } from '../../user/source/dummy-pltu';
-import { pltuValidation } from '../../shared/validation/validation';
 import { PltuService } from '../../shared/services/pltu.service';
 import { Pltu } from '../../shared/models/pltu';
+import { promptDialog } from '../../shared/modals/prompt.modal';
+import { pltuValidation } from '../../shared/validation/master-pltu.validation';
 
 @Component({
   selector: 'master-pltu',
@@ -17,15 +17,16 @@ export class MasterPltuComponent implements OnInit {
   public objPltu = new Pltu();
   data_pltu: any = [];
   keyword = "";
+  loading: any;
+  validationForm: any;
+  isEdit: boolean = false;
 
   constructor(@Inject(LOCAL_STORAGE) private storage: WebStorageService, private pltuService: PltuService) {
 
-    //Soon assign data_pltu with data master pltu from database
-    this.data_pltu = dummy_pltu;
-    console.log(this.data_pltu);
   }
 
   ngOnInit() {
+    this.isEdit = false;
     this.pltuService.getAllPltu().subscribe(e => {
       console.log(e);
       this.data_pltu = e;
@@ -41,32 +42,57 @@ export class MasterPltuComponent implements OnInit {
     }
   }
 
-  onSubmit() {
-    let a = pltuValidation();
+  onSubmit(edit?) {
 
-    if (a) {
+    this.validationForm = pltuValidation();
+
+    if (this.validationForm) {
       // this.objPltu = this.masterPLTU;
-      console.log(this.masterPLTU);
-      this.pltuService.createPltu(this.masterPLTU).subscribe(e => {
-        console.log(e);
-        this.new_pltu = false;
-        this.ngOnInit();
-      });
-      // this.new_pltu = false;
-      // setTimeout(() => {
-      //   this.new_pltu = true;
-      // }, 10)
-      // //Using push to add new data to array
-      // //Soon - submit into database
-      // this.masterPLTU.id = this.data_pltu.length + 1;
-      // this.data_pltu.push(Object.assign({}, this.masterPLTU));
-      // this.storage.set('masterPLTU',this.data_pltu);
-      // this.clearArray();
-      // this.data_pltu = this.storage.get('masterPLTU');
-      // console.log(this.data_pltu);
+      if (this.isEdit){
+        this.pltuService.updatePltu(this.masterPLTU).subscribe(e => {
+          console.log(e);
+          this.clearArray();
+          this.ngOnInit();
+        })
+      } else {
+        this.masterPLTU.id = this.data_pltu.length + 1;
+        this.pltuService.createPltu(this.masterPLTU).subscribe(e => {
+          console.log(e);
+          this.clearArray();
+          this.ngOnInit();
+        });
+      }
     } else {
       console.log('form invalid');
     }
+  }
+
+  onEdit(index: any){
+    this.new_pltu = true;
+    this.masterPLTU.id = this.data_pltu[index].id;
+    this.masterPLTU.code = this.data_pltu[index].code;
+    this.masterPLTU.name = this.data_pltu[index].name;
+    this.masterPLTU.address = this.data_pltu[index].address;
+    this.masterPLTU.npwp = this.data_pltu[index].npwp;
+    this.masterPLTU.status = this.data_pltu[index].status;
+    this.isEdit = true;
+  }
+
+  onDelete(id: any) {
+    promptDialog('Delete data', 'Are you sure to delete this data?',() => {
+      // onApprove 
+      this.pltuService.deletePltuById(id).subscribe(e => {
+        console.log(e);
+        this.ngOnInit();
+      }, (error) => {
+        console.log(error);
+      })
+    },
+    // onDeny
+      () => {
+        console.log('deny')
+      }
+    );
   }
 
   clearArray() {
@@ -76,7 +102,13 @@ export class MasterPltuComponent implements OnInit {
     this.masterPLTU.address = "";
     this.masterPLTU.npwp = "";
     this.masterPLTU.status = "";
-    this.data_pltu = this.storage.get('masterPLTU');
   }
+
+  // showLoading() {
+  //   this.loading = this.loadingCtrl.create({
+  //     content: 'Please wait...'
+  //   });
+  //   this.loading.present();
+  // }
 
 }

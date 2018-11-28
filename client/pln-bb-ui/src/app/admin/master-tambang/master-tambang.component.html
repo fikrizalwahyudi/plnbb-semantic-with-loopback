@@ -18,17 +18,17 @@
       <div class="two fields">
         <div class="field">
           <label>Nama</label>
-          <input placeholder="Nama" type="text" [(ngModel)]="dummy_tambang.name">
+          <input placeholder="Nama" id="nama_tambang" type="text" [(ngModel)]="dummy_tambang.name">
         </div>
         <div class="field">
           <label>Sertifikat</label>
-          <input placeholder="Sertifikat" type="text" [(ngModel)]="dummy_tambang.sertifikat">
+          <input placeholder="Sertifikat" id="sertifikat_tambang" type="text" [(ngModel)]="dummy_tambang.sertifikat">
         </div>
       </div>
       <div class="two fields">
         <div class="field">
           <label>Jenis Tambang</label>
-          <select class="ui dropdown" [(ngModel)]="dummy_tambang.jenis_tambang_id">
+          <select class="ui dropdown" id="jenis_tambang" [(ngModel)]="dummy_tambang.jenis_tambang_id">
             <option value="">Jenis Tambang</option>
             <option value="1">Tambang 1</option>
             <option value="0">Tambang 2</option>
@@ -36,7 +36,7 @@
         </div>
         <div class="field">
           <label>Lokasi</label>
-          <select class="ui dropdown" [(ngModel)]="dummy_tambang.lokasi_id">
+          <select class="ui dropdown" id="lokasi_tambang" [(ngModel)]="dummy_tambang.lokasi_id">
             <option value="">Lokasi</option>
             <option value="1">Lokasi Tambang 1</option>
             <option value="0">Lokasi Tambang 2</option>
@@ -46,11 +46,11 @@
       <div class="two fields">
         <div class="field">
           <label>Tanggal Berlaku</label>
-          <input [(ngModel)]="dummy_tambang.tanggal_berlaku" placeholder="Nama" type="date">
+          <input [(ngModel)]="dummy_tambang.tanggal_berlaku" id="tanggal_berlaku" placeholder="Nama" type="date">
         </div>
         <div class="field">
           <label>Tanggal Habis</label>
-          <input [(ngModel)]="dummy_tambang.tanggal_habis" placeholder="Sertifikat" type="date">
+          <input [(ngModel)]="dummy_tambang.tanggal_habis" id="tanggal_habis" placeholder="Sertifikat" type="date">
         </div>
       </div>
       <div (click)="onSubmit()" class="ui submit button">Submit</div>

@@ -15,8 +15,8 @@ export class UsersDao extends PersistedDao
 @CommonModel({
 	name: UsersDao.modelName,
 	dao: UsersDao,
-	base: 'User',
-	dataSource: 'mypostgresdb',
+	// base: 'User',
+	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'users',
 		postgresql: {
@@ -43,4 +43,7 @@ export class UsersModel extends PersistedModel
 
 	@Property('number')
 	status:number
+
+	@Relation("belongsTo", "Roles", "role_id")
+	role
 }

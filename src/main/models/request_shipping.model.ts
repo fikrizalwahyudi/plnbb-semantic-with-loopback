@@ -15,7 +15,7 @@ export class RequestShippingDao extends PersistedDao
 @CommonModel({
 	name: RequestShippingDao.modelName,
 	dao: RequestShippingDao,
-	dataSource: 'mypostgresdb',
+	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'request_shipping',
 		postgresql: {
@@ -33,11 +33,11 @@ export class RequestShippingModel extends PersistedModel
 	@Property('Number')
 	id:Number
 
-	@Property('Number')
-	realisasi_kirim_id:Number
+	@Property('String')
+	realisasi_kirim_id:String
 
-	@Property('Number')
-	mitra_id:Number
+	@Property('String')
+	mitra_id:String
 
 	@Property('String')
 	no_si:String

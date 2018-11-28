@@ -13,13 +13,31 @@
       "./mixins"
     ]
   },
-
+  "User": {
+    "dataSource": "mypostgresdb",
+    "public": true
+  },
   "AccessToken": {
     "dataSource": "mypostgresdb",
-    "public": false
+    "public": false,
+    "relations": {
+      "user": {
+        "type": "belongsTo",
+        "model": "user",
+        "foreignKey": "userId"
+      }
+    }
   },
   "ACL": {
     "dataSource": "mypostgresdb",
     "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "mypostgresdb",
+    "public": true
+  },
+  "Role": {
+    "dataSource": "mypostgresdb",
+    "public": true
   }
 }

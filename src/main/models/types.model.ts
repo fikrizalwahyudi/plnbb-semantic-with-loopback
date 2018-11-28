@@ -15,7 +15,7 @@ export class TypesDao extends PersistedDao
 @CommonModel({
 	name: TypesDao.modelName,
 	dao: TypesDao,
-	dataSource: 'mypostgresdb',
+	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'types',
 		postgresql: {
