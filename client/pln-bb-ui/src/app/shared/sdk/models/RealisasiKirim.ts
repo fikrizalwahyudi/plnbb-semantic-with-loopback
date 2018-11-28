@@ -2,20 +2,20 @@
 
 declare var Object: any;
 export interface RealisasiKirimInterface {
-  "id"?: number;
-  "rencana_pasokan_id"?: number;
+  "id"?: any;
+  "rencana_pasokan_id"?: string;
   "tanggal_dikirim"?: Date;
   "realisasi"?: number;
-  "user_id"?: number;
+  "user_id"?: string;
   "status"?: number;
 }
 
 export class RealisasiKirim implements RealisasiKirimInterface {
-  "id": number = 0;
-  "rencana_pasokan_id": number = 0;
+  "id": any = <any>null;
+  "rencana_pasokan_id": string = '';
   "tanggal_dikirim": Date = new Date(0);
   "realisasi": number = 0;
-  "user_id": number = 0;
+  "user_id": string = '';
   "status": number = 0;
   constructor(data?: RealisasiKirimInterface) {
     Object.assign(this, data);
@@ -52,11 +52,11 @@ export class RealisasiKirim implements RealisasiKirimInterface {
       properties: {
         "id": {
           name: 'id',
-          type: 'number'
+          type: 'any'
         },
         "rencana_pasokan_id": {
           name: 'rencana_pasokan_id',
-          type: 'number'
+          type: 'string'
         },
         "tanggal_dikirim": {
           name: 'tanggal_dikirim',
@@ -68,7 +68,7 @@ export class RealisasiKirim implements RealisasiKirimInterface {
         },
         "user_id": {
           name: 'user_id',
-          type: 'number'
+          type: 'string'
         },
         "status": {
           name: 'status',

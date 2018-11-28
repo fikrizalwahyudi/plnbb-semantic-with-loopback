@@ -9,16 +9,15 @@ import { LoopBackFilter,  } from '../../models/BaseModels';
 import { ErrorHandler } from '../core/error.service';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { UserMitra } from '../../models/UserMitra';
+import { ReferensiKontrak } from '../../models/ReferensiKontrak';
 import { SocketConnection } from '../../sockets/socket.connections';
-import { Mitra } from '../../models/Mitra';
 
 
 /**
- * Api services for the `UserMitra` model.
+ * Api services for the `ReferensiKontrak` model.
  */
 @Injectable()
-export class UserMitraApi extends BaseLoopBackApi {
+export class ReferensiKontrakApi extends BaseLoopBackApi {
 
   constructor(
     @Inject(HttpClient) protected http: HttpClient,
@@ -28,36 +27,6 @@ export class UserMitraApi extends BaseLoopBackApi {
     @Optional() @Inject(ErrorHandler) protected errorHandler: ErrorHandler
   ) {
     super(http,  connection,  models, auth, errorHandler);
-  }
-
-  /**
-   * Fetches belongsTo relation mitra.
-   *
-   * @param {any} id UserMitra id
-   *
-   * @param {boolean} refresh 
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `UserMitra` object.)
-   * </em>
-   */
-  public getMitra(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
-    let _method: string = "GET";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/user_mitra/:id/mitra";
-    let _routeParams: any = {
-      id: id
-    };
-    let _postBody: any = {};
-    let _urlParams: any = {};
-    if (typeof refresh !== 'undefined' && refresh !== null) _urlParams.refresh = refresh;
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
   }
 
   /**
@@ -73,13 +42,13 @@ export class UserMitraApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `UserMitra` object.)
+   * This usually means the response is a `ReferensiKontrak` object.)
    * </em>
    */
   public patchOrCreate(data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/user_mitra";
+    "/referensi_kontrak";
     let _routeParams: any = {};
     let _postBody: any = {
       data: data
@@ -92,7 +61,7 @@ export class UserMitraApi extends BaseLoopBackApi {
   /**
    * Patch attributes for a model instance and persist it into the data source.
    *
-   * @param {any} id UserMitra id
+   * @param {any} id ReferensiKontrak id
    *
    * @param {object} data Request data.
    *
@@ -104,13 +73,13 @@ export class UserMitraApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `UserMitra` object.)
+   * This usually means the response is a `ReferensiKontrak` object.)
    * </em>
    */
   public patchAttributes(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/user_mitra/:id";
+    "/referensi_kontrak/:id";
     let _routeParams: any = {
       id: id
     };
@@ -124,9 +93,9 @@ export class UserMitraApi extends BaseLoopBackApi {
 
   /**
    * The name of the model represented by this $resource,
-   * i.e. `UserMitra`.
+   * i.e. `ReferensiKontrak`.
    */
   public getModelName() {
-    return "UserMitra";
+    return "ReferensiKontrak";
   }
 }

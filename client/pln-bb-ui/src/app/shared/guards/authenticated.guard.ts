@@ -3,7 +3,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angul
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { CacheService } from '../services/cache.service';
-import { UsersApi } from '../sdk';
+import { UserApi } from '../sdk/services/custom/User';
 
 @Injectable()
 export class AuthenticatedGuard implements CanActivate {
@@ -11,7 +11,7 @@ export class AuthenticatedGuard implements CanActivate {
 	constructor(
 		private router:Router, 
 		private cache:CacheService,
-		private userApi:UsersApi
+		private userApi:UserApi
 	) {
 
 	}

@@ -1,32 +1,34 @@
-<div class="ui middle aligned three column centered stackable grid container fullheight">
-  <div class="five wide column" >
-    <form [formGroup]="loginForm" class="ui form" (ngSubmit)="save()" >
-      <div class="ui segment">
-        <div class="ui active dimmer" *ngIf="submitting">
-          <div class="ui loader"></div>
-        </div>
-
-        <h3 class="ui center aligned header">
-          <img class="ui image" src="../../assets/img/plnbblogo.png" style="width:30%"><br><br>
-          <div class="content">
-            PT PLN BATUBARA
+<div class="ui container fullheight mt-10">
+  <div class="ui middle aligned three column centered stackable grid container fullheight">
+    <div class="five wide column" >
+      <form [formGroup]="loginForm" class="ui form" (ngSubmit)="save()" >
+        <div class="ui segment">
+          <div class="ui active dimmer" *ngIf="submitting">
+            <div class="ui loader"></div>
           </div>
-        </h3>
-        <div class="ui negative message" *ngIf="invalid">invalid username or password</div>
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="user icon"></i>
-            <input type="text" formControlName="username" placeholder="Username">
+  
+          <h3 class="ui center aligned header">
+            <img class="ui image" src="../../assets/img/plnbblogo.png" style="width:30%"><br><br>
+            <div class="content">
+              PT PLN BATUBARA
+            </div>
+          </h3>
+          <div class="ui negative message" *ngIf="invalid">invalid username or password</div>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="user icon"></i>
+              <input type="text" formControlName="username" placeholder="Username">
+            </div>
           </div>
-        </div>
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="lock icon"></i>
-            <input type="password" formControlName="password" placeholder="Password">
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="lock icon"></i>
+              <input type="password" formControlName="password" placeholder="Password">
+            </div>
           </div>
+          <button class="ui teal button w-100" type="submit">Login</button>
         </div>
-        <button class="ui teal button w-100" type="submit">Login</button>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
 </div>

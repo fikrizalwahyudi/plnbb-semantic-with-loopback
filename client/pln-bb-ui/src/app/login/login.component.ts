@@ -4,12 +4,12 @@ import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { loginValidation } from '../shared/validation/validation';
 import { TouchSequence } from 'selenium-webdriver';
-import { UsersApi } from '../shared/sdk/services/custom/Users';
+import { UserApi } from '../shared/sdk/services/custom/User';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.sass']
 })
 export class LoginComponent implements OnInit {
 
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb:FormBuilder,
     private router:Router,
-    private userApi:UsersApi
+    private userApi:UserApi
   ) { 
     if(this.userApi.isAuthenticated()) {
       this.router.navigate(['admin'])

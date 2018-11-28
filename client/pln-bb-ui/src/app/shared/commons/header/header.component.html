@@ -1,0 +1,17 @@
+<div class="ui fixed top sticky inverted menu pln">
+  <div class="ui container">
+    <a class="item" *ngFor="let menu of menus" [routerLink]="[menu.path]" routerLinkActive="active"><i [class]="menu.class"></i> {{menu.label}}</a>
+    <div class="right menu">
+      <!-- <a class="item"><i class="bell icon"></i></a> -->
+      <div class="ui dropdown item" iamDropdown *ngIf="isAuthenticated">
+        <img class="ui avatar image" src="/assets/anonymapp.png">
+        <span>{{account.username}}</span> <i class="dropdown icon"></i>
+        <div class="menu">
+          <a class="item" [routerLink]="['/profile/info']">Profile</a>
+          <a class="item" (click)="logout()">Sign Out</a>
+        </div>
+      </div>
+      <a class="item"><i class="help circle icon"></i> Help</a>
+    </div>
+  </div>
+</div>

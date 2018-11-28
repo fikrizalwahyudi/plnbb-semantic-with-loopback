@@ -1,46 +1,42 @@
 /* tslint:disable */
 
 declare var Object: any;
-export interface UsersInterface {
-  "id"?: number;
-  "email"?: string;
-  "username"?: string;
-  "name"?: string;
-  "role_id"?: number;
-  "status"?: number;
+export interface UserInterface {
   "realm"?: string;
+  "username"?: string;
+  "email": string;
   "emailVerified"?: boolean;
+  "id"?: any;
   "password"?: string;
+  accessTokens?: any[];
 }
 
-export class Users implements UsersInterface {
-  "id": number = 0;
-  "email": string = '';
-  "username": string = '';
-  "name": string = '';
-  "role_id": number = 0;
-  "status": number = 0;
+export class User implements UserInterface {
   "realm": string = '';
+  "username": string = '';
+  "email": string = '';
   "emailVerified": boolean = false;
+  "id": any = <any>null;
   "password": string = '';
-  constructor(data?: UsersInterface) {
+  accessTokens: any[] = null;
+  constructor(data?: UserInterface) {
     Object.assign(this, data);
   }
   /**
    * The name of the model represented by this $resource,
-   * i.e. `Users`.
+   * i.e. `User`.
    */
   public static getModelName() {
-    return "Users";
+    return "User";
   }
   /**
   * @method factory
   * @author Jonathan Casarrubias
   * @license MIT
-  * This method creates an instance of Users for dynamic purposes.
+  * This method creates an instance of User for dynamic purposes.
   **/
-  public static factory(data: UsersInterface): Users{
-    return new Users(data);
+  public static factory(data: UserInterface): User{
+    return new User(data);
   }
   /**
   * @method getModelDefinition
@@ -51,42 +47,30 @@ export class Users implements UsersInterface {
   **/
   public static getModelDefinition() {
     return {
-      name: 'Users',
-      plural: 'users',
-      path: 'users',
+      name: 'User',
+      plural: 'Users',
+      path: 'Users',
       idName: 'id',
       properties: {
-        "id": {
-          name: 'id',
-          type: 'number'
-        },
-        "email": {
-          name: 'email',
+        "realm": {
+          name: 'realm',
           type: 'string'
         },
         "username": {
           name: 'username',
           type: 'string'
         },
-        "name": {
-          name: 'name',
-          type: 'string'
-        },
-        "role_id": {
-          name: 'role_id',
-          type: 'number'
-        },
-        "status": {
-          name: 'status',
-          type: 'number'
-        },
-        "realm": {
-          name: 'realm',
+        "email": {
+          name: 'email',
           type: 'string'
         },
         "emailVerified": {
           name: 'emailVerified',
           type: 'boolean'
+        },
+        "id": {
+          name: 'id',
+          type: 'any'
         },
         "password": {
           name: 'password',
@@ -94,6 +78,14 @@ export class Users implements UsersInterface {
         },
       },
       relations: {
+        accessTokens: {
+          name: 'accessTokens',
+          type: 'any[]',
+          model: '',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'userId'
+        },
       }
     }
   }

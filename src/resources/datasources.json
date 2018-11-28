@@ -3,35 +3,12 @@
         "name": "db",
         "connector": "memory"
     },
-    "mypostgresdb": {
-        "host": "127.0.0.1",
-        "port": 27017,
-        "database": "plnbbdb",
-        "name": "mypostgresdb",
-        "connector": "mongodb",
-        "useNewUrlParser": true
-    },
-    "mypostgresdb2": {
-        "host": "localhost",
-        "port": 5432,
-        "url": "postgres://postgres:12345678@localhost:5432/plnbbdb?ssl=false",
-        "database": "plnbbdb",
-        "password": "12345678",
-        "name": "mypostgresdb2",
-        "user": "postgres",
-        "connector": "postgresql",
-        "min": 5,
-        "max": 200,
-        "idleTimeoutMillis": 60000,
-        "ssl": false
-    },
     "plnbbmongodb": {
         "name": "plnbbmongodb",
         "connector": "mongodb",
         "host": "localhost",
-        "user": "plnbbdb",
-        "password": "password",
-        "database": "plnbbdb"
+        "database": "plnbbdb",
+        "useNewUrlParser": true
     }
 }
 

@@ -2,13 +2,13 @@
 
 declare var Object: any;
 export interface TypesInterface {
-  "id"?: number;
+  "id"?: any;
   "name"?: string;
   "status"?: number;
 }
 
 export class Types implements TypesInterface {
-  "id": number = 0;
+  "id": any = <any>null;
   "name": string = '';
   "status": number = 0;
   constructor(data?: TypesInterface) {
@@ -46,7 +46,7 @@ export class Types implements TypesInterface {
       properties: {
         "id": {
           name: 'id',
-          type: 'number'
+          type: 'any'
         },
         "name": {
           name: 'name',

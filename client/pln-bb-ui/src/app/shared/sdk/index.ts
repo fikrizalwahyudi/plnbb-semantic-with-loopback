@@ -48,8 +48,10 @@ import { SocketBrowser } from './sockets/socket.browser';
 import { SocketDriver } from './sockets/socket.driver';
 import { SocketConnection } from './sockets/socket.connections';
 import { RealTime } from './services/core/real.time';
+import { UserApi } from './services/custom/User';
+import { RoleMappingApi } from './services/custom/RoleMapping';
+import { RoleApi } from './services/custom/Role';
 import { SampleApi } from './services/custom/Sample';
-import { UsersApi } from './services/custom/Users';
 import { MitraApi } from './services/custom/Mitra';
 import { ModesApi } from './services/custom/Modes';
 import { PhoneContactsApi } from './services/custom/PhoneContacts';
@@ -57,7 +59,6 @@ import { PltuApi } from './services/custom/Pltu';
 import { RealisasiKirimApi } from './services/custom/RealisasiKirim';
 import { RencanaPasokanApi } from './services/custom/RencanaPasokan';
 import { RequestShippingApi } from './services/custom/RequestShipping';
-import { RolesApi } from './services/custom/Roles';
 import { TokensApi } from './services/custom/Tokens';
 import { TypesApi } from './services/custom/Types';
 import { UserMitraApi } from './services/custom/UserMitra';
@@ -67,6 +68,9 @@ import { LocationsApi } from './services/custom/Locations';
 import { SumberTambangApi } from './services/custom/SumberTambang';
 import { TambangApi } from './services/custom/Tambang';
 import { UnloadingRealisasiKirimApi } from './services/custom/UnloadingRealisasiKirim';
+import { ReferensiKontrakApi } from './services/custom/ReferensiKontrak';
+import { ReferensiKontrakMitraApi } from './services/custom/ReferensiKontrakMitra';
+import { ReferensiKontrakPltuApi } from './services/custom/ReferensiKontrakPltu';
 /**
 * @module SDKBrowserModule
 * @description
@@ -97,8 +101,10 @@ export class SDKBrowserModule {
         LoggerService,
         SDKModels,
         RealTime,
+        UserApi,
+        RoleMappingApi,
+        RoleApi,
         SampleApi,
-        UsersApi,
         MitraApi,
         ModesApi,
         PhoneContactsApi,
@@ -106,7 +112,6 @@ export class SDKBrowserModule {
         RealisasiKirimApi,
         RencanaPasokanApi,
         RequestShippingApi,
-        RolesApi,
         TokensApi,
         TypesApi,
         UserMitraApi,
@@ -116,6 +121,9 @@ export class SDKBrowserModule {
         SumberTambangApi,
         TambangApi,
         UnloadingRealisasiKirimApi,
+        ReferensiKontrakApi,
+        ReferensiKontrakMitraApi,
+        ReferensiKontrakPltuApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser },
         { provide: SocketDriver, useClass: SocketBrowser }

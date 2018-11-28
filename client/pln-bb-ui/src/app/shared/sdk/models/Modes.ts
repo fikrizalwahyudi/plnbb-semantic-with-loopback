@@ -2,13 +2,13 @@
 
 declare var Object: any;
 export interface ModesInterface {
-  "id"?: number;
+  "id"?: any;
   "name"?: string;
   "status"?: number;
 }
 
 export class Modes implements ModesInterface {
-  "id": number = 0;
+  "id": any = <any>null;
   "name": string = '';
   "status": number = 0;
   constructor(data?: ModesInterface) {
@@ -46,7 +46,7 @@ export class Modes implements ModesInterface {
       properties: {
         "id": {
           name: 'id',
-          type: 'number'
+          type: 'any'
         },
         "name": {
           name: 'name',

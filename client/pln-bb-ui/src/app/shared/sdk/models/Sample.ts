@@ -5,14 +5,14 @@ export interface SampleInterface {
   "name"?: string;
   "address"?: string;
   "description"?: Date;
-  "id"?: number;
+  "id"?: any;
 }
 
 export class Sample implements SampleInterface {
   "name": string = '';
   "address": string = '';
   "description": Date = new Date(0);
-  "id": number = 0;
+  "id": any = <any>null;
   constructor(data?: SampleInterface) {
     Object.assign(this, data);
   }
@@ -60,7 +60,7 @@ export class Sample implements SampleInterface {
         },
         "id": {
           name: 'id',
-          type: 'number'
+          type: 'any'
         },
       },
       relations: {

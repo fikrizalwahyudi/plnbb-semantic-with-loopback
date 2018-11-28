@@ -2,13 +2,13 @@
 
 declare var Object: any;
 export interface JenisTambangInterface {
-  "id"?: number;
+  "id"?: any;
   "name"?: string;
   "status"?: number;
 }
 
 export class JenisTambang implements JenisTambangInterface {
-  "id": number = 0;
+  "id": any = <any>null;
   "name": string = '';
   "status": number = 0;
   constructor(data?: JenisTambangInterface) {
@@ -46,7 +46,7 @@ export class JenisTambang implements JenisTambangInterface {
       properties: {
         "id": {
           name: 'id',
-          type: 'number'
+          type: 'any'
         },
         "name": {
           name: 'name',

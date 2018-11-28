@@ -2,21 +2,21 @@
 
 declare var Object: any;
 export interface TambangInterface {
-  "id"?: number;
+  "id"?: any;
   "name"?: string;
   "sertifikat"?: string;
-  "jenis_tambang_id"?: number;
-  "location_id"?: number;
+  "jenis_tambang_id"?: string;
+  "location_id"?: string;
   "tanggal_berlaku"?: Date;
   "tanggal_habis"?: Date;
 }
 
 export class Tambang implements TambangInterface {
-  "id": number = 0;
+  "id": any = <any>null;
   "name": string = '';
   "sertifikat": string = '';
-  "jenis_tambang_id": number = 0;
-  "location_id": number = 0;
+  "jenis_tambang_id": string = '';
+  "location_id": string = '';
   "tanggal_berlaku": Date = new Date(0);
   "tanggal_habis": Date = new Date(0);
   constructor(data?: TambangInterface) {
@@ -54,7 +54,7 @@ export class Tambang implements TambangInterface {
       properties: {
         "id": {
           name: 'id',
-          type: 'number'
+          type: 'any'
         },
         "name": {
           name: 'name',
@@ -66,11 +66,11 @@ export class Tambang implements TambangInterface {
         },
         "jenis_tambang_id": {
           name: 'jenis_tambang_id',
-          type: 'number'
+          type: 'string'
         },
         "location_id": {
           name: 'location_id',
-          type: 'number'
+          type: 'string'
         },
         "tanggal_berlaku": {
           name: 'tanggal_berlaku',

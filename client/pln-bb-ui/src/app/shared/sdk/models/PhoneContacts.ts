@@ -2,15 +2,15 @@
 
 declare var Object: any;
 export interface PhoneContactsInterface {
-  "id"?: number;
-  "owner_id"?: number;
+  "id"?: any;
+  "owner_id"?: string;
   "owner_name"?: string;
   "phone_number"?: string;
 }
 
 export class PhoneContacts implements PhoneContactsInterface {
-  "id": number = 0;
-  "owner_id": number = 0;
+  "id": any = <any>null;
+  "owner_id": string = '';
   "owner_name": string = '';
   "phone_number": string = '';
   constructor(data?: PhoneContactsInterface) {
@@ -48,11 +48,11 @@ export class PhoneContacts implements PhoneContactsInterface {
       properties: {
         "id": {
           name: 'id',
-          type: 'number'
+          type: 'any'
         },
         "owner_id": {
           name: 'owner_id',
-          type: 'number'
+          type: 'string'
         },
         "owner_name": {
           name: 'owner_name',

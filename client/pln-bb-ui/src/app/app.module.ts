@@ -30,20 +30,19 @@ import { PlnbbComponent } from './plnbb/plnbb.component';
 import { PlnbbModule } from './plnbb/plnbb.module';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'admin', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'admin', component: AdminComponent, loadChildren: './admin/admin.module#AdminModule', canActivate: [AuthenticatedGuard] },
 
-  { path: 'mitra', component: MitraComponent, loadChildren: './mitra/mitra.module#MitraModule' },
+  { path: 'mitra', component: MitraComponent, loadChildren: './mitra/mitra.module#MitraModule', canActivate: [AuthenticatedGuard] },
   
-  { path: 'plnbb', component: PlnbbComponent, loadChildren: './plnbb/plnbb.module#PlnbbModule' }
+  { path: 'plnbb', component: PlnbbComponent, loadChildren: './plnbb/plnbb.module#PlnbbModule', canActivate: [AuthenticatedGuard] }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    AdminComponent,
     MitraComponent,
     PlnbbComponent
   ],

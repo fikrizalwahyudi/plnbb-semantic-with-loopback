@@ -2,30 +2,30 @@
 
 declare var Object: any;
 export interface RencanaPasokanInterface {
-  "id"?: number;
+  "id"?: any;
   "no_kontrak"?: string;
   "tahun"?: number;
   "bulan"?: number;
   "tanggal_kirim"?: Date;
-  "pltu_id"?: number;
-  "tipe_id"?: number;
-  "mode_id"?: number;
+  "pltu_id"?: string;
+  "tipe_id"?: string;
+  "mode_id"?: string;
   "tonnase"?: number;
-  "user_id"?: number;
+  "user_id"?: string;
   "status"?: number;
 }
 
 export class RencanaPasokan implements RencanaPasokanInterface {
-  "id": number = 0;
+  "id": any = <any>null;
   "no_kontrak": string = '';
   "tahun": number = 0;
   "bulan": number = 0;
   "tanggal_kirim": Date = new Date(0);
-  "pltu_id": number = 0;
-  "tipe_id": number = 0;
-  "mode_id": number = 0;
+  "pltu_id": string = '';
+  "tipe_id": string = '';
+  "mode_id": string = '';
   "tonnase": number = 0;
-  "user_id": number = 0;
+  "user_id": string = '';
   "status": number = 0;
   constructor(data?: RencanaPasokanInterface) {
     Object.assign(this, data);
@@ -62,7 +62,7 @@ export class RencanaPasokan implements RencanaPasokanInterface {
       properties: {
         "id": {
           name: 'id',
-          type: 'number'
+          type: 'any'
         },
         "no_kontrak": {
           name: 'no_kontrak',
@@ -82,15 +82,15 @@ export class RencanaPasokan implements RencanaPasokanInterface {
         },
         "pltu_id": {
           name: 'pltu_id',
-          type: 'number'
+          type: 'string'
         },
         "tipe_id": {
           name: 'tipe_id',
-          type: 'number'
+          type: 'string'
         },
         "mode_id": {
           name: 'mode_id',
-          type: 'number'
+          type: 'string'
         },
         "tonnase": {
           name: 'tonnase',
@@ -98,7 +98,7 @@ export class RencanaPasokan implements RencanaPasokanInterface {
         },
         "user_id": {
           name: 'user_id',
-          type: 'number'
+          type: 'string'
         },
         "status": {
           name: 'status',

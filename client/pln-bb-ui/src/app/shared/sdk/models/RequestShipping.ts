@@ -2,9 +2,9 @@
 
 declare var Object: any;
 export interface RequestShippingInterface {
-  "id"?: number;
-  "realisasi_kirim_id"?: number;
-  "mitra_id"?: number;
+  "id"?: any;
+  "realisasi_kirim_id"?: string;
+  "mitra_id"?: string;
   "no_si"?: string;
   "laycan"?: string;
   "jetty"?: string;
@@ -13,9 +13,9 @@ export interface RequestShippingInterface {
 }
 
 export class RequestShipping implements RequestShippingInterface {
-  "id": number = 0;
-  "realisasi_kirim_id": number = 0;
-  "mitra_id": number = 0;
+  "id": any = <any>null;
+  "realisasi_kirim_id": string = '';
+  "mitra_id": string = '';
   "no_si": string = '';
   "laycan": string = '';
   "jetty": string = '';
@@ -56,15 +56,15 @@ export class RequestShipping implements RequestShippingInterface {
       properties: {
         "id": {
           name: 'id',
-          type: 'number'
+          type: 'any'
         },
         "realisasi_kirim_id": {
           name: 'realisasi_kirim_id',
-          type: 'number'
+          type: 'string'
         },
         "mitra_id": {
           name: 'mitra_id',
-          type: 'number'
+          type: 'string'
         },
         "no_si": {
           name: 'no_si',

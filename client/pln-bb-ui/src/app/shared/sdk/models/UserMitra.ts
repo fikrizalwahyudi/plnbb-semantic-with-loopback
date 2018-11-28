@@ -1,16 +1,23 @@
 /* tslint:disable */
+import {
+  Mitra
+} from '../index';
 
 declare var Object: any;
 export interface UserMitraInterface {
-  "id"?: number;
-  "user_id"?: number;
-  "mitra_id"?: number;
+  "userId"?: string;
+  "mitraId"?: string;
+  "id"?: any;
+  "mitra_id"?: any;
+  mitra?: Mitra;
 }
 
 export class UserMitra implements UserMitraInterface {
-  "id": number = 0;
-  "user_id": number = 0;
-  "mitra_id": number = 0;
+  "userId": string = '';
+  "mitraId": string = '';
+  "id": any = <any>null;
+  "mitra_id": any = <any>null;
+  mitra: Mitra = null;
   constructor(data?: UserMitraInterface) {
     Object.assign(this, data);
   }
@@ -44,20 +51,32 @@ export class UserMitra implements UserMitraInterface {
       path: 'user_mitra',
       idName: 'id',
       properties: {
+        "userId": {
+          name: 'userId',
+          type: 'string'
+        },
+        "mitraId": {
+          name: 'mitraId',
+          type: 'string'
+        },
         "id": {
           name: 'id',
-          type: 'number'
-        },
-        "user_id": {
-          name: 'user_id',
-          type: 'number'
+          type: 'any'
         },
         "mitra_id": {
           name: 'mitra_id',
-          type: 'number'
+          type: 'any'
         },
       },
       relations: {
+        mitra: {
+          name: 'mitra',
+          type: 'Mitra',
+          model: 'Mitra',
+          relationType: 'belongsTo',
+                  keyFrom: 'mitra_id',
+          keyTo: 'id'
+        },
       }
     }
   }

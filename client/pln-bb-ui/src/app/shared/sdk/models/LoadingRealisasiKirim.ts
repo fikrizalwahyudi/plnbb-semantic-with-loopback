@@ -2,8 +2,8 @@
 
 declare var Object: any;
 export interface LoadingRealisasiKirimInterface {
-  "id"?: number;
-  "realisasi_kirim_id"?: number;
+  "id"?: any;
+  "realisasi_kirim_id"?: string;
   "bl"?: string;
   "ash"?: string;
   "idt"?: string;
@@ -19,8 +19,8 @@ export interface LoadingRealisasiKirimInterface {
 }
 
 export class LoadingRealisasiKirim implements LoadingRealisasiKirimInterface {
-  "id": number = 0;
-  "realisasi_kirim_id": number = 0;
+  "id": any = <any>null;
+  "realisasi_kirim_id": string = '';
   "bl": string = '';
   "ash": string = '';
   "idt": string = '';
@@ -68,11 +68,11 @@ export class LoadingRealisasiKirim implements LoadingRealisasiKirimInterface {
       properties: {
         "id": {
           name: 'id',
-          type: 'number'
+          type: 'any'
         },
         "realisasi_kirim_id": {
           name: 'realisasi_kirim_id',
-          type: 'number'
+          type: 'string'
         },
         "bl": {
           name: 'bl',

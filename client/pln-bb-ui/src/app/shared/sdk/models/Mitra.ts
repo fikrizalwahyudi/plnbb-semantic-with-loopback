@@ -2,7 +2,7 @@
 
 declare var Object: any;
 export interface MitraInterface {
-  "id"?: number;
+  "id"?: any;
   "code"?: string;
   "name"?: string;
   "address"?: string;
@@ -11,7 +11,7 @@ export interface MitraInterface {
 }
 
 export class Mitra implements MitraInterface {
-  "id": number = 0;
+  "id": any = <any>null;
   "code": string = '';
   "name": string = '';
   "address": string = '';
@@ -52,7 +52,7 @@ export class Mitra implements MitraInterface {
       properties: {
         "id": {
           name: 'id',
-          type: 'number'
+          type: 'any'
         },
         "code": {
           name: 'code',

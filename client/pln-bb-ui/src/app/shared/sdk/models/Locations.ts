@@ -2,13 +2,13 @@
 
 declare var Object: any;
 export interface LocationsInterface {
-  "id"?: number;
+  "id"?: any;
   "name"?: string;
   "status"?: number;
 }
 
 export class Locations implements LocationsInterface {
-  "id": number = 0;
+  "id": any = <any>null;
   "name": string = '';
   "status": number = 0;
   constructor(data?: LocationsInterface) {
@@ -46,7 +46,7 @@ export class Locations implements LocationsInterface {
       properties: {
         "id": {
           name: 'id',
-          type: 'number'
+          type: 'any'
         },
         "name": {
           name: 'name',

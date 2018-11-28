@@ -14,11 +14,11 @@
     ]
   },
   "User": {
-    "dataSource": "mypostgresdb",
+    "dataSource": "plnbbmongodb",
     "public": true
   },
   "AccessToken": {
-    "dataSource": "mypostgresdb",
+    "dataSource": "plnbbmongodb",
     "public": false,
     "relations": {
       "user": {
@@ -29,15 +29,15 @@
     }
   },
   "ACL": {
-    "dataSource": "mypostgresdb",
+    "dataSource": "plnbbmongodb",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "mypostgresdb",
+    "dataSource": "plnbbmongodb",
     "public": true
   },
   "Role": {
-    "dataSource": "mypostgresdb",
+    "dataSource": "plnbbmongodb",
     "public": true
   }
 }
