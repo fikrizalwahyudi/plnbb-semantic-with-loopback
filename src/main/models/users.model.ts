@@ -30,26 +30,17 @@ export class UsersDao extends PersistedDao
 })
 export class UsersModel extends PersistedModel
 {	
-
-	@Property('Number')
 	id:Number
-
-	@Property('String')
 	email:String
+	username:string
+	password:string
 
-	@Property('String')
-	username:String
+	@Property('string')
+	name:string
 
-	@Property('String')
-	password:String
+	@Property('number')
+	role_id:number
 
-	@Property('String')
-	name:String
-
-	@Property('Number')
-	role_id:Number
-
-	@Property('Number')
-	status:Number
-
+	@Property('number')
+	status:number
 }

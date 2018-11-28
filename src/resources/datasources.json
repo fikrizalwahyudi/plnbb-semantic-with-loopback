@@ -2,14 +2,22 @@
     "db": {
         "name": "db",
         "connector": "memory"
-      },
+    },
     "mypostgresdb": {
+        "host": "127.0.0.1",
+        "port": 27017,
+        "database": "plnbbdb",
+        "name": "mypostgresdb",
+        "connector": "mongodb",
+        "useNewUrlParser": true
+    },
+    "mypostgresdb2": {
         "host": "localhost",
         "port": 5432,
         "url": "postgres://postgres:12345678@localhost:5432/postgres?ssl=false",
         "database": "postgres",
         "password": "12345678",
-        "name": "mypostgresdb",
+        "name": "mypostgresdb2",
         "user": "postgres",
         "connector": "postgresql",
         "min": 5,

@@ -14,11 +14,12 @@ import { RencanaPasokanService } from './shared/services/rencana_pasokan.service
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminModule } from './admin/admin.module';
+import { SDKBrowserModule } from './shared/sdk/index';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'admin', component: AdminComponent, loadChildren: './admin/admin.module#AdminModule' }
+  { path: 'admin', component: AdminComponent, loadChildren: './admin/admin.module#AdminModule', canActivate: [AuthenticatedGuard] }
 ];
 
 @NgModule({
@@ -31,6 +32,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
+    SDKBrowserModule.forRoot(),
     BrowserModule,
     AdminModule,
     SharedModule,

@@ -12,5 +12,14 @@
       "../common/mixins",
       "./mixins"
     ]
+  },
+
+  "AccessToken": {
+    "dataSource": "mypostgresdb",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "mypostgresdb",
+    "public": false
   }
 }
