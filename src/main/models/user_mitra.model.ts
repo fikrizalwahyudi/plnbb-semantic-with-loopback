@@ -29,14 +29,17 @@ export class UserMitraDao extends PersistedDao
 })
 export class UserMitraModel extends PersistedModel
 {	
+	id:any
 
-	@Property('Number')
-	id:Number
+	@Property('string')
+	userId:string
 
-	@Property('Number')
-	user_id:Number
+	@Property('string')
+	mitraId:string
 
-	@Property('Number')
-	mitra_id:Number
+	@Relation("belongsTo", "Users", "user_id")
+	user
 
+	@Relation("belongsTo", "Mitra", "mitra_id")
+	mitra
 }

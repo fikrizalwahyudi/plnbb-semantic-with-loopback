@@ -15,13 +15,13 @@ process.on('unhandledRejection', (reason, promise) => {
 })
 
 export = (function(){
-	console.log("masuk function")
 	let argv = require('yargs').argv
 
 	let app = loopback()
+
 	// let configDir = path.resolve(process.cwd(), './src/resources');
 	let configDir = path.resolve(process.cwd(), (argv.config ? argv.config : './src/resources'));
-	console.log("masuk function2")
+	
 	Module.boot(SampleModule, {
 		appRootDir: process.cwd(),
 		appConfigRootDir: configDir,
@@ -33,7 +33,6 @@ export = (function(){
 			path.resolve(__dirname, './mixins')
 		]
 	}, app).then((module)  => {
-		console.log("masuk module boot");
 		module.getContext().emit('module booted', module);
 		if(!argv.server)
 			return module.getContext().getParentContext()
@@ -51,6 +50,20 @@ export = (function(){
 
 		server.listen(port, () => {handleOnStart(port)})
 	});
-	console.log("masuk function 3")
-	return app;
+	
+	return new Proxy(app, {
+		get: function(target, prop, receiver) {
+			if(prop === 'on' || prop === 'once') {
+				let original = target[prop]
+
+				return function(...args) {
+					if(args[0] === 'booted') {
+						original.apply(this, ['module booted', args[1]])
+					} else
+						original.apply(this, args)
+				}
+			} else
+				return target[prop]
+		}
+	});
 })()

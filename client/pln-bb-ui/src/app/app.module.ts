@@ -13,38 +13,49 @@ import { PltuService } from './shared/services/pltu.service';
 import { RencanaPasokanService } from './shared/services/rencana_pasokan.service';
 
 import { LoginComponent } from './login/login.component';
+//admin module
 import { AdminComponent } from './admin/admin.component';
 import { AdminModule } from './admin/admin.module';
+import { SDKBrowserModule } from './shared/sdk/index';
 import { RolesService } from './shared/services/roles.service';
+//mitra module
 import { MitraComponent } from './mitra/mitra.component';
 import { MitraModule } from './mitra/mitra.module';
 import { UsersService } from './shared/services/users.service';
 import { UserMitraService } from './shared/services/user_mitra.service';
 import { ReferensiKontrakService } from './shared/services/referensi_kontrak.service';
 import { MitraService } from './shared/services/mitra.service';
+//plnbb module
+import { PlnbbComponent } from './plnbb/plnbb.component';
+import { PlnbbModule } from './plnbb/plnbb.module';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'mitra', component: MitraComponent, loadChildren: './mitra/mitra.module#MitraModule' },
-  { path: 'admin', redirectTo: 'admin/dashboard', pathMatch: 'full' },
-  { path: 'admin/:id', component: AdminComponent}
+  { path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule', canActivate: [AuthenticatedGuard] },
+
+  { path: 'mitra', loadChildren: 'app/mitra/mitra.module#MitraModule', canActivate: [AuthenticatedGuard] },
+  
+  { path: 'plnbb', loadChildren: 'app/plnbb/plnbb.module#PlnbbModule', canActivate: [AuthenticatedGuard] },
+  
+  { path: '', redirectTo: 'admin', pathMatch: 'full' }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    AdminComponent,
-    MitraComponent
+    MitraComponent,
+    PlnbbComponent
   ],
   imports: [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
+    SDKBrowserModule.forRoot(),
     BrowserModule,
     AdminModule,
     MitraModule,
+    PlnbbModule,
     SharedModule,
     StorageServiceModule,
     HttpModule
@@ -52,7 +63,16 @@ const appRoutes: Routes = [
   exports: [
     RouterModule
   ],
-  providers: [PltuService,RencanaPasokanService, RolesService, GlobalService, UsersService, UserMitraService, ReferensiKontrakService, MitraService],
+  providers: [
+    PltuService,
+    RencanaPasokanService, 
+    RolesService, 
+    GlobalService, 
+    UsersService, 
+    UserMitraService, 
+    ReferensiKontrakService, 
+    MitraService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

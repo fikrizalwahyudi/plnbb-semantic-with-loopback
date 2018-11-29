@@ -22,3 +22,8 @@
     - bulan dan tahun wajib di isi pertama kali
     - tanggal pengiriman bisa di isi ketika mitra dan pltu di pilih
     - ketika mitra dipilih pertama kali, pltu akan menyesuaikan dengan mitra tersebut dan sebaliknya
+
+Yang Belum
+- master mitra 
+
+pindahkan alur rest 

@@ -30,28 +30,27 @@ export class RequestShippingDao extends PersistedDao
 export class RequestShippingModel extends PersistedModel
 {	
 
-	@Property('Number')
-	id:Number
+	id:any
 
-	@Property('Number')
-	realisasi_kirim_id:Number
+	@Property('string')
+	realisasiKirimId:string
 
-	@Property('Number')
-	mitra_id:Number
+	@Property('string')
+	mitraId:string
 
-	@Property('String')
-	no_si:String
+	@Property('string')
+	noSi:string
 
-	@Property('String')
-	laycan:String
+	@Property('string')
+	laycan:string
 
-	@Property('String')
-	jetty:String
+	@Property('string')
+	jetty:string
 
-	@Property('String')
-	nama_kapal:String
+	@Property('string')
+	namaKapal:string
 
-	@Property('Number')
-	status:Number
+	@Property('number')
+	status:number
 
 }

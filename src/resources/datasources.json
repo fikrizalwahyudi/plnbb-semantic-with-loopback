@@ -7,9 +7,8 @@
         "name": "plnbbmongodb",
         "connector": "mongodb",
         "host": "localhost",
-        "user": "plnbbdb",
-        "password": "password",
-        "database": "plnbbdb"
+        "database": "plnbbdb",
+        "useNewUrlParser": true
     }
 }
 

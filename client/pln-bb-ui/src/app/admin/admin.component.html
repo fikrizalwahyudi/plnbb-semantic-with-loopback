@@ -1,5 +1,5 @@
 <!-- <div class="ui bottom attached segment pushable" > -->
-  <div class="ui visible inverted vertical left sidebar menu ">
+  <!-- <div class="ui visible inverted vertical left sidebar menu ">
     <img class="center" style="width:35%; padding-top: 3%" src="http://erp.plnbatubara.co.id/assets/gfx/web_news/1450433146.png">
     <a [routerLink]="['/admin/dashboard']" id="dashboard" class="item">
       <i class="dashboard icon"></i>
@@ -27,6 +27,14 @@
     </a>
   </div>
   <div class="pusher">
+      <div class="ui menu">
+          <a class="item">Browse</a>
+          <a class="item">Submit</a>
+          <div class="right menu">
+            <a class="item">Sign Up</a>
+            <a class="item">Help</a>
+          </div>
+        </div>
     <div class="ui basic segment">
       <h3 class="ui header">PT PLN BATUBARA</h3>
     </div>
@@ -49,7 +57,7 @@
         </ng-container>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- <footer> -->
     <!-- <div class="ui bottom fixed fullwidth">
@@ -59,3 +67,45 @@
     </div> -->
   <!-- </footer> -->
 <!-- </div> -->
+
+<div class="ui container fullheight">
+  <div class="ui grid mt-5">
+    <div class="three wide column">
+      <div class="ui secondary vertical menu fullwidth">
+        <a class="item" [routerLink]="['/admin/home']" routerLinkActive="active">
+          <i class="desktop icon"></i> Home
+        </a>
+        <div class="ui divider"></div>
+        <a class="item" [routerLink]="['/admin/user']" routerLinkActive="active">
+          <i class="user icon"></i> User
+        </a>
+        <a class="item">
+          <i class="id card icon"></i> Role
+        </a>
+        <div class="ui divider"></div>
+        <a class="item">
+          <i class="users icon"></i> Mitra
+        </a>
+        <a class="item">
+          <i class="cogs icon"></i> Tambang
+        </a>
+        <a class="item">
+          <i class="building icon"></i> PLTU
+        </a>
+        <a class="item">
+          <i class="book icon"></i> Kontrak
+        </a>
+      </div>
+    </div>
+    <div class="thirteen wide column">
+      <div class="ui breadcrumb mb-1">
+        <a class="section">Home</a>
+        <div class="divider"> / </div>
+        <a class="section">Store</a>
+        <div class="divider"> / </div>
+        <div class="active section">T-Shirt</div>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

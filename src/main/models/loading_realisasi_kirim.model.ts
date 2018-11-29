@@ -29,11 +29,10 @@ export class LoadingRealisasiKirimDao extends PersistedDao
 })
 export class LoadingRealisasiKirimModel extends PersistedModel
 {
-	@Property('Number')
-	id:Number
+	id:any
 
-	@Property('Number')
-	realisasi_kirim_id:Number
+	@Property('string')
+	realisasiKirimId:string
 
 	@Property('string')
 	bl:string
@@ -63,14 +62,11 @@ export class LoadingRealisasiKirimModel extends PersistedModel
 	"238mm":string
 
 	@Property('string')
-	upload_bl:string
+	uploadBl:string
 
 	@Property('string')
-	upload_cm:string
+	uploadCm:string
 
 	@Property('string')
-	upload_skab:string
-
- 
-
+	uploadSkab:string
 }

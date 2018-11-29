@@ -30,15 +30,16 @@ export class ReferensiKontrakPltuDao extends PersistedDao
 export class ReferensiKontrakPltuModel extends PersistedModel
 {	
 
-	@Property('Number')
-    id:Number
+    id:any
     
-	@Property('Number')
-	referensi_kontrak_id:Number
+	@Property('string')
+	referensiKontrakId:string
 
-    @Property('Number')
-    pltu_id:Number
-    
+    @Property('string')
+    pltuId:string
+	
+	@Relation("belongsTo", "Pltu", "pltu_id" )
+	pltu
    
 
 }

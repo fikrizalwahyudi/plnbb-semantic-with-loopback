@@ -12,5 +12,32 @@
       "../common/mixins",
       "./mixins"
     ]
+  },
+  "User": {
+    "dataSource": "plnbbmongodb",
+    "public": true
+  },
+  "AccessToken": {
+    "dataSource": "plnbbmongodb",
+    "public": false,
+    "relations": {
+      "user": {
+        "type": "belongsTo",
+        "model": "user",
+        "foreignKey": "userId"
+      }
+    }
+  },
+  "ACL": {
+    "dataSource": "plnbbmongodb",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "plnbbmongodb",
+    "public": true
+  },
+  "Role": {
+    "dataSource": "plnbbmongodb",
+    "public": true
   }
 }

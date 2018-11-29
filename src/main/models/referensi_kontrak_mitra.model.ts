@@ -30,14 +30,13 @@ export class ReferensiKontrakMitraDao extends PersistedDao
 export class ReferensiKontrakMitraModel extends PersistedModel
 {	
 
-	@Property('Number')
-    id:Number
+    id:any
     
-	@Property('Number')
-	referensi_kontrak_id:Number
+	@Property('string')
+	referensiKontrakId:string
 
-    @Property('Number')
-    mitra_id:Number
+    @Property('string')
+    mitraId:string
     
    
 

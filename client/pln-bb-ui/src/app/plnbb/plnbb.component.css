@@ -1,7 +1,8 @@
 .container {
     width: 80% !important;
-    padding-left: 10px;
-    padding-right: 3%;
+    padding-left: 2%;
+    padding-right: 1%;
+    margin-top:5%
 }
 
 .footer {
@@ -9,6 +10,11 @@
     left: 0;
     bottom: 0;
     width: 100%;
+}
+
+.header {
+    width: 100%;
+    padding-left: 20%;
 }
 
 .center {
