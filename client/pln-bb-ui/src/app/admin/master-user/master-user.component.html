@@ -30,7 +30,7 @@
           <label>Username</label>
           <input placeholder="Input username" type="text" [(ngModel)]="masterUser.username" id="username">
         </div>
-        <div class="field">
+        <div class="field" *ngIf="!isEdit">
           <label>Password</label>
           <input placeholder="Input password" type="password" [(ngModel)]="masterUser.password" id="password">
         </div>
@@ -38,21 +38,18 @@
       <div class="two fields">
         <div class="field">
           <label>Role </label>
-          <select class="ui dropdown" [(ngModel)]="masterUser.role_id" (change)="onChangeRole($event.target.value)" id="role_id">
+          <select class="ui dropdown" [(ngModel)]="masterUser.role_id" id="role_id">
             <option value="">Pilih Role</option>
             <option *ngFor="let data of data_role" value="{{data.id}}">{{data.name}}</option>
-          </select>
-        </div>
-        <div class="field" *ngIf="is_mitra">
-          <label>Mitra</label>
-          <select class="ui dropdown" [(ngModel)]="masterUserMitra.mitra_id" id="mitra_id">
-            <option value="">Pilih Mitra</option>
-            <option *ngFor="let data of data_mitra" value="{{data.id}}">{{data.name}}</option>
           </select>
         </div>
       </div>
       <div class="ui error message"></div>
 
+      <div class="ui success message">
+        <div class="header">Form Completed</div>
+        <p>You're data has been saved.</p>
+      </div>
       <div (click)="onSubmit()" class="ui submit button">Submit</div>
     </div>
   </div>
@@ -66,10 +63,11 @@
       <th>username</th>
       <th>Role</th>
       <th>Status</th>
+      <th>Action</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of data_user">
+    <tr *ngFor="let item of data_user;let i = index">
       <td>
         {{item.name}}
       </td>
@@ -84,6 +82,14 @@
       </td>
       <td>
         {{item.status_name}}
+      </td>
+      <td>
+        <div class="ui icon button" (click)="onEdit(i)" style="margin-right: 5%" data-tooltip="Edit data">
+          <i class="green edit icon"></i>
+        </div>
+        <div class="ui icon button" (click)="onDelete(item.id)" data-tooltip="Delete data">
+          <i class="red trash alternate icon"></i>
+        </div>
       </td>
     </tr>
   </tbody>

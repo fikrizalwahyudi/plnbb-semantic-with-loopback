@@ -9,6 +9,10 @@
       <i class="building layout icon"></i>
       PLTU
     </a>
+    <a [routerLink]="['/admin/mitra']" id="mitra" class="item">
+      <i class="building layout icon"></i>
+      Mitra
+    </a>
     <a [routerLink]="['/admin/ref']" id="ref" class="item">
       <i class="file alternate icon"></i>
       Referensi Kontrak
@@ -46,6 +50,9 @@
         </ng-container>
         <ng-container *ngIf="id == 'pltu'">
           <master-pltu></master-pltu>
+        </ng-container>
+        <ng-container *ngIf="id == 'mitra'">
+          <master-mitra></master-mitra>
         </ng-container>
       </div>
     </div>

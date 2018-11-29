@@ -10,6 +10,8 @@ import { MasterPltuComponent } from './master-pltu/master-pltu.component';
 import { SearchRefKontrakPipe } from '../shared/search/ref-kontrak-search.pipe';
 import { SearchPLTUPipe } from '../shared/search/pltu-search.pipe';
 import { SearchRolePipe } from '../shared/search/role-search.pipe';
+import { SearchMitraPipe } from '../shared/search/mitra-search.pipe';
+import { MasterMitraComponent } from './master-mitra/master-mitra.component';
 
 @NgModule({
   imports: [
@@ -23,14 +25,16 @@ import { SearchRolePipe } from '../shared/search/role-search.pipe';
     MasterRoleComponent, 
     MasterReferensiKontrakComponent, 
     MasterTambangComponent, MasterPltuComponent,
-    SearchRefKontrakPipe, SearchPLTUPipe, SearchRolePipe
+    SearchRefKontrakPipe, SearchPLTUPipe, SearchRolePipe, 
+    SearchMitraPipe, MasterMitraComponent
   ],
   exports : [
     MasterUserComponent, 
     MasterRoleComponent, 
     MasterReferensiKontrakComponent, 
     MasterTambangComponent,
-    MasterPltuComponent
+    MasterPltuComponent,
+    MasterMitraComponent
   ]
 })
 export class AdminModule { }

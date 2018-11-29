@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { dummy_users } from '../../user/source/dummy-user';
 import { dummy_role } from '../../user/source/dummy-role';
-import { dummy_mitra } from '../../user/source/dummy-mitra';
 import { GlobalService } from '../../shared/services/global.service';
 import { Users } from '../../shared/models/users';
-import { userValidation, userMitraValidation } from '../../shared/validation/user.validation';
+import { userValidation, userMitraValidation } from '../../shared/validation/master-user.validation';
 import { UsersService } from '../../shared/services/users.service';
 import { UserMitraService } from '../../shared/services/user_mitra.service';
+import { MitraService } from '../../shared/services/mitra.service';
+import { promptDialog } from '../../shared/modals/prompt.modal';
 
 @Component({
   selector: 'master-user',
@@ -15,22 +15,21 @@ import { UserMitraService } from '../../shared/services/user_mitra.service';
 })
 export class MasterUserComponent implements OnInit {
   new_user: boolean = false;
-  is_mitra: boolean = false;
+  isEdit: boolean = false;
   data_user: any = [];
   data_role: any = [];
   data_mitra: any = [];
   masterUser: any = new Users();
-  masterUserMitra: any = {};
 
-  constructor(private gs: GlobalService, private userService: UsersService, private userMitraService: UserMitraService) {
+  constructor(private gs: GlobalService, private userService: UsersService,
+    private mitraService: MitraService) {
     //Soon assign data_role and data_user with data from database
     this.data_role = dummy_role;
-    this.data_mitra = dummy_mitra;
-    this.masterUserMitra = {mitra_id: null, user_id: null};
-
+    this.getMitra();
   }
 
   ngOnInit() {
+    this.isEdit = false;
     this.userService.getAllUsers().subscribe(e => {
       this.data_user = e;
 
@@ -42,50 +41,68 @@ export class MasterUserComponent implements OnInit {
 
   }
 
-  addNew() {
-    if (this.new_user) {
-      this.new_user = false;
-    } else {
-      this.new_user = true;
-    }
-  }
-
   clearArray(){
     this.masterUser = new Users();
-    this.masterUserMitra = { mitra_id: null, user_id: null}
-    this.is_mitra = false;
   }
 
   onSubmit(){
-    let isMitra = this.is_mitra;
-    let masterUserMitra = this.masterUserMitra
     let userValid = userValidation();
-    let mitraValid = (this.is_mitra) ? userMitraValidation() : true;
-    if (userValid && mitraValid) {
+    if (userValid) {
       this.masterUser.status = 1;
-      this.userService.createUsers(this.masterUser).subscribe(e => {
-        if(isMitra){
-          masterUserMitra.user_id = e.id
-          this.userMitraService.createUserMitra(masterUserMitra).subscribe(m => {
-          })
-        }
-        this.new_user = false;
-        this.ngOnInit();
-      });
-    this.clearArray();
+      if (this.isEdit){
+        delete this.masterUser.password
+        this.userService.updateUsers(this.masterUser).subscribe(e => {
+          this.clearArray();
+          this.ngOnInit();
+        })
+      } else {
+        this.userService.createUsers(this.masterUser).subscribe(e => {
+          console.log(e)
+          this.ngOnInit();
+          this.clearArray();
+        });
+      }
     } else {
       console.log('form invalid');
     }
   }
 
-  onChangeRole(id: any){
-    var name = this.data_role.find(x => x.id === id).name;
-    if(name && name.toLowerCase() == 'mitra')
-      this.is_mitra = true;
-    else{
-      this.is_mitra = false;
-      this.masterUserMitra = { mitra_id: null, user_id: null}
+  addNew() {
+    if (this.new_user) {
+      this.new_user = false;
+
+    } else {
+      this.masterUser = new Users();
+      this.new_user = true;
+      this.isEdit = false;
     }
+  }
+
+  onEdit(index: any){
+    this.new_user = true;
+    this.masterUser.id = this.data_user[index].id;
+    this.masterUser.email = this.data_user[index].email;
+    this.masterUser.username = this.data_user[index].username;
+    this.masterUser.name = this.data_user[index].name;
+    this.masterUser.role_id = this.data_user[index].role_id;
+    this.isEdit = true;
+  }
+
+  onDelete(id: any) {
+    promptDialog('Delete data', 'Are you sure to delete this data?',() => {
+      // onApprove 
+      this.userService.deleteUsersById(id).subscribe(e => {
+        console.log(e);
+        this.ngOnInit();
+      }, (error) => {
+        console.log(error);
+      })
+    },
+    // onDeny
+      () => {
+        console.log('deny')
+      }
+    );
   }
 
   onChangeRoleName(selectedRoleID: any, index: any) {
@@ -98,6 +115,12 @@ export class MasterUserComponent implements OnInit {
       status = "Aktif"
 
     this.data_user[index]['status_name'] = status
+  }
+
+  getMitra(){
+    this.mitraService.getAllMitra().subscribe(e => {
+      this.data_mitra = e;
+    })
   }
 
 }

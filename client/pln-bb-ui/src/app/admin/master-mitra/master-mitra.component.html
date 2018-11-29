@@ -11,33 +11,29 @@
     </div>
   </div>
 </div>
-<ng-container *ngIf="new_pltu">
+<ng-container *ngIf="new_mitra">
   <div class="ui inverted segment">
     <div class="ui inverted form">
       <div class="fields">
         <div class="field">
-          <label>PLTU Code</label>
-          <input placeholder="Input PLTU Code" type="text" [(ngModel)]="masterPLTU.code" id="pltu_code">
+          <label>Mitra Code</label>
+          <input placeholder="Input Mitra Code" type="text" [(ngModel)]="masterMitra.code" id="mitra_code">
         </div>
       </div>
       <div class="two fields">
         <div class="field">
-          <label>PLTU Name</label>
-          <input placeholder="Input PLTU Name" type="text" [(ngModel)]="masterPLTU.name" id="pltu_name">
+          <label>Mitra Name</label>
+          <input placeholder="Input Mitra Name" type="text" [(ngModel)]="masterMitra.name" id="mitra_name">
         </div>
         <div class="field">
-          <label>PLTU Address</label>
-          <input placeholder="Input PLTU Address" type="text" [(ngModel)]="masterPLTU.address" id="pltu_address">
+          <label>Mitra Address</label>
+          <input placeholder="Input Mitra Address" type="text" [(ngModel)]="masterMitra.address" id="mitra_address">
         </div>
       </div>
       <div class="two fields">
         <div class="field">
-          <label>PLTU NPWP</label>
-          <input placeholder="Input PLTU NPWP" type="text" [(ngModel)]="masterPLTU.npwp" id="pltu_npwp">
-        </div>
-        <div class="field">
-          <label>PLTU Status</label>
-          <input placeholder="Input PLTU Status" type="text" [(ngModel)]="masterPLTU.status" id="pltu_status">
+          <label>Mitra NPWP</label>
+          <input placeholder="Input Mitra NPWP" type="text" [(ngModel)]="masterMitra.npwp" id="mitra_npwp">
         </div>
       </div>
       <!-- Show error when form invalid -->
@@ -45,7 +41,7 @@
       <!-- -- -->
       <div class="ui success message">
         <div class="header">Form Completed</div>
-        <p>You're data has been added.</p>
+        <p>You're data has been saved.</p>
       </div>
       <div (click)="onSubmit()" class="ui submit button">Submit</div>
     </div>
@@ -55,16 +51,16 @@
 <table class="ui sortable single line striped table">
   <thead>
     <tr>
-      <th>PLTU Code</th>
-      <th>PLTU Name</th>
-      <th>PLTU Address</th>
-      <th>PLTU NPWP</th>
-      <th>PLTU Status</th>
+      <th>Mitra Code</th>
+      <th>Mitra Name</th>
+      <th>Mitra Address</th>
+      <th>Mitra NPWP</th>
+      <th>Mitra Status</th>
       <th>Action</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of data_pltu | searchPLTU: keyword; let i = index">
+    <tr *ngFor="let item of data_mitra | searchMitra: keyword; let i = index">
       <td>
         {{item.code}}
       </td>
@@ -78,7 +74,7 @@
         {{item.npwp}}
       </td>
       <td>
-        {{item.status}}
+        {{item.status_name}}
       </td>
       <td>
         <div class="ui icon button" (click)="onEdit(i)" style="margin-right: 5%" data-tooltip="Edit data">
