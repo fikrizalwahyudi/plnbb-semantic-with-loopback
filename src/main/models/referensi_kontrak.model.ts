@@ -53,7 +53,5 @@ export class ReferensiKontrakModel extends PersistedModel
 	@Property('number')
 	status:number
 
-	@Relation("hasMany", "ReferensiKontrakPltu", "referensi_kontrak_id" )
-	refpltu
 
 }

@@ -2,10 +2,10 @@ export class Tambang {
     id:number;
     name="";
     sertifikat="";
-    jenis_tambang_id:number;
-    location_id:number;
-    tanggal_berlaku:Date;
-    tanggal_habis:Date;
+    jenisTambangId:number;
+    locationId:number;
+    tanggalBerlaku:Date;
+    tanggalHabis:Date;
   
     constructor(values: Object = {}) {
       Object.assign(this, values);

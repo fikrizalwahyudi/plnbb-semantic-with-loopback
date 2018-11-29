@@ -1,7 +1,4 @@
 /* tslint:disable */
-import {
-  ReferensiKontrakPltu
-} from '../index';
 
 declare var Object: any;
 export interface ReferensiKontrakInterface {
@@ -13,7 +10,6 @@ export interface ReferensiKontrakInterface {
   "jenis"?: number;
   "status"?: number;
   "id"?: any;
-  refpltu?: ReferensiKontrakPltu[];
 }
 
 export class ReferensiKontrak implements ReferensiKontrakInterface {
@@ -25,7 +21,6 @@ export class ReferensiKontrak implements ReferensiKontrakInterface {
   "jenis": number = 0;
   "status": number = 0;
   "id": any = <any>null;
-  refpltu: ReferensiKontrakPltu[] = null;
   constructor(data?: ReferensiKontrakInterface) {
     Object.assign(this, data);
   }
@@ -93,14 +88,6 @@ export class ReferensiKontrak implements ReferensiKontrakInterface {
         },
       },
       relations: {
-        refpltu: {
-          name: 'refpltu',
-          type: 'ReferensiKontrakPltu[]',
-          model: 'ReferensiKontrakPltu',
-          relationType: 'hasMany',
-                  keyFrom: 'id',
-          keyTo: 'referensi_kontrak_id'
-        },
       }
     }
   }

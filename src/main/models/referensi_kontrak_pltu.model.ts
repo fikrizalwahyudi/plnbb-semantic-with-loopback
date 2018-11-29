@@ -37,9 +37,6 @@ export class ReferensiKontrakPltuModel extends PersistedModel
 
     @Property('string')
     pltuId:string
-	
-	@Relation("belongsTo", "Pltu", "pltu_id" )
-	pltu
    
 
 }

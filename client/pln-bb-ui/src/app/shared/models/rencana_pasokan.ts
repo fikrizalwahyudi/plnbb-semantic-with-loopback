@@ -1,14 +1,14 @@
 export class RencanaPasokan {
 		id:number;
-		no_kontrak="";
+		noKontrak="";
 		tahun=0;
 		bulan=0;
-		tanggal_kirim:Date;
-		pltu_id:number;
- 		tipe_id:number;
-		mode_id:number;
+		tanggalKirim:Date;
+		pltuId:number;
+ 		tipeId:number;
+		modeId:number;
 		tonnase:number;
-		user_id:number;
+		userId:number;
 		status=0;
   
     constructor(values: Object = {}) {

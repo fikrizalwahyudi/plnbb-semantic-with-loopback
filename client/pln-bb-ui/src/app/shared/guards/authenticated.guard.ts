@@ -17,12 +17,12 @@ export class AuthenticatedGuard implements CanActivate {
 	}
 
 	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):boolean {
-		// if(this.userApi.isAuthenticated()) 
+		if(this.userApi.isAuthenticated()) 
 			return true
 		
-		// this.router.navigate(['login'])
+		this.router.navigate(['login'])
 
-		// return false
+		return false
 
 		//let user = this.cache.db.get('user')
 	

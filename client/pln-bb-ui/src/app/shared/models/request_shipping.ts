@@ -1,11 +1,11 @@
 export class RequestShipping {
    	id:number;
-    realisasi_kirim_id:number;
-    mitra_id:number;
-    no_si="";
+    realisasiKirimId:number;
+    mitraId:number;
+    noSi="";
     laycan="";
     jetty="";
-    nama_kapal="";
+    namaKapal="";
     status=0;
   
     constructor(values: Object = {}) {
