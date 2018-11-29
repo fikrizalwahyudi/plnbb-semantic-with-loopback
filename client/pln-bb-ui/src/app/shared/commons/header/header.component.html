@@ -3,7 +3,7 @@
     <a class="item" *ngFor="let menu of menus" [routerLink]="[menu.path]" routerLinkActive="active"><i [class]="menu.class"></i> {{menu.label}}</a>
     <div class="right menu">
       <!-- <a class="item"><i class="bell icon"></i></a> -->
-      <div class="ui dropdown item" iamDropdown *ngIf="isAuthenticated">
+      <div class="ui dropdown item" uiDropDown *ngIf="isAuthenticated">
         <img class="ui avatar image" src="/assets/anonymapp.png">
         <span>{{account.username}}</span> <i class="dropdown icon"></i>
         <div class="menu">

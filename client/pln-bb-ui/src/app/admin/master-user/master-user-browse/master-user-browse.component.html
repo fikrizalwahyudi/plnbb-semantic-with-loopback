@@ -1,0 +1,48 @@
+<!-- <div class="ui black segment"> -->
+<div class="ui top attached borderless menu no-border-bottom">
+  <a class="item" [routerLink]="['/admin/user/create']">
+    <i class="plus icon"></i> Register
+  </a>
+  
+  <div class="right menu">
+    <div class="item">
+      <div class="ui icon input">
+        <input type="text" #queryBox placeholder="Search..." (keyup.enter)="load(queryBox.value)">
+        <i class="search link icon"></i>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ui yellow bottom attached segment">
+<table class="ui sortable single line striped table">
+  <thead>
+    <tr>
+      <th>Nama </th>
+      <th>E-Mail</th>
+      <th>Username</th>
+      <th>Verified</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of users">
+      <td>
+        {{item.name}}
+      </td>
+      <td>
+        {{item.email}}
+      </td>
+      <td>
+        {{item.username}}
+      </td>
+      <td>
+        {{item.emailVerified}}
+      </td>
+      <td class="center aligned collapsing">
+        <a href="javascript:void(0)" (click)="delete(item)"><i class="trash link icon action-icon"></i></a>
+        <a [routerLink]="['/admin/user', item.id, 'edit']"><i class="edit link icon action-icon"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>

@@ -10,14 +10,15 @@ import { AuthenticatedGuard } from './guards/authenticated.guard';
 import { HeaderComponent } from './commons/header/header.component';
 import { FooterComponent } from './commons/footer/footer.component';
 import { MenuService } from './services/menu.service';
+import { FormBlockComponent } from './commons/form-block/form-block.component';
 
 @NgModule({
   imports: [
     RouterModule,
     CommonModule
 	],
-  exports: [DropdownDirective, CalendarDirective, PopupDirective, TimeDirective, HeaderComponent, FooterComponent],
-  declarations: [DropdownDirective, CalendarDirective, PopupDirective, TimeDirective, HeaderComponent, FooterComponent],
+  exports: [DropdownDirective, CalendarDirective, PopupDirective, TimeDirective, HeaderComponent, FooterComponent, FormBlockComponent],
+  declarations: [DropdownDirective, CalendarDirective, PopupDirective, TimeDirective, HeaderComponent, FooterComponent, FormBlockComponent],
   providers: [CacheService, AuthenticatedGuard, MenuService]
 })
 export class SharedModule { }
