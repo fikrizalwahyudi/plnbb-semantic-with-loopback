@@ -30,16 +30,15 @@ export class PhoneContactsDao extends PersistedDao
 export class PhoneContactsModel extends PersistedModel
 {	
 
-	@Property('Number')
-	id:Number
+	id:any
 
-	@Property('String')
-	owner_id:String
+	@Property('string')
+	ownerId:string
 
-	@Property('String')
-	owner_name:String
+	@Property('string')
+	ownerName:string
 
-	@Property('String')
-	phone_number:String
+	@Property('string')
+	phoneNumber:string
 
 }

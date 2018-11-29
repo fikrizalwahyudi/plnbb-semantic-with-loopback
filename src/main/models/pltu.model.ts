@@ -30,22 +30,21 @@ export class PltuDao extends PersistedDao
 export class PltuModel extends PersistedModel
 {	
 
-	@Property('Number')
-	id:Number
+	id:any
 
-	@Property('String')
-	code:String
+	@Property('string')
+	code:string
 
-	@Property('String')
-	name:String
+	@Property('string')
+	name:string
 
-	@Property('String')
-	address:String
+	@Property('string')
+	address:string
 
-	@Property('String')
-	npwp:String
+	@Property('string')
+	npwp:string
 
-	@Property('Number')
-	status:Number
+	@Property('number')
+	status:number
 
 }

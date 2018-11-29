@@ -27,7 +27,7 @@ import { ReferensiKontrakPltuModel } from './models/referensi_kontrak_pltu.model
 @CommonModule({
 	models: [
 		SampleModel,
-		UsersModel,
+		//UsersModel,
 		MitraModel,
 		ModesModel,
 		PhoneContactsModel,
@@ -35,7 +35,7 @@ import { ReferensiKontrakPltuModel } from './models/referensi_kontrak_pltu.model
 		RealisasiKirimModel,
 		RencanaPasokanModel,
 		RequestShippingModel,
-		RolesModel,
+		//RolesModel,
 		TokensModel,
 		TypesModel,
 		UserMitraModel,

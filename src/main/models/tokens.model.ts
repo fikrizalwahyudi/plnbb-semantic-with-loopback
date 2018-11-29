@@ -30,13 +30,12 @@ export class TokensDao extends PersistedDao
 export class TokensModel extends PersistedModel
 {	
 
-	@Property('Number')
-	id:Number
+	id:any
 
-	@Property('String')
-	token:String
+	@Property('string')
+	token:string
 
-	@Property('String')
-	user_id:String
+	@Property('string')
+	userId:string
 
 }

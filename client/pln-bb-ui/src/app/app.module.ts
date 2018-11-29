@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 //admin module
 import { AdminComponent } from './admin/admin.component';
 import { AdminModule } from './admin/admin.module';
+import { SDKBrowserModule } from './shared/sdk/index';
 import { RolesService } from './shared/services/roles.service';
 //mitra module
 import { MitraComponent } from './mitra/mitra.component';
@@ -29,19 +30,19 @@ import { PlnbbComponent } from './plnbb/plnbb.component';
 import { PlnbbModule } from './plnbb/plnbb.module';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'admin', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'mitra', component: MitraComponent, loadChildren: './mitra/mitra.module#MitraModule' },
-  { path: 'admin', redirectTo: 'admin/dashboard', pathMatch: 'full' },
-  { path: 'admin/:id', component: AdminComponent},
-  { path: 'plnbb', component: PlnbbComponent, loadChildren: './plnbb/plnbb.module#PlnbbModule' }
+  { path: 'admin', component: AdminComponent, loadChildren: './admin/admin.module#AdminModule', canActivate: [AuthenticatedGuard] },
+
+  { path: 'mitra', component: MitraComponent, loadChildren: './mitra/mitra.module#MitraModule', canActivate: [AuthenticatedGuard] },
+  
+  { path: 'plnbb', component: PlnbbComponent, loadChildren: './plnbb/plnbb.module#PlnbbModule', canActivate: [AuthenticatedGuard] }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    AdminComponent,
     MitraComponent,
     PlnbbComponent
   ],
@@ -49,6 +50,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
+    SDKBrowserModule.forRoot(),
     BrowserModule,
     AdminModule,
     MitraModule,

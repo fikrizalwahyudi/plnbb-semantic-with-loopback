@@ -29,8 +29,8 @@ export class TambangDao extends PersistedDao
 })
 export class TambangModel extends PersistedModel
 {
-	@Property('Number')
-	id:Number
+
+	id:any
 
 	@Property('string')
 	name:string
@@ -38,17 +38,17 @@ export class TambangModel extends PersistedModel
 	@Property('string')
 	sertifikat:string
 
-	@Property('String')
-	jenis_tambang_id:String
+	@Property('string')
+	jenisTambangId:string
 
-	@Property('String')
-	location_id:String
+	@Property('string')
+	locationId:string
 
-	@Property('Date')
-	tanggal_berlaku:Date
+	@Property('date')
+	tanggalBerlaku:Date
 
 	
-	@Property('Date')
-	tanggal_habis:Date
+	@Property('date')
+	tanggalHabis:Date
 
 }
