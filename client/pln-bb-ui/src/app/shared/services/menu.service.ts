@@ -49,7 +49,14 @@ export class MenuService {
       canActivate: isAuthenticated
     }]*/
 
-    this._topMenus = []
+    this._topMenus = [
+      {
+        path: 'admin',
+        label: 'Administration',
+        class: 'desktop icon',
+        canActivate: isAuthenticated
+      }
+    ]
   }
 
   get topMenus():Menus { return this._topMenus.filter(menu => {

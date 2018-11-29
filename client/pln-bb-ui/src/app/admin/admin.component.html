@@ -68,13 +68,44 @@
   <!-- </footer> -->
 <!-- </div> -->
 
-<div class="ui container fullheight mt-10">
-  <div class="ui grid">
-    <div class="four wide column">
-      
+<div class="ui container fullheight">
+  <div class="ui grid mt-5">
+    <div class="three wide column">
+      <div class="ui secondary vertical menu fullwidth">
+        <a class="item" [routerLink]="['/admin/home']" routerLinkActive="active">
+          <i class="desktop icon"></i> Home
+        </a>
+        <div class="ui divider"></div>
+        <a class="item" [routerLink]="['/admin/user']" routerLinkActive="active">
+          <i class="user icon"></i> User
+        </a>
+        <a class="item">
+          <i class="id card icon"></i> Role
+        </a>
+        <div class="ui divider"></div>
+        <a class="item">
+          <i class="users icon"></i> Mitra
+        </a>
+        <a class="item">
+          <i class="cogs icon"></i> Tambang
+        </a>
+        <a class="item">
+          <i class="building icon"></i> PLTU
+        </a>
+        <a class="item">
+          <i class="book icon"></i> Kontrak
+        </a>
+      </div>
     </div>
-    <div class="four wide column">
-      
+    <div class="thirteen wide column">
+      <div class="ui breadcrumb mb-1">
+        <a class="section">Home</a>
+        <div class="divider"> / </div>
+        <a class="section">Store</a>
+        <div class="divider"> / </div>
+        <div class="active section">T-Shirt</div>
+      </div>
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>
