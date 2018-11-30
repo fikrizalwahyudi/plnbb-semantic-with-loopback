@@ -2,17 +2,17 @@
 
 declare var Object: any;
 export interface SumberTambangInterface {
-  "id"?: any;
-  "realisasi_kirim_id"?: string;
-  "tambang_id"?: string;
+  "realisasiKirimId"?: string;
+  "tambangId"?: string;
   "ammount"?: number;
+  "id"?: any;
 }
 
 export class SumberTambang implements SumberTambangInterface {
-  "id": any = <any>null;
-  "realisasi_kirim_id": string = '';
-  "tambang_id": string = '';
+  "realisasiKirimId": string = '';
+  "tambangId": string = '';
   "ammount": number = 0;
+  "id": any = <any>null;
   constructor(data?: SumberTambangInterface) {
     Object.assign(this, data);
   }
@@ -46,21 +46,21 @@ export class SumberTambang implements SumberTambangInterface {
       path: 'sumber_tambang',
       idName: 'id',
       properties: {
-        "id": {
-          name: 'id',
-          type: 'any'
-        },
-        "realisasi_kirim_id": {
-          name: 'realisasi_kirim_id',
+        "realisasiKirimId": {
+          name: 'realisasiKirimId',
           type: 'string'
         },
-        "tambang_id": {
-          name: 'tambang_id',
+        "tambangId": {
+          name: 'tambangId',
           type: 'string'
         },
         "ammount": {
           name: 'ammount',
           type: 'number'
+        },
+        "id": {
+          name: 'id',
+          type: 'any'
         },
       },
       relations: {

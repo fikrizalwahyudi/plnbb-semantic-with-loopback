@@ -30,8 +30,8 @@ export class UsersDao extends PersistedDao
 })
 export class UsersModel extends PersistedModel
 {	
-	id:Number
-	email:String
+	id:any
+	email:string
 	username:string
 	password:string
 
@@ -39,11 +39,11 @@ export class UsersModel extends PersistedModel
 	name:string
 
 	@Property('number')
-	role_id:number
+	roleId:any
 
 	@Property('number')
 	status:number
 
-	@Relation("belongsTo", "Roles", "role_id")
+	@Relation("belongsTo", "Roles", "roleId", )
 	role
 }

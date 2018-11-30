@@ -30,37 +30,36 @@ export class RencanaPasokanDao extends PersistedDao
 export class RencanaPasokanModel extends PersistedModel
 {	
 
-	@Property('Number')
-	id:Number
+	id:any
 
-	@Property('String')
-	no_kontrak:String
+	@Property('string')
+	noKontrak:string
 
-	@Property('Number')
-	tahun:Number
+	@Property('number')
+	tahun:number
 
-	@Property('Number')
-	bulan:Number
+	@Property('number')
+	bulan:number
 
-	@Property('Date')
-	tanggal_kirim:Date
+	@Property('date')
+	tanggalKirim:Date
 
-	@Property('String')
-	pltu_id:String
+	@Property('string')
+	pltuId:string
 
-	@Property('String')
-	tipe_id:String
+	@Property('string')
+	tipeid:string
 
-	@Property('String')
-	mode_id:String
+	@Property('string')
+	modeId:string
 
-	@Property('Number')
-	tonnase:Number
+	@Property('number')
+	tonnase:number
 
-	@Property('String')
-	user_id:String
+	@Property('string')
+	userId:string
 
-	@Property('Number')
-	status:Number
+	@Property('number')
+	status:number
 
 }

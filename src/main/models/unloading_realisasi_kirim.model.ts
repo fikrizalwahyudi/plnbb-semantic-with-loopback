@@ -29,11 +29,11 @@ export class UnloadingRealisasiKirimDao extends PersistedDao
 })
 export class UnloadingRealisasiKirimModel extends PersistedModel
 {
-	@Property('Number')
-	id:Number
+	
+	id:any
 
-	@Property('String')
-	realisasi_kirim_id:String
+	@Property('string')
+	realisasiKirimId:string
 
 	@Property('string')
 	bl:string
@@ -62,16 +62,16 @@ export class UnloadingRealisasiKirimModel extends PersistedModel
 	@Property('string')
 	"238mm":string
 
-	@Property('Date')
-	time_arrival:Date
+	@Property('date')
+	timeArrival:Date
 
-	@Property('Date')
+	@Property('date')
 	berthing:Date
 
-	@Property('Date')
-	commence_unloading:Date
+	@Property('date')
+	commenceUnloading:Date
 
-	@Property('Date')
-	complete_unloading:Date
+	@Property('date')
+	completeUnloading:Date
 
 }

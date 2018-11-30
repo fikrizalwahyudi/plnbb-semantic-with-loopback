@@ -1,7 +1,7 @@
 export class ReferensiKontrakMitra {
     id:number;
-    referensi_kontrak_id:number;
-    mitra_id:number;
+    referensiKontrakId:number;
+    mitraId:number;
   
     
     constructor(values: Object = {}) {

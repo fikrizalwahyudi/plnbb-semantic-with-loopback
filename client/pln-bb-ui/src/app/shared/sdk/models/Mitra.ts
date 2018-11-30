@@ -2,21 +2,21 @@
 
 declare var Object: any;
 export interface MitraInterface {
-  "id"?: any;
   "code"?: string;
   "name"?: string;
   "address"?: string;
   "npwp"?: string;
   "status"?: number;
+  "id"?: any;
 }
 
 export class Mitra implements MitraInterface {
-  "id": any = <any>null;
   "code": string = '';
   "name": string = '';
   "address": string = '';
   "npwp": string = '';
   "status": number = 0;
+  "id": any = <any>null;
   constructor(data?: MitraInterface) {
     Object.assign(this, data);
   }
@@ -50,10 +50,6 @@ export class Mitra implements MitraInterface {
       path: 'mitra',
       idName: 'id',
       properties: {
-        "id": {
-          name: 'id',
-          type: 'any'
-        },
         "code": {
           name: 'code',
           type: 'string'
@@ -73,6 +69,10 @@ export class Mitra implements MitraInterface {
         "status": {
           name: 'status',
           type: 'number'
+        },
+        "id": {
+          name: 'id',
+          type: 'any'
         },
       },
       relations: {

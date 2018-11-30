@@ -37,9 +37,4 @@ export class UserMitraModel extends PersistedModel
 	@Property('string')
 	mitraId:string
 
-	@Relation("belongsTo", "Users", "user_id")
-	user
-
-	@Relation("belongsTo", "Mitra", "mitra_id")
-	mitra
 }

@@ -2,15 +2,15 @@
 
 declare var Object: any;
 export interface ReferensiKontrakMitraInterface {
+  "referensiKontrakId"?: string;
+  "mitraId"?: string;
   "id"?: any;
-  "referensi_kontrak_id"?: string;
-  "mitra_id"?: string;
 }
 
 export class ReferensiKontrakMitra implements ReferensiKontrakMitraInterface {
+  "referensiKontrakId": string = '';
+  "mitraId": string = '';
   "id": any = <any>null;
-  "referensi_kontrak_id": string = '';
-  "mitra_id": string = '';
   constructor(data?: ReferensiKontrakMitraInterface) {
     Object.assign(this, data);
   }
@@ -44,17 +44,17 @@ export class ReferensiKontrakMitra implements ReferensiKontrakMitraInterface {
       path: 'referensi_kontrak_mitra',
       idName: 'id',
       properties: {
+        "referensiKontrakId": {
+          name: 'referensiKontrakId',
+          type: 'string'
+        },
+        "mitraId": {
+          name: 'mitraId',
+          type: 'string'
+        },
         "id": {
           name: 'id',
           type: 'any'
-        },
-        "referensi_kontrak_id": {
-          name: 'referensi_kontrak_id',
-          type: 'string'
-        },
-        "mitra_id": {
-          name: 'mitra_id',
-          type: 'string'
         },
       },
       relations: {

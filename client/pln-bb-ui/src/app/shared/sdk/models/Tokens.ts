@@ -2,15 +2,15 @@
 
 declare var Object: any;
 export interface TokensInterface {
-  "id"?: any;
   "token"?: string;
-  "user_id"?: string;
+  "userId"?: string;
+  "id"?: any;
 }
 
 export class Tokens implements TokensInterface {
-  "id": any = <any>null;
   "token": string = '';
-  "user_id": string = '';
+  "userId": string = '';
+  "id": any = <any>null;
   constructor(data?: TokensInterface) {
     Object.assign(this, data);
   }
@@ -44,17 +44,17 @@ export class Tokens implements TokensInterface {
       path: 'tokens',
       idName: 'id',
       properties: {
-        "id": {
-          name: 'id',
-          type: 'any'
-        },
         "token": {
           name: 'token',
           type: 'string'
         },
-        "user_id": {
-          name: 'user_id',
+        "userId": {
+          name: 'userId',
           type: 'string'
+        },
+        "id": {
+          name: 'id',
+          type: 'any'
         },
       },
       relations: {

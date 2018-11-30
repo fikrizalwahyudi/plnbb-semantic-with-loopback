@@ -2,23 +2,23 @@
 
 declare var Object: any;
 export interface TambangInterface {
-  "id"?: any;
   "name"?: string;
   "sertifikat"?: string;
-  "jenis_tambang_id"?: string;
-  "location_id"?: string;
-  "tanggal_berlaku"?: Date;
-  "tanggal_habis"?: Date;
+  "jenisTambangId"?: string;
+  "locationId"?: string;
+  "tanggalBerlaku"?: Date;
+  "tanggalHabis"?: Date;
+  "id"?: any;
 }
 
 export class Tambang implements TambangInterface {
-  "id": any = <any>null;
   "name": string = '';
   "sertifikat": string = '';
-  "jenis_tambang_id": string = '';
-  "location_id": string = '';
-  "tanggal_berlaku": Date = new Date(0);
-  "tanggal_habis": Date = new Date(0);
+  "jenisTambangId": string = '';
+  "locationId": string = '';
+  "tanggalBerlaku": Date = new Date(0);
+  "tanggalHabis": Date = new Date(0);
+  "id": any = <any>null;
   constructor(data?: TambangInterface) {
     Object.assign(this, data);
   }
@@ -52,10 +52,6 @@ export class Tambang implements TambangInterface {
       path: 'tambang',
       idName: 'id',
       properties: {
-        "id": {
-          name: 'id',
-          type: 'any'
-        },
         "name": {
           name: 'name',
           type: 'string'
@@ -64,21 +60,25 @@ export class Tambang implements TambangInterface {
           name: 'sertifikat',
           type: 'string'
         },
-        "jenis_tambang_id": {
-          name: 'jenis_tambang_id',
+        "jenisTambangId": {
+          name: 'jenisTambangId',
           type: 'string'
         },
-        "location_id": {
-          name: 'location_id',
+        "locationId": {
+          name: 'locationId',
           type: 'string'
         },
-        "tanggal_berlaku": {
-          name: 'tanggal_berlaku',
+        "tanggalBerlaku": {
+          name: 'tanggalBerlaku',
           type: 'Date'
         },
-        "tanggal_habis": {
-          name: 'tanggal_habis',
+        "tanggalHabis": {
+          name: 'tanggalHabis',
           type: 'Date'
+        },
+        "id": {
+          name: 'id',
+          type: 'any'
         },
       },
       relations: {

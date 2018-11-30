@@ -29,14 +29,14 @@ export class SumberTambangDao extends PersistedDao
 })
 export class SumberTambangModel extends PersistedModel
 {
-	@Property('Number')
-	id:Number
+	
+	id:any
 
-	@Property('String')
-	realisasi_kirim_id:String
+	@Property('string')
+	realisasiKirimId:string
 
-	@Property('String')
-	tambang_id:String
+	@Property('string')
+	tambangId:string
 
 	@Property('number')
 	ammount:number

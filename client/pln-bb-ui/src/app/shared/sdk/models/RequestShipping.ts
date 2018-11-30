@@ -2,25 +2,25 @@
 
 declare var Object: any;
 export interface RequestShippingInterface {
-  "id"?: any;
-  "realisasi_kirim_id"?: string;
-  "mitra_id"?: string;
-  "no_si"?: string;
+  "realisasiKirimId"?: string;
+  "mitraId"?: string;
+  "noSi"?: string;
   "laycan"?: string;
   "jetty"?: string;
-  "nama_kapal"?: string;
+  "namaKapal"?: string;
   "status"?: number;
+  "id"?: any;
 }
 
 export class RequestShipping implements RequestShippingInterface {
-  "id": any = <any>null;
-  "realisasi_kirim_id": string = '';
-  "mitra_id": string = '';
-  "no_si": string = '';
+  "realisasiKirimId": string = '';
+  "mitraId": string = '';
+  "noSi": string = '';
   "laycan": string = '';
   "jetty": string = '';
-  "nama_kapal": string = '';
+  "namaKapal": string = '';
   "status": number = 0;
+  "id": any = <any>null;
   constructor(data?: RequestShippingInterface) {
     Object.assign(this, data);
   }
@@ -54,20 +54,16 @@ export class RequestShipping implements RequestShippingInterface {
       path: 'request_shipping',
       idName: 'id',
       properties: {
-        "id": {
-          name: 'id',
-          type: 'any'
-        },
-        "realisasi_kirim_id": {
-          name: 'realisasi_kirim_id',
+        "realisasiKirimId": {
+          name: 'realisasiKirimId',
           type: 'string'
         },
-        "mitra_id": {
-          name: 'mitra_id',
+        "mitraId": {
+          name: 'mitraId',
           type: 'string'
         },
-        "no_si": {
-          name: 'no_si',
+        "noSi": {
+          name: 'noSi',
           type: 'string'
         },
         "laycan": {
@@ -78,13 +74,17 @@ export class RequestShipping implements RequestShippingInterface {
           name: 'jetty',
           type: 'string'
         },
-        "nama_kapal": {
-          name: 'nama_kapal',
+        "namaKapal": {
+          name: 'namaKapal',
           type: 'string'
         },
         "status": {
           name: 'status',
           type: 'number'
+        },
+        "id": {
+          name: 'id',
+          type: 'any'
         },
       },
       relations: {

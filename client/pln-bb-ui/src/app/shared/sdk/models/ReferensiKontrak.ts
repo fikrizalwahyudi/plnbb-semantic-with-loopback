@@ -2,25 +2,25 @@
 
 declare var Object: any;
 export interface ReferensiKontrakInterface {
-  "id"?: any;
-  "nomor_kontrak"?: string;
-  "nama_pekerjaan"?: string;
-  "tanggal_pekerjaan"?: Date;
-  "pltu_id"?: string;
-  "mitra_id"?: string;
+  "nomorKontrak"?: string;
+  "namaPekerjaan"?: string;
+  "tanggalPekerjaan"?: Date;
+  "pltuId"?: string;
+  "mitraId"?: string;
   "jenis"?: number;
   "status"?: number;
+  "id"?: any;
 }
 
 export class ReferensiKontrak implements ReferensiKontrakInterface {
-  "id": any = <any>null;
-  "nomor_kontrak": string = '';
-  "nama_pekerjaan": string = '';
-  "tanggal_pekerjaan": Date = new Date(0);
-  "pltu_id": string = '';
-  "mitra_id": string = '';
+  "nomorKontrak": string = '';
+  "namaPekerjaan": string = '';
+  "tanggalPekerjaan": Date = new Date(0);
+  "pltuId": string = '';
+  "mitraId": string = '';
   "jenis": number = 0;
   "status": number = 0;
+  "id": any = <any>null;
   constructor(data?: ReferensiKontrakInterface) {
     Object.assign(this, data);
   }
@@ -54,28 +54,24 @@ export class ReferensiKontrak implements ReferensiKontrakInterface {
       path: 'referensi_kontrak',
       idName: 'id',
       properties: {
-        "id": {
-          name: 'id',
-          type: 'any'
-        },
-        "nomor_kontrak": {
-          name: 'nomor_kontrak',
+        "nomorKontrak": {
+          name: 'nomorKontrak',
           type: 'string'
         },
-        "nama_pekerjaan": {
-          name: 'nama_pekerjaan',
+        "namaPekerjaan": {
+          name: 'namaPekerjaan',
           type: 'string'
         },
-        "tanggal_pekerjaan": {
-          name: 'tanggal_pekerjaan',
+        "tanggalPekerjaan": {
+          name: 'tanggalPekerjaan',
           type: 'Date'
         },
-        "pltu_id": {
-          name: 'pltu_id',
+        "pltuId": {
+          name: 'pltuId',
           type: 'string'
         },
-        "mitra_id": {
-          name: 'mitra_id',
+        "mitraId": {
+          name: 'mitraId',
           type: 'string'
         },
         "jenis": {
@@ -85,6 +81,10 @@ export class ReferensiKontrak implements ReferensiKontrakInterface {
         "status": {
           name: 'status',
           type: 'number'
+        },
+        "id": {
+          name: 'id',
+          type: 'any'
         },
       },
       relations: {

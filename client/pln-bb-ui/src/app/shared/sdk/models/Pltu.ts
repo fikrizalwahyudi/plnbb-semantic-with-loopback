@@ -2,21 +2,21 @@
 
 declare var Object: any;
 export interface PltuInterface {
-  "id"?: any;
   "code"?: string;
   "name"?: string;
   "address"?: string;
   "npwp"?: string;
   "status"?: number;
+  "id"?: any;
 }
 
 export class Pltu implements PltuInterface {
-  "id": any = <any>null;
   "code": string = '';
   "name": string = '';
   "address": string = '';
   "npwp": string = '';
   "status": number = 0;
+  "id": any = <any>null;
   constructor(data?: PltuInterface) {
     Object.assign(this, data);
   }
@@ -50,10 +50,6 @@ export class Pltu implements PltuInterface {
       path: 'pltu',
       idName: 'id',
       properties: {
-        "id": {
-          name: 'id',
-          type: 'any'
-        },
         "code": {
           name: 'code',
           type: 'string'
@@ -73,6 +69,10 @@ export class Pltu implements PltuInterface {
         "status": {
           name: 'status',
           type: 'number'
+        },
+        "id": {
+          name: 'id',
+          type: 'any'
         },
       },
       relations: {

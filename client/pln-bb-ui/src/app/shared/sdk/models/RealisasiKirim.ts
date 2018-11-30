@@ -2,21 +2,21 @@
 
 declare var Object: any;
 export interface RealisasiKirimInterface {
-  "id"?: any;
-  "rencana_pasokan_id"?: string;
-  "tanggal_dikirim"?: Date;
+  "rencanaPasokanId"?: string;
+  "tanggalDikirim"?: Date;
   "realisasi"?: number;
-  "user_id"?: string;
+  "userId"?: string;
   "status"?: number;
+  "id"?: any;
 }
 
 export class RealisasiKirim implements RealisasiKirimInterface {
-  "id": any = <any>null;
-  "rencana_pasokan_id": string = '';
-  "tanggal_dikirim": Date = new Date(0);
+  "rencanaPasokanId": string = '';
+  "tanggalDikirim": Date = new Date(0);
   "realisasi": number = 0;
-  "user_id": string = '';
+  "userId": string = '';
   "status": number = 0;
+  "id": any = <any>null;
   constructor(data?: RealisasiKirimInterface) {
     Object.assign(this, data);
   }
@@ -50,29 +50,29 @@ export class RealisasiKirim implements RealisasiKirimInterface {
       path: 'realisasi_kirim',
       idName: 'id',
       properties: {
-        "id": {
-          name: 'id',
-          type: 'any'
-        },
-        "rencana_pasokan_id": {
-          name: 'rencana_pasokan_id',
+        "rencanaPasokanId": {
+          name: 'rencanaPasokanId',
           type: 'string'
         },
-        "tanggal_dikirim": {
-          name: 'tanggal_dikirim',
+        "tanggalDikirim": {
+          name: 'tanggalDikirim',
           type: 'Date'
         },
         "realisasi": {
           name: 'realisasi',
           type: 'number'
         },
-        "user_id": {
-          name: 'user_id',
+        "userId": {
+          name: 'userId',
           type: 'string'
         },
         "status": {
           name: 'status',
           type: 'number'
+        },
+        "id": {
+          name: 'id',
+          type: 'any'
         },
       },
       relations: {

@@ -30,22 +30,21 @@ export class RealisasiKirimDao extends PersistedDao
 export class RealisasiKirimModel extends PersistedModel
 {	
 
-	@Property('Number')
-	id:Number
+	id:any
 	
-	@Property('String')
-	rencana_pasokan_id:String
+	@Property('string')
+	rencanaPasokanId:string
 
-	@Property('Date')
-	tanggal_dikirim:Date
+	@Property('date')
+	tanggalDikirim:Date
 
-	@Property('Number')
-	realisasi:Number
+	@Property('number')
+	realisasi:number
 
-	@Property('String')
-	user_id:String
+	@Property('string')
+	userId:string
 
-	@Property('Number')
-	status:Number
+	@Property('number')
+	status:number
 
 }

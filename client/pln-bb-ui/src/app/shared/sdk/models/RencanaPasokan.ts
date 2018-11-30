@@ -2,31 +2,31 @@
 
 declare var Object: any;
 export interface RencanaPasokanInterface {
-  "id"?: any;
-  "no_kontrak"?: string;
+  "noKontrak"?: string;
   "tahun"?: number;
   "bulan"?: number;
-  "tanggal_kirim"?: Date;
-  "pltu_id"?: string;
-  "tipe_id"?: string;
-  "mode_id"?: string;
+  "tanggalKirim"?: Date;
+  "pltuId"?: string;
+  "tipeid"?: string;
+  "modeId"?: string;
   "tonnase"?: number;
-  "user_id"?: string;
+  "userId"?: string;
   "status"?: number;
+  "id"?: any;
 }
 
 export class RencanaPasokan implements RencanaPasokanInterface {
-  "id": any = <any>null;
-  "no_kontrak": string = '';
+  "noKontrak": string = '';
   "tahun": number = 0;
   "bulan": number = 0;
-  "tanggal_kirim": Date = new Date(0);
-  "pltu_id": string = '';
-  "tipe_id": string = '';
-  "mode_id": string = '';
+  "tanggalKirim": Date = new Date(0);
+  "pltuId": string = '';
+  "tipeid": string = '';
+  "modeId": string = '';
   "tonnase": number = 0;
-  "user_id": string = '';
+  "userId": string = '';
   "status": number = 0;
+  "id": any = <any>null;
   constructor(data?: RencanaPasokanInterface) {
     Object.assign(this, data);
   }
@@ -60,12 +60,8 @@ export class RencanaPasokan implements RencanaPasokanInterface {
       path: 'rencana_pasokan',
       idName: 'id',
       properties: {
-        "id": {
-          name: 'id',
-          type: 'any'
-        },
-        "no_kontrak": {
-          name: 'no_kontrak',
+        "noKontrak": {
+          name: 'noKontrak',
           type: 'string'
         },
         "tahun": {
@@ -76,33 +72,37 @@ export class RencanaPasokan implements RencanaPasokanInterface {
           name: 'bulan',
           type: 'number'
         },
-        "tanggal_kirim": {
-          name: 'tanggal_kirim',
+        "tanggalKirim": {
+          name: 'tanggalKirim',
           type: 'Date'
         },
-        "pltu_id": {
-          name: 'pltu_id',
+        "pltuId": {
+          name: 'pltuId',
           type: 'string'
         },
-        "tipe_id": {
-          name: 'tipe_id',
+        "tipeid": {
+          name: 'tipeid',
           type: 'string'
         },
-        "mode_id": {
-          name: 'mode_id',
+        "modeId": {
+          name: 'modeId',
           type: 'string'
         },
         "tonnase": {
           name: 'tonnase',
           type: 'number'
         },
-        "user_id": {
-          name: 'user_id',
+        "userId": {
+          name: 'userId',
           type: 'string'
         },
         "status": {
           name: 'status',
           type: 'number'
+        },
+        "id": {
+          name: 'id',
+          type: 'any'
         },
       },
       relations: {

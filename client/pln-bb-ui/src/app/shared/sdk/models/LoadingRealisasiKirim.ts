@@ -2,8 +2,7 @@
 
 declare var Object: any;
 export interface LoadingRealisasiKirimInterface {
-  "id"?: any;
-  "realisasi_kirim_id"?: string;
+  "realisasiKirimId"?: string;
   "bl"?: string;
   "ash"?: string;
   "idt"?: string;
@@ -13,14 +12,14 @@ export interface LoadingRealisasiKirimInterface {
   "tm"?: string;
   "hgi"?: string;
   "238mm"?: string;
-  "upload_bl"?: string;
-  "upload_cm"?: string;
-  "upload_skab"?: string;
+  "uploadBl"?: string;
+  "uploadCm"?: string;
+  "uploadSkab"?: string;
+  "id"?: any;
 }
 
 export class LoadingRealisasiKirim implements LoadingRealisasiKirimInterface {
-  "id": any = <any>null;
-  "realisasi_kirim_id": string = '';
+  "realisasiKirimId": string = '';
   "bl": string = '';
   "ash": string = '';
   "idt": string = '';
@@ -30,9 +29,10 @@ export class LoadingRealisasiKirim implements LoadingRealisasiKirimInterface {
   "tm": string = '';
   "hgi": string = '';
   "238mm": string = '';
-  "upload_bl": string = '';
-  "upload_cm": string = '';
-  "upload_skab": string = '';
+  "uploadBl": string = '';
+  "uploadCm": string = '';
+  "uploadSkab": string = '';
+  "id": any = <any>null;
   constructor(data?: LoadingRealisasiKirimInterface) {
     Object.assign(this, data);
   }
@@ -66,12 +66,8 @@ export class LoadingRealisasiKirim implements LoadingRealisasiKirimInterface {
       path: 'loading_realisasi_kirim',
       idName: 'id',
       properties: {
-        "id": {
-          name: 'id',
-          type: 'any'
-        },
-        "realisasi_kirim_id": {
-          name: 'realisasi_kirim_id',
+        "realisasiKirimId": {
+          name: 'realisasiKirimId',
           type: 'string'
         },
         "bl": {
@@ -110,17 +106,21 @@ export class LoadingRealisasiKirim implements LoadingRealisasiKirimInterface {
           name: '238mm',
           type: 'string'
         },
-        "upload_bl": {
-          name: 'upload_bl',
+        "uploadBl": {
+          name: 'uploadBl',
           type: 'string'
         },
-        "upload_cm": {
-          name: 'upload_cm',
+        "uploadCm": {
+          name: 'uploadCm',
           type: 'string'
         },
-        "upload_skab": {
-          name: 'upload_skab',
+        "uploadSkab": {
+          name: 'uploadSkab',
           type: 'string'
+        },
+        "id": {
+          name: 'id',
+          type: 'any'
         },
       },
       relations: {

@@ -2,8 +2,7 @@
 
 declare var Object: any;
 export interface UnloadingRealisasiKirimInterface {
-  "id"?: any;
-  "realisasi_kirim_id"?: string;
+  "realisasiKirimId"?: string;
   "bl"?: string;
   "ash"?: string;
   "idt"?: string;
@@ -13,15 +12,15 @@ export interface UnloadingRealisasiKirimInterface {
   "tm"?: string;
   "hgi"?: string;
   "238mm"?: string;
-  "time_arrival"?: Date;
+  "timeArrival"?: Date;
   "berthing"?: Date;
-  "commence_unloading"?: Date;
-  "complete_unloading"?: Date;
+  "commenceUnloading"?: Date;
+  "completeUnloading"?: Date;
+  "id"?: any;
 }
 
 export class UnloadingRealisasiKirim implements UnloadingRealisasiKirimInterface {
-  "id": any = <any>null;
-  "realisasi_kirim_id": string = '';
+  "realisasiKirimId": string = '';
   "bl": string = '';
   "ash": string = '';
   "idt": string = '';
@@ -31,10 +30,11 @@ export class UnloadingRealisasiKirim implements UnloadingRealisasiKirimInterface
   "tm": string = '';
   "hgi": string = '';
   "238mm": string = '';
-  "time_arrival": Date = new Date(0);
+  "timeArrival": Date = new Date(0);
   "berthing": Date = new Date(0);
-  "commence_unloading": Date = new Date(0);
-  "complete_unloading": Date = new Date(0);
+  "commenceUnloading": Date = new Date(0);
+  "completeUnloading": Date = new Date(0);
+  "id": any = <any>null;
   constructor(data?: UnloadingRealisasiKirimInterface) {
     Object.assign(this, data);
   }
@@ -68,12 +68,8 @@ export class UnloadingRealisasiKirim implements UnloadingRealisasiKirimInterface
       path: 'unloading_realisasi_kirim',
       idName: 'id',
       properties: {
-        "id": {
-          name: 'id',
-          type: 'any'
-        },
-        "realisasi_kirim_id": {
-          name: 'realisasi_kirim_id',
+        "realisasiKirimId": {
+          name: 'realisasiKirimId',
           type: 'string'
         },
         "bl": {
@@ -112,21 +108,25 @@ export class UnloadingRealisasiKirim implements UnloadingRealisasiKirimInterface
           name: '238mm',
           type: 'string'
         },
-        "time_arrival": {
-          name: 'time_arrival',
+        "timeArrival": {
+          name: 'timeArrival',
           type: 'Date'
         },
         "berthing": {
           name: 'berthing',
           type: 'Date'
         },
-        "commence_unloading": {
-          name: 'commence_unloading',
+        "commenceUnloading": {
+          name: 'commenceUnloading',
           type: 'Date'
         },
-        "complete_unloading": {
-          name: 'complete_unloading',
+        "completeUnloading": {
+          name: 'completeUnloading',
           type: 'Date'
+        },
+        "id": {
+          name: 'id',
+          type: 'any'
         },
       },
       relations: {

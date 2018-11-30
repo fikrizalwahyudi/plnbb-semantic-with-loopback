@@ -2,17 +2,17 @@
 
 declare var Object: any;
 export interface PhoneContactsInterface {
+  "ownerId"?: string;
+  "ownerName"?: string;
+  "phoneNumber"?: string;
   "id"?: any;
-  "owner_id"?: string;
-  "owner_name"?: string;
-  "phone_number"?: string;
 }
 
 export class PhoneContacts implements PhoneContactsInterface {
+  "ownerId": string = '';
+  "ownerName": string = '';
+  "phoneNumber": string = '';
   "id": any = <any>null;
-  "owner_id": string = '';
-  "owner_name": string = '';
-  "phone_number": string = '';
   constructor(data?: PhoneContactsInterface) {
     Object.assign(this, data);
   }
@@ -46,21 +46,21 @@ export class PhoneContacts implements PhoneContactsInterface {
       path: 'phone_contacts',
       idName: 'id',
       properties: {
+        "ownerId": {
+          name: 'ownerId',
+          type: 'string'
+        },
+        "ownerName": {
+          name: 'ownerName',
+          type: 'string'
+        },
+        "phoneNumber": {
+          name: 'phoneNumber',
+          type: 'string'
+        },
         "id": {
           name: 'id',
           type: 'any'
-        },
-        "owner_id": {
-          name: 'owner_id',
-          type: 'string'
-        },
-        "owner_name": {
-          name: 'owner_name',
-          type: 'string'
-        },
-        "phone_number": {
-          name: 'phone_number',
-          type: 'string'
         },
       },
       relations: {

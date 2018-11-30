@@ -1,9 +1,9 @@
 export class RealisasiKirim {
     id:number;
-	rencana_pasokan_id:number;
-    tanggal_dikirim:Date;
+	rencanaPasokanId:number;
+    tanggalDikirim:Date;
     realisasi=0;
-    user_id:number;
+    userId:number;
     status=0;
   
     constructor(values: Object = {}) {

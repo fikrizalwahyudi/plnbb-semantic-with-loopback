@@ -2,15 +2,15 @@
 
 declare var Object: any;
 export interface JenisTambangInterface {
-  "id"?: any;
   "name"?: string;
   "status"?: number;
+  "id"?: any;
 }
 
 export class JenisTambang implements JenisTambangInterface {
-  "id": any = <any>null;
   "name": string = '';
   "status": number = 0;
+  "id": any = <any>null;
   constructor(data?: JenisTambangInterface) {
     Object.assign(this, data);
   }
@@ -44,10 +44,6 @@ export class JenisTambang implements JenisTambangInterface {
       path: 'jenis_tambang',
       idName: 'id',
       properties: {
-        "id": {
-          name: 'id',
-          type: 'any'
-        },
         "name": {
           name: 'name',
           type: 'string'
@@ -55,6 +51,10 @@ export class JenisTambang implements JenisTambangInterface {
         "status": {
           name: 'status',
           type: 'number'
+        },
+        "id": {
+          name: 'id',
+          type: 'any'
         },
       },
       relations: {
