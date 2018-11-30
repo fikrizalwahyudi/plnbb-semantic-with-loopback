@@ -48,11 +48,13 @@ export const ref_kontrak = {
 export const ref_kontrak_pltu = {
     "id" : "",
     "referensi_kontrak_id" : "",
-    "pltu_id" : ""
+    "referensiKontrakId": "",
+    "pltu_id" : "",
+    "pltuId": "",
 }
 
 export const ref_kontrak_mitra = {
     "id" : "",
-    "referensi_kontrak_id" : "",
-    "mitra_id" : ""
+    "referensiKontrakId" : "",
+    "mitraId":""
 }

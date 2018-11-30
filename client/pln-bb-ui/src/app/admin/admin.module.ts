@@ -18,11 +18,22 @@ import { MasterUserBrowseComponent } from './master-user/master-user-browse/mast
 import { MasterUserCreateComponent } from './master-user/master-user-form/master-user-create.component';
 import { MasterUserEditComponent } from './master-user/master-user-form/master-user-edit.component';
 import { SharedModule } from '../shared/shared.module';
+import { PltuService } from '../shared/services/pltu.service';
+import { RencanaPasokanService } from '../shared/services/rencana_pasokan.service';
+import { RolesService } from '../shared/services/roles.service';
+import { GlobalService } from '../shared/services/global.service';
+import { UsersService } from '../shared/services/users.service';
+import { UserMitraService } from '../shared/services/user_mitra.service';
+import { ReferensiKontrakService } from '../shared/services/referensi_kontrak.service';
+import { MitraService } from '../shared/services/mitra.service';
+import { ReferensiKontrakPltuService } from '../shared/services/referensi_kontrak_pltu.service';
+import { ReferensiKontrakMitraService } from '../shared/services/referensi_kontrak_mitra.service';
 
 const appRoutes: Routes = [
   { path: 'admin', component: AdminComponent, canActivate: [AuthenticatedGuard], children: [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
+    { path: 'referensi-kontrak', component: MasterReferensiKontrakComponent },
     { path: 'user', component: MasterUserComponent, children: [
       { path: '', redirectTo: 'browse', pathMatch: 'full' },
       { path: 'browse', component: MasterUserBrowseComponent },
@@ -63,6 +74,18 @@ const appRoutes: Routes = [
     MasterReferensiKontrakComponent, 
     MasterTambangComponent,
     MasterPltuComponent
+  ],
+  providers: [
+    PltuService,
+    RencanaPasokanService, 
+    RolesService, 
+    GlobalService, 
+    UsersService, 
+    UserMitraService, 
+    ReferensiKontrakService, 
+    MitraService,
+    ReferensiKontrakPltuService,
+    ReferensiKontrakMitraService
   ]
 })
 export class AdminModule { }
