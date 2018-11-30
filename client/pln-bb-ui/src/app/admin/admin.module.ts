@@ -18,16 +18,29 @@ import { MasterUserBrowseComponent } from './master-user/master-user-browse/mast
 import { MasterUserCreateComponent } from './master-user/master-user-form/master-user-create.component';
 import { MasterUserEditComponent } from './master-user/master-user-form/master-user-edit.component';
 import { SharedModule } from '../shared/shared.module';
+import { MasterRoleFormComponent } from './master-role/master-role-form/master-role-form.component';
+import { MasterRoleBrowseComponent } from './master-role/master-role-browse/master-role-browse.component';
+import { MasterRoleCreateComponent } from './master-role/master-role-form/master-role-create.component';
+import { MasterRoleEditComponent } from './master-role/master-role-form/master-role-edit.component';
 
 const appRoutes: Routes = [
   { path: 'admin', component: AdminComponent, canActivate: [AuthenticatedGuard], children: [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
+    
     { path: 'home', component: HomeComponent },
+    
     { path: 'user', component: MasterUserComponent, children: [
       { path: '', redirectTo: 'browse', pathMatch: 'full' },
       { path: 'browse', component: MasterUserBrowseComponent },
       { path: 'create', component: MasterUserCreateComponent },
       { path: ':id/edit', component: MasterUserEditComponent }
+    ] },
+
+    { path: 'role', component: MasterRoleComponent, children: [
+      { path: '', redirectTo: 'browse', pathMatch: 'full' },
+      { path: 'browse', component: MasterRoleBrowseComponent },
+      { path: 'create', component: MasterRoleCreateComponent },
+      { path: ':id/edit', component: MasterRoleEditComponent }
     ] }
   ] }
 ]
@@ -55,14 +68,22 @@ const appRoutes: Routes = [
     MasterUserFormComponent,
     MasterUserBrowseComponent,
     MasterUserCreateComponent,
-    MasterUserEditComponent
+    MasterUserEditComponent,
+    MasterRoleFormComponent,
+    MasterRoleBrowseComponent,
+    MasterRoleCreateComponent,
+    MasterRoleEditComponent
   ],
   exports : [
     MasterUserComponent, 
     MasterRoleComponent, 
     MasterReferensiKontrakComponent, 
     MasterTambangComponent,
-    MasterPltuComponent
+    MasterPltuComponent,
+    MasterRoleFormComponent,
+    MasterRoleBrowseComponent,
+    MasterRoleCreateComponent,
+    MasterRoleEditComponent
   ]
 })
 export class AdminModule { }

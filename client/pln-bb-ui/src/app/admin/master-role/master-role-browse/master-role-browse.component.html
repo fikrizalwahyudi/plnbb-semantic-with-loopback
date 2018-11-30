@@ -1,0 +1,30 @@
+<ui-table-block>
+  <ng-container class="table-block-menu">
+    <a class="item"
+       [routerLink]="['/admin', 'role', 'create']">
+      <i class="plus icon"></i> Register
+    </a>
+  </ng-container>
+  <thead>
+    <tr>
+      <th>Nama</th>
+      <th>Description</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of roles">
+      <td>{{item.name}}</td>
+      <td>{{item.description}}</td>
+      <td class="center aligned collapsing">
+        <a href="javascript:void(0)"
+           (click)="delete(item)">
+          <i class="trash link icon action-icon"></i>
+        </a>
+        <a [routerLink]="['/admin', 'role', item.id, 'edit']">
+          <i class="edit link icon action-icon"></i>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</ui-table-block>

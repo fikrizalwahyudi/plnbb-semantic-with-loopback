@@ -40,6 +40,6 @@ export class MasterUserFormComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['admin', 'users'])
+    this.router.navigate(['/admin', 'user'])
   }
 }

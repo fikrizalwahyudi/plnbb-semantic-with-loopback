@@ -1,85 +1,21 @@
-<!-- <div class="ui bottom attached segment pushable" > -->
-  <!-- <div class="ui visible inverted vertical left sidebar menu ">
-    <img class="center" style="width:35%; padding-top: 3%" src="http://erp.plnbatubara.co.id/assets/gfx/web_news/1450433146.png">
-    <a [routerLink]="['/admin/dashboard']" id="dashboard" class="item">
-      <i class="dashboard icon"></i>
-      Dashboard
-    </a>
-    <a [routerLink]="['/admin/pltu']" id="pltu" class="item">
-      <i class="building layout icon"></i>
-      PLTU
-    </a>
-    <a [routerLink]="['/admin/ref']" id="ref" class="item">
-      <i class="file alternate icon"></i>
-      Referensi Kontrak
-    </a>
-    <a [routerLink]="['/admin/role']" id="role" class="item">
-      <i class="sitemap icon"></i>
-      Role
-    </a>
-    <a [routerLink]="['/admin/tambang']" id="tambang" class="item">
-      <i class="building icon"></i>
-      Tambang
-    </a>
-    <a [routerLink]="['/admin/user']" id="user" class="item">
-      <i class="user icon"></i>
-      User
-    </a>
-  </div>
-  <div class="pusher">
-      <div class="ui menu">
-          <a class="item">Browse</a>
-          <a class="item">Submit</a>
-          <div class="right menu">
-            <a class="item">Sign Up</a>
-            <a class="item">Help</a>
-          </div>
-        </div>
-    <div class="ui basic segment">
-      <h3 class="ui header">PT PLN BATUBARA</h3>
-    </div>
-    <div class="thirteen wide computer sixteen wide mobile column container" style="margin-bottom: 5%" >
-      <div class="ui blue segment">
-        <ng-container *ngIf="id == 'ref'">
-          <master-referensi-kontrak></master-referensi-kontrak>
-        </ng-container>
-        <ng-container *ngIf="id == 'role'">
-          <master-role></master-role>
-        </ng-container>
-        <ng-container *ngIf="id == 'tambang'">
-          <master-tambang></master-tambang>
-        </ng-container>
-        <ng-container *ngIf="id == 'user'">
-          <master-user></master-user>
-        </ng-container>
-        <ng-container *ngIf="id == 'pltu'">
-          <master-pltu></master-pltu>
-        </ng-container>
-      </div>
-    </div>
-  </div> -->
-
-  <!-- <footer> -->
-    <!-- <div class="ui bottom fixed fullwidth">
-      <div class="ui segment fullwidth ">
-        <p>Copyright &copy; 2018 PT. PLN Batu Bara All Right Reserved</p>
-      </div>
-    </div> -->
-  <!-- </footer> -->
-<!-- </div> -->
-
 <div class="ui container fullheight">
   <div class="ui grid mt-5">
     <div class="three wide column">
       <div class="ui secondary vertical menu fullwidth">
-        <a class="item" [routerLink]="['/admin/home']" routerLinkActive="active">
+        <a class="item"
+           [routerLink]="['/admin/home']"
+           routerLinkActive="active">
           <i class="desktop icon"></i> Home
         </a>
         <div class="ui divider"></div>
-        <a class="item" [routerLink]="['/admin/user']" routerLinkActive="active">
+        <a class="item"
+           [routerLink]="['/admin/user']"
+           routerLinkActive="active">
           <i class="user icon"></i> User
         </a>
-        <a class="item">
+        <a class="item"
+           [routerLink]="['/admin/role']"
+           routerLinkActive="active">
           <i class="id card icon"></i> Role
         </a>
         <div class="ui divider"></div>

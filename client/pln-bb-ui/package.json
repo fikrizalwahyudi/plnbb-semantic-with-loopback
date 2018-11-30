@@ -9,8 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "ng:c": "ng g c --spec false --styleext sass",
-    "ng:c:flat": "ng g c --spec false --styleext sass --inline-style true --inline-template true --flat true"
+    "ng:c": "ng g c --spec false --styleext sass --export true",
+    "ng:c:flat": "ng g c --spec false --styleext sass --inline-style true --inline-template true --flat true --export true"
   },
   "private": true,
   "dependencies": {
