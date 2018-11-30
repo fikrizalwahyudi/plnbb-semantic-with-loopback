@@ -1,6 +1,6 @@
 export class LoadingRealisasiKirim {
 	id:number;
-	realisasi_kirim_id:number;
+	realisasiKirimId:number;
 	bl="";
 	ash="";
 	idt="";
@@ -10,9 +10,9 @@ export class LoadingRealisasiKirim {
 	tm="";
 	hgi="";
 	"238mm"="";
-	upload_bl="";
-	upload_cm="";
-	upload_skab="";
+	uploadBl="";
+	uploadCm="";
+	uploadSkab="";
   
     constructor(values: Object = {}) {
       Object.assign(this, values);

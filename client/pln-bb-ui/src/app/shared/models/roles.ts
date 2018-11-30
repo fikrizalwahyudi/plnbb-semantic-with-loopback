@@ -2,7 +2,7 @@ export class Roles {
     id:number;
     name="";
     description="";
-    role_auth="";
+    roleAuth="";
     status=0;
   
     constructor(values: Object = {}) {

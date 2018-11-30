@@ -1,7 +1,7 @@
 export class ReferensiKontrakPltu {
     id:number;
-    referensi_kontrak_id:number;
-    pltu_id:number;
+    referensiKontrakId:number;
+    pltuId:number;
   
     
     constructor(values: Object = {}) {

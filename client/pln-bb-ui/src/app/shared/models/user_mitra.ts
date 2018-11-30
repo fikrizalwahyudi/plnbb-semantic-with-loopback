@@ -1,7 +1,7 @@
 export class UserMitra {
     id:number;
-    user_id:number;
-    mitra_id:number;
+    userId:number;
+    mitraId:number;
   
     constructor(values: Object = {}) {
       Object.assign(this, values);
