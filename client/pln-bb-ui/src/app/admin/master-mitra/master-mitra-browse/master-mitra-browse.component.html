@@ -1,0 +1,46 @@
+<!-- <div class="ui black segment"> -->
+  <ui-table-block>
+    <ng-container class="table-block-menu">
+      <a class="item"
+         [routerLink]="['/admin', 'mitra', 'create']">
+        <i class="plus icon"></i> Register
+      </a>
+      <a class="item" href="#">
+         <i class="user icon"></i> Set User Mitra
+      </a>
+    </ng-container>
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>NPWP</th>
+        <th class="center aligned collapsing">Active</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of mitras">
+        <td>{{item.code}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.address}}</td>
+        <td>{{item.npwp}}</td>
+        <td class="center aligned collapsing">
+          <i *ngIf="!item.status"
+             class="ban red icon"></i> 
+          <i *ngIf="item.status"
+             class="check circle green icon"></i>
+        </td>
+        <td class="center aligned collapsing">
+          <a href="javascript:void(0)"
+             (click)="delete(item)">
+            <i class="trash link icon action-icon"></i>
+          </a>
+          <a [routerLink]="['/admin', 'mitra', item.id, 'edit']">
+            <i class="edit link icon action-icon"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </ui-table-block>
+  
