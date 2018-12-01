@@ -15,7 +15,7 @@ export class UserMitraDao extends PersistedDao
 @CommonModel({
 	name: UserMitraDao.modelName,
 	dao: UserMitraDao,
-	dataSource: 'mypostgresdb',
+	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'user_mitra',
 		postgresql: {
@@ -29,14 +29,12 @@ export class UserMitraDao extends PersistedDao
 })
 export class UserMitraModel extends PersistedModel
 {	
+	id:any
 
-	@Property('Number')
-	id:Number
+	@Property('string')
+	userId:string
 
-	@Property('Number')
-	user_id:Number
-
-	@Property('Number')
-	mitra_id:Number
+	@Property('string')
+	mitraId:string
 
 }

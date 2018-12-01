@@ -1,0 +1,40 @@
+<!-- <div class="ui black segment"> -->
+<ui-table-block>
+  <ng-container class="table-block-menu">
+    <a class="item"
+       [routerLink]="['/admin', 'user', 'create']">
+      <i class="plus icon"></i> Register
+    </a>
+  </ng-container>
+  <thead>
+    <tr>
+      <th>Nama</th>
+      <th>Email</th>
+      <th>Username</th>
+      <th class="center aligned collapsing">Verified</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of users">
+      <td>{{item.name}}</td>
+      <td>{{item.email}}</td>
+      <td>{{item.username}}</td>
+      <td class="center aligned collapsing">
+        <i *ngIf="!item.emailVerified"
+           class="ban red icon"></i> 
+        <i *ngIf="item.emailVerified"
+           class="check circle green icon"></i>
+      </td>
+      <td class="center aligned collapsing">
+        <a href="javascript:void(0)"
+           (click)="delete(item)">
+          <i class="trash link icon action-icon"></i>
+        </a>
+        <a [routerLink]="['/admin', 'user', item.id, 'edit']">
+          <i class="edit link icon action-icon"></i>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</ui-table-block>

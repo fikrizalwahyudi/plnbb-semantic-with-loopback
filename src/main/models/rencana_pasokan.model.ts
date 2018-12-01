@@ -15,7 +15,7 @@ export class RencanaPasokanDao extends PersistedDao
 @CommonModel({
 	name: RencanaPasokanDao.modelName,
 	dao: RencanaPasokanDao,
-	dataSource: 'mypostgresdb',
+	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'rencana_pasokan',
 		postgresql: {
@@ -30,37 +30,36 @@ export class RencanaPasokanDao extends PersistedDao
 export class RencanaPasokanModel extends PersistedModel
 {	
 
-	@Property('Number')
-	id:Number
+	id:any
 
-	@Property('String')
-	no_kontrak:String
+	@Property('string')
+	noKontrak:string
 
-	@Property('Number')
-	tahun:Number
+	@Property('number')
+	tahun:number
 
-	@Property('Number')
-	bulan:Number
+	@Property('number')
+	bulan:number
 
-	@Property('Date')
-	tanggal_kirim:Date
+	@Property('date')
+	tanggalKirim:Date
 
-	@Property('Number')
-	pltu_id:Number
+	@Property('string')
+	pltuId:string
 
-	@Property('Number')
-	tipe_id:Number
+	@Property('string')
+	tipeid:string
 
-	@Property('Number')
-	mode_id:Number
+	@Property('string')
+	modeId:string
 
-	@Property('Number')
-	tonnase:Number
+	@Property('number')
+	tonnase:number
 
-	@Property('Number')
-	user_id:Number
+	@Property('string')
+	userId:string
 
-	@Property('Number')
-	status:Number
+	@Property('number')
+	status:number
 
 }

@@ -1,0 +1,39 @@
+<ui-form-block title="Role Account"
+               [errorMsg]="errorMsg"
+               [submitting]="submitting">
+  <div class="ui two column grid">
+    <div class="column border-right">
+      <form [formGroup]="fg"
+            (ngSubmit)="save()"
+            class="ui form">
+        <div class="required field">
+          <label>Name</label>
+          <input type="text"
+                 placeholder="name"
+                 formControlName="name">
+        </div>
+        <div class="required field">
+          <label>Description</label>
+          <input type="text"
+                 placeholder="description"
+                 formControlName="description">
+        </div>
+        <div class="inline field">
+          <button class="ui secondary button"
+                  type="button"
+                  (click)="cancel()">Cancel</button>
+          <button class="ui primary button"
+                  type="submit"
+                  [disabled]="!fg.valid">Save Changes</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="column">
+      <div class="fullheight fullwidth"
+           style="background: url(assets/paragraph.png)">
+
+      </div>
+    </div>
+  </div>
+</ui-form-block>

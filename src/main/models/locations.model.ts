@@ -20,7 +20,7 @@ export class LocationsDao extends PersistedDao
 	name: LocationsDao.modelName,
 	dao: LocationsDao,
 	
-	dataSource: 'mypostgresdb',
+	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'locations',
 		postgresql: {
@@ -41,13 +41,12 @@ export class LocationsDao extends PersistedDao
 })
 export class LocationsModel extends PersistedModel
 {
-	@Property('Number')
-  	id:Number
+  	id:any
 
 	@Property('string')
 	name:string
 
-	@Property('Number')
-	status:Number
+	@Property('number')
+	status:number
 
 }

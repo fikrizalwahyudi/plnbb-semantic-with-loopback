@@ -1,0 +1,60 @@
+<ui-form-block title="User Account"
+               [errorMsg]="errorMsg"
+               [submitting]="submitting">
+  <div class="ui two column grid">
+    <div class="column border-right">
+      <form [formGroup]="fg"
+            (ngSubmit)="save()"
+            class="ui form">
+        <div class="required field">
+          <label>Full Name</label>
+          <input type="text"
+                 placeholder="full name"
+                 formControlName="name">
+        </div>
+        <div class="required field">
+          <label>Username</label>
+          <input type="text"
+                 placeholder="username"
+                 formControlName="username">
+        </div>
+        <div class="required field">
+          <label>Email</label>
+          <input type="text"
+                 placeholder="email"
+                 formControlName="email">
+        </div>
+        <div class="required field">
+          <label>Password</label>
+          <div class="two fields">
+            <div class="field">
+              <input type="password"
+                     placeholder="password"
+                     formControlName="password">
+            </div>
+            <div class="field">
+              <input type="password"
+                     placeholder="confirm password"
+                     formControlName="password2">
+            </div>
+          </div>
+        </div>
+        <div class="inline field">
+          <button class="ui secondary button"
+                  type="button"
+                  (click)="cancel()">Cancel</button>
+          <button class="ui primary button"
+                  type="submit"
+                  [disabled]="!fg.valid">Save Changes</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="column">
+      <div class="fullheight fullwidth"
+           style="background: url(assets/paragraph.png)">
+
+      </div>
+    </div>
+  </div>
+</ui-form-block>

@@ -1,6 +1,6 @@
 export class UnloadingRealisasiKirim {
     id:number;
-    realisasi_kirim_id:number;
+    realisasiKirimId:number;
     bl="";
     ash="";
     idt="";

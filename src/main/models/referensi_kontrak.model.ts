@@ -15,7 +15,7 @@ export class ReferensiKontrakDao extends PersistedDao
 @CommonModel({
 	name: ReferensiKontrakDao.modelName,
 	dao: ReferensiKontrakDao,
-	dataSource: 'mypostgresdb',
+	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'referensi_kontrak',
 		postgresql: {
@@ -30,28 +30,28 @@ export class ReferensiKontrakDao extends PersistedDao
 export class ReferensiKontrakModel extends PersistedModel
 {	
 
-	@Property('Number')
-	id:Number
+	id:any
 
-	@Property('String')
-    nomor_kontrak:String
+	@Property('string')
+    nomorKontrak:string
     
-    @Property('String')
-    nama_pekerjaan:String
+    @Property('string')
+    namaPekerjaan:string
     
-    @Property('Date')
-    tanggal_pekerjaan:Date
+    @Property('date')
+    tanggalPekerjaan:Date
     
-    @Property('Number')
-    pltu_id:Number
+    @Property('string')
+    pltuId:string
     
-    @Property('Number')
-	mitra_id:Number
+    @Property('string')
+	mitraId:string
 
-	@Property('Number')
-	Jenis:Number
+	@Property('number')
+	jenis:number
 
-	@Property('Number')
-	status:Number
+	@Property('number')
+	status:number
+
 
 }

@@ -1,0 +1,95 @@
+<div class="ui secondary menu" style="margin-left: 2px;">
+  <!-- <a class="item" (click)="addNew()">
+    <i class="plus icon"></i> Register
+  </a> -->
+  <a class="ui red ribbon label"><h3>Rencana Pasokan PLNBB</h3></a>
+  <!-- <h3 class="ui header">Rencana Pasokan PLNBB</h3> -->
+  <div class="right menu">
+    <div class="ui category search">
+      <div class="ui icon input">
+        <input class="prompt" type="text" #queryBox placeholder="Search..." [(ngModel)]="keyword">
+        <i class="search link icon"></i>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-container >
+  <div class="ui inverted segment">
+    <div class="ui inverted form">
+      <h3 class="ui header inverted">Form Pasokan</h3>
+      <div class="four fields">
+        <div class="field">
+          <label>Tahun</label>
+          <input placeholder="Input PLTU Code" type="text" [(ngModel)]="masterPLTU.code" id="pltu_code">
+        </div>
+        <div class="field">
+          <label>Bulan</label>
+          <input placeholder="Input PLTU Code" type="text" [(ngModel)]="masterPLTU.code" id="pltu_code">
+        </div>
+      </div>
+      <h3 class="ui header inverted">Form Detal Pasokan</h3>
+      <div class="three fields">
+        <div class="field">
+          <label>Pilih PLTU</label>
+          <input placeholder="Input PLTU Code" type="text" [(ngModel)]="masterPLTU.code" id="pltu_code">
+        </div>
+        <div class="field">
+          <label>Pilih Mitra</label>
+          <input placeholder="Input PLTU Code" type="text" [(ngModel)]="masterPLTU.code" id="pltu_code">
+        </div>
+        <div class="field">
+          <label>Tanggal Pengiriman</label>
+          <input disabled placeholder="Input PLTU Name" type="text" [(ngModel)]="masterPLTU.name" id="pltu_name">
+        </div>
+      </div>
+      <!-- Show error when form invalid -->
+      <div class="ui error message"></div>
+      <!-- -- -->
+      <div (click)="onSubmit()" class="ui submit button">Submit</div>
+      <div (click)="onSubmit()" class="ui submit button">Reset</div>
+    </div>
+  </div>
+</ng-container>
+
+<table class="ui sortable single line striped table">
+  <thead>
+    <tr>
+      <th>No. Kontrak</th>
+      <th>Bulan</th>
+      <th>PLTU</th>
+      <th>Tgl</th>
+      <th>Tipe</th>
+      <th>Mode</th>
+      <th>Jumlah</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of data_pltu ">
+      <td>
+        {{item.code}}
+      </td>
+      <td>
+        {{item.name}}
+      </td>
+      <td>
+        {{item.address}}
+      </td>
+      <td>
+        {{item.npwp}}
+      </td>
+      <td>
+        {{item.status}}
+      </td>
+      <td>
+          {{item.address}}
+        </td>
+        <td>
+          {{item.npwp}}
+        </td>
+        <td>
+          {{item.status}}
+        </td>
+    </tr>
+  </tbody>
+</table>

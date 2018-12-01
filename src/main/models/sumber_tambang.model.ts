@@ -16,7 +16,7 @@ export class SumberTambangDao extends PersistedDao
 @CommonModel({
 	name: SumberTambangDao.modelName,
 	dao: SumberTambangDao,
-	dataSource: 'mypostgresdb',
+	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'sumber_tambang',
 		postgresql: {
@@ -29,14 +29,14 @@ export class SumberTambangDao extends PersistedDao
 })
 export class SumberTambangModel extends PersistedModel
 {
-	@Property('Number')
-	id:Number
+	
+	id:any
 
-	@Property('number')
-	realisasi_kirim_id:number
+	@Property('string')
+	realisasiKirimId:string
 
-	@Property('number')
-	tambang_id:number
+	@Property('string')
+	tambangId:string
 
 	@Property('number')
 	ammount:number

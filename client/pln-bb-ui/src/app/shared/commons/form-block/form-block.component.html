@@ -1,0 +1,18 @@
+<h4 class="ui top attached header no-border-bottom">
+  <i class="wpforms icon"></i>
+  <div class="content">{{title}}</div>
+</h4>
+<div class="ui attached negative message" *ngIf="errorMsg">
+  <div class="header">
+    Oopss... somethings wrong!!!
+  </div>
+  <p>
+    {{errorMsg}}
+  </p>
+</div>
+<div class="ui bottom attached yellow segment with-border-bottom">
+  <div class="ui active dimmer" *ngIf="submitting">
+    <div class="ui loader"></div>
+  </div>
+  <ng-content></ng-content>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { dummy_role } from '../../user/source/dummy-role';
 import { GlobalService } from '../../shared/services/global.service';
 import { Users } from '../../shared/models/users';
@@ -7,6 +8,8 @@ import { UsersService } from '../../shared/services/users.service';
 import { UserMitraService } from '../../shared/services/user_mitra.service';
 import { MitraService } from '../../shared/services/mitra.service';
 import { promptDialog } from '../../shared/modals/prompt.modal';
+=======
+>>>>>>> master
 
 @Component({
   selector: 'master-user',
@@ -14,6 +17,7 @@ import { promptDialog } from '../../shared/modals/prompt.modal';
   styleUrls: ['./master-user.component.sass']
 })
 export class MasterUserComponent implements OnInit {
+<<<<<<< HEAD
   new_user: boolean = false;
   isEdit: boolean = false;
   data_user: any = [];
@@ -115,6 +119,15 @@ export class MasterUserComponent implements OnInit {
       status = "Aktif"
 
     this.data_user[index]['status_name'] = status
+=======
+
+  constructor() {
+    
+  }
+
+  ngOnInit() {
+   
+>>>>>>> master
   }
 
   getMitra(){

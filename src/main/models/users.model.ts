@@ -16,7 +16,7 @@ export class UsersDao extends PersistedDao
 	name: UsersDao.modelName,
 	dao: UsersDao,
 	// base: 'User',
-	dataSource: 'mypostgresdb',
+	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'users',
 		postgresql: {
@@ -30,26 +30,20 @@ export class UsersDao extends PersistedDao
 })
 export class UsersModel extends PersistedModel
 {	
+	id:any
+	email:string
+	username:string
+	password:string
 
-	@Property('Number')
-	id:Number
+	@Property('string')
+	name:string
 
-	@Property('String')
-	email:String
+	@Property('number')
+	roleId:any
 
-	@Property('String')
-	username:String
+	@Property('number')
+	status:number
 
-	@Property('String')
-	password:String
-
-	@Property('String')
-	name:String
-
-	@Property('Number')
-	role_id:Number
-
-	@Property('Number')
-	status:Number
-
+	@Relation("belongsTo", "Roles", "roleId", )
+	role
 }
