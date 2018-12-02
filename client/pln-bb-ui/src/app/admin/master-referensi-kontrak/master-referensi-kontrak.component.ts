@@ -27,6 +27,8 @@ export class MasterReferensiKontrakComponent implements OnInit {
   masterRefKontrak: any = [];
   masterRefKontrakMitra: any = [];
   masterRefKontrakPltu: any = [];
+  pltuIdSplitted: any;
+  mitraIdSplitted: any;
   new_ref: boolean = false;
 
   constructor(private refKontrakServices: ReferensiKontrakService, private pltuServices: PltuService, private mitraServices: MitraService,
@@ -74,6 +76,7 @@ export class MasterReferensiKontrakComponent implements OnInit {
     ]).then((responses) => {
       //Response Ref Kontrak
       this.masterRefKontrak = responses[0];
+      // this.masterRefKontrak['pltuIdSplitted'] = this.onSplitValue(this.masterRefKontrak.pltuId);
       console.info('Master Ref Kontrak', this.masterRefKontrak);
       //Convert tanggal pekerjaan
       for (let i = 0; i < this.masterRefKontrak.length; i++) {
@@ -83,7 +86,8 @@ export class MasterReferensiKontrakComponent implements OnInit {
         let year = date.getFullYear();
         this.masterRefKontrak[i].tanggalPekerjaan = day + '-' + month + '-' + year;
       }
-      // Looping for change jenis to jenis name
+      
+      
 
       //Response PLTU
       this.masterPltu = responses[1];
@@ -103,9 +107,15 @@ export class MasterReferensiKontrakComponent implements OnInit {
 
       // Looping for change pltu_id with pltu name && jenis with jenis desc
       for (let i = 0; i < this.masterRefKontrak.length; i++) {
-        this.onChangeNamePLTU(this.masterRefKontrak[i].pltuId, i);
+        this.masterRefKontrak[i]['splittedPltu'] = this.onSplitValue(this.masterRefKontrak[i].pltuId);
+        this.masterRefKontrak[i]['splittedMitra'] = this.onSplitValue(this.masterRefKontrak[i].mitraId);
+        for (let j = 0; j < this.masterRefKontrak[i].splittedPltu.length; j++){
+          this.masterRefKontrak[i].splittedPltu[j] = this.onChangeNamePLTU(this.masterRefKontrak[i].splittedPltu[j], i);
+        }
+        for (let j = 0; j < this.masterRefKontrak[i].splittedMitra.length; j++){
+          this.masterRefKontrak[i].splittedMitra[j] = this.onChangeNameMitra(this.masterRefKontrak[i].splittedMitra[j], i);
+        }
         this.onChangeDescJenis(this.masterRefKontrak[i].jenis, i);
-        this.onChangeNameMitra(this.masterRefKontrak[i].mitraId, i);
       }
     })
 
@@ -124,7 +134,8 @@ export class MasterReferensiKontrakComponent implements OnInit {
     let val = refKontrakValidation();
     if (val) {
       new Promise((resolve, reject) => {
-        this.dataRefKontrak.id = this.masterRefKontrak.length + 1;
+        let id = this.masterRefKontrak.length + 1
+        this.dataRefKontrak.id = id.toString();
         console.log(this.dataRefKontrak);
         this.refKontrakServices.createReferensiKontrak(this.dataRefKontrak).subscribe((e) => {
           resolve(e);
@@ -160,7 +171,8 @@ export class MasterReferensiKontrakComponent implements OnInit {
         new Promise((resolve, reject) => {
           //Assign for table ref_kontrak_mitra
           for (let i = 0; i < this.dataRefKontrak.mitraId.length; i++) {
-            this.dataRefKontrakMitra.id = this.masterRefKontrakMitra.length + i + 1;
+            let id = this.masterRefKontrakMitra.length + i + 1;
+            this.dataRefKontrakMitra.id = id.toString();
             this.dataRefKontrakMitra.referensiKontrakId = this.dataRefKontrak.id;
             this.dataRefKontrakMitra.mitraId = this.dataRefKontrak.mitraId[i];
             console.log(this.dataRefKontrakMitra);
@@ -197,7 +209,7 @@ export class MasterReferensiKontrakComponent implements OnInit {
   }
 
   onChangeNamePLTU(selectedPLTU: any, index: any) {
-    this.masterRefKontrak[index]['namePltu'] = this.getSingleValue(selectedPLTU, this.masterPltu, "id").name;
+    return this.getSingleValue(selectedPLTU, this.masterPltu, "id").name;
   }
 
   onChangeDescJenis(selectedJenis: any, index: any) {
@@ -205,7 +217,11 @@ export class MasterReferensiKontrakComponent implements OnInit {
   }
 
   onChangeNameMitra(selectedMitra: any, index: any) {
-    this.masterRefKontrak[index]['nameMitra'] = this.getSingleValue(selectedMitra, this.masterMitra, "id").name;
+    return this.getSingleValue(selectedMitra, this.masterMitra, "id").name;
+  }
+
+  onSplitValue(selectedValue: any){
+    return selectedValue.split(",");
   }
 
   onSelect() {
