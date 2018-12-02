@@ -25,9 +25,12 @@ export class MasterUserCreateComponent implements OnInit {
 
   save(model) {
     this.formComponent.submitting = true
+    this.formComponent.errorMsg = undefined
+
+    delete model['password2']
 
     this.userApi.create(model).subscribe(() => {
-      this.router.navigate(['admin', 'user'])
+      this.router.navigate(['/admin', 'user'])
       this.formComponent.submitting = false
     }, (err) => {
       this.formComponent.errorMsg = err.message

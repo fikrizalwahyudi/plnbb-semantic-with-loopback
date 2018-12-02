@@ -39,6 +39,7 @@ export class MasterPltuComponent implements OnInit {
 
     } else {
       this.new_pltu = true;
+      this.isEdit = false;
     }
   }
 

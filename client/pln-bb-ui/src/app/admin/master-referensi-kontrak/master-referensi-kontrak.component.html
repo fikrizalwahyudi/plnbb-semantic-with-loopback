@@ -19,40 +19,40 @@
       <div class="fields">
         <div class="field">
           <label>Nomor Kontrak</label>
-          <input placeholder="Input Nomor Kontrak" id="no_kontrak" type="text" [(ngModel)]="data_ref_kontrak.nomor_kontrak">
+          <input placeholder="Input Nomor Kontrak" id="no_kontrak" type="text" [(ngModel)]="dataRefKontrak.nomorKontrak">
         </div>
       </div>
       <div class="two fields">
         <div class="field">
           <label>Nama Pekerjaan</label>
-          <input placeholder="Input Nama Pekerjaan" id="name" type="text" [(ngModel)]="data_ref_kontrak.nama_pekerjaan">
+          <input placeholder="Input Nama Pekerjaan" id="name" type="text" [(ngModel)]="dataRefKontrak.namaPekerjaan">
         </div>
         <div class="field">
           <label>Tanggal Pekerjaan</label>
-          <input placeholder="Input tanggal pekerjaan" id="tgl_pekerjaan" type="date" [(ngModel)]="data_ref_kontrak.tanggal_pekerjaan">
+          <input placeholder="Input tanggal pekerjaan" id="tgl_pekerjaan" type="date" [(ngModel)]="dataRefKontrak.tanggalPekerjaan">
         </div>
       </div>
       <div class="three fields">
         <div class="field">
           <label>PLTU</label>
-          <select name="pltu" multiple="" class="label ui selection fluid dropdown" id="pltu" [(ngModel)]="data_ref_kontrak.pltu_id" (change)="onSelect($event)">
+          <select name="pltu" multiple="" class="label ui selection fluid dropdown" id="pltu" [(ngModel)]="dataRefKontrak.pltuId" (change)="onSelect($event)">
             <option value="">Pilih PLTU</option>
-            <option *ngFor="let pltu of master_pltu" value="{{pltu.id}}">{{pltu.name}}</option>
+            <option *ngFor="let pltu of masterPltu" value="{{pltu.id}}">{{pltu.name}}</option>
           </select>
         </div>
 
         <div class="field">
           <label>Mitra</label>
-          <select id="multi-select" multiple="" name="mitra" class="label ui selection fluid dropdown" id="mitra" [(ngModel)]="data_ref_kontrak.mitra_id"
+          <select id="multi-select" multiple="" name="mitra" class="label ui selection fluid dropdown" id="mitra" [(ngModel)]="dataRefKontrak.mitraId"
             (change)="onSelect($event)">
             <option value="">Pilih Mitra</option>
-            <option *ngFor="let mitra of master_mitra" value="{{mitra.id}}">{{mitra.name}}</option>
+            <option *ngFor="let mitra of masterMitra" value="{{mitra.id}}">{{mitra.name}}</option>
           </select>
         </div>
 
         <div class="field">
           <label>Jenis</label>
-          <select name="jenis" class="ui dropdown" id="jenis" [(ngModel)]="data_ref_kontrak.jenis">
+          <select name="jenis" class="ui dropdown" id="jenis" [(ngModel)]="dataRefKontrak.jenis">
             <option value="">Pilih Jenis</option>
             <option *ngFor="let jenis of masterJenis" value="{{jenis.value}}">{{jenis.desc}}</option>
           </select>
@@ -83,23 +83,23 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of master_ref_kontrak | searchRefKontrak: keyword; let i = index">
+    <tr *ngFor="let item of masterRefKontrak | searchRefKontrak: keyword; let i = index">
       <td>
-        {{item.nomor_kontrak}}
+        {{item.nomorKontrak}}
       </td>
       <td>
-        {{item.nama_pekerjaan}}
+        {{item.namaPekerjaan}}
       </td>
       <td>
-        {{item.tanggal_pekerjaan}}
+        {{item.tanggalPekerjaan}}
       </td>
       <td>
-        {{item.name_pltu}}
+        {{item.namePltu}}
       </td>
       <td>
-        {{item.name_mitra}}
+        {{item.nameMitra}}
       </td>
-      <td>{{item.desc_jenis}}</td>
+      <td>{{item.descJenis}}</td>
       <td>
           <div class="ui icon button" (click)="onEdit(i)" style="margin-right: 5%" data-tooltip="Edit data">
             <i class="green edit icon"></i>

@@ -44,6 +44,16 @@ export class UserMitraService {
         .catch(this.handleError);
     }
 
+    public getUserMitraByFilter(filter: Object = {}): Observable<UserMitra> {
+        console.log('obj', filter)
+        return this.http
+        .get(API_URL + '/user_mitra?filter=' + JSON.stringify(filter))
+        .map(response => {
+            return new UserMitra(response.json());
+        })
+        .catch(this.handleError);
+    }
+
     public updateUserMitra(userMitra: UserMitra): Observable<UserMitra> {
         return this.http
         .put(API_URL + '/user_mitra/' + userMitra.id, userMitra)
