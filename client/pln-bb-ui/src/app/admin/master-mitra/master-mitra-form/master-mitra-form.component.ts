@@ -25,7 +25,7 @@ export class MasterMitraFormComponent implements OnInit {
       name: [null, [Validators.required]],
       address: [null, [Validators.required]],
       npwp: [null, [Validators.required]],
-      status: [1, [Validators.required]]
+      status: [0, [Validators.required]]
     })
   }
 
