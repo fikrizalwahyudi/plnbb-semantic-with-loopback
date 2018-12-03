@@ -1,8 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { userMasterTambang } from '../../user/user';
-import { WebStorageService, LOCAL_STORAGE } from 'angular-webstorage-service';
 import { tambangValidation } from '../../shared/validation/master-tambang.validation';
 
+declare var $: any;
 @Component({
   selector: 'master-tambang',
   templateUrl: './master-tambang.component.html',

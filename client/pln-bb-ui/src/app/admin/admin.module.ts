@@ -37,6 +37,10 @@ import { MasterMitraFormComponent } from './master-mitra/master-mitra-form/maste
 import { MasterMitraCreateComponent } from './master-mitra/master-mitra-form/master-mitra-create.component';
 import { MasterMitraEditComponent } from './master-mitra/master-mitra-form/master-mitra-edit.component';
 import { MasterMitraComponent } from './master-mitra/master-mitra.component';
+import { MasterPltuFormComponent } from './master-pltu/master-pltu-form/master-pltu-form.component';
+import { MasterPltuBrowseComponent } from './master-pltu/master-pltu-browse/master-pltu-browse.component';
+import { MasterPltuCreateComponent } from './master-pltu/master-pltu-form/master-pltu-create.component';
+import { MasterPltuEditComponent } from './master-pltu/master-pltu-form/master-pltu-edit.component';
 
 const appRoutes: Routes = [
   { path: 'admin', component: AdminComponent, children: [
@@ -69,7 +73,14 @@ const appRoutes: Routes = [
         { path: 'create', component: MasterUserCreateComponent },
         { path: ':id/edit', component: MasterUserEditComponent }
       ] }
-    ] }
+    ] },
+    
+    { path: 'pltu', component: MasterPltuComponent, children: [
+      { path: '', redirectTo: 'browse', pathMatch: 'full' },
+      { path: 'browse', component: MasterPltuBrowseComponent },
+      { path: 'create', component: MasterPltuCreateComponent },
+      { path: ':id/edit', component: MasterPltuEditComponent }
+    ] },
   ] }
 ]
 
@@ -105,7 +116,11 @@ const appRoutes: Routes = [
     MasterMitraBrowseComponent,
     MasterMitraFormComponent,
     MasterMitraCreateComponent,
-    MasterMitraEditComponent
+    MasterMitraEditComponent,
+    MasterPltuFormComponent,
+    MasterPltuBrowseComponent,
+    MasterPltuCreateComponent,
+    MasterPltuEditComponent
   ],
   exports : [
     MasterUserComponent, 
@@ -126,7 +141,6 @@ const appRoutes: Routes = [
     MitraService,
     ReferensiKontrakPltuService,
     ReferensiKontrakMitraService,
-    MasterPltuComponent,
     MasterRoleFormComponent,
     MasterRoleBrowseComponent,
     MasterRoleCreateComponent,
@@ -134,7 +148,11 @@ const appRoutes: Routes = [
     MasterMitraBrowseComponent,
     MasterMitraFormComponent,
     MasterMitraCreateComponent,
-    MasterMitraEditComponent
+    MasterMitraEditComponent,
+    MasterPltuBrowseComponent,
+    MasterPltuFormComponent,
+    MasterPltuCreateComponent,
+    MasterPltuEditComponent
   ]
 })
 export class AdminModule { }
