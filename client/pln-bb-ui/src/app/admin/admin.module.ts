@@ -18,6 +18,16 @@ import { MasterUserBrowseComponent } from './master-user/master-user-browse/mast
 import { MasterUserCreateComponent } from './master-user/master-user-form/master-user-create.component';
 import { MasterUserEditComponent } from './master-user/master-user-form/master-user-edit.component';
 import { SharedModule } from '../shared/shared.module';
+import { PltuService } from '../shared/services/pltu.service';
+import { RencanaPasokanService } from '../shared/services/rencana_pasokan.service';
+import { RolesService } from '../shared/services/roles.service';
+import { GlobalService } from '../shared/services/global.service';
+import { UsersService } from '../shared/services/users.service';
+import { UserMitraService } from '../shared/services/user_mitra.service';
+import { ReferensiKontrakService } from '../shared/services/referensi_kontrak.service';
+import { MitraService } from '../shared/services/mitra.service';
+import { ReferensiKontrakPltuService } from '../shared/services/referensi_kontrak_pltu.service';
+import { ReferensiKontrakMitraService } from '../shared/services/referensi_kontrak_mitra.service';
 import { MasterRoleFormComponent } from './master-role/master-role-form/master-role-form.component';
 import { MasterRoleBrowseComponent } from './master-role/master-role-browse/master-role-browse.component';
 import { MasterRoleCreateComponent } from './master-role/master-role-form/master-role-create.component';
@@ -27,13 +37,17 @@ import { MasterMitraFormComponent } from './master-mitra/master-mitra-form/maste
 import { MasterMitraCreateComponent } from './master-mitra/master-mitra-form/master-mitra-create.component';
 import { MasterMitraEditComponent } from './master-mitra/master-mitra-form/master-mitra-edit.component';
 import { MasterMitraComponent } from './master-mitra/master-mitra.component';
+import { MasterTambangFormComponent } from './master-tambang/master-tambang-form/master-tambang-form.component';
+import { MasterTambangBrowseComponent } from './master-tambang/master-tambang-browse/master-tambang-browse.component';
+import { MasterTambangCreateComponent } from './master-tambang/master-tambang-form/master-tambang-create.component';
+import { MasterTambangEditComponent } from './master-tambang/master-tambang-form/master-tambang-edit.component';
 
 const appRoutes: Routes = [
-  { path: 'admin', component: AdminComponent, canActivate: [AuthenticatedGuard], children: [
+  { path: 'admin', component: AdminComponent, children: [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     
     { path: 'home', component: HomeComponent },
-    
+    { path: 'referensi-kontrak', component: MasterReferensiKontrakComponent },
     { path: 'user', component: MasterUserComponent, children: [
       { path: '', redirectTo: 'browse', pathMatch: 'full' },
       { path: 'browse', component: MasterUserBrowseComponent },
@@ -46,6 +60,13 @@ const appRoutes: Routes = [
       { path: 'browse', component: MasterRoleBrowseComponent },
       { path: 'create', component: MasterRoleCreateComponent },
       { path: ':id/edit', component: MasterRoleEditComponent }
+    ] },
+
+    { path: 'tambang', component: MasterTambangComponent, children: [
+      { path: '', redirectTo: 'browse', pathMatch: 'full' },
+      { path: 'browse', component: MasterTambangBrowseComponent },
+      { path: 'create', component: MasterTambangCreateComponent },
+      { path: ':id/edit', component: MasterTambangEditComponent }
     ] },
 
     { path: 'mitra', component: MasterMitraComponent, children: [
@@ -95,7 +116,11 @@ const appRoutes: Routes = [
     MasterMitraBrowseComponent,
     MasterMitraFormComponent,
     MasterMitraCreateComponent,
-    MasterMitraEditComponent
+    MasterMitraEditComponent,
+    MasterTambangFormComponent,
+    MasterTambangBrowseComponent,
+    MasterTambangCreateComponent,
+    MasterTambangEditComponent
   ],
   exports : [
     MasterUserComponent, 
@@ -104,6 +129,20 @@ const appRoutes: Routes = [
     MasterReferensiKontrakComponent, 
     MasterTambangComponent,
     MasterPltuComponent,
+    MasterTambangComponent
+  ],
+  providers: [
+    PltuService,
+    RencanaPasokanService, 
+    RolesService, 
+    GlobalService, 
+    UsersService, 
+    UserMitraService, 
+    ReferensiKontrakService, 
+    MitraService,
+    ReferensiKontrakPltuService,
+    ReferensiKontrakMitraService,
+    MasterPltuComponent,
     MasterRoleFormComponent,
     MasterRoleBrowseComponent,
     MasterRoleCreateComponent,
@@ -111,7 +150,11 @@ const appRoutes: Routes = [
     MasterMitraBrowseComponent,
     MasterMitraFormComponent,
     MasterMitraCreateComponent,
-    MasterMitraEditComponent
+    MasterMitraEditComponent,
+    MasterTambangFormComponent,
+    MasterTambangBrowseComponent,
+    MasterTambangCreateComponent,
+    MasterTambangEditComponent
   ]
 })
 export class AdminModule { }

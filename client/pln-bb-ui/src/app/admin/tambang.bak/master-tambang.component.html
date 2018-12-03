@@ -1,0 +1,94 @@
+<div class="ui secondary menu">
+  <a class="item" (click)="addNew()">
+    <i class="plus icon"></i> Register
+  </a>
+  <div class="right menu">
+      <div class="ui category search">
+        <div class="ui icon input">
+          <input class="prompt" type="text" #queryBox placeholder="Search..." [(ngModel)]="keyword">
+          <i class="search link icon"></i>
+        </div>
+      </div>
+    </div>
+</div>
+
+<ng-container *ngIf="new_tambang">
+  <div class="ui inverted segment">
+    <div class="ui inverted form">
+      <div class="two fields">
+        <div class="field">
+          <label>Nama</label>
+          <input placeholder="Nama" id="nama_tambang" type="text" [(ngModel)]="dummy_tambang.name">
+        </div>
+        <div class="field">
+          <label>Sertifikat</label>
+          <input placeholder="Sertifikat" id="sertifikat_tambang" type="text" [(ngModel)]="dummy_tambang.sertifikat">
+        </div>
+      </div>
+      <div class="two fields">
+        <div class="field">
+          <label>Jenis Tambang</label>
+          <select class="ui dropdown" id="jenis_tambang" [(ngModel)]="dummy_tambang.jenis_tambang_id">
+            <option value="">Jenis Tambang</option>
+            <option value="1">Tambang 1</option>
+            <option value="0">Tambang 2</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Lokasi</label>
+          <select class="ui dropdown" id="lokasi_tambang" [(ngModel)]="dummy_tambang.lokasi_id">
+            <option value="">Lokasi</option>
+            <option value="1">Lokasi Tambang 1</option>
+            <option value="0">Lokasi Tambang 2</option>
+          </select>
+        </div>
+      </div>
+      <div class="two fields">
+        <div class="field">
+          <label>Tanggal Berlaku</label>
+          <input [(ngModel)]="dummy_tambang.tanggal_berlaku" id="tanggal_berlaku" placeholder="Nama" type="date">
+        </div>
+        <div class="field">
+          <label>Tanggal Habis</label>
+          <input [(ngModel)]="dummy_tambang.tanggal_habis" id="tanggal_habis" placeholder="Sertifikat" type="date">
+        </div>
+      </div>
+      <div (click)="onSubmit()" class="ui submit button">Submit</div>
+    </div>
+  </div>
+</ng-container>
+
+<table class="ui sortable single line striped table">
+  <thead>
+    <tr>
+      <th>Nama </th>
+      <th>Sertifikat</th>
+      <th>Jenis Tambang</th>
+      <th>Lokasi</th>
+      <th>Tanggal Berlaku</th>
+      <th>Tanggal Habis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of user_tambang">
+      <td>
+        {{item.name}}
+      </td>
+      <td>
+        {{item.sertifikat}}
+      </td>
+      <td>
+          {{item.jenis_tambang_id}}
+      </td>
+      <td>
+          {{item.lokasi_id}}
+      </td>
+      <td>
+          {{item.tanggal_berlaku}}
+      </td>
+      <td>
+          {{item.tanggal_habis}}
+      </td>
+    </tr>
+  </tbody>
+</table>

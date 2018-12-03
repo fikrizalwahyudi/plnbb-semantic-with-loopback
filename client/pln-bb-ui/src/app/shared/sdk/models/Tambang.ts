@@ -4,8 +4,8 @@ declare var Object: any;
 export interface TambangInterface {
   "name"?: string;
   "sertifikat"?: string;
-  "jenisTambangId"?: string;
-  "locationId"?: string;
+  "jenisSertifikat"?: string;
+  "lokasi"?: string;
   "tanggalBerlaku"?: Date;
   "tanggalHabis"?: Date;
   "id"?: any;
@@ -14,8 +14,8 @@ export interface TambangInterface {
 export class Tambang implements TambangInterface {
   "name": string = '';
   "sertifikat": string = '';
-  "jenisTambangId": string = '';
-  "locationId": string = '';
+  "jenisSertifikat": string = '';
+  "lokasi": string = '';
   "tanggalBerlaku": Date = new Date(0);
   "tanggalHabis": Date = new Date(0);
   "id": any = <any>null;
@@ -60,12 +60,12 @@ export class Tambang implements TambangInterface {
           name: 'sertifikat',
           type: 'string'
         },
-        "jenisTambangId": {
-          name: 'jenisTambangId',
+        "jenisSertifikat": {
+          name: 'jenisSertifikat',
           type: 'string'
         },
-        "locationId": {
-          name: 'locationId',
+        "lokasi": {
+          name: 'lokasi',
           type: 'string'
         },
         "tanggalBerlaku": {

@@ -1,0 +1,70 @@
+<ui-form-block title="Master Tambang"
+               [errorMsg]="errorMsg"
+               [submitting]="submitting">
+  <div class="ui two column grid">
+    <div class="column border-right">
+      <form [formGroup]="fg"
+            (ngSubmit)="save()"
+            class="ui form">
+        <div class="required field">
+          <label>Name</label>
+          <input type="text"
+                 placeholder="name"
+                 formControlName="name">
+        </div>
+        <div class="required field">
+          <label>Sertifikat</label>
+          <input type="text"
+                 placeholder="Sertifikat"
+                 formControlName="sertifikat">
+        </div>
+        <div class="required field">
+          <label>Jenis Setifikat</label>
+          <select class="ui dropdown" formControlName="jenisSertifikat">
+            <option [value]="null">Pilih Jenis Sertifikat</option>
+            <option *ngFor="let item of jenisSertifikat; let index = index" [value]="item.name">{{item.name}}</option>
+          </select>
+        </div>
+        <div class="required field">
+          <label>Lokasi</label>
+          <input type="text"
+                 placeholder="Lokasi"
+                 formControlName="lokasi">
+        </div>
+        <div class="field">
+          <label>Tgl. Berlaku</label>
+          <div class="ui calendar" uiCalendar formControlName="tanggalBerlaku">
+            <div class="ui input left icon">
+              <i class="calendar icon"></i>
+              <input type="text" placeholder="Date/Time">
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Tgl. Habis</label>
+          <div class="ui calendar" uiCalendar formControlName="tanggalHabis">
+            <div class="ui input left icon">
+              <i class="calendar icon"></i>
+              <input type="text" placeholder="Date/Time">
+            </div>
+          </div>
+        </div>
+        <div class="inline field">
+          <button class="ui secondary button"
+                  type="button"
+                  (click)="cancel()">Cancel</button>
+          <button class="ui primary button"
+                  type="submit"
+                  [disabled]="!fg.valid">Save Changes</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="column">
+      <div class="fullheight fullwidth"
+           style="background: url(assets/paragraph.png)">
+
+      </div>
+    </div>
+  </div>
+</ui-form-block>
