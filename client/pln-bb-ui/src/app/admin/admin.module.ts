@@ -11,7 +11,6 @@ import { SearchRefKontrakPipe } from '../shared/search/ref-kontrak-search.pipe';
 import { SearchPLTUPipe } from '../shared/search/pltu-search.pipe';
 import { SearchRolePipe } from '../shared/search/role-search.pipe';
 import { AdminComponent } from './admin.component';
-import { AuthenticatedGuard } from '../shared/guards/authenticated.guard';
 import { HomeComponent } from './home/home.component';
 import { MasterUserFormComponent } from './master-user/master-user-form/master-user-form.component';
 import { MasterUserBrowseComponent } from './master-user/master-user-browse/master-user-browse.component';
@@ -41,6 +40,10 @@ import { MasterTambangFormComponent } from './master-tambang/master-tambang-form
 import { MasterTambangBrowseComponent } from './master-tambang/master-tambang-browse/master-tambang-browse.component';
 import { MasterTambangCreateComponent } from './master-tambang/master-tambang-form/master-tambang-create.component';
 import { MasterTambangEditComponent } from './master-tambang/master-tambang-form/master-tambang-edit.component';
+import { MasterPltuFormComponent } from './master-pltu/master-pltu-form/master-pltu-form.component';
+import { MasterPltuBrowseComponent } from './master-pltu/master-pltu-browse/master-pltu-browse.component';
+import { MasterPltuCreateComponent } from './master-pltu/master-pltu-form/master-pltu-create.component';
+import { MasterPltuEditComponent } from './master-pltu/master-pltu-form/master-pltu-edit.component';
 
 const appRoutes: Routes = [
   { path: 'admin', component: AdminComponent, children: [
@@ -80,7 +83,14 @@ const appRoutes: Routes = [
         { path: 'create', component: MasterUserCreateComponent },
         { path: ':id/edit', component: MasterUserEditComponent }
       ] }
-    ] }
+    ] },
+    
+    { path: 'pltu', component: MasterPltuComponent, children: [
+      { path: '', redirectTo: 'browse', pathMatch: 'full' },
+      { path: 'browse', component: MasterPltuBrowseComponent },
+      { path: 'create', component: MasterPltuCreateComponent },
+      { path: ':id/edit', component: MasterPltuEditComponent }
+    ] },
   ] }
 ]
 
@@ -120,7 +130,11 @@ const appRoutes: Routes = [
     MasterTambangFormComponent,
     MasterTambangBrowseComponent,
     MasterTambangCreateComponent,
-    MasterTambangEditComponent
+    MasterTambangEditComponent,
+    MasterPltuFormComponent,
+    MasterPltuBrowseComponent,
+    MasterPltuCreateComponent,
+    MasterPltuEditComponent
   ],
   exports : [
     MasterUserComponent, 
@@ -142,7 +156,6 @@ const appRoutes: Routes = [
     MitraService,
     ReferensiKontrakPltuService,
     ReferensiKontrakMitraService,
-    MasterPltuComponent,
     MasterRoleFormComponent,
     MasterRoleBrowseComponent,
     MasterRoleCreateComponent,
@@ -154,7 +167,11 @@ const appRoutes: Routes = [
     MasterTambangFormComponent,
     MasterTambangBrowseComponent,
     MasterTambangCreateComponent,
-    MasterTambangEditComponent
+    MasterTambangEditComponent,
+    MasterPltuBrowseComponent,
+    MasterPltuFormComponent,
+    MasterPltuCreateComponent,
+    MasterPltuEditComponent
   ]
 })
 export class AdminModule { }
