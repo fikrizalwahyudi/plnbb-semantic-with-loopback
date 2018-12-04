@@ -17,7 +17,6 @@ import { MasterUserBrowseComponent } from './master-user/master-user-browse/mast
 import { MasterUserCreateComponent } from './master-user/master-user-form/master-user-create.component';
 import { MasterUserEditComponent } from './master-user/master-user-form/master-user-edit.component';
 import { SharedModule } from '../shared/shared.module';
-import { PltuService } from '../shared/services/pltu.service';
 import { RencanaPasokanService } from '../shared/services/rencana_pasokan.service';
 import { RolesService } from '../shared/services/roles.service';
 import { GlobalService } from '../shared/services/global.service';
@@ -25,7 +24,6 @@ import { UsersService } from '../shared/services/users.service';
 import { UserMitraService } from '../shared/services/user_mitra.service';
 import { ReferensiKontrakService } from '../shared/services/referensi_kontrak.service';
 import { MitraService } from '../shared/services/mitra.service';
-import { ReferensiKontrakPltuService } from '../shared/services/referensi_kontrak_pltu.service';
 import { ReferensiKontrakMitraService } from '../shared/services/referensi_kontrak_mitra.service';
 import { MasterRoleFormComponent } from './master-role/master-role-form/master-role-form.component';
 import { MasterRoleBrowseComponent } from './master-role/master-role-browse/master-role-browse.component';
@@ -44,13 +42,16 @@ import { MasterPltuFormComponent } from './master-pltu/master-pltu-form/master-p
 import { MasterPltuBrowseComponent } from './master-pltu/master-pltu-browse/master-pltu-browse.component';
 import { MasterPltuCreateComponent } from './master-pltu/master-pltu-form/master-pltu-create.component';
 import { MasterPltuEditComponent } from './master-pltu/master-pltu-form/master-pltu-edit.component';
+import { MasterReferensiKontrakFormComponent } from './master-referensi-kontrak/master-referensi-kontrak-form/master-referensi-kontrak-form.component';
+import { MasterReferensiKontrakBrowseComponent } from './master-referensi-kontrak/master-referensi-kontrak-browse/master-referensi-kontrak-browse.component';
+import { MasterReferensiKontrakCreateComponent } from './master-referensi-kontrak/master-referensi-kontrak-form/master-referensi-kontrak-create.component';
+import { MasterReferensiKontrakEditComponent } from './master-referensi-kontrak/master-referensi-kontrak-form/master-referensi-kontrak-edit.component';
 
 const appRoutes: Routes = [
   { path: 'admin', component: AdminComponent, children: [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     
     { path: 'home', component: HomeComponent },
-    { path: 'referensi-kontrak', component: MasterReferensiKontrakComponent },
     { path: 'user', component: MasterUserComponent, children: [
       { path: '', redirectTo: 'browse', pathMatch: 'full' },
       { path: 'browse', component: MasterUserBrowseComponent },
@@ -91,6 +92,14 @@ const appRoutes: Routes = [
       { path: 'create', component: MasterPltuCreateComponent },
       { path: ':id/edit', component: MasterPltuEditComponent }
     ] },
+
+    { path: 'referensi-kontrak', component: MasterReferensiKontrakComponent, children: [
+      { path: '', redirectTo: 'browse', pathMatch: 'full' },
+      { path: 'browse', component: MasterReferensiKontrakBrowseComponent },
+      { path: 'create', component: MasterReferensiKontrakCreateComponent },
+      { path: ':id/edit', component: MasterReferensiKontrakEditComponent }
+    ] },
+
   ] }
 ]
 
@@ -134,7 +143,11 @@ const appRoutes: Routes = [
     MasterPltuFormComponent,
     MasterPltuBrowseComponent,
     MasterPltuCreateComponent,
-    MasterPltuEditComponent
+    MasterPltuEditComponent,
+    MasterReferensiKontrakFormComponent,
+    MasterReferensiKontrakBrowseComponent,
+    MasterReferensiKontrakCreateComponent,
+    MasterReferensiKontrakEditComponent
   ],
   exports : [
     MasterUserComponent, 
@@ -143,10 +156,10 @@ const appRoutes: Routes = [
     MasterReferensiKontrakComponent, 
     MasterTambangComponent,
     MasterPltuComponent,
-    MasterTambangComponent
+    MasterTambangComponent,
+    MasterReferensiKontrakComponent
   ],
   providers: [
-    PltuService,
     RencanaPasokanService, 
     RolesService, 
     GlobalService, 
@@ -154,7 +167,6 @@ const appRoutes: Routes = [
     UserMitraService, 
     ReferensiKontrakService, 
     MitraService,
-    ReferensiKontrakPltuService,
     ReferensiKontrakMitraService,
     MasterRoleFormComponent,
     MasterRoleBrowseComponent,
@@ -171,7 +183,11 @@ const appRoutes: Routes = [
     MasterPltuBrowseComponent,
     MasterPltuFormComponent,
     MasterPltuCreateComponent,
-    MasterPltuEditComponent
+    MasterPltuEditComponent,
+    MasterReferensiKontrakFormComponent,
+    MasterReferensiKontrakBrowseComponent,
+    MasterReferensiKontrakCreateComponent,
+    MasterReferensiKontrakEditComponent
   ]
 })
 export class AdminModule { }

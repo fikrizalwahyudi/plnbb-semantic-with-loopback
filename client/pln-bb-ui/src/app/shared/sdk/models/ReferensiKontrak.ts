@@ -5,9 +5,7 @@ export interface ReferensiKontrakInterface {
   "nomorKontrak"?: string;
   "namaPekerjaan"?: string;
   "tanggalPekerjaan"?: Date;
-  "pltuId"?: string;
-  "mitraId"?: string;
-  "jenis"?: number;
+  "jenis"?: string;
   "status"?: number;
   "id"?: any;
 }
@@ -16,9 +14,7 @@ export class ReferensiKontrak implements ReferensiKontrakInterface {
   "nomorKontrak": string = '';
   "namaPekerjaan": string = '';
   "tanggalPekerjaan": Date = new Date(0);
-  "pltuId": string = '';
-  "mitraId": string = '';
-  "jenis": number = 0;
+  "jenis": string = '';
   "status": number = 0;
   "id": any = <any>null;
   constructor(data?: ReferensiKontrakInterface) {
@@ -66,17 +62,9 @@ export class ReferensiKontrak implements ReferensiKontrakInterface {
           name: 'tanggalPekerjaan',
           type: 'Date'
         },
-        "pltuId": {
-          name: 'pltuId',
-          type: 'string'
-        },
-        "mitraId": {
-          name: 'mitraId',
-          type: 'string'
-        },
         "jenis": {
           name: 'jenis',
-          type: 'number'
+          type: 'string'
         },
         "status": {
           name: 'status',

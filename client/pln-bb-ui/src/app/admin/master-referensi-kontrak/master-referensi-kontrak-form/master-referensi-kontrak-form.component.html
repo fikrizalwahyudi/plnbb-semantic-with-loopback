@@ -1,0 +1,54 @@
+<ui-form-block title="PLTU Account"
+               [errorMsg]="errorMsg"
+               [submitting]="submitting">
+  <div class="ui two column grid">
+    <div class="column border-right">
+      <form [formGroup]="fg"
+            (ngSubmit)="save()"
+            class="ui form">
+        <div class="required field">
+          <label>Nomor Kontrak</label>
+          <input type="text"
+                 placeholder="Nomor Kontrak"
+                 formControlName="nomorKontrak">
+        </div>
+        <div class="required field">
+          <label>Nama Pekerjaan</label>
+          <input type="text"
+                 placeholder="Nama Pekerjaan"
+                 formControlName="namaPekerjaan">
+        </div>
+        <div class="field">
+          <label>Tanggal Pekerjaan</label>
+          <div class="ui calendar" uiCalendar formControlName="tanggalPekerjaan">
+            <div class="ui input left icon">
+              <i class="calendar icon"></i>
+              <input type="text" placeholder="Date/Time">
+            </div>
+          </div>
+        </div>
+        <div class="required field">
+          <label>Jenis</label>
+          <select class="ui dropdown" formControlName="jenis">
+            <option [value]="null">Pilih Jenis</option>
+            <option *ngFor="let item of jenis; let index = index" [value]="item.name">{{item.name}}</option>
+          </select>
+        </div>
+        <div class="inline field">
+          <button class="ui secondary button"
+                  type="button"
+                  (click)="cancel()">Cancel</button>
+          <button class="ui primary button"
+                  type="submit"
+                  [disabled]="!fg.valid">Save Changes</button>
+        </div>
+      </form>
+    </div>
+    <div class="column">
+      <div class="fullheight fullwidth"
+           style="background: url(assets/paragraph.png)">
+
+      </div>
+    </div>
+  </div>
+</ui-form-block>

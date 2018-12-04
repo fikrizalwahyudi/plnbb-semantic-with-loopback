@@ -24,8 +24,7 @@ export class MasterPltuFormComponent implements OnInit {
       code: [null, [Validators.required]],
       name: [null, [Validators.required]],
       address: [null, [Validators.required]],
-      npwp: [null, [Validators.required]],
-      status: [null, [Validators.required]]
+      npwp: [null, [Validators.required]]
     })
    }
 
