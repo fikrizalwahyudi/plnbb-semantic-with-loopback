@@ -15,6 +15,8 @@
     "loopback-connector-mongodb": "^3.9.2",
     "loopback-connector-postgresql": "^3.4.0",
     "loopback-typescript-core": "git+https://github.com/bejorock/loopback-typescript-core.git",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.2.1",
     "yargs": "^12.0.5"
   },
   "devDependencies": {
