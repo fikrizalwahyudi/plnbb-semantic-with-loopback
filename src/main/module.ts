@@ -26,7 +26,7 @@ import { ReferensiKontrakPltuModel } from './models/referensi_kontrak_pltu.model
 @CommonModule({
 	models: [
 		SampleModel,
-		//UsersModel,
+		UsersModel,
 		MitraModel,
 		ModesModel,
 		PhoneContactsModel,

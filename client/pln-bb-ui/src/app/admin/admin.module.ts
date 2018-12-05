@@ -33,6 +33,8 @@ import { MasterMitraBrowseComponent } from './master-mitra/master-mitra-browse/m
 import { MasterMitraFormComponent } from './master-mitra/master-mitra-form/master-mitra-form.component';
 import { MasterMitraCreateComponent } from './master-mitra/master-mitra-form/master-mitra-create.component';
 import { MasterMitraEditComponent } from './master-mitra/master-mitra-form/master-mitra-edit.component';
+import { MasterMitraUserFormComponent } from './master-mitra/master-mitra-user-form/master-mitra-user-form.component';
+import { MasterMitraUserCreateComponent } from './master-mitra/master-mitra-user-form/master-mitra-user-create.component';
 import { MasterMitraComponent } from './master-mitra/master-mitra.component';
 import { MasterTambangFormComponent } from './master-tambang/master-tambang-form/master-tambang-form.component';
 import { MasterTambangBrowseComponent } from './master-tambang/master-tambang-browse/master-tambang-browse.component';
@@ -82,11 +84,7 @@ const appRoutes: Routes = [
       { path: 'browse', component: MasterMitraBrowseComponent },
       { path: 'create', component: MasterMitraCreateComponent },
       { path: ':id/edit', component: MasterMitraEditComponent },
-      { path: 'user', component: MasterUserMitraComponent, children: [
-        { path: '', redirectTo: 'browse', pathMatch: 'full' },
-        { path: 'browse', component: MasterUserMitraBrowseComponent },
-        { path: 'create', component: MasterUserMitraCreateComponent }
-      ] }
+      { path: ':id/set-user', component: MasterMitraUserCreateComponent },
     ] },
     
     { path: 'pltu', component: MasterPltuComponent, children: [
@@ -139,6 +137,8 @@ const appRoutes: Routes = [
     MasterMitraFormComponent,
     MasterMitraCreateComponent,
     MasterMitraEditComponent,
+    MasterMitraUserFormComponent,
+    MasterMitraUserCreateComponent,
     MasterTambangFormComponent,
     MasterTambangBrowseComponent,
     MasterTambangCreateComponent,
@@ -183,6 +183,8 @@ const appRoutes: Routes = [
     MasterMitraFormComponent,
     MasterMitraCreateComponent,
     MasterMitraEditComponent,
+    MasterMitraUserFormComponent,
+    MasterMitraUserCreateComponent,
     MasterTambangFormComponent,
     MasterTambangBrowseComponent,
     MasterTambangCreateComponent,

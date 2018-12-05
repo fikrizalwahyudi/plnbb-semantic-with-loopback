@@ -1,4 +1,7 @@
 /* tslint:disable */
+import {
+  User
+} from '../index';
 
 declare var Object: any;
 export interface MitraInterface {
@@ -7,7 +10,9 @@ export interface MitraInterface {
   "address"?: string;
   "npwp"?: string;
   "status"?: number;
+  "userId"?: any;
   "id"?: any;
+  user?: User;
 }
 
 export class Mitra implements MitraInterface {
@@ -16,7 +21,9 @@ export class Mitra implements MitraInterface {
   "address": string = '';
   "npwp": string = '';
   "status": number = 0;
+  "userId": any = <any>null;
   "id": any = <any>null;
+  user: User = null;
   constructor(data?: MitraInterface) {
     Object.assign(this, data);
   }
@@ -70,12 +77,24 @@ export class Mitra implements MitraInterface {
           name: 'status',
           type: 'number'
         },
+        "userId": {
+          name: 'userId',
+          type: 'any'
+        },
         "id": {
           name: 'id',
           type: 'any'
         },
       },
       relations: {
+        user: {
+          name: 'user',
+          type: 'User',
+          model: 'User',
+          relationType: 'belongsTo',
+                  keyFrom: 'userId',
+          keyTo: 'id'
+        },
       }
     }
   }
