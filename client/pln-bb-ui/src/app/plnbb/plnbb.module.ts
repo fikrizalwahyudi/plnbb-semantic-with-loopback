@@ -1,23 +1,35 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RencanaPasokanPlnbbComponent } from './rencana-pasokan-plnbb/rencana-pasokan-plnbb.component';
 import { SharedModule } from '../shared/shared.module';
+import { PlnbbRencanaPasokanComponent } from './plnbb-rencana-pasokan/plnbb-rencana-pasokan.component';
+import { PlnbbComponent } from './plnbb.component';
+import { HomeComponent } from '../admin/home/home.component';
+
+const appRoutes: Routes = [
+  { path: 'plnbb', component: PlnbbComponent, children: [
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    
+    { path: 'home', component: HomeComponent },
+    { path: 'rencana-pasokan', component: PlnbbRencanaPasokanComponent },
+
+  ] }
+]
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    RouterModule.forChild(appRoutes)
   ],
   declarations: [
-    RencanaPasokanPlnbbComponent
+    PlnbbRencanaPasokanComponent
   ],
   exports : [
-    RencanaPasokanPlnbbComponent
+    PlnbbRencanaPasokanComponent
   ]
 })
 export class PlnbbModule { }
