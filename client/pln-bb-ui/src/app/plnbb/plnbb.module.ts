@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { PlnbbRencanaPasokanComponent } from './plnbb-rencana-pasokan/plnbb-rencana-pasokan.component';
 import { PlnbbComponent } from './plnbb.component';
 import { HomeComponent } from '../admin/home/home.component';
+import { PlnbbRealisasiPengirimanComponent } from './plnbb-realisasi-pengiriman/plnbb-realisasi-pengiriman.component';
 
 const appRoutes: Routes = [
   { path: 'plnbb', component: PlnbbComponent, children: [
@@ -13,6 +14,7 @@ const appRoutes: Routes = [
     
     { path: 'home', component: HomeComponent },
     { path: 'rencana-pasokan', component: PlnbbRencanaPasokanComponent },
+    { path: 'realisasi-pengiriman', component: PlnbbRealisasiPengirimanComponent },
 
   ] }
 ]
@@ -26,10 +28,12 @@ const appRoutes: Routes = [
     RouterModule.forChild(appRoutes)
   ],
   declarations: [
-    PlnbbRencanaPasokanComponent
+    PlnbbRencanaPasokanComponent,
+    PlnbbRealisasiPengirimanComponent
   ],
   exports : [
-    PlnbbRencanaPasokanComponent
+    PlnbbRencanaPasokanComponent,
+    PlnbbRealisasiPengirimanComponent
   ]
 })
 export class PlnbbModule { }
