@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'ui-table-block',
@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./table-block.component.sass']
 })
 export class TableBlockComponent implements OnInit {
-
+  @Input()
+  disableSearch:boolean = false;
+  
   constructor() { }
 
   ngOnInit() {
