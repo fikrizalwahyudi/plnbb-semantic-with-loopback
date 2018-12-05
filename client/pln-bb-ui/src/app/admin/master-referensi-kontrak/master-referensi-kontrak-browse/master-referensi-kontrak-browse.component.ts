@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ReferensiKontrak } from '../../../shared/models/referensi_kontrak';
+import { ReferensiKontrak } from '../../../shared/sdk';
 import { ReferensiKontrakApi } from '../../../shared/sdk/services/custom/ReferensiKontrak';
 import { promptDialog } from '../../../shared/modals/prompt.modal';
 

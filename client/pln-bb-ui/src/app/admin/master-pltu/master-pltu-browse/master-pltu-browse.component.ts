@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Pltu } from '../../../shared/models/pltu';
+import { Pltu } from '../../../shared/sdk';
 import { PltuApi } from '../../../shared/sdk/services/custom/Pltu';
 import { promptDialog } from '../../../shared/modals/prompt.modal';
 

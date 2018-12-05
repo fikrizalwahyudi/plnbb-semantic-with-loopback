@@ -1,37 +1,37 @@
 <div class="ui container fullheight bottom-space">
     <div class="ui grid mt-5">
-      <div class="three wide column">
-        <div class="ui secondary vertical menu fullwidth">
-          <a class="item"
-             [routerLink]="['/plnbb/home']"
-             routerLinkActive="active">
-            <i class="desktop icon"></i> Home
-          </a>
-          <div class="ui divider"></div>
-          <a class="item"
-             [routerLink]="['/plnbb/rencana-pasokan']"
-             routerLinkActive="active">
-            <i class="file alternate outline icon"></i> Rencana Pasokan
-          </a>
-          <a class="item"
-          [routerLink]="['/plnbb/realisasi-pengiriman']"
-             routerLinkActive="active">
-            <i class="clipboard outline icon"></i> Realisasi Pengiriman
-          </a>
-          <div class="ui divider"></div>
-          <a class="item"
-            href="javascript:;"
-            routerLinkActive="active">
-            <i class="book icon"></i> Laporan Bulanan
-          </a>
+        <div class="three wide column">
+            <div class="ui secondary vertical menu fullwidth">
+            <a class="item"
+                [routerLink]="['/plnbb/home']"
+                routerLinkActive="active">
+                <i class="desktop icon"></i> Home
+            </a>
+            <div class="ui divider"></div>
+            <a class="item"
+                [routerLink]="['/plnbb/rencana-pasokan']"
+                routerLinkActive="active">
+                <i class="file alternate outline icon"></i> Rencana Pasokan
+            </a>
+            <a class="item"
+                [routerLink]="['/plnbb/realisasi-pengiriman']"
+                routerLinkActive="active">
+                <i class="clipboard outline icon"></i> Realisasi Pengiriman
+            </a>
+            <div class="ui divider"></div>
+            <a class="item"
+                href="javascript:;"
+                routerLinkActive="active">
+                <i class="book icon"></i> Laporan Bulanan
+            </a>
+            </div>
         </div>
-      </div>
-      <div class="thirteen wide column">
-        <div class="ui breadcrumb mb-1">
-          <a class="section">Home</a>
+        <div class="thirteen wide column">
+            <div class="ui breadcrumb mb-1">
+                <a class="section">Home</a>
+            </div>
+            <router-outlet></router-outlet>
         </div>
-        <router-outlet></router-outlet>
-      </div>
     </div>
-  </div>
+</div>
   

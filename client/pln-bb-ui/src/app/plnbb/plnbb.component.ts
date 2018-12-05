@@ -4,7 +4,7 @@ declare var $: any;
 @Component({
   selector: 'app-plnbb',
   templateUrl: './plnbb.component.html',
-  styleUrls: ['./plnbb.component.css']
+  styleUrls: ['./plnbb.component.sass']
 })
 export class PlnbbComponent implements OnInit {
   id: string = 'dashboard';
