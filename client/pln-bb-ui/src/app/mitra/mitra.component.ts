@@ -4,7 +4,7 @@ declare var $: any;
 @Component({
   selector: 'app-mitra',
   templateUrl: './mitra.component.html',
-  styleUrls: ['./mitra.component.css']
+  styleUrls: ['./mitra.component.sass']
 })
 export class MitraComponent implements OnInit {
   id: string = 'dashboard';
