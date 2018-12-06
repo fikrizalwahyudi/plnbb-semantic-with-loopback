@@ -24,7 +24,11 @@ export class MitraDao extends PersistedDao
 		},
 		idInjection:true,
 		forceId:false,
-		mixins: {}
+		mixins: {
+			ObjectidType: {
+				properties: ["userId"]
+			}
+		}
 	}
 })
 export class MitraModel extends PersistedModel

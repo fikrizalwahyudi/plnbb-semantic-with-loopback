@@ -4,9 +4,7 @@
   <div class="ui two column grid">
     <div class="column border-right">
       <h3 class="ui header">Mitra Detail</h3>
-      <form [formGroup]="fg"
-            (ngSubmit)="save()"
-            class="ui form">
+      <div class="ui form">
         <div class="required field">
           <label>Code</label>
           <input type="text"
@@ -31,18 +29,25 @@
                   placeholder="npwp"
                   formControlName="npwp">
         </div>
-      </form>
+      </div>
     </div>
     <div class="column">
-      <h3 class="ui header">Set User</h3>
+      <h3 class="ui header">Set Users</h3>
       <form [formGroup]="fgUser"
             (ngSubmit)="save()"
             class="ui form">
         <div class="required field">
           <label>User</label>
-          <input type="text"
+          <!-- <input type="text"
                   placeholder="user"
-                  formControlName="user">
+                  formControlName="user"> -->
+          <div class="ui fluid search normal selection dropdown" uiSearchDropdown [url]="userUri" [filter]="searchFilterUser" (onSearch)="onSearchUser($event)" formControlName="user">
+            <input type="hidden">
+            <i class="dropdown icon"></i>
+            <div class="default text">Select User</div>
+            <div class="menu">           
+            </div>
+          </div>
         </div>
         <div class="inline field">
           <button class="ui secondary button"
@@ -50,7 +55,7 @@
                   (click)="cancel()">Cancel</button>
           <button class="ui primary button"
                   type="submit"
-                  [disabled]="!fg.valid">Save Changes</button>
+                  [disabled]="!fgUser.valid">Save Changes</button>
         </div>
       </form>
     </div>

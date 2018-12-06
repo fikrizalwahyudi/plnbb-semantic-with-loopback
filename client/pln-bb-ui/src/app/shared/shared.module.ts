@@ -18,6 +18,7 @@ import { TableActionViewComponent } from './commons/table-action-view.component'
 import { MultiDropdownDirective } from './directives/multi-dropdown.directive';
 import { MultiInputComponent } from './directives/multi-input.component';
 import { FormsModule } from '@angular/forms';
+import { SearchDropdownDirective } from './directives/search-dropdown.directive';
 
 @NgModule({
   imports: [
@@ -39,7 +40,8 @@ import { FormsModule } from '@angular/forms';
     TableActionEditComponent, 
     TableActionViewComponent,
     MultiDropdownDirective,
-    MultiInputComponent
+    MultiInputComponent,
+    SearchDropdownDirective
   ],
 
   declarations: [
@@ -55,7 +57,8 @@ import { FormsModule } from '@angular/forms';
     TableActionEditComponent, 
     TableActionViewComponent,
     MultiDropdownDirective,
-    MultiInputComponent
+    MultiInputComponent,
+    SearchDropdownDirective
   ],
 
   providers: [

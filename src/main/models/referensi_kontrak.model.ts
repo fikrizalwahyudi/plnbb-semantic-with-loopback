@@ -33,13 +33,13 @@ export class ReferensiKontrakModel extends PersistedModel
 	id:any
 
 	@Property('string')
-    nomorKontrak:string
-    
-    @Property('string')
-    namaPekerjaan:string
-    
-    @Property('date')
-    tanggalPekerjaan:Date
+	nomorKontrak:string
+	
+	@Property('string')
+	namaPekerjaan:string
+	
+	@Property('date')
+	tanggalPekerjaan:Date
 
 	@Property('string')
 	jenis:string

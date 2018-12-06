@@ -30,6 +30,16 @@
                  placeholder="npwp"
                  formControlName="npwp">
         </div>
+        <div class="required field">
+          <label>Owner</label>
+          <div class="ui fluid search normal selection dropdown" uiSearchDropdown [url]="userUri" [filter]="searchFilterUser" (onSearch)="onSearchUser($event)" formControlName="user">
+            <input type="hidden">
+            <i class="dropdown icon"></i>
+            <div class="default text">Select User</div>
+            <div class="menu">           
+            </div>
+          </div>
+        </div>
         <!-- <div class="required field">
           <label>Status</label>
 

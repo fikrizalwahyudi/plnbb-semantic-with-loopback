@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { environment } from '../../../../environments/environment';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'master-mitra-user-form',
@@ -16,6 +18,18 @@ export class MasterMitraUserFormComponent implements OnInit {
   fgUser: FormGroup
   errorMsg
   submitting
+
+  userUri = `${environment.apiUrl}/api/Users`
+  searchFilterUser = {
+    where:{
+      or:[
+        {name: {like: '{query}.*'}},
+        {username: {like: '{query}.*'}},
+        {email: {like: '{query}.*'}}
+      ]
+    },
+    limit: 10
+  }
 
   constructor(
     private fb:FormBuilder,
@@ -44,6 +58,19 @@ export class MasterMitraUserFormComponent implements OnInit {
 
   cancel() {
     this.router.navigate(['/admin', 'mitra'])
+  }
+
+  onSearchUser({response, cb}) {
+    cb({
+      success: true,
+      results: _.values(response).map(item => {
+        return {
+          name: item.username,
+          value: item.id,
+          text: item.name
+        }
+      })
+    })
   }
 
 }

@@ -34,10 +34,17 @@ export class MasterMitraEditComponent implements OnInit {
     this.route.params.subscribe(params => {
       let id = params['id']
 
-      this.mitraApi.findById(id).subscribe(data => {
+      this.mitraApi.findById(id, {include: 'user'}).subscribe(data => {
         this.mitra = data as Mitra
 
         fg.patchValue(this.mitra)
+
+        if(this.mitra.user)
+          fg.patchValue({user: {
+            name: this.mitra.user.username,
+            value: this.mitra.user.id,
+            text: this.mitra.user['name']
+          }})
       })
     })
   }

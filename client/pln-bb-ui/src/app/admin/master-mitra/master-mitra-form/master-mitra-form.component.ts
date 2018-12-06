@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { environment } from '../../../../environments/environment';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'master-mitra-form',
@@ -16,6 +18,18 @@ export class MasterMitraFormComponent implements OnInit {
   errorMsg
   submitting
 
+  userUri = `${environment.apiUrl}/api/Users`
+  searchFilterUser = {
+    where:{
+      or:[
+        {name: {like: '{query}.*'}},
+        {username: {like: '{query}.*'}},
+        {email: {like: '{query}.*'}}
+      ]
+    },
+    limit: 10
+  }
+
   constructor(
     private fb:FormBuilder,
     private router:Router
@@ -25,7 +39,8 @@ export class MasterMitraFormComponent implements OnInit {
       name: [null, [Validators.required]],
       address: [null, [Validators.required]],
       npwp: [null, [Validators.required]],
-      status: [0, [Validators.required]]
+      status: [0, [Validators.required]],
+      user: [null, [Validators.required]]
     })
   }
 
@@ -34,11 +49,30 @@ export class MasterMitraFormComponent implements OnInit {
   }
 
   save() {
+    let model = this.fg.value
+
+    model.userId = model.user.value
+
+    delete model['user']
+    
     this.onSave.emit(this.fg.value)
   }
 
   cancel() {
     this.router.navigate(['/admin', 'mitra'])
+  }
+
+  onSearchUser({response, cb}) {
+    cb({
+      success: true,
+      results: _.values(response).map(item => {
+        return {
+          name: item.username,
+          value: item.id,
+          text: item.name
+        }
+      })
+    })
   }
 
 }

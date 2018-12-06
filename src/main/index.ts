@@ -31,6 +31,7 @@ export = (function(){
 		middlewareRootDir: configDir,
 		componentRootDir: configDir,
 		mixinDirs: [
+			path.resolve(process.cwd(), './node_modules/loopback-objectid-mixin'),
 			path.resolve(__dirname, './mixins')
 		]
 	}, app).then((module)  => {
