@@ -25,6 +25,11 @@ import { DeleteRoleMiddleware } from './middleware/delete-role.middleware';
 import { CreateRoleMiddleware } from './middleware/create-role.middleware';
 import { PatchRoleMiddleware } from './middleware/patch-role.middleware';
 import { ReferensiKontrakTambangModel } from "./models/referensi_kontrak_tambang.model";
+import { MitraKesanggupanModel } from "./models/mitra_kesanggupan.model";
+import { MitraKesanggupanTambangModel } from "./models/mitra_kesanggupan_tambang.model";
+import { PlnRencanaModel } from './models/pln_rencana.model';
+import { PlnRealisasiModel } from "./models/pln_realisasi.model";
+import { ShippingInstructionModel } from './models/shipping_instruction.model';
 
 @injectable()
 @CommonModule({
@@ -56,7 +61,12 @@ import { ReferensiKontrakTambangModel } from "./models/referensi_kontrak_tambang
 		ReferensiKontrakModel,
 		ReferensiKontrakMitraModel,
 		ReferensiKontrakPltuModel,
-		ReferensiKontrakTambangModel
+		ReferensiKontrakTambangModel,
+		MitraKesanggupanModel,
+		MitraKesanggupanTambangModel,
+		PlnRencanaModel,
+		PlnRealisasiModel,
+		ShippingInstructionModel
 	]
 })
 export class SampleModule extends Module {

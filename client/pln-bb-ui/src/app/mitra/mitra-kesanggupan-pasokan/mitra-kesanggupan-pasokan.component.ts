@@ -10,20 +10,27 @@ import { Mitra } from '../../shared/sdk/models/Mitra';
 })
 export class MitraKesanggupanPasokanComponent implements OnInit {
   fg:FormGroup
-  months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
+  months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+  years = [];
   mitra: Mitra[];
-  mitras:Mitra[]
+  mitras:Mitra[];
   errorMsg: string;
 
   constructor(private fb:FormBuilder, 
-    private mitraApi: MitraApi) { 
-    
+    private mitraApi: MitraApi) 
+  {
+    for(let i=2018-10; i<2019; i++) {
+      this.years.push(i)
+    }
+
     this.fg = this.fb.group({
-      tahun: [2018, [Validators.required]],
-      bulan: [(new Date()).getMonth(), [Validators.required]],
+      kontrak: [null, [Validators.required]],
+      tambang: [null, [Validators.required]],
       pltu: [null, [Validators.required]],
-      mitra: [null, [Validators.required]],
-      tgl: [new Date(), [Validators.required]]
+      tgl: [null, [Validators.required]],
+      jumlah: [null, [Validators.required]],
+      mode: [null, [Validators.required]],
+      keterangan: [null, [Validators.required]]
     })
 
     this.mitraApi.find().subscribe(data => {
