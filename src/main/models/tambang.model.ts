@@ -39,14 +39,13 @@ export class TambangModel extends PersistedModel
 	sertifikat:string
 
 	@Property('string')
-	jenisTambangId:string
+	jenisSertifikat:string
 
 	@Property('string')
-	locationId:string
+	lokasi:string
 
 	@Property('date')
 	tanggalBerlaku:Date
-
 	
 	@Property('date')
 	tanggalHabis:Date

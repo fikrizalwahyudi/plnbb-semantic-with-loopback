@@ -13,7 +13,6 @@ import { RolesModel } from './models/roles.model';
 import { TokensModel } from './models/tokens.model';
 import { TypesModel } from './models/types.model';
 import { UserMitraModel } from './models/user_mitra.model';
-import { JenisTambangModel } from './models/jenis_tambang.model';
 import { LoadingRealisasiKirimModel } from './models/loading_realisasi_kirim.model';
 import { LocationsModel } from './models/locations.model';
 import { SumberTambangModel } from './models/sumber_tambang.model';
@@ -36,7 +35,7 @@ import { PatchRoleMiddleware } from './middleware/patch-role.middleware';
 
 	models: [
 		SampleModel,
-		//UsersModel,
+		UsersModel,
 		MitraModel,
 		ModesModel,
 		PhoneContactsModel,
@@ -48,7 +47,6 @@ import { PatchRoleMiddleware } from './middleware/patch-role.middleware';
 		TokensModel,
 		TypesModel,
 		UserMitraModel,
-		JenisTambangModel,
 		LoadingRealisasiKirimModel,
 		LocationsModel,
 		SumberTambangModel,

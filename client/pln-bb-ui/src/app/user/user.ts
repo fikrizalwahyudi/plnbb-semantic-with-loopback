@@ -33,14 +33,3 @@ export const pltu = {
     "npwp": "",
     "status": "",
 }
-
-export const ref_kontrak = {
-    "id": "",
-    "jenis": "",
-    "mitra_id": "",
-    "nama_pekerjaan": "",
-    "nomor_kontrak": "",
-    "pltu_id": "",
-    "status": "",
-    "tanggal_pekerjaan":""
-}

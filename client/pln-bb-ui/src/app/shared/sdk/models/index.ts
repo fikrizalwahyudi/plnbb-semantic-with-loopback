@@ -13,7 +13,6 @@ export * from './RequestShipping';
 export * from './Tokens';
 export * from './Types';
 export * from './UserMitra';
-export * from './JenisTambang';
 export * from './LoadingRealisasiKirim';
 export * from './Locations';
 export * from './SumberTambang';

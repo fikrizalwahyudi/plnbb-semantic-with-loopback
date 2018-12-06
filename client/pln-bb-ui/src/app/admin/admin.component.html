@@ -1,4 +1,4 @@
-<div class="ui container fullheight">
+<div class="ui container fullheight bottom-space">
   <div class="ui grid mt-5">
     <div class="three wide column">
       <div class="ui secondary vertical menu fullwidth">
@@ -19,16 +19,22 @@
           <i class="id card icon"></i> Role
         </a>
         <div class="ui divider"></div>
-        <a class="item">
+        <a class="item"
+          [routerLink]="['/admin/mitra']"
+          routerLinkActive="active">
           <i class="users icon"></i> Mitra
         </a>
-        <a class="item">
+        <a class="item"
+          [routerLink]="['/admin/tambang']"
+          routerLinkActive="active">
           <i class="cogs icon"></i> Tambang
         </a>
-        <a class="item">
+        <a class="item"
+          [routerLink]="['/admin/pltu']"
+          routerLinkActive="active">
           <i class="building icon"></i> PLTU
         </a>
-        <a class="item">
+        <a class="item" [routerLink]="['/admin/referensi-kontrak']" routerLinkActive="active">
           <i class="book icon"></i> Kontrak
         </a>
       </div>

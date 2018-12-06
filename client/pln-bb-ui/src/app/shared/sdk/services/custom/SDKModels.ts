@@ -14,7 +14,6 @@ import { RequestShipping } from '../../models/RequestShipping';
 import { Tokens } from '../../models/Tokens';
 import { Types } from '../../models/Types';
 import { UserMitra } from '../../models/UserMitra';
-import { JenisTambang } from '../../models/JenisTambang';
 import { LoadingRealisasiKirim } from '../../models/LoadingRealisasiKirim';
 import { Locations } from '../../models/Locations';
 import { SumberTambang } from '../../models/SumberTambang';
@@ -44,7 +43,6 @@ export class SDKModels {
     Tokens: Tokens,
     Types: Types,
     UserMitra: UserMitra,
-    JenisTambang: JenisTambang,
     LoadingRealisasiKirim: LoadingRealisasiKirim,
     Locations: Locations,
     SumberTambang: SumberTambang,

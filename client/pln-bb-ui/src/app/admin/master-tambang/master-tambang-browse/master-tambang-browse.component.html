@@ -1,0 +1,38 @@
+<ui-table-block>
+  <ng-container class="table-block-menu">
+    <a class="item"
+       [routerLink]="['/admin', 'tambang', 'create']">
+      <i class="plus icon"></i> Register
+    </a>
+  </ng-container>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Sertifikat</th>
+      <th>Jenis Sertifikat</th>
+      <th>Lokasi</th>
+      <th>Tanggal Berlaku</th>
+      <th>Tanggal Habis</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of tambangs">
+      <td>{{item.name}}</td>
+      <td>{{item.sertifikat}}</td>
+      <td>{{item.jenisSertifikat}}</td>
+      <td>{{item.lokasi}}</td>
+      <td>{{item.tanggalBerlaku | date}}</td>
+      <td>{{item.tanggalHabis | date}}</td>
+      <td class="center aligned collapsing">
+        <a href="javascript:void(0)"
+           (click)="delete(item)">
+          <i class="trash link icon action-icon"></i>
+        </a>
+        <a [routerLink]="['/admin', 'tambang', item.id, 'edit']">
+          <i class="edit link icon action-icon"></i>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</ui-table-block>

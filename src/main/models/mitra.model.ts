@@ -47,4 +47,9 @@ export class MitraModel extends PersistedModel
 	@Property('number')
 	status:number
 
+	@Property('string')
+	userId:string
+
+	@Relation("belongsTo", "User", "userId")
+	user
 }

@@ -22,9 +22,9 @@ export class HeaderComponent implements OnInit {
   logout() {
     //document.location.href = `${environment.apiUrl}/auth/logout`
     this.accountApi.logout().subscribe(() => {
-      document.location.href = '/'
+      document.location.href = 'login'
     }, () => {
-      document.location.href = '/'
+      document.location.href = 'login'
     })
   }
 

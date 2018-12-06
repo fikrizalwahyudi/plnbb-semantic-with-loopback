@@ -62,7 +62,6 @@ import { RequestShippingApi } from './services/custom/RequestShipping';
 import { TokensApi } from './services/custom/Tokens';
 import { TypesApi } from './services/custom/Types';
 import { UserMitraApi } from './services/custom/UserMitra';
-import { JenisTambangApi } from './services/custom/JenisTambang';
 import { LoadingRealisasiKirimApi } from './services/custom/LoadingRealisasiKirim';
 import { LocationsApi } from './services/custom/Locations';
 import { SumberTambangApi } from './services/custom/SumberTambang';
@@ -115,7 +114,6 @@ export class SDKBrowserModule {
         TokensApi,
         TypesApi,
         UserMitraApi,
-        JenisTambangApi,
         LoadingRealisasiKirimApi,
         LocationsApi,
         SumberTambangApi,
