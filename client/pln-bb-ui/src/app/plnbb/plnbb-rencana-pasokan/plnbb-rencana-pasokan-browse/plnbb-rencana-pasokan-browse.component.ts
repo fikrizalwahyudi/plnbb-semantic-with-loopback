@@ -3,6 +3,8 @@ import { ReferensiKontrak } from '../../../shared/sdk';
 import { ReferensiKontrakApi } from '../../../shared/sdk/services/custom/ReferensiKontrak';
 import { promptDialog } from '../../../shared/modals/prompt.modal';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { environment } from '../../../../environments/environment';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-plnbb-rencana-pasokan-browse',
@@ -16,6 +18,14 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
   months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
   errorMsg: string;
 
+  mitraUri = `${environment.apiUrl}/api/mitra_kesanggupan`
+  searchFilterMitra = {
+    where:{
+    },
+    include: {referensiKontrak: ['mitra']},
+    limit: 10
+  }
+
   constructor(
     private fb:FormBuilder, 
     private referensiKontrakApi: ReferensiKontrakApi
@@ -23,7 +33,10 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
 
     this.fg = this.fb.group({
       tahun: [2018, [Validators.required]],
-      bulan: [(new Date()).getMonth(), [Validators.required]]
+      bulan: [(new Date()).getMonth(), [Validators.required]],
+      tanggalPengiriman: [(new Date()), [Validators.required]],
+      pltu: [null, [Validators.required]],
+      mitra: [null, [Validators.required]]
     })
 
     this.referensiKontrakApi.find({limit: 30}).subscribe(data => {
@@ -34,16 +47,19 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
   ngOnInit() {
   }
 
-  delete(item) {
-    this.errorMsg = undefined
-
-    promptDialog('Delete this record?', 'after deleting, the record will not be recoverable', () => {
-      this.referensiKontrakApi.deleteById(item.id).subscribe(data => {
-        this.referensiKontrakList = this.referensiKontrakList.filter(u => u.id !== item.id)
-      }, err => {
-        this.errorMsg = err.message
+  onSearchMitra({response, cb}) {
+    cb({
+      success: true,
+      results: _.values(response).map(item => {
+        console.log(item);
+        return {
+          name: item.referensiKontrak.mitra.name + "-" + item.jumlah + "-" + item.harga,
+          value: item.id,
+          text: item.referensiKontrak.name + "-" + item.jumlah + "-" + item.harga
+        }
       })
-    }, () => {})
+    })
   }
+
 
 }

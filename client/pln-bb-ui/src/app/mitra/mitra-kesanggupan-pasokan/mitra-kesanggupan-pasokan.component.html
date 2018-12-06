@@ -1,89 +1,146 @@
-<!-- <div class="ui black segment"> -->
-  <ui-table-block [disableSearch]=true>
-    <ng-container class="table-block-menu">
-      <div class="ui top attached segment">
-        <h4 class="ui left floated header">
-          <i class="wpforms icon"></i>
-          <div class="content">Input Detail Pasokan</div>
-        </h4>
-  
-        <button class="ui right floated blue compact basic button">
-          Lock Changes
-        </button>
-        <!-- <button class="ui right floated grey compact basic button">
-          Back
-        </button> -->
-        <br class="clear">
-
-        <div class="ui bottom attached segment mt-2">
-            <form [formGroup]="fg"
-                  class="ui form">
-            <div class="ui two column grid">
-                <div class="column">
-                        <div class="field">
-                            <label>Tahun - Bulan</label>
-                            <div class="fields">
-                              <div class="field">
-                                <input type="text" name="" placeholder="tahun" formControlName="tahun" readonly>
-                              </div>
-                              <div class="field">
-                                <select class="ui dropdown" formControlName="bulan">
-                                  <option value="">Pilih Bulan</option>
-                                  <option *ngFor="let item of months; let index = index" [value]="index">{{item}}</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                
-                          <div class="field">
-                            <label>PLTU</label>
-                            <select class="ui dropdown" formControlName="pltu" (change)="onSelectPLTU($event.target.value)">
-                              <option [value]="null">Pilih PLTU</option>
-                              <option *ngFor="let item of pltus; let index = index" [value]="item.id">{{item.name}}</option>
-                            </select>
-                          </div>
-                    <div class="inline field">
-                      <button class="ui secondary button"
-                              type="button"
-                              (click)="reset()">Reset</button>
-                      <button class="ui primary button"
-                              type="submit"
-                              [disabled]="!fg.valid">Submit</button>
-                    </div>
-                </div>
-            
-                <div class="column">
-                      
-                  <div class="field">
-                    <label>Mitra</label>
-                    <select class="ui dropdown" formControlName="mitra">
-                      <option [value]="null">Pilih Mitra</option>
-                      <option *ngFor="let item of mitras; let index = index" [value]="item.id">{{item.name}}</option>
-                    </select>
-                  </div>
-
-                  <div class="field">
-                      <label>Tgl. Pengiriman</label>
-                      <div class="ui calendar" uiCalendar formControlName="tgl">
-                        <div class="ui input left icon">
-                          <i class="calendar icon"></i>
-                          <input type="text" placeholder="Date/Time">
-                        </div>
-                      </div>
-                    </div>
-                </div>
-              </div>
-
-              </form>
+<div class="ui top attached yellow segment">
+  <div [formGroup]="fg"
+        class="ui form">
+    <div class="ui three column grid">
+      <div class="column">
+        <div class="required field">
+          <label>Referensi Kontrak</label>
+          <div class="ui fluid search normal selection dropdown" uiSearchDropdown [url]="kontrakUri" [filter]="searchFilterKontrak" (onSearch)="onSearchKontrak($event)" formControlName="kontrak">
+            <input type="hidden">
+            <i class="dropdown icon"></i>
+            <div class="default text">Select Kontrak</div>
+            <div class="menu">           
             </div>
+          </div>
+        </div>
+        <div class="required field">
+          <label>Sumber Tambang</label>
+          <select class="ui dropdown"
+                  formControlName="tambang"
+                  (change)="onSelectPLTU($event.target.value)">
+            <option [value]="null">Pilih Sumber Tambang</option>
+            <option *ngFor="let item of pltus; let index = index"
+                    [value]="item.id">{{item.name}}</option>
+          </select>
+        </div>
+        <div class="required field">
+          <label>Tujuan PLTU</label>
+          <select class="ui dropdown"
+                  formControlName="pltu"
+                  (change)="onSelectPLTU($event.target.value)">
+            <option [value]="null">Pilih PLTU</option>
+            <option *ngFor="let item of pltus; let index = index"
+                    [value]="item.id">{{item.name}}</option>
+          </select>
+        </div>
       </div>
-      
-    </ng-container>
+
+      <div class="column">
+        <div class="required field">
+          <label>Tgl. Pengiriman</label>
+          <div class="ui calendar"
+               uiCalendar
+               formControlName="tgl">
+            <div class="ui input left icon">
+              <i class="calendar icon"></i>
+              <input type="text"
+                     placeholder="Date/Time">
+            </div>
+          </div>
+        </div>
+
+        <div class="required field">
+          <label>Jumlah</label>
+          <input type="text"
+                  placeholder="Jumlah Tonnase"
+                  formControlName="jumlah">
+        </div>
+        <div class="required field">
+          <label>Mode Pengiriman</label>
+          <select class="ui dropdown"
+                  formControlName="mode">
+            <option [value]="null" disabled hidden>Pilih Mode</option>
+            <option value="tongkang">Tongkang</option>
+            <option value="vessels">Vessels</option>
+            <option value="trucking">Trucking</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="field">
+          <label>Keterangan Tambahan</label>
+          <input type="text"
+                  placeholder="keterangan"
+                  formControlName="keterangan">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ui bottom attached segment">
+  <form class="ui form">
+    <div class="inline field">
+      <button class="ui secondary button"
+              type="button"
+              (click)="reset()">Reset</button>
+      <button class="ui primary button"
+              type="submit"
+              [disabled]="!fg.valid">Submit</button>
+    </div>
+  </form>
+</div>
+
+<div class="ui top attached borderless menu no-border-bottom">
+  <div class="item">
+    <div class="ui floating dropdown labeled button">
+      <!-- <i class="calendar alternate icon"></i> -->
+      <span class="text">2018</span>
+      <div class="menu">
+        <div class="item"
+             *ngFor="let item of years">{{item}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="item">
+    <div class="ui floating dropdown labeled button">
+      <!-- <i class="calendar alternate outline icon"></i> -->
+      <span class="text">Desember</span>
+      <div class="menu">
+        <div class="item"
+             *ngFor="let item of months">{{item}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="right menu"
+       *ngIf="!disableSearch">
+    <div class="item">
+      <div class="ui icon input">
+        <input type="text"
+               #queryBox
+               placeholder="Search..."
+               (keyup.enter)="load(queryBox.value)">
+        <i class="search link icon"></i>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ui attached negative message segment"
+     *ngIf="errorMsg">
+  <div class="header">
+    Oopss... somethings wrong!!!
+  </div>
+  <p>
+    {{errorMsg}}
+  </p>
+</div>
+<div class="ui yellow bottom attached segment">
+  <table class="ui sortable single line striped table">
     <thead>
       <tr>
         <th>Bulan</th>
         <th>PLTU</th>
-        <th>Mitra</th>
         <th>Tgl.</th>
         <th>Tipe</th>
         <th>Mode</th>
@@ -92,16 +149,7 @@
       </tr>
     </thead>
     <tbody>
-      <!-- <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr> -->
+
     </tbody>
-  </ui-table-block>
-  
+  </table>
+</div>
