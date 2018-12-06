@@ -1,0 +1,107 @@
+<!-- <div class="ui black segment"> -->
+  <ui-table-block [disableSearch]=true>
+    <ng-container class="table-block-menu">
+      <div class="ui top attached segment">
+        <h4 class="ui left floated header">
+          <i class="wpforms icon"></i>
+          <div class="content">Input Detail Pasokan</div>
+        </h4>
+  
+        <button class="ui right floated blue compact basic button">
+          Lock Changes
+        </button>
+        <!-- <button class="ui right floated grey compact basic button">
+          Back
+        </button> -->
+        <br class="clear">
+
+        <div class="ui bottom attached segment mt-2">
+            <form [formGroup]="fg"
+                  class="ui form">
+            <div class="ui two column grid">
+                <div class="column">
+                        <div class="field">
+                            <label>Tahun - Bulan</label>
+                            <div class="fields">
+                              <div class="field">
+                                <input type="text" name="" placeholder="tahun" formControlName="tahun" readonly>
+                              </div>
+                              <div class="field">
+                                <select class="ui dropdown" formControlName="bulan">
+                                  <option value="">Pilih Bulan</option>
+                                  <option *ngFor="let item of months; let index = index" [value]="index">{{item}}</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                
+                          <div class="field">
+                            <label>PLTU</label>
+                            <select class="ui dropdown" formControlName="pltu" (change)="onSelectPLTU($event.target.value)">
+                              <option [value]="null">Pilih PLTU</option>
+                              <option *ngFor="let item of pltus; let index = index" [value]="item.id">{{item.name}}</option>
+                            </select>
+                          </div>
+                    <div class="inline field">
+                      <button class="ui secondary button"
+                              type="button"
+                              (click)="reset()">Reset</button>
+                      <button class="ui primary button"
+                              type="submit"
+                              [disabled]="!fg.valid">Submit</button>
+                    </div>
+                </div>
+            
+                <div class="column">
+                      
+                  <div class="field">
+                    <label>Mitra</label>
+                    <select class="ui dropdown" formControlName="mitra">
+                      <option [value]="null">Pilih Mitra</option>
+                      <option *ngFor="let item of mitras; let index = index" [value]="item.id">{{item.name}}</option>
+                    </select>
+                  </div>
+
+                  <div class="field">
+                      <label>Tgl. Pengiriman</label>
+                      <div class="ui calendar" uiCalendar formControlName="tgl">
+                        <div class="ui input left icon">
+                          <i class="calendar icon"></i>
+                          <input type="text" placeholder="Date/Time">
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+
+              </form>
+            </div>
+      </div>
+      
+    </ng-container>
+    <thead>
+      <tr>
+        <th>Bulan</th>
+        <th>PLTU</th>
+        <th>Mitra</th>
+        <th>Tgl.</th>
+        <th>Tipe</th>
+        <th>Mode</th>
+        <th>Jumlah</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr> -->
+    </tbody>
+  </ui-table-block>
+  

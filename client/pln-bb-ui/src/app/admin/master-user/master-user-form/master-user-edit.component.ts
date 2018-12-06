@@ -49,9 +49,11 @@ export class MasterUserEditComponent implements OnInit {
         this.user = data as User
         
         fg.patchValue(this.user)
-        
+        //console.log(this.user)
         if(this.user['principals'].length > 0)
-          fg.patchValue({roles: this.user['principals'].map(entry => entry.roleId)})
+          setTimeout(() => {
+            fg.patchValue({roles: this.user['principals'].map(entry => entry.roleId)})
+          }, 10)
       })
     })
   }

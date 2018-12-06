@@ -3,18 +3,18 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
-import { PlnbbRencanaPasokanComponent } from './plnbb-rencana-pasokan/plnbb-rencana-pasokan.component';
+import { PlnBBRencanaPasokanBrowseComponent } from './plnbb-rencana-pasokan/plnbb-rencana-pasokan-browse/plnbb-rencana-pasokan-browse.component';
 import { PlnbbComponent } from './plnbb.component';
 import { HomeComponent } from '../admin/home/home.component';
-import { PlnbbRealisasiPengirimanComponent } from './plnbb-realisasi-pengiriman/plnbb-realisasi-pengiriman.component';
+import { PlnBBRealisasiPengirimanBrowseComponent } from './plnbb-realisasi-pengiriman/plnbb-realisasi-pengiriman-browse/plnbb-realisasi-pengiriman-browse.component'
 
 const appRoutes: Routes = [
   { path: 'plnbb', component: PlnbbComponent, children: [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     
     { path: 'home', component: HomeComponent },
-    { path: 'rencana-pasokan', component: PlnbbRencanaPasokanComponent },
-    { path: 'realisasi-pengiriman', component: PlnbbRealisasiPengirimanComponent },
+    { path: 'rencana-pasokan', component: PlnBBRencanaPasokanBrowseComponent },
+    { path: 'realisasi-pengiriman', component: PlnBBRealisasiPengirimanBrowseComponent },
 
   ] }
 ]
@@ -28,12 +28,12 @@ const appRoutes: Routes = [
     RouterModule.forChild(appRoutes)
   ],
   declarations: [
-    PlnbbRencanaPasokanComponent,
-    PlnbbRealisasiPengirimanComponent
+    PlnBBRencanaPasokanBrowseComponent,
+    PlnBBRealisasiPengirimanBrowseComponent
   ],
   exports : [
-    PlnbbRencanaPasokanComponent,
-    PlnbbRealisasiPengirimanComponent
+    PlnBBRencanaPasokanBrowseComponent,
+    PlnBBRealisasiPengirimanBrowseComponent
   ]
 })
 export class PlnbbModule { }

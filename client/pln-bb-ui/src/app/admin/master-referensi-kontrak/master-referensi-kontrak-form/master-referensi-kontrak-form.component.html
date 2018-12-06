@@ -35,6 +35,19 @@
           </select>
         </div>
         <div class="required field">
+          <label>Tipe</label>
+          <select class="ui dropdown" formControlName="tipe">
+            <option [value]="null">Pilih Tipe</option>
+            <option *ngFor="let item of tipe; let index = index" [value]="item.name">{{item.name}}</option>
+          </select>
+        </div>
+        <div class="required field">
+          <label>Harga</label>
+          <input type="number"
+                  placeholder="Harga"
+                  formControlName="harga">
+        </div>
+        <div class="required field">
           <label>Owner</label>
           <div class="ui fluid search normal selection dropdown" uiSearchDropdown [url]="mitraUri" [filter]="searchFilterMitra" (onSearch)="onSearchMitra($event)" formControlName="mitra">
             <input type="hidden">
