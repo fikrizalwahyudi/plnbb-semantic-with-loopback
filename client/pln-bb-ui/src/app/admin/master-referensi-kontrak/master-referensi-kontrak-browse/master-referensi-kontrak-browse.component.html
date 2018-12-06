@@ -18,7 +18,7 @@
       <tr *ngFor="let item of referensiKontrakList">
         <td>{{item.nomorKontrak}}</td>
         <td>{{item.namaPekerjaan}}</td>
-        <td>{{item.tanggalPekerjaan}}</td>
+        <td>{{item.tanggalPekerjaan | date:'mediumDate'}}</td>
         <td>{{item.jenis}}</td>
         <td class="center aligned collapsing">
           <a href="javascript:void(0)"
@@ -28,6 +28,12 @@
           <a [routerLink]="['/admin', 'referensi-kontrak', item.id, 'edit']">
             <i class="edit link icon action-icon"></i>
           </a>
+          <!-- <a [routerLink]="['/admin', 'referensi-kontrak', item.id, 'pltu']">
+            <i class="building link icon action-icon"></i>
+          </a>
+          <a [routerLink]="['/admin', 'referensi-kontrak', item.id, 'tambang']">
+            <i class="cogs link icon action-icon"></i>
+          </a> -->
         </td>
       </tr>
     </tbody>

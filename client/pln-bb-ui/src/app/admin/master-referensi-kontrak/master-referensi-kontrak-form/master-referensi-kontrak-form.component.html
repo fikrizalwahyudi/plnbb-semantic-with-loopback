@@ -34,6 +34,28 @@
             <option *ngFor="let item of jenis; let index = index" [value]="item.name">{{item.name}}</option>
           </select>
         </div>
+        <div class="required field">
+          <label>Owner</label>
+          <div class="ui fluid search normal selection dropdown" uiSearchDropdown [url]="mitraUri" [filter]="searchFilterMitra" (onSearch)="onSearchMitra($event)" formControlName="mitra">
+            <input type="hidden">
+            <i class="dropdown icon"></i>
+            <div class="default text">Select Mitra</div>
+            <div class="menu">           
+            </div>
+          </div>
+        </div>
+        <div class="required field">
+          <label>PLTU</label>
+          <select multiple class="ui dropdown" uiMultiDropdown [values]="pltu" placeholder="Select Pltu" formControlName="pltu">
+            <option value="" disabled hidden>Select Pltu</option>
+          </select>
+        </div>
+        <div class="required field">
+          <label>Tambang</label>
+          <select multiple class="ui dropdown" uiMultiDropdown [values]="tambang" placeholder="Select Tambang" formControlName="tambang">
+            <option value="" disabled hidden>Select Tambang</option>
+          </select>
+        </div>
         <div class="inline field">
           <button class="ui secondary button"
                   type="button"

@@ -52,6 +52,7 @@ import { UserApi } from './services/custom/User';
 import { RoleMappingApi } from './services/custom/RoleMapping';
 import { RoleApi } from './services/custom/Role';
 import { SampleApi } from './services/custom/Sample';
+import { UsersApi } from './services/custom/Users';
 import { MitraApi } from './services/custom/Mitra';
 import { ModesApi } from './services/custom/Modes';
 import { PhoneContactsApi } from './services/custom/PhoneContacts';
@@ -70,6 +71,7 @@ import { UnloadingRealisasiKirimApi } from './services/custom/UnloadingRealisasi
 import { ReferensiKontrakApi } from './services/custom/ReferensiKontrak';
 import { ReferensiKontrakMitraApi } from './services/custom/ReferensiKontrakMitra';
 import { ReferensiKontrakPltuApi } from './services/custom/ReferensiKontrakPltu';
+import { ReferensiKontrakTambangApi } from './services/custom/ReferensiKontrakTambang';
 /**
 * @module SDKBrowserModule
 * @description
@@ -104,6 +106,7 @@ export class SDKBrowserModule {
         RoleMappingApi,
         RoleApi,
         SampleApi,
+        UsersApi,
         MitraApi,
         ModesApi,
         PhoneContactsApi,
@@ -122,6 +125,7 @@ export class SDKBrowserModule {
         ReferensiKontrakApi,
         ReferensiKontrakMitraApi,
         ReferensiKontrakPltuApi,
+        ReferensiKontrakTambangApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser },
         { provide: SocketDriver, useClass: SocketBrowser }

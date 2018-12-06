@@ -52,6 +52,8 @@ import { MasterUserMitraComponent } from './master-user-mitra/master-user-mitra.
 import { MasterUserMitraBrowseComponent } from './master-user-mitra/master-user-mitra-browse/master-user-mitra-browse.component';
 import { MasterUserMitraFormComponent } from './master-user-mitra/master-user-mitra-form/master-user-mitra-form.component';
 import { MasterUserMitraCreateComponent } from './master-user-mitra/master-user-mitra-form/master-user-mitra-create.component';
+import { MasterReferensiKontrakPltuComponent } from './master-referensi-kontrak/master-referensi-kontrak-pltu/master-referensi-kontrak-pltu.component';
+import { MasterReferensiKontrakTambangComponent } from './master-referensi-kontrak/master-referensi-kontrak-tambang/master-referensi-kontrak-tambang.component';
 
 const appRoutes: Routes = [
   { path: 'admin', component: AdminComponent, children: [
@@ -98,7 +100,9 @@ const appRoutes: Routes = [
       { path: '', redirectTo: 'browse', pathMatch: 'full' },
       { path: 'browse', component: MasterReferensiKontrakBrowseComponent },
       { path: 'create', component: MasterReferensiKontrakCreateComponent },
-      { path: ':id/edit', component: MasterReferensiKontrakEditComponent }
+      { path: ':id/edit', component: MasterReferensiKontrakEditComponent },
+      { path: ':id/pltu', component: MasterReferensiKontrakPltuComponent },
+      { path: ':id/tambang', component: MasterReferensiKontrakTambangComponent }
     ] },
 
   ] }
@@ -154,7 +158,9 @@ const appRoutes: Routes = [
     MasterUserMitraComponent,
     MasterUserMitraBrowseComponent,
     MasterUserMitraFormComponent,
-    MasterUserMitraCreateComponent
+    MasterUserMitraCreateComponent,
+    MasterReferensiKontrakPltuComponent,
+    MasterReferensiKontrakTambangComponent
   ],
   exports : [
     MasterUserComponent, 
@@ -164,7 +170,9 @@ const appRoutes: Routes = [
     MasterTambangComponent,
     MasterPltuComponent,
     MasterTambangComponent,
-    MasterReferensiKontrakComponent
+    MasterReferensiKontrakComponent,
+    MasterReferensiKontrakPltuComponent,
+    MasterReferensiKontrakTambangComponent
   ],
   providers: [
     RencanaPasokanService, 

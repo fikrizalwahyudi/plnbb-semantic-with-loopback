@@ -16,6 +16,7 @@ declare var $:any;
 export class MultiDropdownDirective implements ControlValueAccessor {
 
   @Input() values
+  @Input() placeholder
 
   writeValue(obj: any): void {
     if(obj) {
@@ -45,7 +46,7 @@ export class MultiDropdownDirective implements ControlValueAccessor {
   ngOnInit() {
     let props = {
       onAdd: (value, text, $selected) => {
-        console.log(value);
+        //console.log(value);
         
         this.tags.push(value);
         if(this.propagateChange)
@@ -62,7 +63,7 @@ export class MultiDropdownDirective implements ControlValueAccessor {
       //props['values'] = this.values
       this.values.subscribe(vals => {
         props['values'] = vals
-        props['placeholder'] = 'Select Roles'
+        props['placeholder'] = this.placeholder
 
         $(this.el.nativeElement).dropdown(props);
       })

@@ -55,7 +55,7 @@ export class MasterMitraFormComponent implements OnInit {
 
     delete model['user']
     
-    this.onSave.emit(this.fg.value)
+    this.onSave.emit(model)
   }
 
   cancel() {

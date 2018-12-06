@@ -1,4 +1,7 @@
 /* tslint:disable */
+import {
+  RoleMapping
+} from '../index';
 
 declare var Object: any;
 export interface UserInterface {
@@ -9,6 +12,7 @@ export interface UserInterface {
   "id"?: any;
   "password"?: string;
   accessTokens?: any[];
+  principals?: RoleMapping[];
 }
 
 export class User implements UserInterface {
@@ -19,6 +23,7 @@ export class User implements UserInterface {
   "id": any = <any>null;
   "password": string = '';
   accessTokens: any[] = null;
+  principals: RoleMapping[] = null;
   constructor(data?: UserInterface) {
     Object.assign(this, data);
   }
@@ -85,6 +90,14 @@ export class User implements UserInterface {
           relationType: 'hasMany',
                   keyFrom: 'id',
           keyTo: 'userId'
+        },
+        principals: {
+          name: 'principals',
+          type: 'RoleMapping[]',
+          model: 'RoleMapping',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'principalId'
         },
       }
     }

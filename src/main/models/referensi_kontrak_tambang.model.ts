@@ -3,34 +3,34 @@ import { injectable, inject } from 'inversify';
 import { CommonModel, Property, Relation, Remote } from 'loopback-typescript-core/dist/models/decorators';
 
 @injectable()
-export class ReferensiKontrakPltuDao extends PersistedDao {
-	static tableName = 'referensi_kontrak_pltu'
-	static modelName = 'ReferensiKontrakPltu'
+export class ReferensiKontrakTambangDao extends PersistedDao {
+	static tableName = 'referensi_kontrak_tambang'
+	static modelName = 'ReferensiKontrakTambang'
 
-	ModelClass = ReferensiKontrakPltuModel
+	ModelClass = ReferensiKontrakTambangModel
 }
 
 @injectable()
 @CommonModel({
-	name: ReferensiKontrakPltuDao.modelName,
-	dao: ReferensiKontrakPltuDao,
+	name: ReferensiKontrakTambangDao.modelName,
+	dao: ReferensiKontrakTambangDao,
 	dataSource: 'plnbbmongodb',
 	settings: {
-		plural: 'referensi_kontrak_pltu',
+		plural: 'referensi_kontrak_tambang',
 		postgresql: {
 			schema: "plnbbdb",
-			table: ReferensiKontrakPltuDao.tableName
+			table: ReferensiKontrakTambangDao.tableName
 		},
 		idInjection: true,
 		forceId: false,
 		mixins: {
 			ObjectidType: {
-				properties: ["pltuId", "referensiKontrakId"]
+				properties: ["tambangId", "referensiKontrakId"]
 			}
 		}
 	}
 })
-export class ReferensiKontrakPltuModel extends PersistedModel {
+export class ReferensiKontrakTambangModel extends PersistedModel {
 
 	id: any
 
@@ -38,7 +38,7 @@ export class ReferensiKontrakPltuModel extends PersistedModel {
 	referensiKontrakId: string
 
 	@Property('string')
-	pltuId: string
+	tambangId: string
 
 }
 

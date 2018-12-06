@@ -7,7 +7,7 @@ declare var Object: any;
 export interface RoleMappingInterface {
   "id"?: any;
   "principalType"?: string;
-  "principalId"?: string;
+  "principalId"?: any;
   "roleId"?: any;
   role?: Role;
 }
@@ -15,7 +15,7 @@ export interface RoleMappingInterface {
 export class RoleMapping implements RoleMappingInterface {
   "id": any = <any>null;
   "principalType": string = '';
-  "principalId": string = '';
+  "principalId": any = <any>null;
   "roleId": any = <any>null;
   role: Role = null;
   constructor(data?: RoleMappingInterface) {
@@ -61,7 +61,7 @@ export class RoleMapping implements RoleMappingInterface {
         },
         "principalId": {
           name: 'principalId',
-          type: 'string'
+          type: 'any'
         },
         "roleId": {
           name: 'roleId',

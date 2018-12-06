@@ -4,6 +4,7 @@ import { User } from '../../models/User';
 import { RoleMapping } from '../../models/RoleMapping';
 import { Role } from '../../models/Role';
 import { Sample } from '../../models/Sample';
+import { Users } from '../../models/Users';
 import { Mitra } from '../../models/Mitra';
 import { Modes } from '../../models/Modes';
 import { PhoneContacts } from '../../models/PhoneContacts';
@@ -22,6 +23,7 @@ import { UnloadingRealisasiKirim } from '../../models/UnloadingRealisasiKirim';
 import { ReferensiKontrak } from '../../models/ReferensiKontrak';
 import { ReferensiKontrakMitra } from '../../models/ReferensiKontrakMitra';
 import { ReferensiKontrakPltu } from '../../models/ReferensiKontrakPltu';
+import { ReferensiKontrakTambang } from '../../models/ReferensiKontrakTambang';
 
 export interface Models { [name: string]: any }
 
@@ -33,6 +35,7 @@ export class SDKModels {
     RoleMapping: RoleMapping,
     Role: Role,
     Sample: Sample,
+    Users: Users,
     Mitra: Mitra,
     Modes: Modes,
     PhoneContacts: PhoneContacts,
@@ -51,6 +54,7 @@ export class SDKModels {
     ReferensiKontrak: ReferensiKontrak,
     ReferensiKontrakMitra: ReferensiKontrakMitra,
     ReferensiKontrakPltu: ReferensiKontrakPltu,
+    ReferensiKontrakTambang: ReferensiKontrakTambang,
     
   };
 

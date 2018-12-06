@@ -1,4 +1,9 @@
 /* tslint:disable */
+import {
+  Mitra,
+  ReferensiKontrakPltu,
+  ReferensiKontrakTambang
+} from '../index';
 
 declare var Object: any;
 export interface ReferensiKontrakInterface {
@@ -7,7 +12,11 @@ export interface ReferensiKontrakInterface {
   "tanggalPekerjaan"?: Date;
   "jenis"?: string;
   "status"?: number;
+  "mitraId"?: any;
   "id"?: any;
+  mitra?: Mitra;
+  pltuPrincipals?: ReferensiKontrakPltu[];
+  tambangPrincipals?: ReferensiKontrakTambang[];
 }
 
 export class ReferensiKontrak implements ReferensiKontrakInterface {
@@ -16,7 +25,11 @@ export class ReferensiKontrak implements ReferensiKontrakInterface {
   "tanggalPekerjaan": Date = new Date(0);
   "jenis": string = '';
   "status": number = 0;
+  "mitraId": any = <any>null;
   "id": any = <any>null;
+  mitra: Mitra = null;
+  pltuPrincipals: ReferensiKontrakPltu[] = null;
+  tambangPrincipals: ReferensiKontrakTambang[] = null;
   constructor(data?: ReferensiKontrakInterface) {
     Object.assign(this, data);
   }
@@ -70,12 +83,40 @@ export class ReferensiKontrak implements ReferensiKontrakInterface {
           name: 'status',
           type: 'number'
         },
+        "mitraId": {
+          name: 'mitraId',
+          type: 'any'
+        },
         "id": {
           name: 'id',
           type: 'any'
         },
       },
       relations: {
+        mitra: {
+          name: 'mitra',
+          type: 'Mitra',
+          model: 'Mitra',
+          relationType: 'belongsTo',
+                  keyFrom: 'mitraId',
+          keyTo: 'id'
+        },
+        pltuPrincipals: {
+          name: 'pltuPrincipals',
+          type: 'ReferensiKontrakPltu[]',
+          model: 'ReferensiKontrakPltu',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'referensiKontrakId'
+        },
+        tambangPrincipals: {
+          name: 'tambangPrincipals',
+          type: 'ReferensiKontrakTambang[]',
+          model: 'ReferensiKontrakTambang',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'referensiKontrakId'
+        },
       }
     }
   }

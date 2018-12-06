@@ -1,34 +1,34 @@
 /* tslint:disable */
 
 declare var Object: any;
-export interface ReferensiKontrakPltuInterface {
+export interface ReferensiKontrakTambangInterface {
   "referensiKontrakId"?: any;
-  "pltuId"?: any;
+  "tambangId"?: any;
   "id"?: any;
 }
 
-export class ReferensiKontrakPltu implements ReferensiKontrakPltuInterface {
+export class ReferensiKontrakTambang implements ReferensiKontrakTambangInterface {
   "referensiKontrakId": any = <any>null;
-  "pltuId": any = <any>null;
+  "tambangId": any = <any>null;
   "id": any = <any>null;
-  constructor(data?: ReferensiKontrakPltuInterface) {
+  constructor(data?: ReferensiKontrakTambangInterface) {
     Object.assign(this, data);
   }
   /**
    * The name of the model represented by this $resource,
-   * i.e. `ReferensiKontrakPltu`.
+   * i.e. `ReferensiKontrakTambang`.
    */
   public static getModelName() {
-    return "ReferensiKontrakPltu";
+    return "ReferensiKontrakTambang";
   }
   /**
   * @method factory
   * @author Jonathan Casarrubias
   * @license MIT
-  * This method creates an instance of ReferensiKontrakPltu for dynamic purposes.
+  * This method creates an instance of ReferensiKontrakTambang for dynamic purposes.
   **/
-  public static factory(data: ReferensiKontrakPltuInterface): ReferensiKontrakPltu{
-    return new ReferensiKontrakPltu(data);
+  public static factory(data: ReferensiKontrakTambangInterface): ReferensiKontrakTambang{
+    return new ReferensiKontrakTambang(data);
   }
   /**
   * @method getModelDefinition
@@ -39,17 +39,17 @@ export class ReferensiKontrakPltu implements ReferensiKontrakPltuInterface {
   **/
   public static getModelDefinition() {
     return {
-      name: 'ReferensiKontrakPltu',
-      plural: 'referensi_kontrak_pltu',
-      path: 'referensi_kontrak_pltu',
+      name: 'ReferensiKontrakTambang',
+      plural: 'referensi_kontrak_tambang',
+      path: 'referensi_kontrak_tambang',
       idName: 'id',
       properties: {
         "referensiKontrakId": {
           name: 'referensiKontrakId',
           type: 'any'
         },
-        "pltuId": {
-          name: 'pltuId',
+        "tambangId": {
+          name: 'tambangId',
           type: 'any'
         },
         "id": {

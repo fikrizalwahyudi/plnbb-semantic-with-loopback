@@ -24,6 +24,7 @@ import { ReferensiKontrakPltuModel } from './models/referensi_kontrak_pltu.model
 import { DeleteRoleMiddleware } from './middleware/delete-role.middleware';
 import { CreateRoleMiddleware } from './middleware/create-role.middleware';
 import { PatchRoleMiddleware } from './middleware/patch-role.middleware';
+import { ReferensiKontrakTambangModel } from "./models/referensi_kontrak_tambang.model";
 
 @injectable()
 @CommonModule({
@@ -54,10 +55,10 @@ import { PatchRoleMiddleware } from './middleware/patch-role.middleware';
 		UnloadingRealisasiKirimModel,
 		ReferensiKontrakModel,
 		ReferensiKontrakMitraModel,
-		ReferensiKontrakPltuModel
+		ReferensiKontrakPltuModel,
+		ReferensiKontrakTambangModel
 	]
 })
-export class SampleModule extends Module
-{
-	
+export class SampleModule extends Module {
+
 }
