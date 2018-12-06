@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserApi } from '../sdk/services/custom/User';
+import { User } from '../sdk';
 
 export interface Menu
 {
@@ -22,45 +23,67 @@ export class MenuService {
     const isAuthenticated = () => { return accountApi.isAuthenticated() }
     const isNotAuthenticated = () => { return !accountApi.isAuthenticated() }
 
-    /*this._topMenus = [{
-      path: 'auth',
-      label: 'Login',
-      class: 'sign-in icon',
-      canActivate: isNotAuthenticated
-    }, {
-      path: 'home',
-      label: 'Browse Apps',
-      class: 'home icon',
-      canActivate: isAuthenticated
-    }, {
-      path: 'admin',
-      label: 'Administration',
-      class: 'desktop icon',
-      canActivate: isAuthenticated
-    }, {
-      path: 'dev',
-      label: 'Developer Console',
-      class: 'code icon',
-      canActivate: isAuthenticated
-    }, {
-      path: 'repo',
-      label: 'User Repository',
-      class: 'address book icon',
-      canActivate: isAuthenticated
-    }]*/
+    this.accountApi.getCurrent({include: {principals: 'role'}}).subscribe(data => {
+      console.log(data)
+      let currentUser = data as User
 
-    this._topMenus = [
-      {
-        path: 'admin',
-        label: 'Administration',
-        class: 'desktop icon',
-        canActivate: isAuthenticated
+      const isAuthorized = (role) => {
+        let index = currentUser.principals.findIndex(principal => principal.role.name === role)
+
+        if(index > -1) return true
+
+        return false
       }
-    ]
+
+      this._topMenus = [
+        {
+          path: 'admin',
+          label: 'Administration',
+          class: 'desktop icon',
+          canActivate: [isAuthenticated, () => {return isAuthorized('admin')}]
+        },
+  
+        {
+          path: 'mitra',
+          label: 'Mitra Batu',
+          class: 'cogs icon',
+          canActivate: [isAuthenticated, () => {return isAuthorized('mitrabatu')}]
+        },
+  
+        {
+          path: 'transport',
+          label: 'Mitra Transport',
+          class: 'ship icon',
+          canActivate: [isAuthenticated, () => {return isAuthorized('mitratransport')}]
+        },
+  
+        {
+          path: 'plnbb',
+          label: 'PLN BB',
+          class: 'university icon',
+          canActivate: [isAuthenticated, () => {return isAuthorized('plnbb')}]
+        },
+  
+        {
+          path: 'management',
+          label: 'Management',
+          class: 'book icon',
+          canActivate: [isAuthenticated, () => {return isAuthorized('management')}]
+        }
+      ]
+    })
   }
 
   get topMenus():Menus { return this._topMenus.filter(menu => {
-    if(menu.canActivate) return menu.canActivate()
+    if(menu.canActivate && Array.isArray(menu.canActivate)) {
+      //return menu.canActivate()
+
+      let result = true
+      menu.canActivate.forEach(fn => result = result && fn())
+
+      return result
+    }
+    else if(menu.canActivate) return menu.canActivate()
     return true
   }) }
 }
