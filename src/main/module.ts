@@ -22,9 +22,18 @@ import { UnloadingRealisasiKirimModel } from './models/unloading_realisasi_kirim
 import { ReferensiKontrakModel } from './models/referensi_kontrak.model';
 import { ReferensiKontrakMitraModel } from './models/referensi_kontrak_mitra.model';
 import { ReferensiKontrakPltuModel } from './models/referensi_kontrak_pltu.model';
+import { DeleteRoleMiddleware } from './middleware/delete-role.middleware';
+import { CreateRoleMiddleware } from './middleware/create-role.middleware';
+import { PatchRoleMiddleware } from './middleware/patch-role.middleware';
 
 @injectable()
 @CommonModule({
+	middleware: [
+		CreateRoleMiddleware,
+		DeleteRoleMiddleware,
+		PatchRoleMiddleware
+	],
+
 	models: [
 		SampleModel,
 		//UsersModel,

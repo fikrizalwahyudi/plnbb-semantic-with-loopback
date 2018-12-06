@@ -10,12 +10,20 @@
       "loopback/common/mixins",
       "loopback/server/mixins",
       "../common/mixins",
-      "./mixins"
+      "./mixins",
+      "../node_modules/loopback-objectid-mixin"
     ]
   },
   "User": {
     "dataSource": "plnbbmongodb",
-    "public": true
+    "public": true,
+    "relations": {
+      "principals": {
+        "type": "hasMany",
+        "model": "RoleMapping",
+        "foreignKey": "principalId"
+      }
+    }
   },
   "AccessToken": {
     "dataSource": "plnbbmongodb",
@@ -34,7 +42,14 @@
   },
   "RoleMapping": {
     "dataSource": "plnbbmongodb",
-    "public": true
+    "public": true,
+    "mixins": {
+      "ObjectidType": {
+        "properties": [
+          "principalId"
+        ]
+      }
+    }
   },
   "Role": {
     "dataSource": "plnbbmongodb",

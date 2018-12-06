@@ -5,6 +5,7 @@ import path from 'path';
 import loopback from 'loopback';
 import http from 'http';
 import fs from 'fs';
+import bodyParser from 'body-parser';
 
 process.on('unhandledRejection', (reason, promise) => {
 	//console.log(promise)
@@ -33,6 +34,9 @@ export = (function(){
 			path.resolve(__dirname, './mixins')
 		]
 	}, app).then((module)  => {
+		module.getContext().registerMiddleware('initial:after', bodyParser.json())
+		module.getContext().registerMiddleware('initial:after', bodyParser.urlencoded({ extended: false }))
+
 		module.getContext().emit('module booted', module);
 		if(!argv.server)
 			return module.getContext().getParentContext()

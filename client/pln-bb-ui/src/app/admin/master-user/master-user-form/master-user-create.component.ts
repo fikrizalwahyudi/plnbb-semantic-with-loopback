@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserApi } from '../../../shared/sdk/services/custom/User';
 import { Router } from '@angular/router';
 import { MasterUserFormComponent } from './master-user-form.component';
+import { RoleMappingApi } from '../../../shared/sdk';
 
 @Component({
   selector: 'master-user-create',
@@ -17,6 +18,7 @@ export class MasterUserCreateComponent implements OnInit {
 
   constructor(
     private userApi:UserApi,
+    private mappingApi:RoleMappingApi,
     private router:Router
   ) { }
 
@@ -27,10 +29,16 @@ export class MasterUserCreateComponent implements OnInit {
     this.formComponent.submitting = true
     this.formComponent.errorMsg = undefined
 
+    let roles = model['roles']
+
     delete model['password2']
+    delete model['roles']
 
     this.userApi.create(model).subscribe(() => {
       this.router.navigate(['/admin', 'user'])
+
+      
+
       this.formComponent.submitting = false
     }, (err) => {
       this.formComponent.errorMsg = err.message

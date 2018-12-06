@@ -15,14 +15,53 @@ import { TableBlockComponent } from './commons/table-block/table-block.component
 import { TableActionDeleteComponent } from './commons/table-action-delete.component';
 import { TableActionEditComponent } from './commons/table-action-edit.component';
 import { TableActionViewComponent } from './commons/table-action-view.component';
+import { MultiDropdownDirective } from './directives/multi-dropdown.directive';
+import { MultiInputComponent } from './directives/multi-input.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     RouterModule,
-    CommonModule
-	],
-  exports: [DropdownDirective, CalendarDirective, PopupDirective, TimeDirective, HeaderComponent, FooterComponent, FormBlockComponent, TableBlockComponent, TableActionDeleteComponent, TableActionEditComponent, TableActionViewComponent],
-  declarations: [DropdownDirective, CalendarDirective, PopupDirective, TimeDirective, HeaderComponent, FooterComponent, FormBlockComponent, TableBlockComponent, TableActionDeleteComponent, TableActionEditComponent, TableActionViewComponent],
-  providers: [CacheService, AuthenticatedGuard, MenuService]
+    CommonModule,
+    FormsModule
+  ],
+
+  exports: [
+    DropdownDirective, 
+    CalendarDirective, 
+    PopupDirective, 
+    TimeDirective, 
+    HeaderComponent, 
+    FooterComponent, 
+    FormBlockComponent, 
+    TableBlockComponent, 
+    TableActionDeleteComponent, 
+    TableActionEditComponent, 
+    TableActionViewComponent,
+    MultiDropdownDirective,
+    MultiInputComponent
+  ],
+
+  declarations: [
+    DropdownDirective, 
+    CalendarDirective, 
+    PopupDirective, 
+    TimeDirective, 
+    HeaderComponent, 
+    FooterComponent, 
+    FormBlockComponent, 
+    TableBlockComponent, 
+    TableActionDeleteComponent, 
+    TableActionEditComponent, 
+    TableActionViewComponent,
+    MultiDropdownDirective,
+    MultiInputComponent
+  ],
+
+  providers: [
+    CacheService, 
+    AuthenticatedGuard, 
+    MenuService
+  ]
 })
 export class SharedModule { }

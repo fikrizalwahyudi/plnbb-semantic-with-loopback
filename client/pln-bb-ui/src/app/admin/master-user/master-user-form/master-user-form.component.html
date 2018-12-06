@@ -25,6 +25,18 @@
                  formControlName="email">
         </div>
         <div class="required field">
+          <label>Roles</label>
+          <select multiple class="ui dropdown" uiMultiDropdown [values]="roles" formControlName="roles">
+            <option value="" disabled hidden>Select Roles</option>
+            <!-- <option value="">Select Grant Types</option>
+            <option value="authorization_code">Authorization Code</option>
+            <option value="password">Password</option>
+            <option value="client_credentials">Client Credentials</option>
+            <option value="refresh_token">Refresh Token</option> -->
+            <!-- <option *ngFor="let role of roles" [value]="role.id">{{role.description}}</option> -->
+          </select>
+        </div>
+        <div class="required field">
           <label>Password</label>
           <div class="two fields">
             <div class="field">
