@@ -24,6 +24,11 @@ import { ReferensiKontrak } from '../../models/ReferensiKontrak';
 import { ReferensiKontrakMitra } from '../../models/ReferensiKontrakMitra';
 import { ReferensiKontrakPltu } from '../../models/ReferensiKontrakPltu';
 import { ReferensiKontrakTambang } from '../../models/ReferensiKontrakTambang';
+import { MitraKesanggupan } from '../../models/MitraKesanggupan';
+import { MitraKesanggupanTambang } from '../../models/MitraKesanggupanTambang';
+import { PlnRencana } from '../../models/PlnRencana';
+import { PlnRealisasi } from '../../models/PlnRealisasi';
+import { ShippingInstruction } from '../../models/ShippingInstruction';
 
 export interface Models { [name: string]: any }
 
@@ -55,6 +60,11 @@ export class SDKModels {
     ReferensiKontrakMitra: ReferensiKontrakMitra,
     ReferensiKontrakPltu: ReferensiKontrakPltu,
     ReferensiKontrakTambang: ReferensiKontrakTambang,
+    MitraKesanggupan: MitraKesanggupan,
+    MitraKesanggupanTambang: MitraKesanggupanTambang,
+    PlnRencana: PlnRencana,
+    PlnRealisasi: PlnRealisasi,
+    ShippingInstruction: ShippingInstruction,
     
   };
 

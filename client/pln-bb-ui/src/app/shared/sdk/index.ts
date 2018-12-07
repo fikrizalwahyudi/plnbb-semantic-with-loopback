@@ -72,6 +72,11 @@ import { ReferensiKontrakApi } from './services/custom/ReferensiKontrak';
 import { ReferensiKontrakMitraApi } from './services/custom/ReferensiKontrakMitra';
 import { ReferensiKontrakPltuApi } from './services/custom/ReferensiKontrakPltu';
 import { ReferensiKontrakTambangApi } from './services/custom/ReferensiKontrakTambang';
+import { MitraKesanggupanApi } from './services/custom/MitraKesanggupan';
+import { MitraKesanggupanTambangApi } from './services/custom/MitraKesanggupanTambang';
+import { PlnRencanaApi } from './services/custom/PlnRencana';
+import { PlnRealisasiApi } from './services/custom/PlnRealisasi';
+import { ShippingInstructionApi } from './services/custom/ShippingInstruction';
 /**
 * @module SDKBrowserModule
 * @description
@@ -126,6 +131,11 @@ export class SDKBrowserModule {
         ReferensiKontrakMitraApi,
         ReferensiKontrakPltuApi,
         ReferensiKontrakTambangApi,
+        MitraKesanggupanApi,
+        MitraKesanggupanTambangApi,
+        PlnRencanaApi,
+        PlnRealisasiApi,
+        ShippingInstructionApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser },
         { provide: SocketDriver, useClass: SocketBrowser }

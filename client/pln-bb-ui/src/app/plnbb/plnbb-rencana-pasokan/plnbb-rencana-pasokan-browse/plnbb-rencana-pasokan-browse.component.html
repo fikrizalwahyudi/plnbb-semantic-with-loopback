@@ -22,7 +22,6 @@
             </div>
           </div>
         </div>
-        
       </div>
       <div class="column">
         <div class="required field">
@@ -62,7 +61,9 @@
   </div>
 </div>
 <div class="ui bottom attached segment">
-  <form class="ui form">
+  <form class="ui form"
+        [formGroup]="fg"
+        (ngSubmit)="save()" >
     <div class="inline field">
       <button class="ui secondary button"
               type="button"
@@ -74,35 +75,25 @@
   </form>
 </div>
 <ui-table-block>
-    <ng-container class="table-block-menu">
-      <a class="item"
-         [routerLink]="['/plnbb', 'rencana-pasokan', 'create']">
-        <i class="plus icon"></i> Register
-      </a>
-      
-    </ng-container>
     <thead>
       <tr>
-          <th>Bulan</th>
           <th>PLTU</th>
           <th>Mitra</th>
           <th>Tgl.</th>
           <th>Tipe</th>
           <th>Mode</th>
           <th>Jumlah</th>
-          <th>Status</th>
       </tr>
     </thead>
     <tbody>
-      <tr >
-        <td>bulan</td>
-        <td>pltu</td>
-        <td>mitra</td>
-        <td>tgl</td>
-        <td>tipe</td>
-        <td>mode</td>
-        <td>jumlah</td>
-        <td>status</td>
+      <tr *ngFor="let item of listPlnRencana" >
+        <td>{{item.mitraKesanggupan.tujuanPltu.name}}</td>
+        <td>{{item.mitraKesanggupan.referensiKontrak.mitra.name}}</td>
+        <td>{{item.tanggalPengiriman}}</td>
+        <td>{{item.mitraKesanggupan.referensiKontrak.tipe}}</td>
+        <td>{{item.mitraKesanggupan.mode}}</td>
+        <td>{{item.mitraKesanggupan.jumlah}}</td>
+        
       </tr>
     </tbody>
   </ui-table-block>
