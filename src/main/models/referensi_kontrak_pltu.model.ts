@@ -40,5 +40,11 @@ export class ReferensiKontrakPltuModel extends PersistedModel {
 	@Property('string')
 	pltuId: string
 
+	@Relation("belongsTo", "Pltu", "pltuId")
+	pltu
+
+	@Relation("belongsTo", "ReferensiKontrak", "referensiKontrakId")
+	referensiKontrak
+
 }
 

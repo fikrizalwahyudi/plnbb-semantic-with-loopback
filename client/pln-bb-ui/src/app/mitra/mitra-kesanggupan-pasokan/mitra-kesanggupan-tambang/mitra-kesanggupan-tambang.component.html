@@ -1,0 +1,68 @@
+<ui-form-block title="Sumber Tambang"
+               [errorMsg]="errorMsg"
+               [submitting]="submitting">
+  <div class="ui two column grid">
+    <div class="column border-right">
+      <form [formGroup]="fg"
+            (ngSubmit)="save()"
+            class="ui form">
+
+        <div class="required field">
+          <label>Tambang dan Jumlah</label>
+          <div class="two fields"
+               *ngFor="let itemTambang of daftarTambang.controls; let i=index; let first = first; let last = last"
+               [formGroup]="itemTambang">
+            <div class="field">
+              <div class="required field">
+                <div class="ui fluid search normal selection dropdown"
+                     uiSearchDropdown
+                     [url]="tambangUri"
+                     [filter]="searchFilterTambang"
+                     (onSearch)="onSearchTambang($event)"
+                     formControlName="tambangId">
+                  <input type="hidden">
+                  <i class="dropdown icon"></i>
+                  <div class="default text">Select Tambang</div>
+                  <div class="menu">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui action input">
+                <input type="text"
+                       placeholder="Jumlah" formControlName="jumlah">
+                <button *ngIf="last"
+                        class="ui icon button"
+                        (click)="addTambang(fg)">
+                  <i class="plus icon"></i>
+                </button>
+                <button *ngIf="!last"
+                        class="ui icon button"
+                        (click)="delTambang(i, fg)">
+                  <i class="minus icon"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="inline field">
+          <button class="ui secondary button"
+                  type="button"
+                  (click)="cancel()">Cancel</button>
+          <button class="ui primary button"
+                  type="submit"
+                  [disabled]="!fg.valid">Save Changes</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="column">
+      <div class="fullheight fullwidth"
+           style="background: url(assets/paragraph.png)">
+
+      </div>
+    </div>
+  </div>
+</ui-form-block>

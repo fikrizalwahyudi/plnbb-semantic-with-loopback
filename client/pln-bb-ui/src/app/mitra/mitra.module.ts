@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { MitraKesanggupanPasokanComponent } from './mitra-kesanggupan-pasokan/mitra-kesanggupan-pasokan.component';
 import { MitraComponent } from './mitra.component';
 import { HomeComponent } from '../admin/home/home.component';
+import { MitraKesanggupanTambangComponent } from './mitra-kesanggupan-pasokan/mitra-kesanggupan-tambang/mitra-kesanggupan-tambang.component';
 const appRoutes: Routes = [
   {
     path: 'mitra', component: MitraComponent, children: [
@@ -13,7 +14,7 @@ const appRoutes: Routes = [
 
       { path: 'home', component: HomeComponent },
       { path: 'kesanggupan-pasokan', component: MitraKesanggupanPasokanComponent },
-
+      { path: 'kesanggupan-tambang/:id', component: MitraKesanggupanTambangComponent }
     ]
   }
 ]
@@ -28,9 +29,11 @@ const appRoutes: Routes = [
   ],
   declarations: [
     MitraKesanggupanPasokanComponent,
+    MitraKesanggupanTambangComponent,
   ],
   exports: [
     MitraKesanggupanPasokanComponent,
+    MitraKesanggupanTambangComponent,
   ]
 })
 export class MitraModule { }

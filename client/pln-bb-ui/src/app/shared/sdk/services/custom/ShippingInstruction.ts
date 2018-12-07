@@ -9,17 +9,17 @@ import { LoopBackFilter,  } from '../../models/BaseModels';
 import { ErrorHandler } from '../core/error.service';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ReferensiKontrakPltu } from '../../models/ReferensiKontrakPltu';
+import { ShippingInstruction } from '../../models/ShippingInstruction';
 import { SocketConnection } from '../../sockets/socket.connections';
-import { Pltu } from '../../models/Pltu';
-import { ReferensiKontrak } from '../../models/ReferensiKontrak';
+import { PlnRencana } from '../../models/PlnRencana';
+import { Mitra } from '../../models/Mitra';
 
 
 /**
- * Api services for the `ReferensiKontrakPltu` model.
+ * Api services for the `ShippingInstruction` model.
  */
 @Injectable()
-export class ReferensiKontrakPltuApi extends BaseLoopBackApi {
+export class ShippingInstructionApi extends BaseLoopBackApi {
 
   constructor(
     @Inject(HttpClient) protected http: HttpClient,
@@ -32,9 +32,9 @@ export class ReferensiKontrakPltuApi extends BaseLoopBackApi {
   }
 
   /**
-   * Fetches belongsTo relation pltu.
+   * Fetches belongsTo relation plnRencana.
    *
-   * @param {any} id ReferensiKontrakPltu id
+   * @param {any} id ShippingInstruction id
    *
    * @param {boolean} refresh 
    *
@@ -44,13 +44,13 @@ export class ReferensiKontrakPltuApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `ReferensiKontrakPltu` object.)
+   * This usually means the response is a `ShippingInstruction` object.)
    * </em>
    */
-  public getPltu(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+  public getPlnRencana(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/referensi_kontrak_pltu/:id/pltu";
+    "/shipping_instruction/:id/plnRencana";
     let _routeParams: any = {
       id: id
     };
@@ -62,9 +62,9 @@ export class ReferensiKontrakPltuApi extends BaseLoopBackApi {
   }
 
   /**
-   * Fetches belongsTo relation referensiKontrak.
+   * Fetches belongsTo relation transport.
    *
-   * @param {any} id ReferensiKontrakPltu id
+   * @param {any} id ShippingInstruction id
    *
    * @param {boolean} refresh 
    *
@@ -74,13 +74,13 @@ export class ReferensiKontrakPltuApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `ReferensiKontrakPltu` object.)
+   * This usually means the response is a `ShippingInstruction` object.)
    * </em>
    */
-  public getReferensiKontrak(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+  public getTransport(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/referensi_kontrak_pltu/:id/referensiKontrak";
+    "/shipping_instruction/:id/transport";
     let _routeParams: any = {
       id: id
     };
@@ -104,13 +104,13 @@ export class ReferensiKontrakPltuApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `ReferensiKontrakPltu` object.)
+   * This usually means the response is a `ShippingInstruction` object.)
    * </em>
    */
   public patchOrCreate(data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/referensi_kontrak_pltu";
+    "/shipping_instruction";
     let _routeParams: any = {};
     let _postBody: any = {
       data: data
@@ -123,7 +123,7 @@ export class ReferensiKontrakPltuApi extends BaseLoopBackApi {
   /**
    * Patch attributes for a model instance and persist it into the data source.
    *
-   * @param {any} id ReferensiKontrakPltu id
+   * @param {any} id ShippingInstruction id
    *
    * @param {object} data Request data.
    *
@@ -135,13 +135,13 @@ export class ReferensiKontrakPltuApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `ReferensiKontrakPltu` object.)
+   * This usually means the response is a `ShippingInstruction` object.)
    * </em>
    */
   public patchAttributes(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/referensi_kontrak_pltu/:id";
+    "/shipping_instruction/:id";
     let _routeParams: any = {
       id: id
     };
@@ -155,9 +155,9 @@ export class ReferensiKontrakPltuApi extends BaseLoopBackApi {
 
   /**
    * The name of the model represented by this $resource,
-   * i.e. `ReferensiKontrakPltu`.
+   * i.e. `ShippingInstruction`.
    */
   public getModelName() {
-    return "ReferensiKontrakPltu";
+    return "ShippingInstruction";
   }
 }
