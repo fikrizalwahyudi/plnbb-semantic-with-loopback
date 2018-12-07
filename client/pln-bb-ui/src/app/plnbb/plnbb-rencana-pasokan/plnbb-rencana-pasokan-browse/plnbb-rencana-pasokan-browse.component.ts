@@ -114,19 +114,25 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
         where:{
           tujuanPltuId: obj,
           // tglPengiriman: {gt: new Date('2014-04-01T18:30:00.000Z')},
-          tglPengiriman: {between: [new Date('2018-'+(this.fg.value.bulan + 1)+'-01T18:30:00.000Z'),new Date('2018-'+(this.fg.value.bulan + 1)+'-30T18:30:00.000Z')]}
+          tglPengiriman: {between: [new Date('2018-'+(this.fg.value.bulan + 1)+'-01T18:30:00.000Z'),new Date('2018-'+(this.fg.value.bulan + 1)+'-30T18:30:00.000Z')]},
+          lock: true
         },
         include: {referensiKontrak: ['mitra']},
         limit: 10
       }
     ).subscribe(data=>{
-      console.log(data);
+      //console.log(data);
+      this.listMitra = []
       data.map((item:any)=>{
+        console.log(item)
         this.listMitra.push({
-          name: item.referensiKontrak.mitra.name + "-" + item.jumlah + "- Rp. " + item.harga,
+          name: `<div>
+            <p><b>${item.referensiKontrak.mitra.name}</b></p>
+            <p>Jumlah : ${item.jumlah} MT<br>
+            Harga : IDR ${item.harga}</p>
+          </div>`,
           value: item.id,
-          text: item.referensiKontrak.mitra.name + "-" + item.jumlah + "- Rp. " + item.harga,
-          item: item.referensiKontrak.mitra.name + "-" + item.jumlah + "- Rp. " + item.harga
+          text: item.referensiKontrak.mitra.name + "-" + item.jumlah + "- Rp. " + item.harga
         })
       })
     })
@@ -135,17 +141,27 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
   
 
   save(){
-    console.log(this.fg.value.mitra.value);
+    console.log(this.fg.value);
     var obj = {
-      mitraKesanggupanId: this.fg.value.mitra.value,
+      mitraKesanggupanId: this.fg.value.mitra,
       tglPengiriman: this.fg.value.tanggalPengiriman
     }
+
     this.plnRencanaApi.create(obj).subscribe(() => {
-      console.log("success");
+      //console.log("success");
       // this.router.navigate(['/admin', 'mitra'])
       // this.formComponent.submitting = false
+      //location.reload()
+
+      this.plnRencanaApi.find({
+        include: {mitraKesanggupan:['tujuanPltu', {referensiKontrak:['mitra']}]},
+        limit:30
+      }).subscribe(data=>{
+        this.listPlnRencana = data;
+        console.log(data);
+      })
     }, (err) => {
-      console.log(err);
+      //console.log(err);
       // this.formComponent.errorMsg = err.message
       // this.formComponent.submitting = false
     })

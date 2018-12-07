@@ -12,10 +12,10 @@
         <div class="required field">
           <label>Mitra</label>
           <select class="ui dropdown"
-                  formControlName="mitra">
-            <option [value]="null">Pilih Mitra</option>
+                  formControlName="mitra" uiDropDown>
+            <option value="" disabled hidden>Pilih Mitra</option>
             <option *ngFor="let item of listMitra; let index = index"
-                    [value]="item.id">{{item.name}}</option>
+                    [value]="item.value"><span [innerHTML]="item.name"></span></option>
           </select>
         </div>
         <!-- <div class="required field">
