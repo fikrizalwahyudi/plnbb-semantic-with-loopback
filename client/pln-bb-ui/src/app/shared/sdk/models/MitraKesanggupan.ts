@@ -1,7 +1,8 @@
 /* tslint:disable */
 import {
   ReferensiKontrak,
-  Pltu
+  Pltu,
+  MitraKesanggupanTambang
 } from '../index';
 
 declare var Object: any;
@@ -14,9 +15,11 @@ export interface MitraKesanggupanInterface {
   "mode"?: string;
   "keterangan"?: string;
   "lock"?: boolean;
+  "userId"?: any;
   "id"?: any;
   referensiKontrak?: ReferensiKontrak;
   tujuanPltu?: Pltu;
+  sumberTambang?: MitraKesanggupanTambang[];
 }
 
 export class MitraKesanggupan implements MitraKesanggupanInterface {
@@ -28,9 +31,11 @@ export class MitraKesanggupan implements MitraKesanggupanInterface {
   "mode": string = '';
   "keterangan": string = '';
   "lock": boolean = false;
+  "userId": any = <any>null;
   "id": any = <any>null;
   referensiKontrak: ReferensiKontrak = null;
   tujuanPltu: Pltu = null;
+  sumberTambang: MitraKesanggupanTambang[] = null;
   constructor(data?: MitraKesanggupanInterface) {
     Object.assign(this, data);
   }
@@ -96,6 +101,10 @@ export class MitraKesanggupan implements MitraKesanggupanInterface {
           name: 'lock',
           type: 'boolean'
         },
+        "userId": {
+          name: 'userId',
+          type: 'any'
+        },
         "id": {
           name: 'id',
           type: 'any'
@@ -117,6 +126,14 @@ export class MitraKesanggupan implements MitraKesanggupanInterface {
           relationType: 'belongsTo',
                   keyFrom: 'tujuanPltuId',
           keyTo: 'id'
+        },
+        sumberTambang: {
+          name: 'sumberTambang',
+          type: 'MitraKesanggupanTambang[]',
+          model: 'MitraKesanggupanTambang',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'mitraKesanggupanId'
         },
       }
     }

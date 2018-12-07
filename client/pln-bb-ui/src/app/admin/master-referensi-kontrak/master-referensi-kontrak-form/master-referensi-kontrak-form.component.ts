@@ -32,6 +32,16 @@ export class MasterReferensiKontrakFormComponent implements OnInit {
       name:"FOB"
     }
   ]
+  tipe = [
+    {
+      id:1,
+      name:"LRC"
+    },
+    {
+      id:2,
+      name:"MRC"
+    }
+  ]
 
   mitraUri = `${environment.apiUrl}/api/mitra`
   searchFilterMitra = {
@@ -73,9 +83,11 @@ export class MasterReferensiKontrakFormComponent implements OnInit {
       namaPekerjaan: [null, [Validators.required]],
       tanggalPekerjaan: [new Date(), [Validators.required]],
       jenis: [null, [Validators.required]],
+      tipe: [null, [Validators.required]],
       mitra: [null, [Validators.required]],
       pltu: [null, [Validators.required]],
-      tambang: [null, [Validators.required]]
+      tambang: [null, [Validators.required]],
+      harga: [null, [Validators.required]],
     })
    }
 

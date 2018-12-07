@@ -27,3 +27,8 @@ Yang Belum
 - master mitra 
 
 pindahkan alur rest 
+
+
+
+cari dari mitra kesanggupan model berdasarkan tahun bulan , tujuan pltu
+cari semua referensikontrak dengan  mitra - 

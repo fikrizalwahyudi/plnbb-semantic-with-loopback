@@ -8,6 +8,7 @@ declare var Object: any;
 export interface MitraKesanggupanTambangInterface {
   "mitraKesanggupanId"?: any;
   "tambangId"?: any;
+  "jumlah"?: number;
   "id"?: any;
   mitraKesanggupan?: MitraKesanggupan;
   tambang?: Tambang;
@@ -16,6 +17,7 @@ export interface MitraKesanggupanTambangInterface {
 export class MitraKesanggupanTambang implements MitraKesanggupanTambangInterface {
   "mitraKesanggupanId": any = <any>null;
   "tambangId": any = <any>null;
+  "jumlah": number = 0;
   "id": any = <any>null;
   mitraKesanggupan: MitraKesanggupan = null;
   tambang: Tambang = null;
@@ -59,6 +61,10 @@ export class MitraKesanggupanTambang implements MitraKesanggupanTambangInterface
         "tambangId": {
           name: 'tambangId',
           type: 'any'
+        },
+        "jumlah": {
+          name: 'jumlah',
+          type: 'number'
         },
         "id": {
           name: 'id',

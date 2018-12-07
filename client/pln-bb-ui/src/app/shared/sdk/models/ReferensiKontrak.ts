@@ -13,6 +13,8 @@ export interface ReferensiKontrakInterface {
   "jenis"?: string;
   "status"?: number;
   "mitraId"?: any;
+  "tipe"?: string;
+  "harga"?: number;
   "id"?: any;
   mitra?: Mitra;
   pltuPrincipals?: ReferensiKontrakPltu[];
@@ -26,6 +28,8 @@ export class ReferensiKontrak implements ReferensiKontrakInterface {
   "jenis": string = '';
   "status": number = 0;
   "mitraId": any = <any>null;
+  "tipe": string = '';
+  "harga": number = 0;
   "id": any = <any>null;
   mitra: Mitra = null;
   pltuPrincipals: ReferensiKontrakPltu[] = null;
@@ -86,6 +90,14 @@ export class ReferensiKontrak implements ReferensiKontrakInterface {
         "mitraId": {
           name: 'mitraId',
           type: 'any'
+        },
+        "tipe": {
+          name: 'tipe',
+          type: 'string'
+        },
+        "harga": {
+          name: 'harga',
+          type: 'number'
         },
         "id": {
           name: 'id',

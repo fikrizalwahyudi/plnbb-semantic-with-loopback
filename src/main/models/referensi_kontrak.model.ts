@@ -61,6 +61,12 @@ export class ReferensiKontrakModel extends PersistedModel
 	@Property('any')
 	mitraId:any
 
+	@Property('string')
+	tipe:string
+
+	@Property('number')
+	harga:number
+
 	@Relation("belongsTo", "Mitra", "mitraId")
 	mitra
 
