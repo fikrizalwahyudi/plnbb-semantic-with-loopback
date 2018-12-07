@@ -11,9 +11,15 @@
         </div>
         <div class="required field">
           <label>Mitra</label>
-          <!-- <input type="text"
-                  placeholder="user"
-                  formControlName="user"> -->
+          <select class="ui dropdown"
+                  formControlName="mitra">
+            <option [value]="null">Pilih Mitra</option>
+            <option *ngFor="let item of listMitra; let index = index"
+                    [value]="item.id">{{item.name}}</option>
+          </select>
+        </div>
+        <!-- <div class="required field">
+          <label>Mitra</label>
           <div class="ui fluid search normal selection dropdown" uiSearchDropdown [url]="mitraUri" [filter]="searchFilterMitra" (onSearch)="onSearchMitra($event)" formControlName="mitra">
             <input type="hidden">
             <i class="dropdown icon"></i>
@@ -21,7 +27,7 @@
             <div class="menu">           
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="column">
         <div class="required field">
@@ -46,11 +52,21 @@
         </div>
       </div>
       <div class="column">
+        <!-- <div class="required field">
+          <label>PLTU</label>
+          <div class="ui fluid search normal selection dropdown" uiSearchDropdown [url]="pltuUri" [filter]="searchFilterPltu" (change)="onSelectPltu($event.target.value)" (onSearch)="onSearchPltu($event)" formControlName="pltu">
+            <input type="hidden">
+            <i class="dropdown icon"></i>
+            <div class="default text">Select Pltu</div>
+            <div class="menu">           
+            </div>
+          </div>
+        </div> -->
         <div class="required field">
           <label>PLTU</label>
           <select class="ui dropdown"
                   formControlName="pltu"
-                  (change)="onSelectPLTU($event.target.value)">
+                  (change)="onSelectPltu($event.target.value)">
             <option [value]="null">Pilih PLTU</option>
             <option *ngFor="let item of pltus; let index = index"
                     [value]="item.id">{{item.name}}</option>
@@ -89,7 +105,7 @@
       <tr *ngFor="let item of listPlnRencana" >
         <td>{{item.mitraKesanggupan.tujuanPltu.name}}</td>
         <td>{{item.mitraKesanggupan.referensiKontrak.mitra.name}}</td>
-        <td>{{item.tglPengiriman}}</td>
+        <td>{{item.tglPengiriman | date:'shortDate'}}</td>
         <td>{{item.mitraKesanggupan.referensiKontrak.tipe}}</td>
         <td>{{item.mitraKesanggupan.mode}}</td>
         <td>{{item.mitraKesanggupan.jumlah}}</td>

@@ -1,16 +1,24 @@
 /* tslint:disable */
+import {
+  Pltu,
+  ReferensiKontrak
+} from '../index';
 
 declare var Object: any;
 export interface ReferensiKontrakPltuInterface {
   "referensiKontrakId"?: any;
   "pltuId"?: any;
   "id"?: any;
+  pltu?: Pltu;
+  referensiKontrak?: ReferensiKontrak;
 }
 
 export class ReferensiKontrakPltu implements ReferensiKontrakPltuInterface {
   "referensiKontrakId": any = <any>null;
   "pltuId": any = <any>null;
   "id": any = <any>null;
+  pltu: Pltu = null;
+  referensiKontrak: ReferensiKontrak = null;
   constructor(data?: ReferensiKontrakPltuInterface) {
     Object.assign(this, data);
   }
@@ -58,6 +66,22 @@ export class ReferensiKontrakPltu implements ReferensiKontrakPltuInterface {
         },
       },
       relations: {
+        pltu: {
+          name: 'pltu',
+          type: 'Pltu',
+          model: 'Pltu',
+          relationType: 'belongsTo',
+                  keyFrom: 'pltuId',
+          keyTo: 'id'
+        },
+        referensiKontrak: {
+          name: 'referensiKontrak',
+          type: 'ReferensiKontrak',
+          model: 'ReferensiKontrak',
+          relationType: 'belongsTo',
+                  keyFrom: 'referensiKontrakId',
+          keyTo: 'id'
+        },
       }
     }
   }

@@ -42,6 +42,9 @@ export class MitraKesanggupanTambangModel extends PersistedModel
 	@Property('any')
 	tambangId:any
 
+	@Property('number')
+	jumlah:number
+
 	@Relation("belongsTo", "MitraKesanggupan", "mitraKesanggupanId")
 	mitraKesanggupan
 

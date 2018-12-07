@@ -1,46 +1,37 @@
 <div class="ui top attached yellow segment">
   <div [formGroup]="fg"
-        class="ui form">
+       class="ui form">
     <div class="ui three column grid">
       <div class="column">
         <div class="required field">
           <label>Referensi Kontrak</label>
-          <div class="ui fluid search normal selection dropdown" uiSearchDropdown [url]="kontrakUri" [filter]="searchFilterKontrak" (onSearch)="onSearchKontrak($event)" formControlName="kontrak">
-            <input type="hidden">
-            <i class="dropdown icon"></i>
-            <div class="default text">Select Kontrak</div>
-            <div class="menu">           
-            </div>
-          </div>
-        </div>
-        <div class="required field">
-          <label>Sumber Tambang</label>
           <select class="ui dropdown"
-                  formControlName="tambang"
-                  (change)="onSelectPLTU($event.target.value)">
-            <option [value]="null">Pilih Sumber Tambang</option>
-            <option *ngFor="let item of pltus; let index = index"
-                    [value]="item.id">{{item.name}}</option>
+                  formControlName="referensiKontrakId"
+                  (select)="onSelectKontrak($event)"
+                  uiDropDown
+                  [values]="daftarKontrak"
+                  placeholder="Pilih Kontrak">
+
           </select>
         </div>
         <div class="required field">
           <label>Tujuan PLTU</label>
           <select class="ui dropdown"
-                  formControlName="pltu"
-                  (change)="onSelectPLTU($event.target.value)">
-            <option [value]="null">Pilih PLTU</option>
+                  formControlName="tujuanPltuId"
+                  uiDropDown>
+            <option value=""
+                    disabled
+                    hidden>Pilih PLTU</option>
             <option *ngFor="let item of pltus; let index = index"
                     [value]="item.id">{{item.name}}</option>
           </select>
         </div>
-      </div>
 
-      <div class="column">
         <div class="required field">
           <label>Tgl. Pengiriman</label>
           <div class="ui calendar"
                uiCalendar
-               formControlName="tgl">
+               formControlName="tglPengiriman">
             <div class="ui input left icon">
               <i class="calendar icon"></i>
               <input type="text"
@@ -48,38 +39,52 @@
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="required field">
-          <label>Jumlah</label>
-          <input type="text"
-                  placeholder="Jumlah Tonnase"
-                  formControlName="jumlah">
-        </div>
+      <div class="column">
         <div class="required field">
           <label>Mode Pengiriman</label>
           <select class="ui dropdown"
-                  formControlName="mode">
-            <option [value]="null" disabled hidden>Pilih Mode</option>
+                  formControlName="mode"
+                  uiDropDown>
+            <option value=""
+                    disabled
+                    hidden>Pilih Mode</option>
             <option value="tongkang">Tongkang</option>
             <option value="vessels">Vessels</option>
             <option value="trucking">Trucking</option>
           </select>
         </div>
+        <div class="required field">
+          <label>Jumlah</label>
+          <input type="text"
+                 placeholder="Jumlah Tonnase"
+                 formControlName="jumlah">
+        </div>
+        <div class="required field">
+          <label>Harga</label>
+          <input type="text"
+                 placeholder="Harga Metric Ton"
+                 formControlName="harga">
+        </div>
       </div>
 
       <div class="column">
-        <div class="field">
-          <label>Keterangan Tambahan</label>
-          <input type="text"
-                  placeholder="keterangan"
-                  formControlName="keterangan">
+        <div class="ui form">
+          <div class="field">
+            <label>Keterangan</label>
+            <input type="text"
+                   placeholder="keterangan"
+                   formControlName="keterangan">
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 <div class="ui bottom attached segment">
-  <form class="ui form">
+  <form class="ui form"
+        (ngSubmit)="save()">
     <div class="inline field">
       <button class="ui secondary button"
               type="button"
@@ -139,17 +144,43 @@
   <table class="ui sortable single line striped table">
     <thead>
       <tr>
-        <th>Bulan</th>
+        <!-- <th>Bulan</th> -->
         <th>PLTU</th>
-        <th>Tgl.</th>
-        <th>Tipe</th>
+        <th>Tgl. Pengiriman</th>
         <th>Mode</th>
         <th>Jumlah</th>
-        <th></th>
+        <th>Harga</th>
+        <th class="center aligned collapsing"></th>
       </tr>
     </thead>
     <tbody>
-
+      <tr *ngFor="let item of daftarKesanggupan">
+        <td>{{item.tujuanPltu.name}}</td>
+        <td>{{item.tglPengiriman | date:'shortDate'}}</td>
+        <td>{{item.mode | titlecase}}</td>
+        <td>{{item.jumlah | number}}</td>
+        <td>{{item.harga | currency:'IDR'}}</td>
+        <td class="center aligned collapsing">
+          <a href="javascript:void(0)"
+            (click)="delete(item)"
+            *ngIf="!item.lock">
+            <i class="trash link icon action-icon"></i>
+          </a>
+          <a [routerLink]="['/mitra', 'kesanggupan-tambang', item.id]" *ngIf="!item.lock">
+            <i class="cogs link icon action-icon"></i>
+          </a>
+          <a href="javascript:void(0)"
+            (click)="lock(item)"
+            *ngIf="!item.lock">
+            <i class="lock open link icon action-icon"></i>
+          </a>
+          <a href="javascript:void(0)"
+            *ngIf="item.lock"
+            disabled>
+            <i class="lock link green icon action-icon"></i>
+          </a>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>
