@@ -21,11 +21,12 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
   errorMsg: string;
   disabled = true;
   listPlnRencana = [];
+  pltuId:string;
 
   mitraUri = `${environment.apiUrl}/api/mitra_kesanggupan`
   searchFilterMitra = {
     where:{
-      
+      tujuanPltuId: this.pltuId
     },
     include: {referensiKontrak: ['mitra']},
     limit: 10
@@ -61,6 +62,7 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
   }
 
   onSearchMitra({response, cb}) {
+    console.log(this.pltuId)
     cb({
       success: true,
       results: _.values(response).map(item => {
@@ -76,6 +78,7 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
 
   onSelectPLTU(obj){
     console.log(obj);
+    this.searchFilterMitra.where.tujuanPltuId = obj;
   }
 
   save(){
@@ -84,8 +87,6 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
       mitraKesanggupanId: this.fg.value.mitra.value,
       tglPengiriman: this.fg.value.tanggalPengiriman
     }
-    // this.plnRencana.mitraKesanggupanId = this.fg.value.mitra.value;
-    // this.plnRencana.tglPengiriman = this.fg.value.tanggalPengiriman;
     this.plnRencanaApi.create(obj).subscribe(() => {
       console.log("success");
       // this.router.navigate(['/admin', 'mitra'])
