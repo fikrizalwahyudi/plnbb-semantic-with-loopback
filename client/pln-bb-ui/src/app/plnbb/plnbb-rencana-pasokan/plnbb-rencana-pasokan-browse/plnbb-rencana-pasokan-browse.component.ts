@@ -24,7 +24,8 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
   listPlnRencana = [];
   pltuId:string;
   listMitra = [];
-
+  selectedMitraId:string;
+  month = 0;
   mitraUri = `${environment.apiUrl}/api/mitra_kesanggupan`
   searchFilterMitra = {
     where:{
@@ -103,6 +104,17 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
         }
       })
     })
+  }
+
+  onSelectBulan(obj){
+    console.log(obj);
+    this.month = obj;
+  }
+
+  onSelectMitra(obj){
+    console.log(obj);
+    console.log(this.fg.value.mitra);
+    this.selectedMitraId = obj;
   }
 
   onSelectPltu(obj){
