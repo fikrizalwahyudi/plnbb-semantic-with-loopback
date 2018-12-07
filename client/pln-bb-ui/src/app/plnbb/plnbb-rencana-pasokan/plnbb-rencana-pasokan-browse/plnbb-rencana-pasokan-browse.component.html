@@ -12,10 +12,11 @@
         <div class="required field">
           <label>Mitra</label>
           <select class="ui dropdown"
-                  formControlName="mitra">
+                  formControlName="mitra"
+                  (change)="onSelectMitra($event.target.value)">
             <option [value]="null">Pilih Mitra</option>
             <option *ngFor="let item of listMitra; let index = index"
-                    [value]="item.id">{{item.name}}</option>
+                    [value]="item.value">{{item.name}}</option>
           </select>
         </div>
         <!-- <div class="required field">
@@ -33,7 +34,8 @@
         <div class="required field">
           <label>Bulan</label>
           <select class="ui dropdown"
-                  formControlName="bulan">
+                  formControlName="bulan"
+                  (change)="onSelectBulan($event.target.value)">
             <option [value]="null" disabled hidden>Pilih Bulan</option>
             <option *ngFor="let item of months; let index = index" [value]="index">{{item}}</option>
           </select>

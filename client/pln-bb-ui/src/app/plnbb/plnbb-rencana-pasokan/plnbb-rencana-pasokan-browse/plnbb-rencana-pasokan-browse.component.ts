@@ -24,7 +24,8 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
   listPlnRencana = [];
   pltuId:string;
   listMitra = [];
-
+  selectedMitraId:string;
+  month = 0;
   mitraUri = `${environment.apiUrl}/api/mitra_kesanggupan`
   searchFilterMitra = {
     where:{
@@ -105,6 +106,17 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
     })
   }
 
+  onSelectBulan(obj){
+    console.log(obj);
+    this.month = obj;
+  }
+
+  onSelectMitra(obj){
+    console.log(obj);
+    console.log(this.fg.value.mitra);
+    this.selectedMitraId = obj;
+  }
+
   onSelectPltu(obj){
     console.log(obj);
     console.log(this.fg.value.bulan);
@@ -122,6 +134,7 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
     ).subscribe(data=>{
       console.log(data);
       data.map((item:any)=>{
+        console.log(item.id);
         this.listMitra.push({
           name: item.referensiKontrak.mitra.name + "-" + item.jumlah + "- Rp. " + item.harga,
           value: item.id,
@@ -137,18 +150,22 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
   save(){
     console.log(this.fg.value.mitra.value);
     var obj = {
-      mitraKesanggupanId: this.fg.value.mitra.value,
+      mitraKesanggupanId: this.selectedMitraId,
       tglPengiriman: this.fg.value.tanggalPengiriman
     }
-    this.plnRencanaApi.create(obj).subscribe(() => {
-      console.log("success");
-      // this.router.navigate(['/admin', 'mitra'])
-      // this.formComponent.submitting = false
-    }, (err) => {
-      console.log(err);
-      // this.formComponent.errorMsg = err.message
-      // this.formComponent.submitting = false
-    })
+    console.log(obj);
+    if(obj.mitraKesanggupanId){
+      this.plnRencanaApi.create(obj).subscribe(() => {
+        console.log("success");
+        // this.router.navigate(['/admin', 'mitra'])
+        // this.formComponent.submitting = false
+      }, (err) => {
+        console.log(err);
+        // this.formComponent.errorMsg = err.message
+        // this.formComponent.submitting = false
+      })
+    }
+   
   }
 
 
