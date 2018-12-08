@@ -108,6 +108,14 @@ const appRoutes: Routes = [
       { path: ':id/tambang', component: MasterReferensiKontrakTambangComponent }
     ] },
 
+    {
+      path: 'jetty', component: MasterJettyComponent, children: [
+        { path: '', redirectTo: 'browse', pathMatch: 'full' },
+        { path: 'browse', component: MasterJettyBrowseComponent },
+        { path: 'create', component: MasterJettyFormComponent },
+        { path: ':id/edit', component: MasterPltuEditComponent }
+      ]
+    },
   ] }
 ]
 
