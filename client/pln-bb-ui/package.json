@@ -10,8 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "ng:c": "ng g c --spec false --styleext sass --export true",
-    "ng:c:flat": "ng g c --spec false --styleext sass --inline-style true --inline-template true --flat true --export true",
-    "hmr": "ng serve --hmr -e=hmr"
+    "ng:c:flat": "ng g c --spec false --styleext sass --inline-style true --inline-template true --flat true --export true"
   },
   "private": true,
   "dependencies": {
@@ -37,7 +36,6 @@
     "@angular/cli": "1.6.5",
     "@angular/compiler-cli": "^5.2.0",
     "@angular/language-service": "^5.2.0",
-    "@angularclass/hmr": "^2.1.3",
     "@types/jasmine": "~2.8.3",
     "@types/jasminewd2": "~2.0.2",
     "@types/jquery": "^3.3.22",
