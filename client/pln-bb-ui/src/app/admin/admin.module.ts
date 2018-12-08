@@ -54,6 +54,9 @@ import { MasterUserMitraFormComponent } from './master-user-mitra/master-user-mi
 import { MasterUserMitraCreateComponent } from './master-user-mitra/master-user-mitra-form/master-user-mitra-create.component';
 import { MasterReferensiKontrakPltuComponent } from './master-referensi-kontrak/master-referensi-kontrak-pltu/master-referensi-kontrak-pltu.component';
 import { MasterReferensiKontrakTambangComponent } from './master-referensi-kontrak/master-referensi-kontrak-tambang/master-referensi-kontrak-tambang.component';
+import { MasterJettyComponent } from './master-jetty/master-jetty.component';
+import { MasterJettyBrowseComponent } from './master-jetty/master-jetty-browse/master-jetty-browse.component';
+import { MasterJettyFormComponent } from './master-jetty/master-jetty-form/master-jetty-form.component';
 
 const appRoutes: Routes = [
   { path: 'admin', component: AdminComponent, children: [
@@ -160,7 +163,10 @@ const appRoutes: Routes = [
     MasterUserMitraFormComponent,
     MasterUserMitraCreateComponent,
     MasterReferensiKontrakPltuComponent,
-    MasterReferensiKontrakTambangComponent
+    MasterReferensiKontrakTambangComponent,
+    MasterJettyComponent,
+    MasterJettyBrowseComponent,
+    MasterJettyFormComponent
   ],
   exports : [
     MasterUserComponent, 
