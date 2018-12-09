@@ -31,17 +31,23 @@ export class JettyModel extends PersistedModel {
   id: any
 
   @Property('string')
-  namaPelabuhan: string
+  name: string
 
   @Property('string')
-  kode: string
+  code: string
 
   @Property('string')
-  provinsi: string
+  address: string
 
   @Property('string')
-  kota: string
+  province: string
 
   @Property('string')
-  koordinat: string
+  city: string
+
+  @Property('string')
+  latitude: string
+
+  @Property('string')
+  longitude: string
 }
