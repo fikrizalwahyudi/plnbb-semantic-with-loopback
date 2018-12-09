@@ -7,6 +7,10 @@ export interface PltuInterface {
   "address"?: string;
   "npwp"?: string;
   "status"?: number;
+  "province"?: string;
+  "city"?: string;
+  "latitude"?: string;
+  "longitude"?: string;
   "id"?: any;
 }
 
@@ -16,6 +20,10 @@ export class Pltu implements PltuInterface {
   "address": string = '';
   "npwp": string = '';
   "status": number = 0;
+  "province": string = '';
+  "city": string = '';
+  "latitude": string = '';
+  "longitude": string = '';
   "id": any = <any>null;
   constructor(data?: PltuInterface) {
     Object.assign(this, data);
@@ -69,6 +77,22 @@ export class Pltu implements PltuInterface {
         "status": {
           name: 'status',
           type: 'number'
+        },
+        "province": {
+          name: 'province',
+          type: 'string'
+        },
+        "city": {
+          name: 'city',
+          type: 'string'
+        },
+        "latitude": {
+          name: 'latitude',
+          type: 'string'
+        },
+        "longitude": {
+          name: 'longitude',
+          type: 'string'
         },
         "id": {
           name: 'id',

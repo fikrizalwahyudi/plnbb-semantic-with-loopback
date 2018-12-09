@@ -2,20 +2,24 @@
 
 declare var Object: any;
 export interface JettyInterface {
-  "namaPelabuhan"?: string;
-  "kode"?: string;
-  "provinsi"?: string;
-  "kota"?: string;
-  "koordinat"?: string;
+  "name"?: string;
+  "code"?: string;
+  "address"?: string;
+  "province"?: string;
+  "city"?: string;
+  "latitude"?: string;
+  "longitude"?: string;
   "id"?: any;
 }
 
 export class Jetty implements JettyInterface {
-  "namaPelabuhan": string = '';
-  "kode": string = '';
-  "provinsi": string = '';
-  "kota": string = '';
-  "koordinat": string = '';
+  "name": string = '';
+  "code": string = '';
+  "address": string = '';
+  "province": string = '';
+  "city": string = '';
+  "latitude": string = '';
+  "longitude": string = '';
   "id": any = <any>null;
   constructor(data?: JettyInterface) {
     Object.assign(this, data);
@@ -50,24 +54,32 @@ export class Jetty implements JettyInterface {
       path: 'jetty',
       idName: 'id',
       properties: {
-        "namaPelabuhan": {
-          name: 'namaPelabuhan',
+        "name": {
+          name: 'name',
           type: 'string'
         },
-        "kode": {
-          name: 'kode',
+        "code": {
+          name: 'code',
           type: 'string'
         },
-        "provinsi": {
-          name: 'provinsi',
+        "address": {
+          name: 'address',
           type: 'string'
         },
-        "kota": {
-          name: 'kota',
+        "province": {
+          name: 'province',
           type: 'string'
         },
-        "koordinat": {
-          name: 'koordinat',
+        "city": {
+          name: 'city',
+          type: 'string'
+        },
+        "latitude": {
+          name: 'latitude',
+          type: 'string'
+        },
+        "longitude": {
+          name: 'longitude',
           type: 'string'
         },
         "id": {

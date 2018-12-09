@@ -47,4 +47,16 @@ export class PltuModel extends PersistedModel
 	@Property('number')
 	status:number
 
+	@Property('string')
+	province: string
+
+	@Property('string')
+	city: string
+
+	@Property('string')
+	latitude: string
+
+	@Property('string')
+	longitude: string
+
 }

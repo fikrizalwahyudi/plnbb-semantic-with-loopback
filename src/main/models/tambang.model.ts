@@ -50,4 +50,16 @@ export class TambangModel extends PersistedModel
 	@Property('date')
 	tanggalHabis:Date
 
+	@Property('string')
+	province: string
+
+	@Property('string')
+	city: string
+
+	@Property('string')
+	latitude: string
+
+	@Property('string')
+	longitude: string
+
 }

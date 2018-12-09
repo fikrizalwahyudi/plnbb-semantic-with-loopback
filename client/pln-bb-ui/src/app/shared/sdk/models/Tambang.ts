@@ -8,6 +8,10 @@ export interface TambangInterface {
   "lokasi"?: string;
   "tanggalBerlaku"?: Date;
   "tanggalHabis"?: Date;
+  "province"?: string;
+  "city"?: string;
+  "latitude"?: string;
+  "longitude"?: string;
   "id"?: any;
 }
 
@@ -18,6 +22,10 @@ export class Tambang implements TambangInterface {
   "lokasi": string = '';
   "tanggalBerlaku": Date = new Date(0);
   "tanggalHabis": Date = new Date(0);
+  "province": string = '';
+  "city": string = '';
+  "latitude": string = '';
+  "longitude": string = '';
   "id": any = <any>null;
   constructor(data?: TambangInterface) {
     Object.assign(this, data);
@@ -75,6 +83,22 @@ export class Tambang implements TambangInterface {
         "tanggalHabis": {
           name: 'tanggalHabis',
           type: 'Date'
+        },
+        "province": {
+          name: 'province',
+          type: 'string'
+        },
+        "city": {
+          name: 'city',
+          type: 'string'
+        },
+        "latitude": {
+          name: 'latitude',
+          type: 'string'
+        },
+        "longitude": {
+          name: 'longitude',
+          type: 'string'
         },
         "id": {
           name: 'id',
