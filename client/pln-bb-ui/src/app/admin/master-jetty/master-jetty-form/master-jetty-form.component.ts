@@ -23,10 +23,12 @@ export class MasterJettyFormComponent implements OnInit {
   ) {
     this.fg = this.fb.group({
       code: [null, [Validators.required]],
+      address: [null, [Validators.required]],
       name: [null, [Validators.required]],
       province: [null, [Validators.required]],
       city: [null, [Validators.required]],
-      coordinate: [null, [Validators.required]]
+      longitude: [null, [Validators.required]],
+      latitude: [null, [Validators.required]]
     })
   }
 
