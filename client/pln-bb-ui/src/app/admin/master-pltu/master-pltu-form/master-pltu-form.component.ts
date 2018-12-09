@@ -12,21 +12,25 @@ export class MasterPltuFormComponent implements OnInit {
   @Output('init') onInit = new EventEmitter()
   @Output('save') onSave = new EventEmitter()
 
-  fg:FormGroup
+  fg: FormGroup
   errorMsg
   submitting
 
   constructor(
-    private fb:FormBuilder,
-    private router:Router
+    private fb: FormBuilder,
+    private router: Router
   ) {
     this.fg = this.fb.group({
       code: [null, [Validators.required]],
       name: [null, [Validators.required]],
       address: [null, [Validators.required]],
-      npwp: [null, [Validators.required]]
+      npwp: [null, [Validators.required]],
+      province: [null, [Validators.required]],
+      city: [null, [Validators.required]],
+      longitude: [null, [Validators.required]],
+      latitude: [null, [Validators.required]]
     })
-   }
+  }
 
   ngOnInit() {
     this.onInit.emit(this.fg)
