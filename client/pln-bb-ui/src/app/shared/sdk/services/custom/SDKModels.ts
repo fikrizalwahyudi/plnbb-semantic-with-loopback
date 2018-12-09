@@ -29,6 +29,7 @@ import { MitraKesanggupanTambang } from '../../models/MitraKesanggupanTambang';
 import { PlnRencana } from '../../models/PlnRencana';
 import { PlnRealisasi } from '../../models/PlnRealisasi';
 import { ShippingInstruction } from '../../models/ShippingInstruction';
+import { Jetty } from '../../models/Jetty';
 
 export interface Models { [name: string]: any }
 
@@ -65,6 +66,7 @@ export class SDKModels {
     PlnRencana: PlnRencana,
     PlnRealisasi: PlnRealisasi,
     ShippingInstruction: ShippingInstruction,
+    Jetty: Jetty,
     
   };
 

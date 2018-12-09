@@ -28,5 +28,6 @@ export * from './MitraKesanggupanTambang';
 export * from './PlnRencana';
 export * from './PlnRealisasi';
 export * from './ShippingInstruction';
+export * from './Jetty';
 export * from './BaseModels';
 export * from './FireLoopRef';

@@ -1,19 +1,19 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { PltuApi } from '../../../shared/sdk/services/custom/Pltu';
-import { MitraKesanggupanFormComponent } from './mitra-kesanggupan-form.component';
+import { MitraKesanggupanPasokanFormComponent } from './mitra-kesanggupan-pasokan-form.component';
 
 @Component({
-  selector: 'mitra-kesanggupan-create',
+  selector: 'mitra-kesanggupan-pasokan-create',
   template: `
-    <mitra-kesanggupan-form (save)="save($event)"></mitra-kesanggupan-form>
+    <mitra-kesanggupan-pasokan-form (save)="save($event)"></mitra-kesanggupan-pasokan-form>
   `,
   styles: []
 })
-export class MitraKesanggupanCreateComponent implements OnInit {
+export class MitraKesanggupanPasokanCreateComponent implements OnInit {
 
-  @ViewChild(MitraKesanggupanFormComponent)
-  formComponent: MitraKesanggupanFormComponent
+  @ViewChild(MitraKesanggupanPasokanFormComponent)
+  formComponent: MitraKesanggupanPasokanFormComponent
 
   constructor(
     private pltuApi: PltuApi,

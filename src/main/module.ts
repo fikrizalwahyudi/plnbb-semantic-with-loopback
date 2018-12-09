@@ -30,6 +30,7 @@ import { MitraKesanggupanTambangModel } from "./models/mitra_kesanggupan_tambang
 import { PlnRencanaModel } from './models/pln_rencana.model';
 import { PlnRealisasiModel } from "./models/pln_realisasi.model";
 import { ShippingInstructionModel } from './models/shipping_instruction.model';
+import { JettyModel } from './models/jetty.model';
 
 @injectable()
 @CommonModule({
@@ -66,7 +67,8 @@ import { ShippingInstructionModel } from './models/shipping_instruction.model';
 		MitraKesanggupanTambangModel,
 		PlnRencanaModel,
 		PlnRealisasiModel,
-		ShippingInstructionModel
+		ShippingInstructionModel,
+		JettyModel,
 	]
 })
 export class SampleModule extends Module {

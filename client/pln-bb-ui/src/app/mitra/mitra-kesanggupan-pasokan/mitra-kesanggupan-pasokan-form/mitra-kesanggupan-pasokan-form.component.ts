@@ -3,11 +3,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'mitra-kesanggupan-form',
-  templateUrl: './mitra-kesanggupan-form.component.html',
-  styleUrls: ['./mitra-kesanggupan-form.component.sass']
+  selector: 'mitra-kesanggupan-pasokan-form',
+  templateUrl: './mitra-kesanggupan-pasokan-form.component.html',
+  styleUrls: ['./mitra-kesanggupan-pasokan-form.component.sass']
 })
-export class MitraKesanggupanFormComponent implements OnInit {
+export class MitraKesanggupanPasokanFormComponent implements OnInit {
 
   @Output('init') onInit = new EventEmitter()
   @Output('save') onSave = new EventEmitter()

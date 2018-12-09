@@ -77,6 +77,7 @@ import { MitraKesanggupanTambangApi } from './services/custom/MitraKesanggupanTa
 import { PlnRencanaApi } from './services/custom/PlnRencana';
 import { PlnRealisasiApi } from './services/custom/PlnRealisasi';
 import { ShippingInstructionApi } from './services/custom/ShippingInstruction';
+import { JettyApi } from './services/custom/Jetty';
 /**
 * @module SDKBrowserModule
 * @description
@@ -136,6 +137,7 @@ export class SDKBrowserModule {
         PlnRencanaApi,
         PlnRealisasiApi,
         ShippingInstructionApi,
+        JettyApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser },
         { provide: SocketDriver, useClass: SocketBrowser }
