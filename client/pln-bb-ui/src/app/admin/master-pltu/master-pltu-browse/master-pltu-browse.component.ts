@@ -3,7 +3,6 @@ import { Pltu } from '../../../shared/sdk';
 import { PltuApi } from '../../../shared/sdk/services/custom/Pltu';
 import { promptDialog } from '../../../shared/modals/prompt.modal';
 
-
 @Component({
   selector: 'app-master-pltu-browse',
   templateUrl: './master-pltu-browse.component.html',

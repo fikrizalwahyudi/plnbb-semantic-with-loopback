@@ -1,3 +1,38 @@
-<p>
-  master-jetty-form works!
-</p>
+<ui-form-block title="Jetty" [errorMsg]="errorMsg" [submitting]="submitting">
+  <div class="ui two column grid">
+    <div class="column border-right">
+      <form [formGroup]="fg" (ngSubmit)="save()" class="ui form">
+        <div class="required field">
+          <label>Code</label>
+          <input type="text" placeholder="code" formControlName="code">
+        </div>
+        <div class="required field">
+          <label>Jetty Name</label>
+          <input type="text" placeholder="Jetty Name" formControlName="name">
+        </div>
+        <div class="required field">
+          <label>Province</label>
+          <input type="text" placeholder="Province" formControlName="province">
+        </div>
+        <div class="required field">
+          <label>City</label>
+          <input type="text" placeholder="City" formControlName="city">
+        </div>
+        <div class="required field">
+          <label>Jetty Coordinate</label>
+          <input type="text" placeholder="Coordinate" formControlName="coordinate">
+        </div>
+        <div class="inline field">
+          <button class="ui secondary button" type="button" (click)="cancel()">Cancel</button>
+          <button class="ui primary button" type="submit" [disabled]="!fg.valid">Save Changes</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="column">
+      <div class="fullheight fullwidth" style="background: url(assets/paragraph.png)">
+
+      </div>
+    </div>
+  </div>
+</ui-form-block>

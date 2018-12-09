@@ -57,6 +57,8 @@ import { MasterReferensiKontrakTambangComponent } from './master-referensi-kontr
 import { MasterJettyComponent } from './master-jetty/master-jetty.component';
 import { MasterJettyBrowseComponent } from './master-jetty/master-jetty-browse/master-jetty-browse.component';
 import { MasterJettyFormComponent } from './master-jetty/master-jetty-form/master-jetty-form.component';
+import { MasterJettyCreateComponent } from './master-jetty/master-jetty-form/master-jetty-create.component';
+import { MasterJettyEditComponent } from './master-jetty/master-jetty-form/master-jetty-edit.component';
 
 const appRoutes: Routes = [
   { path: 'admin', component: AdminComponent, children: [
@@ -112,8 +114,8 @@ const appRoutes: Routes = [
       path: 'jetty', component: MasterJettyComponent, children: [
         { path: '', redirectTo: 'browse', pathMatch: 'full' },
         { path: 'browse', component: MasterJettyBrowseComponent },
-        { path: 'create', component: MasterJettyFormComponent },
-        { path: ':id/edit', component: MasterPltuEditComponent }
+        { path: 'create', component: MasterJettyCreateComponent },
+        { path: ':id/edit', component: MasterJettyEditComponent },
       ]
     },
   ] }
@@ -174,7 +176,9 @@ const appRoutes: Routes = [
     MasterReferensiKontrakTambangComponent,
     MasterJettyComponent,
     MasterJettyBrowseComponent,
-    MasterJettyFormComponent
+    MasterJettyFormComponent,
+    MasterJettyCreateComponent,
+    MasterJettyEditComponent
   ],
   exports : [
     MasterUserComponent, 
