@@ -26,9 +26,113 @@
 Yang Belum
 - master mitra 
 
-pindahkan alur rest 
+pindahkan alur rest
+
 
 
 
 cari dari mitra kesanggupan model berdasarkan tahun bulan , tujuan pltu
 cari semua referensikontrak dengan  mitra - 
+
+ngambil selisih 
+pln -> kontrak batu bara 1000mt , harga 100, 
+pln kebutuhan - vendor punya supply
+
+shipping instruction -> ini kaya SPK 
+
+jetty = pelabuhan
+laycan = tanggal
+
+process sailing = berapa lama
+
+unloading = bonkar muatan;
+
+kalau berbeda -> umperium 
+spec salah , 
+
+kalau sudah sampai ke PLTU -> 
+
+ongkos kirim , jetty - ke pltu 
+
+dealer <- batu bara 
+kontrak vendor yang bisa nyediain batu bara ; 
+
+
+kontrak -> 
+sumber tambang;  
+daftar jetty; 
+pltu mana aja ; 
+spesifikasi barang ;
+
+CIF - 
+FOB - 
+
+katalog
+
+PLTU -  - detail address 
+        - latitude - longitue
+tambang - detail address 
+        - latitude - longitude
+
+tambahkan - master jetty;
+        - nama
+        - code 
+        - detail address;
+
+
+
+
+MITRA ---- 
+katalog pasokan 
+    - dipisahin form dan table
+    form
+    harga
+    jumlah
+    type : FOB atau CIF
+    moda : vessel 
+    sumber : tambang
+    - spesifikasi coal 
+
+    expired 1 bulan:  
+
+    group berdasarkan bulan
+    - 
+    group berdasarkan available : active 
+    group in Progress; 
+    grouping yang telat;
+    grouping yang sudah expired
+    grouping sudah complete - sampe unloading 
+
+PLN - 
+Perencanaan
+Grouping berdasarkan  bulan  2 bulan
+List PLTU 
+    Group berdasarkan provinsi
+        -> kebutuhan apa 
+        -> mitra siapa aja 
+
+yang bisa di lock hanya bulan ini aja 
+ketika belum dipilih PLN  mitra masih bisa edit- 
+ketika sudah dipilih di lock;
+
+status available berubah jadi in progress 
+
+PDF ke email mitra sama ke 
+
+harga berdasarkan , , moda transportasi
+
+pln kluarkan shipping instruction tapi juga si mitra bisa bikin suggestion
+
+sampe Ke Unloading 
+
+Monitoring :
+    1 - Bulan 
+    2 - PLTU
+
+1. ajarin indra
+2. Mitra Pasokan  - Katalok Product
+3. PLN - Form Sama List nya 
+
+
+
+- MongoDB 

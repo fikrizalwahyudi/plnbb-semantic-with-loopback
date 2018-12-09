@@ -1,4 +1,4 @@
-<div class="ui top attached yellow segment">
+<!-- <div class="ui top attached yellow segment">
   <div [formGroup]="fg"
        class="ui form">
     <div class="ui three column grid">
@@ -99,7 +99,6 @@
 <div class="ui top attached borderless menu no-border-bottom">
   <div class="item">
     <div class="ui floating dropdown labeled button">
-      <!-- <i class="calendar alternate icon"></i> -->
       <span class="text">2018</span>
       <div class="menu">
         <div class="item"
@@ -109,7 +108,6 @@
   </div>
   <div class="item">
     <div class="ui floating dropdown labeled button">
-      <!-- <i class="calendar alternate outline icon"></i> -->
       <span class="text">Desember</span>
       <div class="menu">
         <div class="item"
@@ -144,7 +142,6 @@
   <table class="ui sortable single line striped table">
     <thead>
       <tr>
-        <!-- <th>Bulan</th> -->
         <th>PLTU</th>
         <th>Tgl. Pengiriman</th>
         <th>Mode</th>
@@ -183,4 +180,90 @@
       </tr>
     </tbody>
   </table>
+</div> -->
+
+<div class="ui top attached borderless menu no-border-bottom">
+  <div class="item">
+    <div class="ui floating dropdown labeled button">
+      <!-- <i class="calendar alternate icon"></i> -->
+      <span class="text">2018</span>
+      <div class="menu">
+        <div class="item"
+             *ngFor="let item of years">{{item}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="item">
+    <div class="ui floating dropdown labeled button">
+      <!-- <i class="calendar alternate outline icon"></i> -->
+      <span class="text">Desember</span>
+      <div class="menu">
+        <div class="item"
+             *ngFor="let item of months">{{item}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="right menu"
+       *ngIf="!disableSearch">
+    <div class="item">
+      <div class="ui icon input">
+        <input type="text"
+               #queryBox
+               placeholder="Search..."
+               (keyup.enter)="load(queryBox.value)">
+        <i class="search link icon"></i>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ui yellow bottom attached segment">
+  <div class="ui cards">
+    <div class="card" *ngFor="let item of daftarKesanggupan">
+      <div class="content">
+        <img class="right floated mini ui image" src="../../../assets/img/plnbblogo.png">
+        <div class="header">
+          {{item.tujuanPltu.name}}
+        </div>
+        <div class="meta">
+          Friends of Veronika
+        </div>
+        <div class="description">
+          {{item.keterangan}}
+        </div>
+        <div class="description">
+          <div class="ui vertical list">
+            <div class="item">
+              <div class="content">
+                <div class="header">Tom</div>
+                Top Contributor
+              </div>
+            </div>
+            <div class="item">
+              <div class="content">
+                <div class="header">Christian Rocha</div>
+                Admin
+              </div>
+            </div>
+            <div class="item">
+              <div class="content">
+                <div class="header">Matt</div>
+                Top Rated User
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="extra content">
+        <div class="meta">
+          <span class="right floated time">Created at 12 December 2018</span>
+          <!-- <span class="category">Animals</span> -->
+        </div>
+        <!-- <div class="meta"> 
+            <span class="date">Created at 12 December 2018</span>
+        </div> -->
+      </div>
+    </div>
+  </div>
 </div>
