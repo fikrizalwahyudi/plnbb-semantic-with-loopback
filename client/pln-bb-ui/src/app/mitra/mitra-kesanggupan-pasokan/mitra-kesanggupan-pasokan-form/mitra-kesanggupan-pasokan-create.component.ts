@@ -36,9 +36,9 @@ export class MitraKesanggupanPasokanCreateComponent implements OnInit {
   save(model) {
     this.formComponent.submitting = true
     this.formComponent.errorMsg = undefined
-    
+    model.userId = this.userApi.getCurrentId()
     this.kesanggupanApi.create(model).subscribe(() => {
-      this.router.navigate(['/admin', 'pltu'])
+      this.router.navigate(['/mitra', 'kesanggupan-pasokan'])
       this.formComponent.submitting = false
     }, (err) => {
       this.formComponent.errorMsg = err.message

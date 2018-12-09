@@ -1,11 +1,13 @@
 <ui-form-block title="Kesanggupan Pasokan"
                [errorMsg]="errorMsg"
+               (ngSubmit)="save()"
                [submitting]="submitting">
   <div class="ui two column grid">
     <div class="column border-right">
       <form [formGroup]="fg"
-            (ngSubmit)="save()"
             class="ui form">
+        <h4> Detail Kesanggupan Pasokan</h4>
+        <hr>
         <div class="required field">
           <label>Referensi Kontrak</label>
           <select class="ui dropdown"
@@ -72,21 +74,86 @@
                  placeholder="keterangan"
                  formControlName="keterangan">
         </div>
-        <div class="inline field">
+        <!-- <div class="inline field">
           <button class="ui secondary button"
                   type="button"
                   (click)="cancel()">Cancel</button>
           <button class="ui primary button"
                   type="submit"
                   [disabled]="!fg.valid">Save Changes</button>
-        </div>
+        </div> -->
       </form>
     </div>
     <div class="column">
-      <div class="fullheight fullwidth"
-           style="background: url(assets/paragraph.png)">
-
-      </div>
+      <form [formGroup]="fg"
+            (ngSubmit)="save()"
+            class="ui form">
+        <h4>Spesifikasi Batubara</h4>
+        <hr>
+        <div class="ui two column grid">
+          <div class="column"> 
+            <div class="required field">
+              <label>GCV</label>
+              <input type="text"
+                    placeholder="GCV"
+                    formControlName="gcv">
+            </div>
+            <div class="required field">
+              <label>ASH</label>
+              <input type="text"
+                    placeholder="ASH"
+                    formControlName="ash">
+            </div>
+            <div class="required field">
+              <label>HGI</label>
+              <input type="text"
+                    placeholder="HGI"
+                    formControlName="hgi">
+            </div>
+            <div class="required field">
+              <label>70mm (%)</label>
+              <input type="text"
+                    placeholder="70mm (%)"
+                    formControlName="size1">
+            </div>
+          </div>
+          <div class="column"> 
+            <div class="required field">
+              <label>TM</label>
+              <input type="text"
+                    placeholder="TM"
+                    formControlName="tm">
+            </div>
+            <div class="required field">
+              <label>TS</label>
+              <input type="text"
+                    placeholder="TS"
+                    formControlName="ts">
+            </div>
+            <div class="required field">
+              <label>IDT</label>
+              <input type="text"
+                    placeholder="IDT"
+                    formControlName="idt">
+            </div>
+            <div class="required field">
+              <label>2.38mm</label>
+              <input type="text"
+                    placeholder="2.38mm"
+                    formControlName="size2">
+            </div>
+          </div>
+          <div class="inline field">
+            <button class="ui secondary button"
+                    type="button"
+                    (click)="cancel()">Cancel</button>
+            <button class="ui primary button"
+                    type="submit"
+                    [disabled]="!fg.valid">Save Changes</button>
+          </div>
+        </div>
+        
+      </form>
     </div>
   </div>
 </ui-form-block>

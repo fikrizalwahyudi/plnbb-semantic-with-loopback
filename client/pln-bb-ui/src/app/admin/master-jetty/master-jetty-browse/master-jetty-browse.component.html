@@ -9,8 +9,8 @@
     <tr>
       <th>Code</th>
       <th>Name</th>
+      <th>Address</th>
       <th>City</th>
-      <th>Coordinate</th>
       <th class="center aligned collapsing">Active</th>
       <th></th>
     </tr>
@@ -19,8 +19,8 @@
     <tr *ngFor="let item of jettys">
       <td>{{item.code}}</td>
       <td>{{item.name}}</td>
+      <td>{{item.address}}</td>
       <td>{{item.city}}</td>
-      <td>{{item.coordinate}}</td>
       <td class="center aligned collapsing">
         <i *ngIf="!item.status" class="ban red icon"></i>
         <i *ngIf="item.status" class="check circle green icon"></i>

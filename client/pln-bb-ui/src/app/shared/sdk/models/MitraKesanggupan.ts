@@ -15,6 +15,14 @@ export interface MitraKesanggupanInterface {
   "mode"?: string;
   "keterangan"?: string;
   "lock"?: boolean;
+  "gcv"?: number;
+  "tm"?: number;
+  "ash"?: number;
+  "ts"?: number;
+  "hgi"?: number;
+  "idt"?: number;
+  "size1"?: number;
+  "size2"?: number;
   "userId"?: any;
   "id"?: any;
   referensiKontrak?: ReferensiKontrak;
@@ -31,6 +39,14 @@ export class MitraKesanggupan implements MitraKesanggupanInterface {
   "mode": string = '';
   "keterangan": string = '';
   "lock": boolean = false;
+  "gcv": number = 0;
+  "tm": number = 0;
+  "ash": number = 0;
+  "ts": number = 0;
+  "hgi": number = 0;
+  "idt": number = 0;
+  "size1": number = 0;
+  "size2": number = 0;
   "userId": any = <any>null;
   "id": any = <any>null;
   referensiKontrak: ReferensiKontrak = null;
@@ -100,6 +116,38 @@ export class MitraKesanggupan implements MitraKesanggupanInterface {
         "lock": {
           name: 'lock',
           type: 'boolean'
+        },
+        "gcv": {
+          name: 'gcv',
+          type: 'number'
+        },
+        "tm": {
+          name: 'tm',
+          type: 'number'
+        },
+        "ash": {
+          name: 'ash',
+          type: 'number'
+        },
+        "ts": {
+          name: 'ts',
+          type: 'number'
+        },
+        "hgi": {
+          name: 'hgi',
+          type: 'number'
+        },
+        "idt": {
+          name: 'idt',
+          type: 'number'
+        },
+        "size1": {
+          name: 'size1',
+          type: 'number'
+        },
+        "size2": {
+          name: 'size2',
+          type: 'number'
         },
         "userId": {
           name: 'userId',

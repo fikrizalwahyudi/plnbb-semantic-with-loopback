@@ -57,7 +57,16 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
       jumlah: [null, [Validators.required]],
       harga: [null, [Validators.required]],
       mode: [null, [Validators.required]],
-      keterangan: null
+      keterangan: null,
+      gcv: [null, [Validators.required]],
+      tm: [null, [Validators.required]],
+      ash: [null, [Validators.required]],
+      ts: [null, [Validators.required]],
+      hgi: [null, [Validators.required]],
+      idt: [null, [Validators.required]],
+      size1: [null, [Validators.required]],
+      size2: [null, [Validators.required]],
+
     })
    }
 
@@ -66,11 +75,12 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
   }
 
   save() {
+    // console.log(this.fg.value)
     this.onSave.emit(this.fg.value)
   }
 
   cancel() {
-    this.router.navigate(['/admin', 'pltu'])
+    this.router.navigate(['/mitra', 'kesanggupan-pasokan'])
   }
 
   onSelectKontrak(item) {

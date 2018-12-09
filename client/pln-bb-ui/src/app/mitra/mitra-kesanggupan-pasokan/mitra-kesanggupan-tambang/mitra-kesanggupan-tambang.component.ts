@@ -71,6 +71,10 @@ export class MitraKesanggupanTambangComponent implements OnInit {
   ngOnInit() {
   }
 
+  cancel() {
+    this.router.navigate(['/mitra', 'kesanggupan-pasokan'])
+  }
+
   save() {
     let model = this.fg.value.daftarTambang.map((entry:any) => {
       entry.mitraKesanggupanId = this.id
