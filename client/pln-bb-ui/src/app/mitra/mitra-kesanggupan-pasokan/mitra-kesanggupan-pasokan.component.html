@@ -1,4 +1,4 @@
-<!-- <div class="ui top attached yellow segment">
+<div class="ui top attached yellow segment">
   <div [formGroup]="fg"
        class="ui form">
     <div class="ui three column grid">
@@ -180,7 +180,7 @@
       </tr>
     </tbody>
   </table>
-</div> -->
+</div>
 
 <div class="ui top attached borderless menu no-border-bottom">
   <div class="item">
@@ -218,7 +218,147 @@
   </div>
 </div>
 <div class="ui yellow bottom attached segment">
-  <div class="ui cards">
+  <div class="ui raised cards">
+    <div class=" card" *ngFor="let item of daftarKesanggupan">
+      <div class="content">
+        <!-- <div class="right floated ">
+          <a href="javascript:void(0)"
+            (click)="delete(item)"
+            *ngIf="!item.lock">
+            <i class="trash link icon action-icon"></i>
+          </a>
+          <a [routerLink]="['/mitra', 'kesanggupan-tambang', item.id]" *ngIf="!item.lock">
+            <i class="cogs link icon action-icon"></i>
+          </a>
+          <a href="javascript:void(0)"
+            (click)="lock(item)"
+            *ngIf="!item.lock">
+            <i class="lock open link icon action-icon"></i>
+          </a>
+          <a href="javascript:void(0)"
+            *ngIf="item.lock"
+            disabled>
+            <i class="lock link green icon action-icon"></i>
+          </a>
+        </div> -->
+        <img class="right floated mini ui image" src="../../../assets/img/plnbblogo.png">
+        <div class="header">
+          {{item.tujuanPltu.name}}
+        </div>
+        <div class="meta">
+          <span class="floated time">Created at 12 December 2018</span>
+        </div>
+        <div class="ui sub header" style="margin-top: 10px;">Detail Pasokan</div>
+        <div class="description">
+          <div class="ui two column grid">
+            <div class="row">
+              <div class="ui vertical list column">
+                <div class="item ">
+                  <div class="content">
+                    <div class="header">Tgl Pengiriman</div>
+                    {{item.tglPengiriman | date:'shortDate'}}
+                  </div>
+                </div>
+              </div>
+              <div class="ui vertical list column">
+                <div class="item ">
+                  <div class="content">
+                    <div class="header">Mode</div>
+                    {{item.mode | titlecase}}
+                  </div>
+                </div>
+              </div>
+              <div class="ui vertical list column">
+                <div class="item ">
+                  <div class="content">
+                    <div class="header">Jumah</div>
+                    {{item.jumlah | number}}
+                  </div>
+                </div>
+              </div>
+              <div class="ui vertical list column">
+                <div class="item ">
+                  <div class="content">
+                    <div class="header">Harga</div>
+                    {{item.harga | currency:'IDR'}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h4 class="ui sub header" style="margin-top: 10px;">Spesifikasi BatuBara</h4>
+        <div class="description">
+          <div class="ui three column grid">
+            <div class="row">
+              <div class="ui vertical list column">
+                <div class="item ">
+                  <div class="content">
+                    <div class="header">GCV</div>
+                    4,700
+                  </div>
+                </div>
+              </div>
+              <div class="ui vertical list column">
+                <div class="item ">
+                  <div class="content">
+                    <div class="header">TM</div>
+                    35.34
+                  </div>
+                </div>
+              </div>
+              <div class="ui vertical list column">
+                <div class="item ">
+                  <div class="content">
+                    <div class="header">ASH</div>
+                    2.54
+                  </div>
+                </div>
+              </div>
+              <div class="ui vertical list column">
+                <div class="item ">
+                  <div class="content">
+                    <div class="header">TS</div>
+                    0.19
+                  </div>
+                </div>
+              </div>
+              <div class="ui vertical list column">
+                <div class="item ">
+                  <div class="content">
+                    <div class="header">HGI</div>
+                    60
+                  </div>
+                </div>
+              </div>
+              <div class="ui vertical list column">
+                <div class="item ">
+                  <div class="content">
+                    <div class="header">IDT</div>
+                    1,230
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h4 class="ui sub header" style="margin-top: 10px;">Keterangan</h4>
+        <div class="description">
+          {{item.keterangan}}
+        </div>
+      </div>
+      <div class="extra content">
+        <div class="ui three buttons">
+          <div class="ui basic green button"><i class="lock link icon action-icon"></i></div>
+          <div class="ui basic blue button"><i class="cogs link icon action-icon"></i></div>
+          <div class="ui basic red button"><i class="trash link icon action-icon"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div class="ui yellow bottom attached segment">
+  <div class="ui one cards">
     <div class="card" *ngFor="let item of daftarKesanggupan">
       <div class="content">
         <img class="right floated mini ui image" src="../../../assets/img/plnbblogo.png">
@@ -226,44 +366,134 @@
           {{item.tujuanPltu.name}}
         </div>
         <div class="meta">
-          Friends of Veronika
+          <span class="floated time">Created at 12 December 2018</span>
         </div>
+        <div class="description" style="margin-top: 10px;">
+          <div class="ui grid">
+              <div class="six wide column">
+                  <div class="ui two column grid">
+                    <div class="sub header" >Detail Pasokan</div>
+                    <div class="row">
+                      <div class="ui vertical list column">
+                        <div class="item ">
+                          <div class="content">
+                            <div class="header">Tgl Pengiriman</div>
+                            {{item.tglPengiriman | date:'shortDate'}}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="ui vertical list column">
+                        <div class="item ">
+                          <div class="content">
+                            <div class="header">Mode</div>
+                            {{item.mode | titlecase}}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="ui vertical list column">
+                        <div class="item ">
+                          <div class="content">
+                            <div class="header">Jumah</div>
+                            {{item.jumlah | number}}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="ui vertical list column">
+                        <div class="item ">
+                          <div class="content">
+                            <div class="header">Harga</div>
+                            {{item.harga | currency:'IDR'}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="ten wide column">
+                <div class="ui four column grid">
+                  <div class="sub header" >Spesifikasi Batubara</div>
+                  <div class="row">
+                    <div class="ui vertical list column">
+                      <div class="item ">
+                        <div class="content">
+                          <div class="header">GCV</div>
+                          4,700
+                        </div>
+                      </div>
+                    </div>
+                    <div class="ui vertical list column">
+                      <div class="item ">
+                        <div class="content">
+                          <div class="header">TM</div>
+                          35.34
+                        </div>
+                      </div>
+                    </div>
+                    <div class="ui vertical list column">
+                      <div class="item ">
+                        <div class="content">
+                          <div class="header">ASH</div>
+                          2.54
+                        </div>
+                      </div>
+                    </div>
+                    <div class="ui vertical list column">
+                      <div class="item ">
+                        <div class="content">
+                          <div class="header">TS</div>
+                          0.19
+                        </div>
+                      </div>
+                    </div>
+                    <div class="ui vertical list column">
+                      <div class="item ">
+                        <div class="content">
+                          <div class="header">HGI</div>
+                          60
+                        </div>
+                      </div>
+                    </div>
+                    <div class="ui vertical list column">
+                      <div class="item ">
+                        <div class="content">
+                          <div class="header">IDT</div>
+                          1,230
+                        </div>
+                      </div>
+                    </div>
+                    <div class="ui vertical list column">
+                      <div class="item ">
+                        <div class="content">
+                          <div class="header">TS</div>
+                          0.19
+                        </div>
+                      </div>
+                    </div>
+                    <div class="ui vertical list column">
+                      <div class="item ">
+                        <div class="content">
+                          <div class="header">HGI</div>
+                          60
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+        <h4 class="ui sub header" style="margin-top: 10px;">Keterangan</h4>
         <div class="description">
           {{item.keterangan}}
         </div>
-        <div class="description">
-          <div class="ui vertical list">
-            <div class="item">
-              <div class="content">
-                <div class="header">Tom</div>
-                Top Contributor
-              </div>
-            </div>
-            <div class="item">
-              <div class="content">
-                <div class="header">Christian Rocha</div>
-                Admin
-              </div>
-            </div>
-            <div class="item">
-              <div class="content">
-                <div class="header">Matt</div>
-                Top Rated User
-              </div>
-            </div>
-          </div>
-        </div>
-        
       </div>
       <div class="extra content">
-        <div class="meta">
-          <span class="right floated time">Created at 12 December 2018</span>
-          <!-- <span class="category">Animals</span> -->
+        <div class="ui three buttons">
+          <div class="ui basic green button"><i class="lock link icon action-icon"></i></div>
+          <div class="ui basic blue button"><i class="cogs link icon action-icon"></i></div>
+          <div class="ui basic red button"><i class="trash link icon action-icon"></i></div>
         </div>
-        <!-- <div class="meta"> 
-            <span class="date">Created at 12 December 2018</span>
-        </div> -->
       </div>
     </div>
   </div>
-</div>
+</div> -->
