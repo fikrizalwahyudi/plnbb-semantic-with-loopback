@@ -44,7 +44,6 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    MitraComponent,
     PlnbbComponent
   ],
   imports: [

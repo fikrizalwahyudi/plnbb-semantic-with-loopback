@@ -9,13 +9,12 @@ import { MitraKesanggupanPasokanFormComponent } from './mitra-kesanggupan-pasoka
 import { MitraKesanggupanPasokanCreateComponent } from './mitra-kesanggupan-pasokan/mitra-kesanggupan-pasokan-form/mitra-kesanggupan-pasokan-create.component';
 import { MitraKesanggupanPasokanEditComponent } from './mitra-kesanggupan-pasokan/mitra-kesanggupan-pasokan-form/mitra-kesanggupan-pasokan-edit.component';
 import { MitraComponent } from './mitra.component';
-import { HomeComponent } from '../admin/home/home.component';
 import { MitraKesanggupanTambangComponent } from './mitra-kesanggupan-pasokan/mitra-kesanggupan-tambang/mitra-kesanggupan-tambang.component';
 const appRoutes: Routes = [
   {
     path: 'mitra', component: MitraComponent, children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: 'home', component: HomeComponent },
+      { path: 'home', component: MitraKesanggupanPasokanComponent },
       { path: 'kesanggupan-pasokan', component: MitraKesanggupanPasokanComponent, children: [
         { path: '', redirectTo: 'browse', pathMatch: 'full' },
         { path: 'browse', component: MitraKesanggupanPasokanBrowseComponent },
@@ -36,6 +35,7 @@ const appRoutes: Routes = [
     RouterModule.forChild(appRoutes)
   ],
   declarations: [
+    MitraComponent,
     MitraKesanggupanPasokanComponent,
     MitraKesanggupanTambangComponent,
     MitraKesanggupanPasokanBrowseComponent,
@@ -44,6 +44,7 @@ const appRoutes: Routes = [
     MitraKesanggupanPasokanEditComponent
   ],
   exports: [
+    MitraComponent,
     MitraKesanggupanPasokanComponent,
     MitraKesanggupanTambangComponent,
     MitraKesanggupanPasokanBrowseComponent,

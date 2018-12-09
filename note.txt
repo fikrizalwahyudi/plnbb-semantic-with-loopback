@@ -28,7 +28,7 @@ Yang Belum
 
 pindahkan alur rest
 
-
+----------------------------------------------------------------------------
 
 
 cari dari mitra kesanggupan model berdasarkan tahun bulan , tujuan pltu
@@ -130,7 +130,7 @@ Monitoring :
     2 - PLTU
 
 1. ajarin indra
-2. Mitra Pasokan  - Katalok Product
+2. Mitra Pasokan  - Katalog Product
 3. PLN - Form Sama List nya 
 
 

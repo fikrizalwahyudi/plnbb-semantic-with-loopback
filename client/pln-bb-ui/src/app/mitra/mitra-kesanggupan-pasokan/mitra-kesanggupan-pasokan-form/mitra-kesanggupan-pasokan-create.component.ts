@@ -1,6 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { PltuApi } from '../../../shared/sdk/services/custom/Pltu';
+import { MitraApi } from '../../../shared/sdk/services/custom/Mitra';
+import { Mitra } from '../../../shared/sdk/models/Mitra';
+import { UserApi } from '../../../shared/sdk/services/custom/User';
+import { ReferensiKontrakApi } from '../../../shared/sdk/services/custom/ReferensiKontrak';
+import { ReferensiKontrakPltuApi } from '../../../shared/sdk/services/custom/ReferensiKontrakPltu';
+import { MitraKesanggupanApi } from '../../../shared/sdk/services/custom/MitraKesanggupan';
 import { MitraKesanggupanPasokanFormComponent } from './mitra-kesanggupan-pasokan-form.component';
 
 @Component({
@@ -14,10 +19,14 @@ export class MitraKesanggupanPasokanCreateComponent implements OnInit {
 
   @ViewChild(MitraKesanggupanPasokanFormComponent)
   formComponent: MitraKesanggupanPasokanFormComponent
-
+  
   constructor(
-    private pltuApi: PltuApi,
-    private router:Router
+    private router:Router,
+    private mitraApi: MitraApi,
+    private userApi:UserApi,
+    private kontrakApi:ReferensiKontrakApi,
+    private kontrakPltuApi:ReferensiKontrakPltuApi,
+    private kesanggupanApi:MitraKesanggupanApi
   ) { }
 
   ngOnInit() {
@@ -28,7 +37,7 @@ export class MitraKesanggupanPasokanCreateComponent implements OnInit {
     this.formComponent.submitting = true
     this.formComponent.errorMsg = undefined
     
-    this.pltuApi.create(model).subscribe(() => {
+    this.kesanggupanApi.create(model).subscribe(() => {
       this.router.navigate(['/admin', 'pltu'])
       this.formComponent.submitting = false
     }, (err) => {
