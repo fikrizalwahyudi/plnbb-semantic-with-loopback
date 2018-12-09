@@ -1,0 +1,500 @@
+<div class="ui top attached yellow segment">
+    <div [formGroup]="fg"
+         class="ui form">
+      <div class="ui three column grid">
+        <div class="column">
+          <div class="required field">
+            <label>Referensi Kontrak</label>
+            <select class="ui dropdown"
+                    formControlName="referensiKontrakId"
+                    (select)="onSelectKontrak($event)"
+                    uiDropDown
+                    [values]="daftarKontrak"
+                    placeholder="Pilih Kontrak">
+  
+            </select>
+          </div>
+          <div class="required field">
+            <label>Tujuan PLTU</label>
+            <select class="ui dropdown"
+                    formControlName="tujuanPltuId"
+                    uiDropDown>
+              <option value=""
+                      disabled
+                      hidden>Pilih PLTU</option>
+              <option *ngFor="let item of pltus; let index = index"
+                      [value]="item.id">{{item.name}}</option>
+            </select>
+          </div>
+  
+          <div class="required field">
+            <label>Tgl. Pengiriman</label>
+            <div class="ui calendar"
+                 uiCalendar
+                 formControlName="tglPengiriman">
+              <div class="ui input left icon">
+                <i class="calendar icon"></i>
+                <input type="text"
+                       placeholder="Date/Time">
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="column">
+          <div class="required field">
+            <label>Mode Pengiriman</label>
+            <select class="ui dropdown"
+                    formControlName="mode"
+                    uiDropDown>
+              <option value=""
+                      disabled
+                      hidden>Pilih Mode</option>
+              <option value="tongkang">Tongkang</option>
+              <option value="vessels">Vessels</option>
+              <option value="trucking">Trucking</option>
+            </select>
+          </div>
+          <div class="required field">
+            <label>Jumlah</label>
+            <input type="text"
+                   placeholder="Jumlah Tonnase"
+                   formControlName="jumlah">
+          </div>
+          <div class="required field">
+            <label>Harga</label>
+            <input type="text"
+                   placeholder="Harga Metric Ton"
+                   formControlName="harga">
+          </div>
+        </div>
+  
+        <div class="column">
+          <div class="ui form">
+            <div class="field">
+              <label>Keterangan</label>
+              <input type="text"
+                     placeholder="keterangan"
+                     formControlName="keterangan">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui bottom attached segment">
+    <form class="ui form"
+          (ngSubmit)="save()">
+      <div class="inline field">
+        <button class="ui secondary button"
+                type="button"
+                (click)="reset()">Reset</button>
+        <button class="ui primary button"
+                type="submit"
+                [disabled]="!fg.valid">Submit</button>
+      </div>
+    </form>
+  </div>
+  
+  <div class="ui top attached borderless menu no-border-bottom">
+    <div class="item">
+      <div class="ui floating dropdown labeled button">
+        <span class="text">2018</span>
+        <div class="menu">
+          <div class="item"
+               *ngFor="let item of years">{{item}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="ui floating dropdown labeled button">
+        <span class="text">Desember</span>
+        <div class="menu">
+          <div class="item"
+               *ngFor="let item of months">{{item}}</div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="right menu"
+         *ngIf="!disableSearch">
+      <div class="item">
+        <div class="ui icon input">
+          <input type="text"
+                 #queryBox
+                 placeholder="Search..."
+                 (keyup.enter)="load(queryBox.value)">
+          <i class="search link icon"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui attached negative message segment"
+       *ngIf="errorMsg">
+    <div class="header">
+      Oopss... somethings wrong!!!
+    </div>
+    <p>
+      {{errorMsg}}
+    </p>
+  </div>
+  <div class="ui yellow bottom attached segment">
+    <table class="ui sortable single line striped table">
+      <thead>
+        <tr>
+          <th>PLTU</th>
+          <th>Tgl. Pengiriman</th>
+          <th>Mode</th>
+          <th>Jumlah</th>
+          <th>Harga</th>
+          <th class="center aligned collapsing"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of daftarKesanggupan">
+          <td>{{item.tujuanPltu.name}}</td>
+          <td>{{item.tglPengiriman | date:'shortDate'}}</td>
+          <td>{{item.mode | titlecase}}</td>
+          <td>{{item.jumlah | number}}</td>
+          <td>{{item.harga | currency:'IDR'}}</td>
+          <td class="center aligned collapsing">
+            <a href="javascript:void(0)"
+              (click)="delete(item)"
+              *ngIf="!item.lock">
+              <i class="trash link icon action-icon"></i>
+            </a>
+            <a [routerLink]="['/mitra', 'kesanggupan-tambang', item.id]" *ngIf="!item.lock">
+              <i class="cogs link icon action-icon"></i>
+            </a>
+            <a href="javascript:void(0)"
+              (click)="lock(item)"
+              *ngIf="!item.lock">
+              <i class="lock open link icon action-icon"></i>
+            </a>
+            <a href="javascript:void(0)"
+              *ngIf="item.lock"
+              disabled>
+              <i class="lock link green icon action-icon"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="ui top attached borderless menu no-border-bottom">
+    <div class="item">
+      <div class="ui floating dropdown labeled button">
+        <!-- <i class="calendar alternate icon"></i> -->
+        <span class="text">2018</span>
+        <div class="menu">
+          <div class="item"
+               *ngFor="let item of years">{{item}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="ui floating dropdown labeled button">
+        <!-- <i class="calendar alternate outline icon"></i> -->
+        <span class="text">Desember</span>
+        <div class="menu">
+          <div class="item"
+               *ngFor="let item of months">{{item}}</div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="right menu"
+         *ngIf="!disableSearch">
+      <div class="item">
+        <div class="ui icon input">
+          <input type="text"
+                 #queryBox
+                 placeholder="Search..."
+                 (keyup.enter)="load(queryBox.value)">
+          <i class="search link icon"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui yellow bottom attached segment">
+    <div class="ui raised cards">
+      <div class=" card" *ngFor="let item of daftarKesanggupan">
+        <div class="content">
+          <!-- <div class="right floated ">
+            <a href="javascript:void(0)"
+              (click)="delete(item)"
+              *ngIf="!item.lock">
+              <i class="trash link icon action-icon"></i>
+            </a>
+            <a [routerLink]="['/mitra', 'kesanggupan-tambang', item.id]" *ngIf="!item.lock">
+              <i class="cogs link icon action-icon"></i>
+            </a>
+            <a href="javascript:void(0)"
+              (click)="lock(item)"
+              *ngIf="!item.lock">
+              <i class="lock open link icon action-icon"></i>
+            </a>
+            <a href="javascript:void(0)"
+              *ngIf="item.lock"
+              disabled>
+              <i class="lock link green icon action-icon"></i>
+            </a>
+          </div> -->
+          <img class="right floated mini ui image" src="../../../assets/img/plnbblogo.png">
+          <div class="header">
+            {{item.tujuanPltu.name}}
+          </div>
+          <div class="meta">
+            <span class="floated time">Created at 12 December 2018</span>
+          </div>
+          <div class="ui sub header" style="margin-top: 10px;">Detail Pasokan</div>
+          <div class="description">
+            <div class="ui two column grid">
+              <div class="row">
+                <div class="ui vertical list column">
+                  <div class="item ">
+                    <div class="content">
+                      <div class="header">Tgl Pengiriman</div>
+                      {{item.tglPengiriman | date:'shortDate'}}
+                    </div>
+                  </div>
+                </div>
+                <div class="ui vertical list column">
+                  <div class="item ">
+                    <div class="content">
+                      <div class="header">Mode</div>
+                      {{item.mode | titlecase}}
+                    </div>
+                  </div>
+                </div>
+                <div class="ui vertical list column">
+                  <div class="item ">
+                    <div class="content">
+                      <div class="header">Jumah</div>
+                      {{item.jumlah | number}}
+                    </div>
+                  </div>
+                </div>
+                <div class="ui vertical list column">
+                  <div class="item ">
+                    <div class="content">
+                      <div class="header">Harga</div>
+                      {{item.harga | currency:'IDR'}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h4 class="ui sub header" style="margin-top: 10px;">Spesifikasi BatuBara</h4>
+          <div class="description">
+            <div class="ui three column grid">
+              <div class="row">
+                <div class="ui vertical list column">
+                  <div class="item ">
+                    <div class="content">
+                      <div class="header">GCV</div>
+                      4,700
+                    </div>
+                  </div>
+                </div>
+                <div class="ui vertical list column">
+                  <div class="item ">
+                    <div class="content">
+                      <div class="header">TM</div>
+                      35.34
+                    </div>
+                  </div>
+                </div>
+                <div class="ui vertical list column">
+                  <div class="item ">
+                    <div class="content">
+                      <div class="header">ASH</div>
+                      2.54
+                    </div>
+                  </div>
+                </div>
+                <div class="ui vertical list column">
+                  <div class="item ">
+                    <div class="content">
+                      <div class="header">TS</div>
+                      0.19
+                    </div>
+                  </div>
+                </div>
+                <div class="ui vertical list column">
+                  <div class="item ">
+                    <div class="content">
+                      <div class="header">HGI</div>
+                      60
+                    </div>
+                  </div>
+                </div>
+                <div class="ui vertical list column">
+                  <div class="item ">
+                    <div class="content">
+                      <div class="header">IDT</div>
+                      1,230
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h4 class="ui sub header" style="margin-top: 10px;">Keterangan</h4>
+          <div class="description">
+            {{item.keterangan}}
+          </div>
+        </div>
+        <div class="extra content">
+          <div class="ui three buttons">
+            <div class="ui basic green button"><i class="lock link icon action-icon"></i></div>
+            <div class="ui basic blue button"><i class="cogs link icon action-icon"></i></div>
+            <div class="ui basic red button"><i class="trash link icon action-icon"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="ui yellow bottom attached segment">
+    <div class="ui one cards">
+      <div class="card" *ngFor="let item of daftarKesanggupan">
+        <div class="content">
+          <img class="right floated mini ui image" src="../../../assets/img/plnbblogo.png">
+          <div class="header">
+            {{item.tujuanPltu.name}}
+          </div>
+          <div class="meta">
+            <span class="floated time">Created at 12 December 2018</span>
+          </div>
+          <div class="description" style="margin-top: 10px;">
+            <div class="ui grid">
+                <div class="six wide column">
+                    <div class="ui two column grid">
+                      <div class="sub header" >Detail Pasokan</div>
+                      <div class="row">
+                        <div class="ui vertical list column">
+                          <div class="item ">
+                            <div class="content">
+                              <div class="header">Tgl Pengiriman</div>
+                              {{item.tglPengiriman | date:'shortDate'}}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="ui vertical list column">
+                          <div class="item ">
+                            <div class="content">
+                              <div class="header">Mode</div>
+                              {{item.mode | titlecase}}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="ui vertical list column">
+                          <div class="item ">
+                            <div class="content">
+                              <div class="header">Jumah</div>
+                              {{item.jumlah | number}}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="ui vertical list column">
+                          <div class="item ">
+                            <div class="content">
+                              <div class="header">Harga</div>
+                              {{item.harga | currency:'IDR'}}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="ten wide column">
+                  <div class="ui four column grid">
+                    <div class="sub header" >Spesifikasi Batubara</div>
+                    <div class="row">
+                      <div class="ui vertical list column">
+                        <div class="item ">
+                          <div class="content">
+                            <div class="header">GCV</div>
+                            4,700
+                          </div>
+                        </div>
+                      </div>
+                      <div class="ui vertical list column">
+                        <div class="item ">
+                          <div class="content">
+                            <div class="header">TM</div>
+                            35.34
+                          </div>
+                        </div>
+                      </div>
+                      <div class="ui vertical list column">
+                        <div class="item ">
+                          <div class="content">
+                            <div class="header">ASH</div>
+                            2.54
+                          </div>
+                        </div>
+                      </div>
+                      <div class="ui vertical list column">
+                        <div class="item ">
+                          <div class="content">
+                            <div class="header">TS</div>
+                            0.19
+                          </div>
+                        </div>
+                      </div>
+                      <div class="ui vertical list column">
+                        <div class="item ">
+                          <div class="content">
+                            <div class="header">HGI</div>
+                            60
+                          </div>
+                        </div>
+                      </div>
+                      <div class="ui vertical list column">
+                        <div class="item ">
+                          <div class="content">
+                            <div class="header">IDT</div>
+                            1,230
+                          </div>
+                        </div>
+                      </div>
+                      <div class="ui vertical list column">
+                        <div class="item ">
+                          <div class="content">
+                            <div class="header">TS</div>
+                            0.19
+                          </div>
+                        </div>
+                      </div>
+                      <div class="ui vertical list column">
+                        <div class="item ">
+                          <div class="content">
+                            <div class="header">HGI</div>
+                            60
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <h4 class="ui sub header" style="margin-top: 10px;">Keterangan</h4>
+          <div class="description">
+            {{item.keterangan}}
+          </div>
+        </div>
+        <div class="extra content">
+          <div class="ui three buttons">
+            <div class="ui basic green button"><i class="lock link icon action-icon"></i></div>
+            <div class="ui basic blue button"><i class="cogs link icon action-icon"></i></div>
+            <div class="ui basic red button"><i class="trash link icon action-icon"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  
