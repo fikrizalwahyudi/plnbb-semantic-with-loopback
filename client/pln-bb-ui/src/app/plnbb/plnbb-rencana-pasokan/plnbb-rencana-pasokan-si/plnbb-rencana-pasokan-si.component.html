@@ -1,0 +1,73 @@
+<div class="ui top attached yellow segment">
+  <div [formGroup]="fg" class="ui form">
+    <div class="ui three column grid">
+      <div class="column">
+        <div class="field">
+          <label>Mitra Pengiriman</label>
+          <div class="field">
+            <input type="text" name="" placeholder="Mitra Pengiriman" readonly>
+          </div>
+        </div>
+        <div class="required field">
+          <label>Laycan</label>
+          <div class="field">
+            <input type="text" name="" placeholder="Laycan" formControlName="laycan">
+          </div>
+        </div>
+        <div class="required field">
+          <label>Tgl. Pengiriman</label>
+          <div class="ui calendar" uiCalendar formControlName="tgl">
+            <div class="ui input left icon">
+              <i class="calendar icon"></i>
+              <input type="text" placeholder="Date/Time">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="field">
+          <label>Tujuan PLTU</label>
+          <div class="field">
+            <input type="text" name="" placeholder="Tujuan PLTU" readonly>
+          </div>
+        </div>
+        <div class="required field">
+          <label>No SI</label>
+          <div class="field">
+            <input type="text" name="" placeholder="No SI" formControlName="no">
+          </div>
+        </div>
+        <div class="field">
+          <label>Nama Kapal</label>
+          <div class="field">
+            <input type="text" name="" placeholder="Nama Kapal" readonly>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="required field">
+          <label>Mitra Shipping</label>
+          <select class="ui dropdown" formControlName="transportId" uiDropDown>
+            <option value="" disabled hidden>Pilih Mitra</option>
+            <option *ngFor="let item of listMitra; let index = index" [value]="item.value"><span [innerHTML]="item.name"></span></option>
+          </select>
+        </div>
+        <div class="required field">
+          <label>Jetty</label>
+          <select class="ui dropdown" formControlName="jetty" uiDropDown>
+            <option value="" disabled hidden>Pilih Jetty</option>
+            <option *ngFor="let item of listMitra; let index = index" [value]="item.value"><span [innerHTML]="item.name"></span></option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ui bottom attached segment">
+  <form class="ui form" [formGroup]="fg" (ngSubmit)="save()">
+    <div class="inline field">
+      <button class="ui secondary button" type="button" (click)="reset()">Reset</button>
+      <button class="ui primary button" type="submit" [disabled]="!fg.valid">Submit</button>
+    </div>
+  </form>
+</div>

@@ -6,7 +6,8 @@ import { SharedModule } from '../shared/shared.module';
 import { PlnBBRencanaPasokanBrowseComponent } from './plnbb-rencana-pasokan/plnbb-rencana-pasokan-browse/plnbb-rencana-pasokan-browse.component';
 import { PlnbbComponent } from './plnbb.component';
 import { HomeComponent } from '../admin/home/home.component';
-import { PlnBBRealisasiPengirimanBrowseComponent } from './plnbb-realisasi-pengiriman/plnbb-realisasi-pengiriman-browse/plnbb-realisasi-pengiriman-browse.component'
+import { PlnBBRealisasiPengirimanBrowseComponent } from './plnbb-realisasi-pengiriman/plnbb-realisasi-pengiriman-browse/plnbb-realisasi-pengiriman-browse.component';
+import { PlnbbRencanaPasokanSiComponent } from './plnbb-rencana-pasokan/plnbb-rencana-pasokan-si/plnbb-rencana-pasokan-si.component'
 
 const appRoutes: Routes = [
   { path: 'plnbb', component: PlnbbComponent, children: [
@@ -14,6 +15,8 @@ const appRoutes: Routes = [
     
     { path: 'home', component: HomeComponent },
     { path: 'rencana-pasokan', component: PlnBBRencanaPasokanBrowseComponent },
+    { path: 'rencana-pasokan-si', component: PlnbbRencanaPasokanSiComponent },
+    { path: 'rencana-pasokan-si/:idMitraKesanggupan', component: PlnbbRencanaPasokanSiComponent },
     { path: 'realisasi-pengiriman', component: PlnBBRealisasiPengirimanBrowseComponent },
 
   ] }
@@ -29,7 +32,8 @@ const appRoutes: Routes = [
   ],
   declarations: [
     PlnBBRencanaPasokanBrowseComponent,
-    PlnBBRealisasiPengirimanBrowseComponent
+    PlnBBRealisasiPengirimanBrowseComponent,
+    PlnbbRencanaPasokanSiComponent
   ],
   exports : [
     PlnBBRencanaPasokanBrowseComponent,

@@ -111,7 +111,7 @@
         <td>{{item.mitraKesanggupan.referensiKontrak.tipe}}</td>
         <td>{{item.mitraKesanggupan.mode}}</td>
         <td>{{item.mitraKesanggupan.jumlah}}</td>
-        <td class='center'><button  class="ui primary button mini center">SI</button></td>
+        <td class='center'><button  [routerLink]="['/plnbb','rencana-pasokan-si',item.mitraKesanggupan.id]" routerLinkActive="router-link-active"  class="ui primary button mini center">SI</button></td>
         
       </tr>
     </tbody>
