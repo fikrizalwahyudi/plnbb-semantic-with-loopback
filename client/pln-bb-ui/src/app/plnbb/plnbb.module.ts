@@ -7,7 +7,8 @@ import { PlnBBRencanaPasokanBrowseComponent } from './plnbb-rencana-pasokan/plnb
 import { PlnbbComponent } from './plnbb.component';
 import { HomeComponent } from '../admin/home/home.component';
 import { PlnBBRealisasiPengirimanBrowseComponent } from './plnbb-realisasi-pengiriman/plnbb-realisasi-pengiriman-browse/plnbb-realisasi-pengiriman-browse.component';
-import { PlnbbRencanaPasokanSiComponent } from './plnbb-rencana-pasokan/plnbb-rencana-pasokan-si/plnbb-rencana-pasokan-si.component'
+import { PlnbbRencanaPasokanSiComponent } from './plnbb-rencana-pasokan/plnbb-rencana-pasokan-si/plnbb-rencana-pasokan-si.component';
+import { PlnbbRencanaPasokanSiCreateComponent } from './plnbb-rencana-pasokan/plnbb-rencana-pasokan-si/plnbb-rencana-pasokan-si-create.component'
 
 const appRoutes: Routes = [
   { path: 'plnbb', component: PlnbbComponent, children: [
@@ -17,6 +18,7 @@ const appRoutes: Routes = [
     { path: 'rencana-pasokan', component: PlnBBRencanaPasokanBrowseComponent },
     { path: 'rencana-pasokan-si', component: PlnbbRencanaPasokanSiComponent },
     { path: 'rencana-pasokan-si/:idMitraKesanggupan', component: PlnbbRencanaPasokanSiComponent },
+    { path: 'rencana-pasokan-si/create/:idMitraKesanggupan', component: PlnbbRencanaPasokanSiCreateComponent },
     { path: 'realisasi-pengiriman', component: PlnBBRealisasiPengirimanBrowseComponent },
 
   ] }
@@ -33,7 +35,8 @@ const appRoutes: Routes = [
   declarations: [
     PlnBBRencanaPasokanBrowseComponent,
     PlnBBRealisasiPengirimanBrowseComponent,
-    PlnbbRencanaPasokanSiComponent
+    PlnbbRencanaPasokanSiComponent,
+    PlnbbRencanaPasokanSiCreateComponent
   ],
   exports : [
     PlnBBRencanaPasokanBrowseComponent,

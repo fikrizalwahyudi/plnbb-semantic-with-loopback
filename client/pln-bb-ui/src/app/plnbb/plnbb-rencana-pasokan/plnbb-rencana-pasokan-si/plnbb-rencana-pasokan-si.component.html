@@ -5,7 +5,7 @@
         <div class="field">
           <label>Mitra Pengiriman</label>
           <div class="field">
-            <input type="text" name="" placeholder="Mitra Pengiriman" readonly>
+            <input type="text" name="" value={{dataMitraKesanggupan.referensiKontrak.mitra.name}}  readonly>
           </div>
         </div>
         <div class="required field">
@@ -28,7 +28,7 @@
         <div class="field">
           <label>Tujuan PLTU</label>
           <div class="field">
-            <input type="text" name="" placeholder="Tujuan PLTU" readonly>
+            <input type="text" name="" value={{dataMitraKesanggupan.tujuanPltu.name}} placeholder="Tujuan PLTU" readonly>
           </div>
         </div>
         <div class="required field">
@@ -40,7 +40,7 @@
         <div class="field">
           <label>Nama Kapal</label>
           <div class="field">
-            <input type="text" name="" placeholder="Nama Kapal" readonly>
+            <input type="text" name="" placeholder="Nama Kapal" formControlName="namaTransport" readonly>
           </div>
         </div>
       </div>
