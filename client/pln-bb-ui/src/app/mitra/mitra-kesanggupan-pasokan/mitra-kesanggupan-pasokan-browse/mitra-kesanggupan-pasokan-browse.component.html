@@ -1,11 +1,10 @@
-<div class="ui top attached borderless menu no-border-bottom">
+<!-- <div class="ui top attached borderless menu no-border-bottom">
   <a class="item"
       [routerLink]="['/mitra', 'kesanggupan-pasokan', 'create']">
     <i class="plus icon"></i> Register
   </a>
   <div class="item">
     <div class="ui floating dropdown labeled button">
-      <!-- <i class="calendar alternate icon"></i> -->
       <span class="text">2018</span>
       <div class="menu">
         <div class="item"
@@ -15,7 +14,6 @@
   </div>
   <div class="item">
     <div class="ui floating dropdown labeled button">
-      <!-- <i class="calendar alternate outline icon"></i> -->
       <span class="text">Desember</span>
       <div class="menu">
         <div class="item"
@@ -192,7 +190,7 @@
       </div>
     </div>
   </div>
-</div>
+</div>-->
 
 <!-- <a href="javascript:void(0)"
   (click)="delete(item)"
@@ -212,3 +210,165 @@
   disabled>
   <i class="lock link green icon action-icon"></i>
 </a> -->
+
+<div class="ui menu">
+  <a class="active item">
+    Available
+  </a>
+  <a class="item">
+    In Progress
+  </a>
+  <a class="item">
+    Delayed
+  </a>
+  <a class="item">
+    Complete
+  </a>
+  <a class="item">
+    Expired
+  </a>
+  <div class="right menu">
+    <div class="item">
+      <div class="ui transparent icon input">
+        <input type="text" placeholder="Search...">
+        <i class="search link icon"></i>
+      </div>
+    </div>
+    <a class="item"
+      [routerLink]="['/mitra', 'kesanggupan-pasokan', 'create']">
+      <i class="plus icon"></i> Register
+    </a>
+  </div>
+</div>
+
+<a class="ui label month-divider">
+  <i class="calendar icon"></i>
+  Desember 2018
+</a>
+
+<div class="ui segment">
+  <!-- <div class="ui grid">
+    <div class="three wide column"> -->
+      <h5 class="ui header">
+        <i class="table icon"></i>
+        <div class="content">
+          PLTU SURYALAYA
+          <div class="sub header">Kalimantan Selatan</div>
+        </div>
+      </h5>
+    <!-- </div>
+    <div class="thirteen wide column"> -->
+      <table class="ui very basic single line compact table">
+        <thead>
+          <tr>
+            <th class="center aligned collapsing">Tanggal</th>
+            <th>Jetty</th>
+            <th>Moda</th>
+            <th>Tipe</th>
+            <th class="center aligned collapsing">Jumlah</th>
+            <th class="center aligned collapsing">Harga (Ribu)</th>
+            <th class="center aligned collapsing"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="center top aligned collapsing" rowspan="2">
+              <div class="ui blue small label">01</div>
+            </td>
+            <td>Jetty BMB, Sungai Nagara, Tapin, Kalsel</td>
+            <td>Tongkang</td>
+            <td>FOB</td>
+            <td class="right aligned collapsing">7.500 TON</td>
+            <td class="right aligned collapsing">IDR 1.000.000</td>
+            <td class="center aligned collapsing">
+              <a href="javascript:void(0)" (click)="delete(item)">
+                <i class="trash link icon action-icon"></i>
+              </a>
+              <a>
+                <i class="edit link icon action-icon"></i>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5" class="right aligned">
+              <div class="ui horizontal list">
+                <div class="item">
+                  <div class="ui grey image small label">
+                    TIPE
+                    <div class="detail">LRC</div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="ui grey image small label">
+                    GCV
+                    <div class="detail">4103Kcal/Kg</div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="ui grey image small label">
+                    TM
+                    <div class="detail">36.42%</div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="ui grey image small label">
+                    ASH
+                    <div class="detail">1.83%</div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="ui grey image small label">
+                    TS
+                    <div class="detail">0.13%</div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="ui grey image small label">
+                    HGI
+                    <div class="detail">59%</div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="ui grey image small label">
+                    IDT
+                    <div class="detail">30.29%</div>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="center top aligned collapsing">
+              <div class="ui blue small label">02</div>
+            </td>
+            <td>Jetty BMB, Sungai Nagara, Tapin, Kalsel</td>
+            <td>Tongkang</td>
+            <td>FOB</td>
+            <td class="right aligned collapsing">7.500 TON</td>
+            <td class="right aligned collapsing">IDR 2.000.000</td>
+            <td class="center aligned collapsing">
+              <a href="javascript:void(0)" (click)="delete(item)">
+                <i class="trash link icon action-icon"></i>
+              </a>
+              <a>
+                <i class="edit link icon action-icon"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    <!-- </div>
+  </div> -->
+</div>  
+
+<a class="ui label month-divider">
+  <i class="calendar icon"></i>
+  November 2018
+</a>
+
+<div class="ui segment">
+  <div class="ui divided items">
+    
+  </div>
+</div>  
