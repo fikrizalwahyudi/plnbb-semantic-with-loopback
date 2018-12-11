@@ -53,8 +53,11 @@ export class ShippingInstructionModel extends PersistedModel
 	@Property('any')
 	jettyId:any
 
-	@Property('string')
-	laycan:string
+	@Property('date')
+	laycanStartDate:Date
+
+	@Property('date')
+	laycanEndDate:Date
 
 	@Relation("belongsTo", "PlnRencana", "plnRencanaId")
 	plnRencana

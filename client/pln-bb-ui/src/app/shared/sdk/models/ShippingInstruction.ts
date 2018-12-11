@@ -13,7 +13,8 @@ export interface ShippingInstructionInterface {
   "transportId"?: any;
   "namaTransport"?: string;
   "jettyId"?: any;
-  "laycan"?: string;
+  "laycanStartDate"?: Date;
+  "laycanEndDate"?: Date;
   "id"?: any;
   "mitraKesanggupanId"?: any;
   plnRencana?: PlnRencana;
@@ -28,7 +29,8 @@ export class ShippingInstruction implements ShippingInstructionInterface {
   "transportId": any = <any>null;
   "namaTransport": string = '';
   "jettyId": any = <any>null;
-  "laycan": string = '';
+  "laycanStartDate": Date = new Date(0);
+  "laycanEndDate": Date = new Date(0);
   "id": any = <any>null;
   "mitraKesanggupanId": any = <any>null;
   plnRencana: PlnRencana = null;
@@ -91,9 +93,13 @@ export class ShippingInstruction implements ShippingInstructionInterface {
           name: 'jettyId',
           type: 'any'
         },
-        "laycan": {
-          name: 'laycan',
-          type: 'string'
+        "laycanStartDate": {
+          name: 'laycanStartDate',
+          type: 'Date'
+        },
+        "laycanEndDate": {
+          name: 'laycanEndDate',
+          type: 'Date'
         },
         "id": {
           name: 'id',
