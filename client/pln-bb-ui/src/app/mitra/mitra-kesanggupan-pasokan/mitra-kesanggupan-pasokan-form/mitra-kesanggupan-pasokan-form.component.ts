@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MitraApi } from '../../../shared/sdk/services/custom/Mitra';
 import { Mitra } from '../../../shared/sdk/models/Mitra';
@@ -8,6 +8,9 @@ import { ReferensiKontrakApi } from '../../../shared/sdk/services/custom/Referen
 import { switchMap } from 'rxjs/operators';
 import { ReferensiKontrakPltuApi } from '../../../shared/sdk/services/custom/ReferensiKontrakPltu';
 import { MitraKesanggupanApi } from '../../../shared/sdk/services/custom/MitraKesanggupan';
+import { environment } from '../../../../environments/environment';
+import { MitraKesanggupanTambangApi } from '../../../shared/sdk';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'mitra-kesanggupan-pasokan-form',
@@ -27,6 +30,18 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
   daftarKontrak
   pltus
 
+  id
+  tambangUri = `${environment.apiUrl}/api/tambang`
+  searchFilterTambang = {
+    where:{
+      or:[
+        {name: {like: '{query}.*'}},
+        {lokasi: {like: '{query}.*'}}
+      ]
+    },
+    limit: 10
+  }
+
   constructor(
     private fb:FormBuilder,
     private router:Router,
@@ -34,7 +49,8 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
     private userApi:UserApi,
     private kontrakApi:ReferensiKontrakApi,
     private kontrakPltuApi:ReferensiKontrakPltuApi,
-    private kesanggupanApi:MitraKesanggupanApi
+    private kesanggupanApi:MitraKesanggupanApi,
+    private tambangApi:MitraKesanggupanTambangApi,
   ) {
     this.daftarKontrak = this.mitraApi.findOne({where: {userId: this.userApi.getCurrentId()}}).pipe(switchMap(data => {
       let mitra = data as Mitra
@@ -58,6 +74,8 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
       harga: [null, [Validators.required]],
       mode: [null, [Validators.required]],
       keterangan: null,
+      jenisKontrak: [null, [Validators.required]],
+      jenisBatubara: [null, [Validators.required]],
       gcv: [null, [Validators.required]],
       tm: [null, [Validators.required]],
       ash: [null, [Validators.required]],
@@ -66,6 +84,12 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
       idt: [null, [Validators.required]],
       size1: [null, [Validators.required]],
       size2: [null, [Validators.required]],
+      daftarTambang: this.fb.array([
+        this.fb.group({
+          tambangId: [null, [Validators.required]],
+          jumlah: [null, [Validators.required]]
+        })
+      ])
 
     })
    }
@@ -75,8 +99,8 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
   }
 
   save() {
-    // console.log(this.fg.value)
-    this.onSave.emit(this.fg.value)
+    console.log(this.fg.value)
+    // this.onSave.emit(this.fg.value)
   }
 
   cancel() {
@@ -100,5 +124,33 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
       }
     })
   }
+
+  onSearchTambang({response, cb}) {
+    cb({
+      success: true,
+      results: _.values(response).map(item => {
+        return {
+          name: item.name,
+          value: item.id,
+          text: item.name
+        }
+      })
+    })
+  }
+
+  addTambang(fg:FormGroup) {
+    const daftarTambang = fg.get('daftarTambang') as FormArray
+    daftarTambang.push(this.fb.group({
+      referensiKontrakId: [null, [Validators.required]],
+      tambangId: [null, [Validators.required]]
+    }))
+  }
+
+  delTambang(i, fg) {
+    const daftarTambang = fg.get('daftarTambang') as FormArray
+    daftarTambang.removeAt(i)
+  }
+
+  get daftarTambang() { return this.fg.get('daftarTambang') as FormArray; }
 
 }

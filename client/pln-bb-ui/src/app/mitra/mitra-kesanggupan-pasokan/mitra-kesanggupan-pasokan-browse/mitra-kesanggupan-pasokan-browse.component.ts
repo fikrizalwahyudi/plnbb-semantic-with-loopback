@@ -5,6 +5,8 @@ import { UserApi } from '../../../shared/sdk/services/custom/User';
 import { MitraKesanggupanApi } from '../../../shared/sdk/services/custom/MitraKesanggupan';
 import { promptDialog } from '../../../shared/modals/prompt.modal';
 
+declare var $:any;
+
 @Component({
   selector: 'app-mitra-kesanggupan-pasokan-browse',
   templateUrl: './mitra-kesanggupan-pasokan-browse.component.html',
@@ -51,4 +53,11 @@ export class MitraKesanggupanPasokanBrowseComponent implements OnInit {
       item.lock = true
     })
   }
+  
+  flip(){
+    $('.shape')
+    .shape('set next side', '.second.side')
+    .shape('flip back');
+  }
+
 }

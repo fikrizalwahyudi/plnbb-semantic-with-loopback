@@ -50,8 +50,8 @@ export class ShippingInstructionModel extends PersistedModel
 	@Property('string')
 	namaTransport:string
 
-	@Property('string')
-	jetty:string
+	@Property('any')
+	jettyId:any
 
 	@Property('string')
 	laycan:string
@@ -61,4 +61,7 @@ export class ShippingInstructionModel extends PersistedModel
 
 	@Relation("belongsTo", "Mitra", "transportId")
 	transport
+
+	@Relation("belongsTo", "Jetty", "jettyId")
+	jetty
 }

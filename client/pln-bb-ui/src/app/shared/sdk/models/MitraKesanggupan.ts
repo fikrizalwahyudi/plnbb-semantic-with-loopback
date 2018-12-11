@@ -2,7 +2,8 @@
 import {
   ReferensiKontrak,
   Pltu,
-  MitraKesanggupanTambang
+  MitraKesanggupanTambang,
+  Jetty
 } from '../index';
 
 declare var Object: any;
@@ -14,6 +15,9 @@ export interface MitraKesanggupanInterface {
   "harga"?: number;
   "mode"?: string;
   "keterangan"?: string;
+  "jenisKontrak"?: string;
+  "jenisBatubara"?: string;
+  "jettyId"?: any;
   "lock"?: boolean;
   "gcv"?: number;
   "tm"?: number;
@@ -28,6 +32,7 @@ export interface MitraKesanggupanInterface {
   referensiKontrak?: ReferensiKontrak;
   tujuanPltu?: Pltu;
   sumberTambang?: MitraKesanggupanTambang[];
+  jetty?: Jetty;
 }
 
 export class MitraKesanggupan implements MitraKesanggupanInterface {
@@ -38,6 +43,9 @@ export class MitraKesanggupan implements MitraKesanggupanInterface {
   "harga": number = 0;
   "mode": string = '';
   "keterangan": string = '';
+  "jenisKontrak": string = '';
+  "jenisBatubara": string = '';
+  "jettyId": any = <any>null;
   "lock": boolean = false;
   "gcv": number = 0;
   "tm": number = 0;
@@ -52,6 +60,7 @@ export class MitraKesanggupan implements MitraKesanggupanInterface {
   referensiKontrak: ReferensiKontrak = null;
   tujuanPltu: Pltu = null;
   sumberTambang: MitraKesanggupanTambang[] = null;
+  jetty: Jetty = null;
   constructor(data?: MitraKesanggupanInterface) {
     Object.assign(this, data);
   }
@@ -112,6 +121,18 @@ export class MitraKesanggupan implements MitraKesanggupanInterface {
         "keterangan": {
           name: 'keterangan',
           type: 'string'
+        },
+        "jenisKontrak": {
+          name: 'jenisKontrak',
+          type: 'string'
+        },
+        "jenisBatubara": {
+          name: 'jenisBatubara',
+          type: 'string'
+        },
+        "jettyId": {
+          name: 'jettyId',
+          type: 'any'
         },
         "lock": {
           name: 'lock',
@@ -182,6 +203,14 @@ export class MitraKesanggupan implements MitraKesanggupanInterface {
           relationType: 'hasMany',
                   keyFrom: 'id',
           keyTo: 'mitraKesanggupanId'
+        },
+        jetty: {
+          name: 'jetty',
+          type: 'Jetty',
+          model: 'Jetty',
+          relationType: 'belongsTo',
+                  keyFrom: 'jettyId',
+          keyTo: 'id'
         },
       }
     }

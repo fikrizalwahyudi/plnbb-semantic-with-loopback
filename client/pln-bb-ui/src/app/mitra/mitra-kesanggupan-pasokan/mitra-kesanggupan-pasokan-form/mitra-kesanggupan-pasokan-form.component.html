@@ -57,6 +57,30 @@
           </select>
         </div>
         <div class="required field">
+          <label>Jenis Kontrak</label>
+          <select class="ui dropdown"
+                  formControlName="jenisKontrak"
+                  uiDropDown>
+            <option value=""
+                    disabled
+                    hidden>Pilih Jenis Kontrak</option>
+            <option value="cif">CIF</option>
+            <option value="fob">FOB</option>
+          </select>
+        </div>
+        <div class="required field">
+          <label>Jenis Batubara</label>
+          <select class="ui dropdown"
+                  formControlName="jenisBatubara"
+                  uiDropDown>
+            <option value=""
+                    disabled
+                    hidden>Pilih Jenis Batubara</option>
+            <option value="lrc">LRC</option>
+            <option value="mrc">MRC</option>
+          </select>
+        </div>
+        <div class="required field">
           <label>Jumlah</label>
           <input type="text"
                   placeholder="Jumlah Tonnase"
@@ -143,6 +167,53 @@
                     formControlName="size2">
             </div>
           </div>
+          
+        </div>
+        <h4>Sumber Tambang</h4>
+        <hr>
+        <div class="column">
+          <div class="required field">
+            <label>Tambang dan Jumlah</label>
+            <div class="two fields" 
+                *ngFor="let itemTambang of daftarTambang.controls; let i=index; let first = first; let last = last"
+                [formGroup]="itemTambang">
+              <div class="field">
+                <div class="required field">
+                  <div class="ui fluid search normal selection dropdown"
+                        uiSearchDropdown
+                        [url]="tambangUri"
+                        [filter]="searchFilterTambang"
+                        (onSearch)="onSearchTambang($event)"
+                        formControlName="tambangId">
+                    <input type="hidden">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">Select Tambang</div>
+                    <div class="menu">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui action input">
+                  <input type="text"
+                          placeholder="Jumlah" formControlName="jumlah">
+                  <button *ngIf="last"
+                          class="ui icon button"
+                          (click)="addTambang(fg)">
+                    <i class="plus icon"></i>
+                  </button>
+                  <button *ngIf="!last"
+                          class="ui icon button"
+                          (click)="delTambang(i, fg)">
+                    <i class="minus icon"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="column">
           <div class="inline field">
             <button class="ui secondary button"
                     type="button"
@@ -152,7 +223,6 @@
                     [disabled]="!fg.valid">Save Changes</button>
           </div>
         </div>
-        
       </form>
     </div>
   </div>

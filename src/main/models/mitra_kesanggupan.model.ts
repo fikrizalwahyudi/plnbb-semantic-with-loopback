@@ -56,6 +56,15 @@ export class MitraKesanggupanModel extends PersistedModel
 	@Property('string')
 	keterangan:string
 
+	@Property('string')
+	jenisKontrak:string
+
+	@Property('string')
+	jenisBatubara
+
+	@Property('any')
+	jettyId
+
 	@Property('boolean')
 	lock:boolean
 
@@ -96,4 +105,7 @@ export class MitraKesanggupanModel extends PersistedModel
 
 	@Relation("hasMany", "MitraKesanggupanTambang", "mitraKesanggupanId")
 	sumberTambang
+	
+	@Relation("belongsTo", "Jetty", "jettyId")
+	jetty
 }
