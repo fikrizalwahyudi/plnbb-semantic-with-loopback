@@ -49,7 +49,7 @@
           <label>Mitra Shipping</label>
           <select class="ui dropdown" formControlName="transportId" uiDropDown>
             <option value="" disabled hidden>Pilih Mitra</option>
-            <option *ngFor="let item of listMitra; let index = index" [value]="item.value"><span [innerHTML]="item.name"></span></option>
+            <option *ngFor="let item of arrMitraShipping; let index = index" [value]="item.value"><span [innerHTML]="item.name"></span></option>
           </select>
         </div>
         <div class="required field">

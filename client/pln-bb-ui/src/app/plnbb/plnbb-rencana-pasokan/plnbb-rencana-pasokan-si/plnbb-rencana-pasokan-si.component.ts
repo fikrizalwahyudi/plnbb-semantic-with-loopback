@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MitraKesanggupanApi } from '../../../shared/sdk/services/custom/MitraKesanggupan';
 import { MitraKesanggupan } from '../../../shared/sdk/models/MitraKesanggupan';
+import { Mitra } from '../../../shared/sdk/models/Mitra';
+import { MitraApi } from '../../../shared/sdk';
 
 @Component({
   selector: 'app-plnbb-rencana-pasokan-si',
@@ -16,13 +18,15 @@ export class PlnbbRencanaPasokanSiComponent implements OnInit {
 
   fg: FormGroup;
   dataMitraKesanggupan:MitraKesanggupan;
+  arrMitraShipping:[Mitra];
 
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private mitraKesanggupanApi: MitraKesanggupanApi
+    private mitraKesanggupanApi: MitraKesanggupanApi,
+    private mitraApi: MitraApi
   ) {
     this.fg = this.fb.group({
       no: [null, [Validators.required]],
@@ -51,7 +55,17 @@ export class PlnbbRencanaPasokanSiComponent implements OnInit {
           console.log(error);
         });
     });
+    this.getMitra();
+  }
 
+  getMitra(){
+    this.mitraApi.find().subscribe((result:[Mitra]) =>{
+      this.arrMitraShipping=result;
+    },
+    error =>{
+      alert('terdapat Error: ' + error.message);
+      console.log(error);
+    });
   }
 
 }
