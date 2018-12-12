@@ -5,6 +5,7 @@ import { UserApi } from '../../../shared/sdk/services/custom/User';
 import { MitraKesanggupanApi } from '../../../shared/sdk/services/custom/MitraKesanggupan';
 import { promptDialog } from '../../../shared/modals/prompt.modal';
 import { MitraKesanggupan } from '../../../shared/sdk/models/MitraKesanggupan';
+import * as moment from 'moment';
 
 declare var $:any;
 
@@ -34,12 +35,11 @@ export class MitraKesanggupanPasokanBrowseComponent implements OnInit {
       this.years.push(i)
     }
     this.kesanggupanApi.find({where: {userId: this.userApi.getCurrentId()}, include: ['tujuanPltu', 'referensiKontrak']}).subscribe(data => {
-      this.daftarKesanggupan = data
+      //this.daftarKesanggupan = data
 
-      console.log(data)
       let buffer:any = _.groupBy(data, (entry:MitraKesanggupan) => {
         let date = new Date(entry.tglPengiriman)
-        return date.getMonth() + '/' + date.getFullYear()
+        return moment(date).format('MMMM YYYY')
       })
 
       for(var key in buffer) {
@@ -49,7 +49,9 @@ export class MitraKesanggupanPasokanBrowseComponent implements OnInit {
         })
       }
 
-      console.log(buffer)
+      //console.log(buffer)
+
+      this.daftarKesanggupan = buffer
     })
   }
 
