@@ -7,7 +7,10 @@ import {
 
 declare var Object: any;
 export interface ShippingInstructionInterface {
+  "id"?: any;
   "no"?: string;
+  "kode"?: string;
+  "tahun"?: string;
   "tgl"?: Date;
   "plnRencanaId"?: any;
   "transportId"?: any;
@@ -15,7 +18,6 @@ export interface ShippingInstructionInterface {
   "jettyId"?: any;
   "laycanStartDate"?: Date;
   "laycanEndDate"?: Date;
-  "id"?: any;
   "mitraKesanggupanId"?: any;
   plnRencana?: PlnRencana;
   transport?: Mitra;
@@ -23,7 +25,10 @@ export interface ShippingInstructionInterface {
 }
 
 export class ShippingInstruction implements ShippingInstructionInterface {
+  "id": any = <any>null;
   "no": string = '';
+  "kode": string = '';
+  "tahun": string = '';
   "tgl": Date = new Date(0);
   "plnRencanaId": any = <any>null;
   "transportId": any = <any>null;
@@ -31,7 +36,6 @@ export class ShippingInstruction implements ShippingInstructionInterface {
   "jettyId": any = <any>null;
   "laycanStartDate": Date = new Date(0);
   "laycanEndDate": Date = new Date(0);
-  "id": any = <any>null;
   "mitraKesanggupanId": any = <any>null;
   plnRencana: PlnRencana = null;
   transport: Mitra = null;
@@ -69,8 +73,20 @@ export class ShippingInstruction implements ShippingInstructionInterface {
       path: 'shipping_instruction',
       idName: 'id',
       properties: {
+        "id": {
+          name: 'id',
+          type: 'any'
+        },
         "no": {
           name: 'no',
+          type: 'string'
+        },
+        "kode": {
+          name: 'kode',
+          type: 'string'
+        },
+        "tahun": {
+          name: 'tahun',
           type: 'string'
         },
         "tgl": {
@@ -100,10 +116,6 @@ export class ShippingInstruction implements ShippingInstructionInterface {
         "laycanEndDate": {
           name: 'laycanEndDate',
           type: 'Date'
-        },
-        "id": {
-          name: 'id',
-          type: 'any'
         },
         "mitraKesanggupanId": {
           name: 'mitraKesanggupanId',
