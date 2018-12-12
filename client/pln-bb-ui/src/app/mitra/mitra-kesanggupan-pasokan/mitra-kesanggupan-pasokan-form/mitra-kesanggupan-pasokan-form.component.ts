@@ -42,6 +42,17 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
     limit: 10
   }
 
+  jettyUri = `${environment.apiUrl}/api/jetty`
+  searchFilterJetty = {
+    where:{
+      or:[
+        {name: {like: '{query}.*'}},
+        {lokasi: {like: '{query}.*'}}
+      ]
+    },
+    limit: 10
+  }
+
   constructor(
     private fb:FormBuilder,
     private router:Router,
@@ -52,6 +63,8 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
     private kesanggupanApi:MitraKesanggupanApi,
     private tambangApi:MitraKesanggupanTambangApi,
   ) {
+
+
     this.daftarKontrak = this.mitraApi.findOne({where: {userId: this.userApi.getCurrentId()}}).pipe(switchMap(data => {
       let mitra = data as Mitra
 
@@ -76,6 +89,7 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
       keterangan: null,
       jenisKontrak: [null, [Validators.required]],
       jenisBatubara: [null, [Validators.required]],
+      jettyId: [null, [Validators.required]],
       gcv: [null, [Validators.required]],
       tm: [null, [Validators.required]],
       ash: [null, [Validators.required]],
@@ -87,7 +101,7 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
       daftarTambang: this.fb.array([
         this.fb.group({
           tambangId: [null, [Validators.required]],
-          jumlah: [null, [Validators.required]]
+          jumlahPasokanTambang: [null, [Validators.required]]
         })
       ])
 
@@ -138,11 +152,25 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
     })
   }
 
+  onSearchJetty({response, cb}) {
+    cb({
+      success: true,
+      results: _.values(response).map(item => {
+        return {
+          name: item.name,
+          value: item.id,
+          text: item.name
+        }
+      })
+    })
+  }
+
   addTambang(fg:FormGroup) {
     const daftarTambang = fg.get('daftarTambang') as FormArray
+    // console.log(daftarTambang);
     daftarTambang.push(this.fb.group({
-      referensiKontrakId: [null, [Validators.required]],
-      tambangId: [null, [Validators.required]]
+      tambangId: [null, [Validators.required]],
+      jumlahPasokanTambang: [null, [Validators.required]]
     }))
   }
 

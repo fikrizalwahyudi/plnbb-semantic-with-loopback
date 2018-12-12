@@ -68,6 +68,21 @@
             <option value="fob">FOB</option>
           </select>
         </div>
+        <div class="required field" *ngIf="fg.value.jenisKontrak == 'cif'">
+          <label>Jetty</label>
+          <div class="ui fluid search normal selection dropdown"
+                uiSearchDropdown
+                [url]="jettyUri"
+                [filter]="searchFilterJetty"
+                (onSearch)="onSearchJetty($event)"
+                formControlName="jettyId">
+            <input type="hidden">
+            <i class="dropdown icon"></i>
+            <div class="default text">Select Jetty</div>
+            <div class="menu">
+            </div>
+          </div>
+        </div>
         <div class="required field">
           <label>Jenis Batubara</label>
           <select class="ui dropdown"
@@ -196,11 +211,16 @@
               <div class="field">
                 <div class="ui action input">
                   <input type="text"
-                          placeholder="Jumlah" formControlName="jumlah">
+                          placeholder="Jumlah" formControlName="jumlahPasokanTambang">
                   <button *ngIf="last"
                           class="ui icon button"
                           (click)="addTambang(fg)">
                     <i class="plus icon"></i>
+                  </button>
+                  <button *ngIf="last && !first"
+                          class="ui icon button"
+                          (click)="delTambang(i, fg)">
+                    <i class="minus icon"></i>
                   </button>
                   <button *ngIf="!last"
                           class="ui icon button"
