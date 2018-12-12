@@ -52,20 +52,11 @@ export class ReferensiKontrakModel extends PersistedModel
 	@Property('date')
 	tanggalPekerjaan:Date
 
-	@Property('string')
-	jenis:string
-
 	@Property('number')
 	status:number
 
 	@Property('any')
 	mitraId:any
-
-	@Property('string')
-	tipe:string
-
-	@Property('number')
-	harga:number
 
 	@Relation("belongsTo", "Mitra", "mitraId")
 	mitra

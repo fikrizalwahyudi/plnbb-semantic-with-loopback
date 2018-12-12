@@ -50,15 +50,21 @@ export class ShippingInstructionModel extends PersistedModel
 	@Property('string')
 	namaTransport:string
 
-	@Property('string')
-	jetty:string
+	@Property('any')
+	jettyId:any
 
-	@Property('string')
-	laycan:string
+	@Property('date')
+	laycanStartDate:Date
+
+	@Property('date')
+	laycanEndDate:Date
 
 	@Relation("belongsTo", "PlnRencana", "plnRencanaId")
 	plnRencana
 
 	@Relation("belongsTo", "Mitra", "transportId")
 	transport
+
+	@Relation("belongsTo", "Jetty", "jettyId")
+	jetty
 }
