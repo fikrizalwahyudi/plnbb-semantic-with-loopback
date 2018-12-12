@@ -1,7 +1,8 @@
 /* tslint:disable */
 import {
   PlnRencana,
-  Mitra
+  Mitra,
+  Jetty
 } from '../index';
 
 declare var Object: any;
@@ -11,12 +12,14 @@ export interface ShippingInstructionInterface {
   "plnRencanaId"?: any;
   "transportId"?: any;
   "namaTransport"?: string;
-  "jetty"?: string;
-  "laycan"?: string;
+  "jettyId"?: any;
+  "laycanStartDate"?: Date;
+  "laycanEndDate"?: Date;
   "id"?: any;
   "mitraKesanggupanId"?: any;
   plnRencana?: PlnRencana;
   transport?: Mitra;
+  jetty?: Jetty;
 }
 
 export class ShippingInstruction implements ShippingInstructionInterface {
@@ -25,12 +28,14 @@ export class ShippingInstruction implements ShippingInstructionInterface {
   "plnRencanaId": any = <any>null;
   "transportId": any = <any>null;
   "namaTransport": string = '';
-  "jetty": string = '';
-  "laycan": string = '';
+  "jettyId": any = <any>null;
+  "laycanStartDate": Date = new Date(0);
+  "laycanEndDate": Date = new Date(0);
   "id": any = <any>null;
   "mitraKesanggupanId": any = <any>null;
   plnRencana: PlnRencana = null;
   transport: Mitra = null;
+  jetty: Jetty = null;
   constructor(data?: ShippingInstructionInterface) {
     Object.assign(this, data);
   }
@@ -84,13 +89,17 @@ export class ShippingInstruction implements ShippingInstructionInterface {
           name: 'namaTransport',
           type: 'string'
         },
-        "jetty": {
-          name: 'jetty',
-          type: 'string'
+        "jettyId": {
+          name: 'jettyId',
+          type: 'any'
         },
-        "laycan": {
-          name: 'laycan',
-          type: 'string'
+        "laycanStartDate": {
+          name: 'laycanStartDate',
+          type: 'Date'
+        },
+        "laycanEndDate": {
+          name: 'laycanEndDate',
+          type: 'Date'
         },
         "id": {
           name: 'id',
@@ -116,6 +125,14 @@ export class ShippingInstruction implements ShippingInstructionInterface {
           model: 'Mitra',
           relationType: 'belongsTo',
                   keyFrom: 'transportId',
+          keyTo: 'id'
+        },
+        jetty: {
+          name: 'jetty',
+          type: 'Jetty',
+          model: 'Jetty',
+          relationType: 'belongsTo',
+                  keyFrom: 'jettyId',
           keyTo: 'id'
         },
       }

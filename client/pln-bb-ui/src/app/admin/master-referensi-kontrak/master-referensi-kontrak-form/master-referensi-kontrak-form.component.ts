@@ -22,26 +22,6 @@ export class MasterReferensiKontrakFormComponent implements OnInit {
   fg:FormGroup
   errorMsg
   submitting
-  jenis = [
-    {
-      id:1,
-      name:"CIF"
-    },
-    {
-      id:2,
-      name:"FOB"
-    }
-  ]
-  tipe = [
-    {
-      id:1,
-      name:"LRC"
-    },
-    {
-      id:2,
-      name:"MRC"
-    }
-  ]
 
   mitraUri = `${environment.apiUrl}/api/mitra`
   searchFilterMitra = {
@@ -82,12 +62,9 @@ export class MasterReferensiKontrakFormComponent implements OnInit {
       nomorKontrak: [null, [Validators.required]],
       namaPekerjaan: [null, [Validators.required]],
       tanggalPekerjaan: [new Date(), [Validators.required]],
-      jenis: [null, [Validators.required]],
-      tipe: [null, [Validators.required]],
       mitra: [null, [Validators.required]],
       pltu: [null, [Validators.required]],
-      tambang: [null, [Validators.required]],
-      harga: [null, [Validators.required]],
+      tambang: [null, [Validators.required]]
     })
    }
 

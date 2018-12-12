@@ -5,6 +5,7 @@ import { LoopBackFilter, StatFilter } from './index';
 import { SocketConnection } from '../sockets/socket.connections';
 import { merge } from 'rxjs/observable/merge';
 /**
+/**
  * @class FireLoopRef<T>
  * @author Jonathan Casarrubias <t: johncasarrubias, gh: mean-expert-official>
  * @license MIT
