@@ -4,6 +4,7 @@ import * as _ from 'lodash';
 import { UserApi } from '../../../shared/sdk/services/custom/User';
 import { MitraKesanggupanApi } from '../../../shared/sdk/services/custom/MitraKesanggupan';
 import { promptDialog } from '../../../shared/modals/prompt.modal';
+import { MitraKesanggupan } from '../../../shared/sdk/models/MitraKesanggupan';
 
 @Component({
   selector: 'app-mitra-kesanggupan-pasokan-browse',
@@ -34,6 +35,19 @@ export class MitraKesanggupanPasokanBrowseComponent implements OnInit {
       this.daftarKesanggupan = data
 
       console.log(data)
+      let buffer:any = _.groupBy(data, (entry:MitraKesanggupan) => {
+        let date = new Date(entry.tglPengiriman)
+        return date.getMonth() + '/' + date.getFullYear()
+      })
+
+      for(var key in buffer) {
+        let entry = buffer[key]
+        buffer[key] = _.groupBy(entry, (entryI:MitraKesanggupan) => {
+          return entryI.tujuanPltuId
+        })
+      }
+
+      console.log(buffer)
     })
   }
 
