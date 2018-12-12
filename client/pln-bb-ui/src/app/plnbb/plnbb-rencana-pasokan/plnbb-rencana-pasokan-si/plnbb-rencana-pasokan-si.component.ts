@@ -22,7 +22,8 @@ export class PlnbbRencanaPasokanSiComponent implements OnInit {
 
   errorMsg
   submitting
-  status='baru';
+  status = 'baru';
+  maxNo = 1;
 
   fg: FormGroup;
   dataMitraKesanggupan: MitraKesanggupan;
@@ -42,6 +43,8 @@ export class PlnbbRencanaPasokanSiComponent implements OnInit {
     this.fg = this.fb.group({
       id: [null],
       no: [null, [Validators.required]],
+      kode: [null],
+      tahun: [null],
       tgl: [null, [Validators.required]],
       namaTransport: [null, [Validators.required]],
       jetty: [null, [Validators.required]],
@@ -50,9 +53,7 @@ export class PlnbbRencanaPasokanSiComponent implements OnInit {
       transportId: [null, [Validators.required]],
       plnRencanaId: [null, [Validators.required]]
     });
-    this.fg.patchValue({ 'no': 'SI/DIRPLNBB/' + new Date().getFullYear() });
-
-
+    this.generateNo();
   }
 
   ngOnInit() {
@@ -68,8 +69,11 @@ export class PlnbbRencanaPasokanSiComponent implements OnInit {
       this.mitraKesanggupanApi.findOne(cond).subscribe((result: MitraKesanggupan) => {
         this.dataMitraKesanggupan = result;
         this.shippingInstructionApi.findOne({ where: { plnRencanaId: idMitraKesanggupan } }).subscribe((resultShip: ShippingInstruction) => {
-          temp = resultShip;
           this.fg.patchValue(resultShip);
+          let no = this.fg.controls['no'].value;
+          let kode = this.fg.controls['kode'].value;
+          let tahun = this.fg.controls['tahun'].value;
+          this.fg.patchValue({ "no": no + '/' + kode + '/' + tahun });
           this.getMitra();
           this.getJetty();
         },
@@ -89,6 +93,27 @@ export class PlnbbRencanaPasokanSiComponent implements OnInit {
           console.log(error);
         });
     });
+  }
+
+  generateNo() {
+    this.fg.patchValue({ 'no': this.maxNo + '/SI/DIRPLNBB/' + new Date().getFullYear() });
+    this.shippingInstructionApi.find({ where: { tahun: new Date().getFullYear()+'' } }).subscribe((result: [ShippingInstruction]) => {
+      
+      result.forEach(element => {
+        if (parseInt(element.no) >= this.maxNo) {
+          this.maxNo = parseInt(element.no)+1;
+          console.log(parseInt(element.no));
+          this.fg.patchValue({ 'no': this.maxNo+'/SI/DIRPLNBB/' + new Date().getFullYear() });
+        }
+      });
+    },
+      error => {
+        if(error.status==404){
+        }else{
+          alert('terdapat Error: ' + error.message);
+          console.log(error);
+        }
+      });
   }
 
   getMitra() {
@@ -114,6 +139,10 @@ export class PlnbbRencanaPasokanSiComponent implements OnInit {
   save() {
     this.submitting = true
     this.errorMsg = undefined
+    let temp = this.fg.controls['no'].value.split('/');
+    this.fg.patchValue({ 'no': temp[0] });
+    this.fg.patchValue({ 'kode': temp[1] + '/' + temp[2] });
+    this.fg.patchValue({ 'tahun': temp[temp.length - 1] });
     this.shippingInstructionApi.replaceOrCreate(this.fg.value).subscribe(() => {
       this.router.navigate(['/plnbb', 'rencana-pasokan'])
     }, (err) => {
