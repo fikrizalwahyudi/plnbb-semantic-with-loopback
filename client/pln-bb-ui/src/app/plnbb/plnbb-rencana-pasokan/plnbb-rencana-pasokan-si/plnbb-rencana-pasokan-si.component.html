@@ -1,3 +1,4 @@
+{{fg.value|json}}
 <div class="ui top attached yellow segment">
   <div [formGroup]="fg" class="ui form">
     <div class="ui three column grid">
@@ -5,13 +6,16 @@
         <div class="field">
           <label>Mitra Pengiriman</label>
           <div class="field">
-            <input type="text" name="" value={{dataMitraKesanggupan.referensiKontrak.mitra.name}}  readonly>
+            <input type="text" name="" value={{dataMitraKesanggupan?.referensiKontrak?.mitra?.name}}  readonly>
           </div>
         </div>
         <div class="required field">
-          <label>Laycan</label>
-          <div class="field">
-            <input type="text" name="" placeholder="Laycan" formControlName="laycan">
+          <label>Laycan Start Date</label>
+          <div class="ui calendar" uiCalendar formControlName="laycanStartDate">
+            <div class="ui input left icon">
+              <i class="calendar icon"></i>
+              <input type="text" placeholder="Date/Time">
+            </div>
           </div>
         </div>
         <div class="required field">
@@ -28,19 +32,22 @@
         <div class="field">
           <label>Tujuan PLTU</label>
           <div class="field">
-            <input type="text" name="" value={{dataMitraKesanggupan.tujuanPltu.name}} placeholder="Tujuan PLTU" readonly>
+            <input type="text" name="" value={{dataMitraKesanggupan?.tujuanPltu?.name}} placeholder="Tujuan PLTU" readonly>
           </div>
         </div>
         <div class="required field">
-          <label>No SI</label>
-          <div class="field">
-            <input type="text" name="" placeholder="No SI" formControlName="no">
+          <label>Laycan End Date</label>
+          <div class="ui calendar" uiCalendar formControlName="laycanEndDate">
+            <div class="ui input left icon">
+              <i class="calendar icon"></i>
+              <input type="text" placeholder="Date/Time">
+            </div>
           </div>
         </div>
         <div class="field">
           <label>Nama Kapal</label>
           <div class="field">
-            <input type="text" name="" placeholder="Nama Kapal" formControlName="namaTransport" readonly>
+            <input type="text" name="" placeholder="Nama Kapal" formControlName="namaTransport">
           </div>
         </div>
       </div>
@@ -49,14 +56,20 @@
           <label>Mitra Shipping</label>
           <select class="ui dropdown" formControlName="transportId" uiDropDown>
             <option value="" disabled hidden>Pilih Mitra</option>
-            <option *ngFor="let item of arrMitraShipping; let index = index" [value]="item.value"><span [innerHTML]="item.name"></span></option>
+            <option *ngFor="let item of arrMitraShipping; let index = index" [value]="item.id"><span [innerHTML]="item.name"></span></option>
           </select>
+        </div>
+        <div class="required field">
+          <label>No SI</label>
+          <div class="field">
+            <input type="text" name="" placeholder="No SI" formControlName="no">
+          </div>
         </div>
         <div class="required field">
           <label>Jetty</label>
           <select class="ui dropdown" formControlName="jetty" uiDropDown>
             <option value="" disabled hidden>Pilih Jetty</option>
-            <option *ngFor="let item of listMitra; let index = index" [value]="item.value"><span [innerHTML]="item.name"></span></option>
+            <option *ngFor="let item of arrJetty; let index = index" [value]="item.id"><span [innerHTML]="item.name"></span></option>
           </select>
         </div>
       </div>
