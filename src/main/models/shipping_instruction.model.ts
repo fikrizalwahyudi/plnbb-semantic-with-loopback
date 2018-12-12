@@ -1,10 +1,9 @@
 import { PersistedDao, PersistedModel } from 'loopback-typescript-core/dist/models/persisted.model';
-import { injectable,inject } from 'inversify';
+import { injectable, inject } from 'inversify';
 import { CommonModel, Property, Relation, Remote } from 'loopback-typescript-core/dist/models/decorators';
 
 @injectable()
-export class ShippingInstructionDao extends PersistedDao
-{
+export class ShippingInstructionDao extends PersistedDao {
 	static tableName = 'shipping_instruction'
 	static modelName = 'ShippingInstruction'
 
@@ -22,8 +21,8 @@ export class ShippingInstructionDao extends PersistedDao
 			schema: "plnbbdb",
 			table: ShippingInstructionDao.tableName
 		},
-		idInjection:true,
-		forceId:false,
+		idInjection: true,
+		forceId: false,
 		mixins: {
 			ObjectidType: {
 				properties: ["mitraKesanggupanId"]
@@ -31,33 +30,39 @@ export class ShippingInstructionDao extends PersistedDao
 		}
 	}
 })
-export class ShippingInstructionModel extends PersistedModel
-{	
-	id:any
+export class ShippingInstructionModel extends PersistedModel {
+	@Property('string')
+	id: any
 
 	@Property('string')
-	no:string
-
-	@Property('date')
-	tgl:Date
-
-	@Property('any')
-	plnRencanaId:any
-
-	@Property('any')
-	transportId:any
+	no: string
 
 	@Property('string')
-	namaTransport:string
+	kode: string
+
+	@Property('string')
+	tahun: string
+
+	@Property('date')
+	tgl: Date
 
 	@Property('any')
-	jettyId:any
+	plnRencanaId: any
+
+	@Property('any')
+	transportId: any
+
+	@Property('string')
+	namaTransport: string
+
+	@Property('any')
+	jettyId: any
 
 	@Property('date')
-	laycanStartDate:Date
+	laycanStartDate: Date
 
 	@Property('date')
-	laycanEndDate:Date
+	laycanEndDate: Date
 
 	@Relation("belongsTo", "PlnRencana", "plnRencanaId")
 	plnRencana
