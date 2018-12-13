@@ -27,6 +27,7 @@
     "barn": "^0.2.3",
     "core-js": "^2.4.1",
     "jquery": "^3.3.1",
+    "moment": "^2.22.2",
     "rxjs": "^5.5.6",
     "semantic-ui": "^2.4.2",
     "semantic-ui-calendar": "0.0.8",

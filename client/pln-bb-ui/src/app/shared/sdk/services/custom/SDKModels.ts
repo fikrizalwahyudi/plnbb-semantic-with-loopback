@@ -30,6 +30,7 @@ import { PlnRencana } from '../../models/PlnRencana';
 import { PlnRealisasi } from '../../models/PlnRealisasi';
 import { ShippingInstruction } from '../../models/ShippingInstruction';
 import { Jetty } from '../../models/Jetty';
+import { PlnRencanaPasokan } from '../../models/PlnRencanaPasokan';
 
 export interface Models { [name: string]: any }
 
@@ -67,6 +68,7 @@ export class SDKModels {
     PlnRealisasi: PlnRealisasi,
     ShippingInstruction: ShippingInstruction,
     Jetty: Jetty,
+    PlnRencanaPasokan: PlnRencanaPasokan,
     
   };
 

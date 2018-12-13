@@ -1,7 +1,6 @@
 declare var $:any;
 
 export function promptDialog(title, text, approve, deny?) {
-  console.log('prompt called')
   $(`
     <div class="ui basic modal">
       <div class="ui icon header">

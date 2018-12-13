@@ -1,216 +1,3 @@
-<!-- <div class="ui top attached borderless menu no-border-bottom">
-  <a class="item"
-      [routerLink]="['/mitra', 'kesanggupan-pasokan', 'create']">
-    <i class="plus icon"></i> Register
-  </a>
-  <div class="item">
-    <div class="ui floating dropdown labeled button">
-      <span class="text">2018</span>
-      <div class="menu">
-        <div class="item"
-              *ngFor="let item of years">{{item}}</div>
-      </div>
-    </div>
-  </div>
-  <div class="item">
-    <div class="ui floating dropdown labeled button">
-      <span class="text">Desember</span>
-      <div class="menu">
-        <div class="item"
-              *ngFor="let item of months">{{item}}</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="right menu"
-        *ngIf="!disableSearch">
-    <div class="item">
-      <div class="ui icon input">
-        <input type="text"
-                #queryBox
-                placeholder="Search..."
-                (keyup.enter)="load(queryBox.value)">
-        <i class="search link icon"></i>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="ui yellow bottom attached segment">
-  <div class="ui raised cards">
-    <div class=" card" *ngFor="let item of daftarKesanggupan">
-      <div class="content">
-        <img class="right floated mini ui image" src="../../../assets/img/plnbblogo.png">
-        <div class="header">
-          {{item.tujuanPltu.name}}
-        </div>
-        <div class="meta">
-          <span class="floated time">Created at 12 December 2018</span>
-        </div>
-        <hr>
-        <h4 class="ui sub header" style="margin-top: 10px;">Detail Pasokan</h4>
-        <div class="description">
-          <div class="ui three column grid">
-            <div class="row">
-              <div class="ui vertical list column">
-                <div class="item ">
-                  <div class="content">
-                    <div class="ui sub header">Tgl Kirim</div>
-                    {{item.tglPengiriman | date:'shortDate'}}
-                  </div>
-                </div>
-              </div>
-              <div class="ui vertical list column">
-                <div class="item ">
-                  <div class="content">
-                    <div class="ui sub header">Mode</div>
-                    {{item.mode | titlecase}}
-                  </div>
-                </div>
-              </div>
-              <div class="ui vertical list column">
-                <div class="item ">
-                  <div class="content">
-                    <div class="ui sub header">Jumah</div>
-                    {{item.jumlah | number}}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="description">
-            <h4 class="ui sub header" style="margin-top: 10px;">Harga</h4>
-            {{item.harga | currency:'IDR'}}
-        </div>
-        <hr>
-        <h4 class="ui sub header" style="margin-top: 10px;">Spesifikasi Batubara</h4>
-        <div class="description">
-          <div class="ui three column grid">
-            <div class="row">
-              <div class="ui vertical list column">
-                <div class="item ">
-                  <div class="content">
-                    <div class=" ui sub header">GCV</div>
-                    {{item.gcv}}
-                  </div>
-                </div>
-              </div>
-              <div class="ui vertical list column">
-                <div class="item ">
-                  <div class="content">
-                    <div class=" ui sub header">TM</div>
-                    {{item.tm}}
-                  </div>
-                </div>
-              </div>
-              <div class="ui vertical list column">
-                <div class="item ">
-                  <div class="content">
-                    <div class="ui sub header">ASH</div>
-                    {{item.ash}}
-                  </div>
-                </div>
-              </div>
-              <div class="ui vertical list column">
-                <div class="item ">
-                  <div class="content">
-                    <div class="ui sub header">TS</div>
-                    {{item.ts}}
-                  </div>
-                </div>
-              </div>
-              <div class="ui vertical list column">
-                <div class="item ">
-                  <div class="content">
-                    <div class="ui sub header">HGI</div>
-                    {{item.hgi}}
-                  </div>
-                </div>
-              </div>
-              <div class="ui vertical list column">
-                <div class="item ">
-                  <div class="content">
-                    <div class="ui sub header">IDT</div>
-                    {{item.idt}}
-                  </div>
-                </div>
-              </div>
-              <div class="ui vertical list column">
-                <div class="item ">
-                  <div class="content">
-                    <div class="ui sub header">72mm (%)</div>
-                    {{item.size1}}
-                  </div>
-                </div>
-              </div>
-              <div class="ui vertical list column">
-                <div class="item ">
-                  <div class="content">
-                    <div class="ui sub header">2.38mm</div>
-                    {{item.size2}}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <hr>
-        <h4 class="ui sub header" style="margin-top: 10px;">Keterangan</h4>
-        <div class="description">
-          {{item.keterangan}}
-        </div>
-      </div>
-      <div class="extra content">
-        <div class="ui three buttons">
-          <div class="ui basic button">
-            <a href="javascript:void(0)"
-              (click)="lock(item)"
-              *ngIf="!item.lock">
-              <i class="lock open link icon action-icon"></i>
-            </a>
-            <a href="javascript:void(0)"
-              *ngIf="item.lock"
-              disabled>
-              <i class="lock link green icon action-icon"></i>
-            </a>  
-          </div>
-          <div class="ui basic button">
-            <a [routerLink]="['/mitra', 'kesanggupan-tambang', item.id]" *ngIf="!item.lock">
-              <i class="cogs link icon action-icon"></i>
-            </a>
-          </div>
-          <div class="ui basic button">
-            <a href="javascript:void(0)"
-              (click)="delete(item)"
-              *ngIf="!item.lock">
-              <i class="trash link icon action-icon"></i>
-            </a>  
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>-->
-
-<!-- <a href="javascript:void(0)"
-  (click)="delete(item)"
-  *ngIf="!item.lock">
-  <i class="trash link icon action-icon"></i>
-</a>
-<a [routerLink]="['/mitra', 'kesanggupan-tambang', item.id]" *ngIf="!item.lock">
-  <i class="cogs link icon action-icon"></i>
-</a>
-<a href="javascript:void(0)"
-  (click)="lock(item)"
-  *ngIf="!item.lock">
-  <i class="lock open link icon action-icon"></i>
-</a>
-<a href="javascript:void(0)"
-  *ngIf="item.lock"
-  disabled>
-  <i class="lock link green icon action-icon"></i>
-</a> -->
-
 <div class="ui menu">
   <a class="active item">
     Available
@@ -230,58 +17,63 @@
   <div class="right menu">
     <div class="item">
       <div class="ui transparent icon input">
-        <input type="text" placeholder="Search...">
+        <input type="text"
+               placeholder="Search...">
         <i class="search link icon"></i>
       </div>
     </div>
     <a class="item"
-      [routerLink]="['/mitra', 'kesanggupan-pasokan', 'create']">
+       [routerLink]="['/mitra', 'kesanggupan-pasokan', 'create']">
       <i class="plus icon"></i> Register
     </a>
   </div>
 </div>
 
-<a class="ui label month-divider">
-  <i class="calendar icon"></i>
-  Desember 2018
-</a>
+<ng-container *ngFor="let item of daftarKesanggupan | keyvalue">
+  <a class="ui label month-divider">
+    <i class="calendar icon"></i>
+    {{item.key}}
+  </a>
 
-<div class="ui segment">
-  <!-- <div class="ui grid">
-    <div class="three wide column"> -->
-      <h5 class="ui header">
-        <i class="table icon"></i>
-        <div class="content">
-          PLTU SURYALAYA
-          <div class="sub header">Kalimantan Selatan</div>
-        </div>
-      </h5>
+  <div class="ui segment" *ngFor="let itemPltu of item.value | keyvalue">
+    <!-- <div class="ui grid">
+          <div class="three wide column"> -->
+    <h5 class="ui header">
+      <i class="table icon"></i>
+      <div class="content">
+        {{daftarPltu[itemPltu.key].name}}
+        <div class="sub header">{{daftarPltu[itemPltu.key].address}}</div>
+      </div>
+    </h5>
     <!-- </div>
-    <div class="thirteen wide column"> -->
-      <table class="ui very basic single line compact table">
-        <thead>
+          <div class="thirteen wide column"> -->
+    <table class="ui very basic single line compact table">
+      <thead>
+        <tr>
+          <th class="center aligned collapsing">Tanggal</th>
+          <th>Jetty</th>
+          <th>Moda</th>
+          <th>Tipe</th>
+          <th class="right aligned">Jumlah (MT)</th>
+          <th class="right aligned">Harga (Ribu)</th>
+          <th class="center aligned collapsing"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let itemEntry of itemPltu.value">
           <tr>
-            <th class="center aligned collapsing">Tanggal</th>
-            <th>Jetty</th>
-            <th>Moda</th>
-            <th>Tipe</th>
-            <th class="center aligned collapsing">Jumlah</th>
-            <th class="center aligned collapsing">Harga (Ribu)</th>
-            <th class="center aligned collapsing"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="center top aligned collapsing" rowspan="2">
-              <div class="ui blue small label">01</div>
+            <td class="center top aligned collapsing"
+                rowspan="2">
+              <div class="ui blue small label">{{itemEntry.tglPengiriman | date:'dd'}}</div>
             </td>
-            <td>Jetty BMB, Sungai Nagara, Tapin, Kalsel</td>
-            <td>Tongkang</td>
-            <td>FOB</td>
-            <td class="right aligned collapsing">7.500 TON</td>
-            <td class="right aligned collapsing">IDR 1.000.000</td>
+            <td class="column-jetty">{{itemEntry.jetty.name}}</td>
+            <td>{{itemEntry.mode | titlecase}}</td>
+            <td>{{itemEntry.tipe | uppercase}}</td>
+            <td class="right aligned">{{itemEntry.jumlah | number:undefined:'id'}}</td>
+            <td class="right aligned">{{itemEntry.harga | currency:'Rp':undefined:undefined:'id'}}</td>
             <td class="center aligned collapsing">
-              <a href="javascript:void(0)" (click)="delete(item)">
+              <a href="javascript:void(0)"
+                  (click)="delete(item)">
                 <i class="trash link icon action-icon"></i>
               </a>
               <a>
@@ -290,7 +82,8 @@
             </td>
           </tr>
           <tr>
-            <td colspan="5" class="right aligned">
+            <td colspan="5"
+                class="right aligned">
               <div class="ui horizontal list">
                 <div class="item">
                   <div class="ui grey image small label">
@@ -301,74 +94,48 @@
                 <div class="item">
                   <div class="ui grey image small label">
                     GCV
-                    <div class="detail">4103Kcal/Kg</div>
+                    <div class="detail">{{itemEntry.gcv | number}}Kcal/Kg</div>
                   </div>
                 </div>
                 <div class="item">
                   <div class="ui grey image small label">
                     TM
-                    <div class="detail">36.42%</div>
+                    <div class="detail">{{itemEntry.tm | number}}%</div>
                   </div>
                 </div>
                 <div class="item">
                   <div class="ui grey image small label">
                     ASH
-                    <div class="detail">1.83%</div>
+                    <div class="detail">{{itemEntry.ash | number}}%</div>
                   </div>
                 </div>
                 <div class="item">
                   <div class="ui grey image small label">
                     TS
-                    <div class="detail">0.13%</div>
+                    <div class="detail">{{itemEntry.ts | number}}%</div>
                   </div>
                 </div>
                 <div class="item">
                   <div class="ui grey image small label">
                     HGI
-                    <div class="detail">59%</div>
+                    <div class="detail">{{itemEntry.hgi | number}}%</div>
                   </div>
                 </div>
                 <div class="item">
                   <div class="ui grey image small label">
                     IDT
-                    <div class="detail">30.29%</div>
+                    <div class="detail">{{itemEntry.idt | number}}%</div>
                   </div>
                 </div>
               </div>
             </td>
             <td></td>
           </tr>
-          <tr>
-            <td class="center top aligned collapsing">
-              <div class="ui blue small label">02</div>
-            </td>
-            <td>Jetty BMB, Sungai Nagara, Tapin, Kalsel</td>
-            <td>Tongkang</td>
-            <td>FOB</td>
-            <td class="right aligned collapsing">7.500 TON</td>
-            <td class="right aligned collapsing">IDR 2.000.000</td>
-            <td class="center aligned collapsing">
-              <a href="javascript:void(0)" (click)="delete(item)">
-                <i class="trash link icon action-icon"></i>
-              </a>
-              <a>
-                <i class="edit link icon action-icon"></i>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+        </ng-container>
+      </tbody>
+    </table>
     <!-- </div>
-  </div> -->
-</div>  
-
-<a class="ui label month-divider">
-  <i class="calendar icon"></i>
-  November 2018
-</a>
-
-<div class="ui segment">
-  <div class="ui divided items">
-    
+        </div> -->
   </div>
-</div>  
+</ng-container>
+<div class="mb-5"></div>

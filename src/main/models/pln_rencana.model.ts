@@ -26,22 +26,35 @@ export class PlnRencanaDao extends PersistedDao
 		forceId:false,
 		mixins: {
 			ObjectidType: {
-				properties: ["mitraKesanggupanId"]
+				properties: ["tujuanPltuId"]
 			}
 		}
 	}
 })
 export class PlnRencanaModel extends PersistedModel
 {	
-
 	id:any
 
-	@Property('any')
-	mitraKesanggupanId:any
+	myass = 'hooh'
+
+	@Property('string')
+	code
+
+	@Property('number')
+	tahun
+
+	@Property('number')
+	bulan
+
+	@Property('number')
+	totalKebutuhan
 
 	@Property('any')
-	tglPengiriman:any
+	tujuanPltuId
 
-	@Relation("belongsTo", "MitraKesanggupan", "mitraKesanggupanId")
-	mitraKesanggupan
+	@Relation("belongsTo", "Pltu", "tujuanPltuId")
+	tujuanPltu
+
+	@Relation('hasMany', 'PlnRencanaPasokan', 'rencanaId')
+	pasokan
 }
