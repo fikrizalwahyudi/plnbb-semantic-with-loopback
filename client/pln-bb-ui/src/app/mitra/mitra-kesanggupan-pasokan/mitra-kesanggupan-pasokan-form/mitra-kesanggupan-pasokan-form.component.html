@@ -194,18 +194,15 @@
                 [formGroup]="itemTambang">
               <div class="field">
                 <div class="required field">
-                  <div class="ui fluid search normal selection dropdown"
-                        uiSearchDropdown
-                        [url]="tambangUri"
-                        [filter]="searchFilterTambang"
-                        (onSearch)="onSearchTambang($event)"
-                        formControlName="tambangId">
-                    <input type="hidden">
-                    <i class="dropdown icon"></i>
-                    <div class="default text">Select Tambang</div>
-                    <div class="menu">
-                    </div>
-                  </div>
+                  <select class="ui dropdown"
+                          formControlName="tambangId"
+                          uiDropDown>
+                    <option value=""
+                            disabled
+                            hidden>Pilih Tambang</option>
+                    <option *ngFor="let item of tambangs; let index = index"
+                            [value]="item.id">{{item.name}}</option>
+                  </select>
                 </div>
               </div>
               <div class="field">

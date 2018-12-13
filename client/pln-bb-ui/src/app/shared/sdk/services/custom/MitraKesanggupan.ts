@@ -395,6 +395,41 @@ export class MitraKesanggupanApi extends BaseLoopBackApi {
   }
 
   /**
+   * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+   *
+   * @param {any} id MitraKesanggupan id
+   *
+   * @param {object} data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `MitraKesanggupan` object.)
+   * </em>
+   */
+  public patchTambang(id: any, params: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "POST";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/mitra_kesanggupan/:id/patchTambang";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {
+      params: params
+    };
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
    * Creates a new instance in sumberTambang of this model.
    *
    * @param {any} id MitraKesanggupan id
