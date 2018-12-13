@@ -31,13 +31,15 @@ import { PlnRencanaModel } from './models/pln_rencana.model';
 import { PlnRealisasiModel } from "./models/pln_realisasi.model";
 import { ShippingInstructionModel } from './models/shipping_instruction.model';
 import { JettyModel } from './models/jetty.model';
+import { PrintPdfMiddleware } from './middleware/print-pdf.middleware';
 
 @injectable()
 @CommonModule({
 	middleware: [
 		CreateRoleMiddleware,
 		DeleteRoleMiddleware,
-		PatchRoleMiddleware
+		PatchRoleMiddleware,
+		PrintPdfMiddleware
 	],
 
 	models: [
@@ -69,6 +71,7 @@ import { JettyModel } from './models/jetty.model';
 		PlnRealisasiModel,
 		ShippingInstructionModel,
 		JettyModel,
+
 	]
 })
 export class SampleModule extends Module {
