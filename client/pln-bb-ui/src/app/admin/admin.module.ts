@@ -62,7 +62,7 @@ import { MasterJettyEditComponent } from './master-jetty/master-jetty-form/maste
 
 const appRoutes: Routes = [
   { path: 'admin', component: AdminComponent, children: [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: '', redirectTo: 'user', pathMatch: 'full' },
     
     { path: 'home', component: HomeComponent },
     { path: 'user', component: MasterUserComponent, children: [

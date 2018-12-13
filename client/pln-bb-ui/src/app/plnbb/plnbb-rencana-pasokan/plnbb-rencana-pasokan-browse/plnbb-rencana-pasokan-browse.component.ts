@@ -79,13 +79,38 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
     let next = new Date()
     next.setMonth(now.getMonth() + 1)
 
-    this.plnRencanaApi.find({ where: { or: [{ tahun: now.getFullYear(), bulan: now.getMonth() }, { tahun: next.getFullYear(), bulan: next.getMonth() }] }, include: ['tujuanPltu', 'pasokan'] }).subscribe(data => {
+    this.plnRencanaApi.find({ where: { or: [{ tahun: now.getFullYear(), bulan: now.getMonth() }, { tahun: next.getFullYear(), bulan: next.getMonth() }] }, include: ['tujuanPltu', 'pasokan'] }).subscribe((data:any) => {
       console.log(data)
       // get all mitraKesanggupan
-      //let daftarKesanggupan = []
-      //for(let i=0; i<data.length; i++) {
-      //  daftarKesanggupan.
-      //}
+      let daftarKesanggupan = []
+      for(let i=0; i<data.length; i++) {
+        data[i].totalJumlah = 0
+        data[i].totalHarga = 0
+
+        for(let j=0; j<data[i].pasokan.length; j++) {
+          daftarKesanggupan.push({
+            id: data[i].pasokan[j].mitraKesanggupanId,
+            value: data[i].pasokan[j],
+            rencana: data[i]
+          })
+        }
+      }
+
+      this.pasokanApi.find({where:{id: {inq: daftarKesanggupan.map(e => e.id)}}, include: ['jetty', 'mitra', 'tujuanPltu']}).subscribe((dataKesanggupan:any) => {
+        //console.log(dataKesanggupan)
+        //daftarKesanggupan = dataKesanggupan
+
+        for(let i=0; i<daftarKesanggupan.length; i++) {
+          for(let j=0; j<dataKesanggupan.length; j++) {
+            if(daftarKesanggupan[i].id === dataKesanggupan[j].id) {
+              daftarKesanggupan[i].value['mitraKesanggupan'] = dataKesanggupan[j]
+
+              daftarKesanggupan[i].rencana.totalJumlah += dataKesanggupan[j].jumlah
+              daftarKesanggupan[i].rencana.totalHarga += dataKesanggupan[j].harga
+            }
+          }
+        }
+      })
 
       for(let i=0; i<data.length; i++) {
         let entry = data[i] as any
@@ -164,7 +189,6 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
     if(this.picking)
       return false
 
-    //console.log(item)
     this.picking = true
 
     this.clearSelectedPasokan()
@@ -184,12 +208,15 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
     this.pasokanApi.find({where: {tujuanPltuId: item.tujuanPltuId, lock: true, tglPengiriman: {between: [now, next]}}, include:['mitra', 'tujuanPltu', 'jetty', 'referensiKontrak'], order: ['jumlah DESC', 'harga ASC']}).subscribe((data:any) => {
       this.daftarPasokan = data
 
-      for(let i=0; i<data.length; i++)
+      for(let i=0; i<data.length; i++) {
+        //console.log(data[i])
+        //console.log(item.pasokan.findIndex(e => e.id === data[i].id))
         this.selectedPasokan.push(this.fb.group({
           id: data[i].id,
           value: data[i],
-          checked: false
+          checked: item.pasokan.findIndex(e => e.mitraKesanggupanId === data[i].id) < 0 ? false : true
         }))
+      }
 
       //console.log(data)
       let el = $('.pilih-pasokan') as any
@@ -214,6 +241,9 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
           this.http.delete(`${environment.apiUrl}/api/pln_rencana/${item.id}/pasokan`).subscribe(data => {
             this.plnRencanaPasokanApi.create(selected).subscribe(() => {
               this.clearSelectedPasokan()
+              
+              this.load()
+
               this.picking = false
             })
           })
@@ -221,6 +251,31 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
       })
       .modal('show')
     })
+  }
+
+  lock() {
+    promptDialog(
+      'Lock Hasil Rakor?', 
+      'segala perubahan yang ada akan disimpan dan tidak dimungkinkan adanya future update', 
+      () => {
+        //console.log(this.daftarRencana)
+        let hasilRakor = this.daftarRencana[this.daftarBulanRakor[this.selectedBulanRakorIndex].key]
+        let flatHasilRakor = []
+
+        //console.log(hasilRakor)
+        for(var key in hasilRakor) {
+          for(let i=0; i<hasilRakor[key].length; i++) {
+            flatHasilRakor.push(hasilRakor[key][i])
+          }
+        }
+
+        //console.log(flatHasilRakor)
+        this.http.post(`${environment.apiUrl}/api/pln_rencana/lock`, flatHasilRakor.map(e => e.id)).subscribe(data => {
+          console.log(data)
+        })
+      },
+      () => {}
+    )
   }
 
   trackByFn(index: any) {

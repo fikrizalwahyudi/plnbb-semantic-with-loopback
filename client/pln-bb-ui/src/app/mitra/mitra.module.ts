@@ -17,7 +17,7 @@ registerLocaleData(localeId)
 const appRoutes: Routes = [
   {
     path: 'mitra', component: MitraComponent, children: [
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: '', redirectTo: 'kesanggupan-pasokan', pathMatch: 'full' },
       { path: 'home', component: MitraKesanggupanPasokanComponent },
       { path: 'kesanggupan-pasokan', component: MitraKesanggupanPasokanComponent, children: [
         { path: '', redirectTo: 'browse', pathMatch: 'full' },

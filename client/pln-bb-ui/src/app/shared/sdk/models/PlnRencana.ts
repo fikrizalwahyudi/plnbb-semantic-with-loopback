@@ -1,23 +1,30 @@
 /* tslint:disable */
 import {
-  Pltu
+  Pltu,
+  PlnRencanaPasokan
 } from '../index';
 
 declare var Object: any;
 export interface PlnRencanaInterface {
+  "code"?: string;
   "tahun"?: number;
   "bulan"?: number;
+  "totalKebutuhan"?: number;
   "tujuanPltuId"?: any;
   "id"?: any;
   tujuanPltu?: Pltu;
+  pasokan?: PlnRencanaPasokan[];
 }
 
 export class PlnRencana implements PlnRencanaInterface {
+  "code": string = '';
   "tahun": number = 0;
   "bulan": number = 0;
+  "totalKebutuhan": number = 0;
   "tujuanPltuId": any = <any>null;
   "id": any = <any>null;
   tujuanPltu: Pltu = null;
+  pasokan: PlnRencanaPasokan[] = null;
   constructor(data?: PlnRencanaInterface) {
     Object.assign(this, data);
   }
@@ -51,12 +58,20 @@ export class PlnRencana implements PlnRencanaInterface {
       path: 'pln_rencana',
       idName: 'id',
       properties: {
+        "code": {
+          name: 'code',
+          type: 'string'
+        },
         "tahun": {
           name: 'tahun',
           type: 'number'
         },
         "bulan": {
           name: 'bulan',
+          type: 'number'
+        },
+        "totalKebutuhan": {
+          name: 'totalKebutuhan',
           type: 'number'
         },
         "tujuanPltuId": {
@@ -76,6 +91,14 @@ export class PlnRencana implements PlnRencanaInterface {
           relationType: 'belongsTo',
                   keyFrom: 'tujuanPltuId',
           keyTo: 'id'
+        },
+        pasokan: {
+          name: 'pasokan',
+          type: 'PlnRencanaPasokan[]',
+          model: 'PlnRencanaPasokan',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'rencanaId'
         },
       }
     }

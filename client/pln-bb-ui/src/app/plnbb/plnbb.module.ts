@@ -13,7 +13,7 @@ import { PlnbbRencanaPasokanSiCreateComponent } from './plnbb-rencana-pasokan/pl
 
 const appRoutes: Routes = [
   { path: 'plnbb', component: PlnbbComponent, children: [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: '', redirectTo: 'rencana-pasokan', pathMatch: 'full' },
     
     { path: 'home', component: HomeComponent },
     { path: 'rencana-pasokan', component: PlnBBRencanaPasokanBrowseComponent },

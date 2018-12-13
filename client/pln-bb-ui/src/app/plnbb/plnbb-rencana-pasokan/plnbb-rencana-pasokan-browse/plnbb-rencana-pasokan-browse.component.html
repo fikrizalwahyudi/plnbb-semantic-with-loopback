@@ -22,8 +22,9 @@
        [ngClass]="{'disabled': selectedDaftarRencana}">
       <i class="download icon"></i> Generate
     </a>
-    <a class="item">
-      <i class="lock icon"></i> Lock
+    <a class="item"
+       (click)="lock()">
+      <i class="unlock icon"></i> Lock
     </a>
   </div>
 </div>
@@ -57,14 +58,19 @@
                 <i class="weight icon"></i>
               </div>
             </td>
-            <td class="right aligned">0</td>
-            <td class="right aligned">Rp0</td>
+            <td class="right aligned">
+              {{itemRencana.totalJumlah | number}} (<span class="minus"
+                    [ngClass]="{'minus': ((itemRencana.totalJumlah - itemRencana.totalKebutuhan) <= 0), 'surplus': ((itemRencana.totalJumlah - itemRencana.totalKebutuhan) > 0)}">{{(itemRencana.totalJumlah
+                - itemRencana.totalKebutuhan) | number}}</span>)
+            </td>
+            <td class="right aligned">{{itemRencana.totalHarga | currency:'Rp':undefined:undefined:'id'}}</td>
             <td class="center aligned collapsing">
               <a (click)="setTotalKebutuhan(itemRencana, fgAmounts.controls[itemRencana.index])">
                 <i class="save link icon action-icon"
                    [ngClass]="{'red': itemRencana.totalKebutuhan != fgAmounts.controls[itemRencana.index].value.amount}"></i>
               </a>
-              <a (click)="pickMitra(itemRencana)" *ngIf="!picking">
+              <a (click)="pickMitra(itemRencana)"
+                 *ngIf="!picking">
                 <i class="external alternate link icon action-icon"></i>
               </a>
               <a *ngIf="picking">
@@ -82,29 +88,14 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr *ngFor="let itemPasokan of itemRencana.pasokan">
                     <td class="five wide">
-                      <i class="trash link grey icon"></i> Mitra 01
+                      <i class="search link grey icon"></i> {{itemPasokan.mitraKesanggupan?.mitra.name}}
                     </td>
-                    <td class="two wide">Tongkang</td>
-                    <td class="right aligned">100.000</td>
-                    <td class="right aligned">Rp40.000</td>
-                  </tr>
-                  <tr>
-                    <td class="five wide">
-                      <i class="trash link grey icon"></i> Mitra 01
-                    </td>
-                    <td class="two wide">Tongkang</td>
-                    <td class="right aligned">100.000</td>
-                    <td class="right aligned">Rp40.000</td>
-                  </tr>
-                  <tr>
-                    <td class="five wide">
-                      <i class="trash link grey icon"></i> Mitra 01
-                    </td>
-                    <td class="two wide">Tongkang</td>
-                    <td class="right aligned">100.000</td>
-                    <td class="right aligned">Rp40.000</td>
+                    <td class="two wide">{{itemPasokan.mitraKesanggupan?.mode | titlecase}}</td>
+                    <td class="right aligned">{{itemPasokan.mitraKesanggupan?.jumlah | number:undefined:'id'}}</td>
+                    <td class="right aligned">{{itemPasokan.mitraKesanggupan?.harga |
+                      currency:'Rp':undefined:undefined:'id'}}</td>
                   </tr>
                 </tbody>
               </table>
@@ -122,7 +113,8 @@
     Pilih Pasokan Dari Mitra
   </div> -->
   <div class="content">
-    <app-plnbb-rencana-pasokan-modal [daftarPasokan]="daftarPasokan" [buffer]="selectedPasokan"></app-plnbb-rencana-pasokan-modal>
+    <app-plnbb-rencana-pasokan-modal [daftarPasokan]="daftarPasokan"
+                                     [buffer]="selectedPasokan"></app-plnbb-rencana-pasokan-modal>
   </div>
   <div class="actions">
     <div class="ui red cancel button">
