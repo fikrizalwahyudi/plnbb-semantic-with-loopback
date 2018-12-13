@@ -19,6 +19,8 @@ import { MultiDropdownDirective } from './directives/multi-dropdown.directive';
 import { MultiInputComponent } from './directives/multi-input.component';
 import { FormsModule } from '@angular/forms';
 import { SearchDropdownDirective } from './directives/search-dropdown.directive';
+import { KeyValuePipe } from './directives/keyvalue.pipe';
+import { CheckboxDirective } from './directives/checkbox.directive';
 
 @NgModule({
   imports: [
@@ -41,7 +43,9 @@ import { SearchDropdownDirective } from './directives/search-dropdown.directive'
     TableActionViewComponent,
     MultiDropdownDirective,
     MultiInputComponent,
-    SearchDropdownDirective
+    SearchDropdownDirective,
+    KeyValuePipe,
+    CheckboxDirective
   ],
 
   declarations: [
@@ -58,7 +62,9 @@ import { SearchDropdownDirective } from './directives/search-dropdown.directive'
     TableActionViewComponent,
     MultiDropdownDirective,
     MultiInputComponent,
-    SearchDropdownDirective
+    SearchDropdownDirective,
+    KeyValuePipe,
+    CheckboxDirective
   ],
 
   providers: [

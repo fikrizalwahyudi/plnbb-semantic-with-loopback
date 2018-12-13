@@ -7,10 +7,9 @@
     </ng-container>
     <thead>
       <tr>
-        <th>PLTU Code</th>
-        <th>PLTU Name</th>
-        <th>Address</th>
-        <th>NPWP</th>
+        <th>Code</th>
+        <th>Nama</th>
+        <th>Wilayah</th>
         <th></th>
       </tr>
     </thead>
@@ -19,7 +18,6 @@
         <td>{{item.code}}</td>
         <td>{{item.name}}</td>
         <td>{{item.address}}</td>
-        <td>{{item.npwp}}</td>
         <td class="center aligned collapsing">
           <a href="javascript:void(0)"
              (click)="delete(item)">

@@ -27,7 +27,7 @@ export class MitraKesanggupanDao extends PersistedDao
 		forceId:false,
 		mixins: {
 			ObjectidType: {
-				properties: ["referensiKontrakId", "tujuanPltuId", "userId"]
+				properties: ["referensiKontrakId", "tujuanPltuId", "userId", "mitraId"]
 			}
 		}
 	}
@@ -101,6 +101,9 @@ export class MitraKesanggupanModel extends PersistedModel
 	@Property('any')
 	userId:any
 
+	@Property('any')
+	mitraId:any
+
 	@Relation("belongsTo", "ReferensiKontrak", "referensiKontrakId")
 	referensiKontrak
 
@@ -125,4 +128,7 @@ export class MitraKesanggupanModel extends PersistedModel
 
 		return await this.mitraTambangDao.create(params)
 	}
+	
+	@Relation("belongsTo", "Mitra", "mitraId")
+	mitra
 }

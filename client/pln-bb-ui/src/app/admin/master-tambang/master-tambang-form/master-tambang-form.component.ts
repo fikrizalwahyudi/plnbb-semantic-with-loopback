@@ -41,10 +41,10 @@ export class MasterTambangFormComponent implements OnInit {
       lokasi:[null, [Validators.required]],
       tanggalBerlaku: [new Date(), [Validators.required]],
       tanggalHabis: [new Date(), [Validators.required]],
-      province: [null, [Validators.required]],
-      city: [null, [Validators.required]],
-      longitude: [null, [Validators.required]],
-      latitude: [null, [Validators.required]]
+      province: null,
+      city: null,
+      longitude: null,
+      latitude: null
     })
   }
 

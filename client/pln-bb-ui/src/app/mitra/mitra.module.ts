@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
@@ -10,6 +10,10 @@ import { MitraKesanggupanPasokanCreateComponent } from './mitra-kesanggupan-paso
 import { MitraKesanggupanPasokanEditComponent } from './mitra-kesanggupan-pasokan/mitra-kesanggupan-pasokan-form/mitra-kesanggupan-pasokan-edit.component';
 import { MitraComponent } from './mitra.component';
 import { MitraKesanggupanTambangComponent } from './mitra-kesanggupan-pasokan/mitra-kesanggupan-tambang/mitra-kesanggupan-tambang.component';
+import localeId from '@angular/common/locales/id';
+
+registerLocaleData(localeId)
+
 const appRoutes: Routes = [
   {
     path: 'mitra', component: MitraComponent, children: [
@@ -51,6 +55,9 @@ const appRoutes: Routes = [
     MitraKesanggupanPasokanFormComponent,
     MitraKesanggupanPasokanCreateComponent,
     MitraKesanggupanPasokanEditComponent
+  ],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'id'}
   ]
 })
 export class MitraModule { }

@@ -1,119 +1,137 @@
-<div class="ui top attached yellow segment">
-  <div [formGroup]="fg"
-        class="ui form">
-    <div class="ui three column grid">
-      <div class="column">
-        <div class="field">
-          <label>Tahun</label>
-            <div class="field">
-              <input type="text" name="" placeholder="tahun" formControlName="tahun" readonly>
-            </div>
-        </div>
-        <div class="required field">
-          <label>Mitra</label>
-          <select class="ui dropdown"
-                  formControlName="mitra" uiDropDown>
-            <option value="" disabled hidden>Pilih Mitra</option>
-            <option *ngFor="let item of listMitra; let index = index"
-                    [value]="item.value"><span [innerHTML]="item.name"></span></option>
-          </select>
-        </div>
-        <!-- <div class="required field">
-          <label>Mitra</label>
-          <div class="ui fluid search normal selection dropdown" uiSearchDropdown [url]="mitraUri" [filter]="searchFilterMitra" (onSearch)="onSearchMitra($event)" formControlName="mitra">
-            <input type="hidden">
-            <i class="dropdown icon"></i>
-            <div class="default text">Select Mitra</div>
-            <div class="menu">           
-            </div>
-          </div>
-        </div> -->
+<div class="ui active dimmer"
+     *ngIf="submitting">
+  <div class="ui loader"></div>
+</div>
+<div class="ui menu">
+  <a class="item"
+     *ngFor="let item of daftarBulanRakor; let index=index"
+     [ngClass]="{'active': (selectedBulanRakorIndex == index)}"
+     (click)="selectBulanRakor(index)">
+    {{item.key}}
+  </a>
+  <div class="right menu">
+    <div class="item">
+      <div class="ui transparent icon input">
+        <input type="text"
+               placeholder="Search...">
+        <i class="search link icon"></i>
       </div>
-      <div class="column">
-        <div class="required field">
-          <label>Bulan</label>
-          <select class="ui dropdown"
-                  formControlName="bulan"
-                  (change)="onSelectBulan($event.target.value)">
-            <option [value]="null" disabled hidden>Pilih Bulan</option>
-            <option *ngFor="let item of months; let index = index" [value]="index">{{item}}</option>
-          </select>
-        </div>
-        <div class="required field">
-          <label>Tgl. Pengiriman</label>
-          <div class="ui calendar"
-                uiCalendar
-                formControlName="tanggalPengiriman">
-            <div class="ui input left icon">
-              <i class="calendar icon"></i>
-              <input type="text"
-                      placeholder="Date/Time">
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="column">
-        <!-- <div class="required field">
-          <label>PLTU</label>
-          <div class="ui fluid search normal selection dropdown" uiSearchDropdown [url]="pltuUri" [filter]="searchFilterPltu" (change)="onSelectPltu($event.target.value)" (onSearch)="onSearchPltu($event)" formControlName="pltu">
-            <input type="hidden">
-            <i class="dropdown icon"></i>
-            <div class="default text">Select Pltu</div>
-            <div class="menu">           
-            </div>
-          </div>
-        </div> -->
-        <div class="required field">
-          <label>PLTU</label>
-          <select class="ui dropdown"
-                  formControlName="pltu"
-                  (change)="onSelectPltu($event.target.value)">
-            <option [value]="null">Pilih PLTU</option>
-            <option *ngFor="let item of pltus; let index = index"
-                    [value]="item.id">{{item.name}}</option>
-          </select>
-        </div>
-      </div>
+    </div>
+    <a class="item"
+       (click)="generate()"
+       [ngClass]="{'disabled': selectedDaftarRencana}">
+      <i class="download icon"></i> Generate
+    </a>
+    <a class="item">
+      <i class="lock icon"></i> Lock
+    </a>
+  </div>
+</div>
+
+<ng-container *ngFor="let item of selectedDaftarRencana | keyvalue; trackBy:trackByFn">
+  <a class="ui label month-divider">
+    <i class="marker icon"></i>
+    {{item.key}}
+  </a>
+  <div class="ui segment">
+    <table class="ui very basic table">
+      <thead>
+        <tr>
+          <th class="four wide">Tujuan PLTU</th>
+          <th class="left aligned collapsing">Total Kebutuhan</th>
+          <th class="right aligned collapsing">Total Pasokan</th>
+          <th class="right aligned collapsing">Total Harga</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let itemRencana of item.value; let index=index; trackBy:trackByFn"
+                      [formGroup]="fgAmounts.controls[itemRencana.index]">
+          <tr>
+            <td class="four wide">{{itemRencana.tujuanPltu.name}}</td>
+            <td class="left aligned collapsing">
+              <div class="ui transparent left icon fluid input">
+                <input type="number"
+                       placeholder="Isi Metric Ton"
+                       formControlName="amount">
+                <i class="weight icon"></i>
+              </div>
+            </td>
+            <td class="right aligned">0</td>
+            <td class="right aligned">Rp0</td>
+            <td class="center aligned collapsing">
+              <a (click)="setTotalKebutuhan(itemRencana, fgAmounts.controls[itemRencana.index])">
+                <i class="save link icon action-icon"
+                   [ngClass]="{'red': itemRencana.totalKebutuhan != fgAmounts.controls[itemRencana.index].value.amount}"></i>
+              </a>
+              <a (click)="pickMitra(itemRencana)" *ngIf="!picking">
+                <i class="external alternate link icon action-icon"></i>
+              </a>
+              <a *ngIf="picking">
+                <i class="spinner loading icon action-icon"></i>
+              </a>
+            </td>
+          </tr>
+          <tr *ngIf="itemRencana.pasokan.length > 0">
+            <td class="four wide"></td>
+            <td colspan="3">
+              <table class="ui very basic table">
+                <thead>
+                  <tr>
+                    <th colspan="4">Daftar Pasokan Oleh Mitra</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="five wide">
+                      <i class="trash link grey icon"></i> Mitra 01
+                    </td>
+                    <td class="two wide">Tongkang</td>
+                    <td class="right aligned">100.000</td>
+                    <td class="right aligned">Rp40.000</td>
+                  </tr>
+                  <tr>
+                    <td class="five wide">
+                      <i class="trash link grey icon"></i> Mitra 01
+                    </td>
+                    <td class="two wide">Tongkang</td>
+                    <td class="right aligned">100.000</td>
+                    <td class="right aligned">Rp40.000</td>
+                  </tr>
+                  <tr>
+                    <td class="five wide">
+                      <i class="trash link grey icon"></i> Mitra 01
+                    </td>
+                    <td class="two wide">Tongkang</td>
+                    <td class="right aligned">100.000</td>
+                    <td class="right aligned">Rp40.000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+            <td></td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</ng-container>
+<div class="mb-5"></div>
+<div class="ui small modal pilih-pasokan">
+  <!-- <div class="header">
+    Pilih Pasokan Dari Mitra
+  </div> -->
+  <div class="content">
+    <app-plnbb-rencana-pasokan-modal [daftarPasokan]="daftarPasokan" [buffer]="selectedPasokan"></app-plnbb-rencana-pasokan-modal>
+  </div>
+  <div class="actions">
+    <div class="ui red cancel button">
+      <i class="remove icon"></i>
+      Cancel
+    </div>
+    <div class="ui primary ok button">
+      <i class="checkmark icon"></i>
+      Save
     </div>
   </div>
 </div>
-<div class="ui bottom attached segment">
-  <form class="ui form"
-        [formGroup]="fg"
-        (ngSubmit)="save()" >
-    <div class="inline field">
-      <button class="ui secondary button"
-              type="button"
-              (click)="reset()">Reset</button>
-      <button class="ui primary button"
-              type="submit"
-              [disabled]="!fg.valid">Submit</button>
-    </div>
-  </form>
-</div>
-<ui-table-block>
-    <thead>
-      <tr>
-          <th>PLTU</th>
-          <th>Mitra</th>
-          <th>Tgl.</th>
-          <th>Tipe</th>
-          <th>Mode</th>
-          <th>Jumlah</th>
-          <th>Aksi</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of listPlnRencana" >
-        <td>{{item.mitraKesanggupan.tujuanPltu.name}}</td>
-        <td>{{item.mitraKesanggupan.referensiKontrak.mitra.name}}</td>
-        <td>{{item.tglPengiriman | date:'shortDate'}}</td>
-        <td>{{item.mitraKesanggupan.referensiKontrak.tipe}}</td>
-        <td>{{item.mitraKesanggupan.mode}}</td>
-        <td>{{item.mitraKesanggupan.jumlah}}</td>
-        <td class='center'><button  [routerLink]="['/plnbb','rencana-pasokan-si','create',item.mitraKesanggupan.id]" routerLinkActive="router-link-active"  class="ui primary button mini center">SI</button></td>
-        
-      </tr>
-    </tbody>
-  </ui-table-block>
-  

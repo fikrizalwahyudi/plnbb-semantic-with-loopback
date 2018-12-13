@@ -5,8 +5,10 @@ import { UserApi } from '../../../shared/sdk/services/custom/User';
 import { MitraKesanggupanApi } from '../../../shared/sdk/services/custom/MitraKesanggupan';
 import { promptDialog } from '../../../shared/modals/prompt.modal';
 import { MitraKesanggupan } from '../../../shared/sdk/models/MitraKesanggupan';
+import * as moment from 'moment';
+import { MitraApi } from '../../../shared/sdk/services/custom/Mitra';
 
-declare var $:any;
+declare var $: any;
 
 @Component({
   selector: 'app-mitra-kesanggupan-pasokan-browse',
@@ -14,64 +16,82 @@ declare var $:any;
   styleUrls: ['./mitra-kesanggupan-pasokan-browse.component.sass']
 })
 export class MitraKesanggupanPasokanBrowseComponent implements OnInit {
-  
-  months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-  years = [];
+
   mitra: Mitra[];
-  mitras:Mitra[];
+  mitras: Mitra[];
   errorMsg: string;
 
   daftarKesanggupan
   daftarKontrak
-  pltus
+  daftarPltu = {}
 
   constructor(
-    private userApi:UserApi,
-    private kesanggupanApi:MitraKesanggupanApi
-  ) 
-  {
-    for(let i=2018-10; i<2019; i++) {
-      this.years.push(i)
-    }
-    this.kesanggupanApi.find({where: {userId: this.userApi.getCurrentId()}, include: ['tujuanPltu', 'referensiKontrak']}).subscribe(data => {
-      this.daftarKesanggupan = data
+    private userApi: UserApi,
+    private mitraApi: MitraApi,
+    private kesanggupanApi: MitraKesanggupanApi
+  ) {
+    let now = new Date()
+    now.setDate(1)
+    let next = new Date()
+    next.setDate(1)
+    next.setMonth(now.getMonth() + 2)
 
-      console.log(data)
-      let buffer:any = _.groupBy(data, (entry:MitraKesanggupan) => {
+    this.kesanggupanApi.find({ where: { 
+      userId: this.userApi.getCurrentId(),
+      tglPengiriman: {between: [now, next]}
+    }, include: ['tujuanPltu', 'referensiKontrak', 'jetty'] }).subscribe(data => {
+      let buffer: any = _.groupBy(data, (entry: MitraKesanggupan) => {
         let date = new Date(entry.tglPengiriman)
-        return date.getMonth() + '/' + date.getFullYear()
+        return moment(date).format('MMMM YYYY')
       })
 
-      for(var key in buffer) {
+      for (var key in buffer) {
         let entry = buffer[key]
-        buffer[key] = _.groupBy(entry, (entryI:MitraKesanggupan) => {
+        buffer[key] = _.groupBy(entry, (entryI: MitraKesanggupan) => {
+          this.daftarPltu[entryI.tujuanPltuId] = entryI.tujuanPltu
+
           return entryI.tujuanPltuId
         })
       }
 
-      console.log(buffer)
+      this.daftarKesanggupan = buffer
     })
   }
 
   ngOnInit() {
   }
 
-  delete(item) {
-    promptDialog('Delete record kesanggupan?', 'this record will not be recoverable', () => {
-
+  delete(item, key) {
+    this.errorMsg = undefined
+    console.log(item)
+    console.log(key)
+    promptDialog('Delete this record?', 'after deleting, the record will not be recoverable', () => {
+      // this.kesanggupanApi.deleteById(item.id).subscribe(data => {
+      //   this.daftarKesanggupan[key] = this.daftarKesanggupan[key].filter(u => u.id !== item.id)
+      // }, err => {
+      //   this.errorMsg = err.message
+      // })
     }, () => {})
   }
+  
+  // delete(item) {
+  //   promptDialog('Delete record kesanggupan?', 'this record will not be recoverable', () => {
+
+  //   }, () => { })
+  // }
+
+  
 
   lock(item) {
-    this.kesanggupanApi.patchAttributes(item.id, {lock:true}).subscribe(() => {
+    this.kesanggupanApi.patchAttributes(item.id, { lock: true }).subscribe(() => {
       item.lock = true
     })
   }
-  
-  flip(){
+
+  flip() {
     $('.shape')
-    .shape('set next side', '.second.side')
-    .shape('flip back');
+      .shape('set next side', '.second.side')
+      .shape('flip back');
   }
 
 }

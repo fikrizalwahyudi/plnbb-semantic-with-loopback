@@ -6,8 +6,7 @@
     <div class="column border-right">
       <form [formGroup]="fg"
             class="ui form">
-        <h4> Detail Kesanggupan Pasokan</h4>
-        <hr>
+        <h5 class="ui dividing header"> Detail Kesanggupan Pasokan</h5>
         <div class="required field">
           <label>Referensi Kontrak</label>
           <select class="ui dropdown"
@@ -75,7 +74,7 @@
                 [url]="jettyUri"
                 [filter]="searchFilterJetty"
                 (onSearch)="onSearchJetty($event)"
-                formControlName="jettyId">
+                formControlName="jetty">
             <input type="hidden">
             <i class="dropdown icon"></i>
             <div class="default text">Select Jetty</div>
@@ -96,18 +95,18 @@
           </select>
         </div>
         <div class="required field">
-          <label>Jumlah</label>
+          <label>Jumlah (MT)</label>
           <input type="text"
                   placeholder="Jumlah Tonnase"
                   formControlName="jumlah">
         </div>
         <div class="required field">
-          <label>Harga</label>
+          <label>Harga (Ribu)</label>
           <input type="text"
                   placeholder="Harga Metric Ton"
                   formControlName="harga">
         </div>
-        <div class="required field">
+        <div class="field">
           <label>Keterangan</label>
           <input type="text"
                  placeholder="keterangan"
@@ -127,8 +126,7 @@
       <form [formGroup]="fg"
             (ngSubmit)="save()"
             class="ui form">
-        <h4>Spesifikasi Batubara</h4>
-        <hr>
+        <h5 class="ui dividing header">Spesifikasi Batubara</h5>
         <div class="ui two column grid">
           <div class="column"> 
             <div class="required field">
@@ -184,8 +182,7 @@
           </div>
           
         </div>
-        <h4>Sumber Tambang</h4>
-        <hr>
+        <h5 class="ui dividing header">Sumber Tambang</h5>
         <div class="column">
           <div class="required field">
             <label>Tambang dan Jumlah</label>

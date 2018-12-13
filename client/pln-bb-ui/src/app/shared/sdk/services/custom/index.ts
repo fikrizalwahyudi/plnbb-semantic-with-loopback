@@ -29,5 +29,6 @@ export * from './PlnRencana';
 export * from './PlnRealisasi';
 export * from './ShippingInstruction';
 export * from './Jetty';
+export * from './PlnRencanaPasokan';
 export * from './SDKModels';
 export * from './logger.service';

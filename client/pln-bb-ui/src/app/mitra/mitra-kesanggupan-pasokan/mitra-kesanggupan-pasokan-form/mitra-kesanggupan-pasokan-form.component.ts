@@ -81,7 +81,7 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
       keterangan: null,
       jenisKontrak: [null, [Validators.required]],
       jenisBatubara: [null, [Validators.required]],
-      jettyId: null,
+      jetty: null,
       gcv: [null, [Validators.required]],
       tm: [null, [Validators.required]],
       ash: [null, [Validators.required]],
