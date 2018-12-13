@@ -6,7 +6,8 @@ import { SharedModule } from '../shared/shared.module';
 import { PlnBBRencanaPasokanBrowseComponent } from './plnbb-rencana-pasokan/plnbb-rencana-pasokan-browse/plnbb-rencana-pasokan-browse.component';
 import { PlnbbComponent } from './plnbb.component';
 import { HomeComponent } from '../admin/home/home.component';
-import { PlnBBRealisasiPengirimanBrowseComponent } from './plnbb-realisasi-pengiriman/plnbb-realisasi-pengiriman-browse/plnbb-realisasi-pengiriman-browse.component'
+import { PlnBBRealisasiPengirimanBrowseComponent } from './plnbb-realisasi-pengiriman/plnbb-realisasi-pengiriman-browse/plnbb-realisasi-pengiriman-browse.component';
+import { PlnbbRencanaPasokanModalComponent } from './plnbb-rencana-pasokan/plnbb-rencana-pasokan-browse/plnbb-rencana-pasokan-modal.component'
 
 const appRoutes: Routes = [
   { path: 'plnbb', component: PlnbbComponent, children: [
@@ -29,11 +30,13 @@ const appRoutes: Routes = [
   ],
   declarations: [
     PlnBBRencanaPasokanBrowseComponent,
-    PlnBBRealisasiPengirimanBrowseComponent
+    PlnBBRealisasiPengirimanBrowseComponent,
+    PlnbbRencanaPasokanModalComponent
   ],
   exports : [
     PlnBBRencanaPasokanBrowseComponent,
-    PlnBBRealisasiPengirimanBrowseComponent
+    PlnBBRealisasiPengirimanBrowseComponent,
+    PlnbbRencanaPasokanModalComponent
   ]
 })
 export class PlnbbModule { }

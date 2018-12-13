@@ -9,16 +9,17 @@ import { LoopBackFilter,  } from '../../models/BaseModels';
 import { ErrorHandler } from '../core/error.service';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { PlnRencana } from '../../models/PlnRencana';
+import { PlnRencanaPasokan } from '../../models/PlnRencanaPasokan';
 import { SocketConnection } from '../../sockets/socket.connections';
-import { Pltu } from '../../models/Pltu';
+import { MitraKesanggupan } from '../../models/MitraKesanggupan';
+import { PlnRencana } from '../../models/PlnRencana';
 
 
 /**
- * Api services for the `PlnRencana` model.
+ * Api services for the `PlnRencanaPasokan` model.
  */
 @Injectable()
-export class PlnRencanaApi extends BaseLoopBackApi {
+export class PlnRencanaPasokanApi extends BaseLoopBackApi {
 
   constructor(
     @Inject(HttpClient) protected http: HttpClient,
@@ -31,9 +32,9 @@ export class PlnRencanaApi extends BaseLoopBackApi {
   }
 
   /**
-   * Fetches belongsTo relation tujuanPltu.
+   * Fetches belongsTo relation mitraKesanggupan.
    *
-   * @param {any} id PlnRencana id
+   * @param {any} id PlnRencanaPasokan id
    *
    * @param {boolean} refresh 
    *
@@ -43,13 +44,43 @@ export class PlnRencanaApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `PlnRencana` object.)
+   * This usually means the response is a `PlnRencanaPasokan` object.)
    * </em>
    */
-  public getTujuanPltu(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+  public getMitraKesanggupan(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/pln_rencana/:id/tujuanPltu";
+    "/pln_rencana_pasokan/:id/mitraKesanggupan";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    if (typeof refresh !== 'undefined' && refresh !== null) _urlParams.refresh = refresh;
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Fetches belongsTo relation rencana.
+   *
+   * @param {any} id PlnRencanaPasokan id
+   *
+   * @param {boolean} refresh 
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `PlnRencanaPasokan` object.)
+   * </em>
+   */
+  public getRencana(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/pln_rencana_pasokan/:id/rencana";
     let _routeParams: any = {
       id: id
     };
@@ -73,13 +104,13 @@ export class PlnRencanaApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `PlnRencana` object.)
+   * This usually means the response is a `PlnRencanaPasokan` object.)
    * </em>
    */
   public patchOrCreate(data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/pln_rencana";
+    "/pln_rencana_pasokan";
     let _routeParams: any = {};
     let _postBody: any = {
       data: data
@@ -92,7 +123,7 @@ export class PlnRencanaApi extends BaseLoopBackApi {
   /**
    * Patch attributes for a model instance and persist it into the data source.
    *
-   * @param {any} id PlnRencana id
+   * @param {any} id PlnRencanaPasokan id
    *
    * @param {object} data Request data.
    *
@@ -104,13 +135,13 @@ export class PlnRencanaApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `PlnRencana` object.)
+   * This usually means the response is a `PlnRencanaPasokan` object.)
    * </em>
    */
   public patchAttributes(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/pln_rencana/:id";
+    "/pln_rencana_pasokan/:id";
     let _routeParams: any = {
       id: id
     };
@@ -124,9 +155,9 @@ export class PlnRencanaApi extends BaseLoopBackApi {
 
   /**
    * The name of the model represented by this $resource,
-   * i.e. `PlnRencana`.
+   * i.e. `PlnRencanaPasokan`.
    */
   public getModelName() {
-    return "PlnRencana";
+    return "PlnRencanaPasokan";
   }
 }

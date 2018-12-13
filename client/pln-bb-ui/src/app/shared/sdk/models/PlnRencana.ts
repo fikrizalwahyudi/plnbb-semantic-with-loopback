@@ -1,21 +1,23 @@
 /* tslint:disable */
 import {
-  MitraKesanggupan
+  Pltu
 } from '../index';
 
 declare var Object: any;
 export interface PlnRencanaInterface {
-  "mitraKesanggupanId"?: any;
-  "tglPengiriman"?: any;
+  "tahun"?: number;
+  "bulan"?: number;
+  "tujuanPltuId"?: any;
   "id"?: any;
-  mitraKesanggupan?: MitraKesanggupan;
+  tujuanPltu?: Pltu;
 }
 
 export class PlnRencana implements PlnRencanaInterface {
-  "mitraKesanggupanId": any = <any>null;
-  "tglPengiriman": any = <any>null;
+  "tahun": number = 0;
+  "bulan": number = 0;
+  "tujuanPltuId": any = <any>null;
   "id": any = <any>null;
-  mitraKesanggupan: MitraKesanggupan = null;
+  tujuanPltu: Pltu = null;
   constructor(data?: PlnRencanaInterface) {
     Object.assign(this, data);
   }
@@ -49,12 +51,16 @@ export class PlnRencana implements PlnRencanaInterface {
       path: 'pln_rencana',
       idName: 'id',
       properties: {
-        "mitraKesanggupanId": {
-          name: 'mitraKesanggupanId',
-          type: 'any'
+        "tahun": {
+          name: 'tahun',
+          type: 'number'
         },
-        "tglPengiriman": {
-          name: 'tglPengiriman',
+        "bulan": {
+          name: 'bulan',
+          type: 'number'
+        },
+        "tujuanPltuId": {
+          name: 'tujuanPltuId',
           type: 'any'
         },
         "id": {
@@ -63,12 +69,12 @@ export class PlnRencana implements PlnRencanaInterface {
         },
       },
       relations: {
-        mitraKesanggupan: {
-          name: 'mitraKesanggupan',
-          type: 'MitraKesanggupan',
-          model: 'MitraKesanggupan',
+        tujuanPltu: {
+          name: 'tujuanPltu',
+          type: 'Pltu',
+          model: 'Pltu',
           relationType: 'belongsTo',
-                  keyFrom: 'mitraKesanggupanId',
+                  keyFrom: 'tujuanPltuId',
           keyTo: 'id'
         },
       }
