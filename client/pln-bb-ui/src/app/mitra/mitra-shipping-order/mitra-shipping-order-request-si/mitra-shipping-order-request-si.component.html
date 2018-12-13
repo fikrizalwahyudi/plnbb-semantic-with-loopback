@@ -1,0 +1,87 @@
+<ui-form-block title="Request Shipping Instruction"
+               [errorMsg]="errorMsg"
+               [submitting]="submitting">
+  <div class="ui two column grid">
+    <div class="column border-right">
+      <form [formGroup]="fg"
+            (ngSubmit)="save()"
+            class="ui form">
+
+        <div class="required field">
+          <label>Laycan Start Date</label>
+          <div class="ui calendar"
+               uiCalendar
+               formControlName="laycanStartDate">
+            <div class="ui input left icon">
+              <i class="calendar icon"></i>
+              <input type="text"
+                     placeholder="Date/Time">
+            </div>
+          </div>
+        </div>
+        <div class="required field">
+          <label>Laycan End Date</label>
+          <div class="ui calendar"
+               uiCalendar
+               formControlName="laycanEndDate">
+            <div class="ui input left icon">
+              <i class="calendar icon"></i>
+              <input type="text"
+                     placeholder="Date/Time">
+            </div>
+          </div>
+        </div>
+        <ng-container *ngIf="dataMitraKesanggupan?.cif">
+          <div class="field">
+            <label>Mitra Shipping</label>
+            <select class="ui dropdown"
+                    formControlName="transportId"
+                    uiDropDown>
+              <option value=""
+                      disabled
+                      hidden>Pilih Mitra</option>
+              <option *ngFor="let item of arrMitraShipping; let index = index"
+                      [value]="item.id"><span [innerHTML]="item.name"></span></option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Nama Kapal</label>
+            <div class="field">
+              <input type="text"
+                     name=""
+                     placeholder="Nama Kapal"
+                     formControlName="namaTransport">
+            </div>
+          </div>
+          <div class="field">
+            <label>Jetty</label>
+            <select class="ui dropdown"
+                    formControlName="jetty"
+                    uiDropDown>
+              <option value=""
+                      disabled
+                      hidden>Pilih Jetty</option>
+              <option *ngFor="let item of arrJetty; let index = index"
+                      [value]="item.id"><span [innerHTML]="item.name"></span></option>
+            </select>
+          </div>
+        </ng-container>
+
+        <div class="inline field">
+          <button class="ui secondary button"
+                  type="button"
+                  (click)="cancel()">Cancel</button>
+          <button class="ui primary button"
+                  type="submit"
+                  [disabled]="!fg.valid">Request</button>
+        </div>
+      </form>
+    </div>
+    <div class="column">
+      <div class="fullheight fullwidth"
+           style="background: url(assets/paragraph.png)">
+
+      </div>
+    </div>
+  </div>
+</ui-form-block>

@@ -22,9 +22,12 @@
        [ngClass]="{'disabled': selectedDaftarRencana}">
       <i class="download icon"></i> Generate
     </a>
-    <a class="item"
+    <a *ngIf="!isLocked" class="item"
        (click)="lock()">
       <i class="unlock icon"></i> Lock
+    </a>
+    <a *ngIf="isLocked" class="item disabled">
+      <i class="lock icon"></i> Locked
     </a>
   </div>
 </div>
@@ -65,17 +68,27 @@
             </td>
             <td class="right aligned">{{itemRencana.totalHarga | currency:'Rp':undefined:undefined:'id'}}</td>
             <td class="center aligned collapsing">
-              <a (click)="setTotalKebutuhan(itemRencana, fgAmounts.controls[itemRencana.index])">
-                <i class="save link icon action-icon"
-                   [ngClass]="{'red': itemRencana.totalKebutuhan != fgAmounts.controls[itemRencana.index].value.amount}"></i>
-              </a>
-              <a (click)="pickMitra(itemRencana)"
-                 *ngIf="!picking">
-                <i class="external alternate link icon action-icon"></i>
-              </a>
-              <a *ngIf="picking">
-                <i class="spinner loading icon action-icon"></i>
-              </a>
+              <ng-container *ngIf="!isLocked">
+                <a (click)="setTotalKebutuhan(itemRencana, fgAmounts.controls[itemRencana.index])">
+                  <i class="save link icon action-icon"
+                      [ngClass]="{'red': itemRencana.totalKebutuhan != fgAmounts.controls[itemRencana.index].value.amount}"></i>
+                </a>
+                <a (click)="pickMitra(itemRencana)"
+                    *ngIf="!picking">
+                  <i class="external alternate link icon action-icon"></i>
+                </a>
+                <a *ngIf="picking">
+                  <i class="spinner loading icon action-icon"></i>
+                </a>
+              </ng-container>
+              <ng-container *ngIf="isLocked">
+                <a>
+                  <i class="save icon action-icon disabled"></i>
+                </a>
+                <a>
+                  <i class="external alternate icon action-icon disabled"></i>
+                </a>
+              </ng-container>
             </td>
           </tr>
           <tr *ngIf="itemRencana.pasokan.length > 0">

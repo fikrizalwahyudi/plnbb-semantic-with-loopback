@@ -1,0 +1,31 @@
+<ui-table-block>
+    <ng-container class="table-block-menu">
+      
+    </ng-container>
+    <thead>
+      <tr>
+        <th>Tujuan PLTU</th>
+        <th>Tanggal</th>
+        <th>Jetty</th>
+        <th>Moda</th>
+        <th class="right aligned">Jumlah</th>
+        <th class="right aligned">Harga</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of so">
+        <td>{{item.mitraKesanggupan.tujuanPltu.name}}</td>
+        <td>{{item.mitraKesanggupan.tglPengiriman | date:'shortDate'}}</td>
+        <td>{{item.mitraKesanggupan.jetty.name}}</td>
+        <td>{{item.mitraKesanggupan.mode | titlecase}}</td>
+        <td class="right aligned">{{item.mitraKesanggupan.jumlah | number}}</td>
+        <td class="right aligned">{{item.mitraKesanggupan.harga | currency:'Rp':undefined:undefined:'id'}}</td>
+        <td class="center aligned collapsing">
+          <a [routerLink]="['/mitra', 'shipping-order', item.id, 'request-si']">
+            <i class="envelope link icon action-icon"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </ui-table-block>

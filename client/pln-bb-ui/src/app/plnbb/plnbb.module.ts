@@ -12,15 +12,17 @@ import { PlnbbRencanaPasokanSiComponent } from './plnbb-rencana-pasokan/plnbb-re
 import { PlnbbRencanaPasokanSiCreateComponent } from './plnbb-rencana-pasokan/plnbb-rencana-pasokan-si/plnbb-rencana-pasokan-si-create.component'
 
 const appRoutes: Routes = [
-  { path: 'plnbb', component: PlnbbComponent, children: [
+  { path: 'plnbb', component: PlnbbComponent, data: { breadcrumb: 'PLN BB' }, children: [
     { path: '', redirectTo: 'rencana-pasokan', pathMatch: 'full' },
     
-    { path: 'home', component: HomeComponent },
-    { path: 'rencana-pasokan', component: PlnBBRencanaPasokanBrowseComponent },
-    { path: 'rencana-pasokan-si', component: PlnbbRencanaPasokanSiComponent },
+    { path: 'home', component: HomeComponent, data: { breadcrumb: 'Home' } },
+    { path: 'rencana-pasokan', component: PlnBBRencanaPasokanBrowseComponent, data: { breadcrumb: 'Rakor Pasokan' } },
+    
+    /*{ path: 'rencana-pasokan-si', component: PlnbbRencanaPasokanSiComponent },*/
+
     { path: 'rencana-pasokan-si/:idMitraKesanggupan', component: PlnbbRencanaPasokanSiComponent },
-    { path: 'rencana-pasokan-si/create/:idMitraKesanggupan', component: PlnbbRencanaPasokanSiCreateComponent },
-    { path: 'realisasi-pengiriman', component: PlnBBRealisasiPengirimanBrowseComponent },
+    /*{ path: 'rencana-pasokan-si/create/:idMitraKesanggupan', component: PlnbbRencanaPasokanSiCreateComponent },
+    { path: 'realisasi-pengiriman', component: PlnBBRealisasiPengirimanBrowseComponent },*/
 
   ] }
 ]

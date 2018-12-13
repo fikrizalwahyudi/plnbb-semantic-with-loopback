@@ -21,6 +21,9 @@ import { FormsModule } from '@angular/forms';
 import { SearchDropdownDirective } from './directives/search-dropdown.directive';
 import { KeyValuePipe } from './directives/keyvalue.pipe';
 import { CheckboxDirective } from './directives/checkbox.directive';
+import { LogService } from './services/log.service';
+import { BreadcrumbService } from './services/breadcrumb.service';
+import { BreadcrumbComponent } from './commons/breadcrumb.component';
 
 @NgModule({
   imports: [
@@ -45,7 +48,8 @@ import { CheckboxDirective } from './directives/checkbox.directive';
     MultiInputComponent,
     SearchDropdownDirective,
     KeyValuePipe,
-    CheckboxDirective
+    CheckboxDirective,
+    BreadcrumbComponent
   ],
 
   declarations: [
@@ -64,13 +68,16 @@ import { CheckboxDirective } from './directives/checkbox.directive';
     MultiInputComponent,
     SearchDropdownDirective,
     KeyValuePipe,
-    CheckboxDirective
+    CheckboxDirective,
+    BreadcrumbComponent
   ],
 
   providers: [
     CacheService, 
     AuthenticatedGuard, 
-    MenuService
+    MenuService,
+    LogService,
+    BreadcrumbService
   ]
 })
 export class SharedModule { }

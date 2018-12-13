@@ -30,6 +30,13 @@ export class MitraKesanggupanPasokanBrowseComponent implements OnInit {
     private mitraApi: MitraApi,
     private kesanggupanApi: MitraKesanggupanApi
   ) {
+    this.load()
+  }
+
+  ngOnInit() {
+  }
+
+  load() {
     let now = new Date()
     now.setDate(1)
     let next = new Date()
@@ -58,9 +65,6 @@ export class MitraKesanggupanPasokanBrowseComponent implements OnInit {
     })
   }
 
-  ngOnInit() {
-  }
-
   delete(item, key) {
     this.errorMsg = undefined
     console.log(item)
@@ -83,7 +87,7 @@ export class MitraKesanggupanPasokanBrowseComponent implements OnInit {
   
 
   lock(item) {
-    this.kesanggupanApi.patchAttributes(item.id, { lock: true }).subscribe(() => {
+    this.kesanggupanApi.patchAttributes(item.id, { lock: true }).subscribe(() => {      
       item.lock = true
     })
   }

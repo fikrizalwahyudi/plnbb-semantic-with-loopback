@@ -11,20 +11,30 @@ import { MitraKesanggupanPasokanEditComponent } from './mitra-kesanggupan-pasoka
 import { MitraComponent } from './mitra.component';
 import { MitraKesanggupanTambangComponent } from './mitra-kesanggupan-pasokan/mitra-kesanggupan-tambang/mitra-kesanggupan-tambang.component';
 import localeId from '@angular/common/locales/id';
+import { MitraShippingOrderComponent } from './mitra-shipping-order/mitra-shipping-order.component';
+import { MitraShippingOrderBrowseComponent } from './mitra-shipping-order/mitra-shipping-order-browse/mitra-shipping-order-browse.component';
+import { MitraShippingOrderRequestSiComponent } from './mitra-shipping-order/mitra-shipping-order-request-si/mitra-shipping-order-request-si.component';
 
 registerLocaleData(localeId)
 
 const appRoutes: Routes = [
   {
-    path: 'mitra', component: MitraComponent, children: [
+    path: 'mitra', component: MitraComponent, data: { breadcrumb: 'Mitra' }, children: [
       { path: '', redirectTo: 'kesanggupan-pasokan', pathMatch: 'full' },
-      { path: 'home', component: MitraKesanggupanPasokanComponent },
-      { path: 'kesanggupan-pasokan', component: MitraKesanggupanPasokanComponent, children: [
+      { path: 'home', component: MitraKesanggupanPasokanComponent, data: { breadcrumb: 'Home' } },
+      { path: 'kesanggupan-pasokan', component: MitraKesanggupanPasokanComponent, data: { breadcrumb: 'Pasokan' }, children: [
         { path: '', redirectTo: 'browse', pathMatch: 'full' },
-        { path: 'browse', component: MitraKesanggupanPasokanBrowseComponent },
-        { path: 'create', component: MitraKesanggupanPasokanCreateComponent },
-        { path: ':id/edit', component: MitraKesanggupanPasokanEditComponent }
+        { path: 'browse', component: MitraKesanggupanPasokanBrowseComponent, data: { breadcrumb: 'Catalog' } },
+        { path: 'create', component: MitraKesanggupanPasokanCreateComponent, data: { breadcrumb: 'Create' } },
+        { path: ':id/edit', component: MitraKesanggupanPasokanEditComponent, data: { breadcrumb: 'Edit' } }
       ] },
+
+      { path: 'shipping-order', component: MitraShippingOrderComponent, data: { breadcrumb: 'Shipping Order' }, children: [
+        { path: '', redirectTo: 'browse', pathMatch: 'full' },
+        { path: 'browse', component: MitraShippingOrderBrowseComponent, data: { breadcrumb: 'Browse' } },
+        { path: ':id/request-si', component: MitraShippingOrderRequestSiComponent, data: { breadcrumb: 'Request SI' } }
+      ] },
+      
       { path: 'kesanggupan-tambang/:id', component: MitraKesanggupanTambangComponent }
     ]
   }
@@ -45,7 +55,10 @@ const appRoutes: Routes = [
     MitraKesanggupanPasokanBrowseComponent,
     MitraKesanggupanPasokanFormComponent,
     MitraKesanggupanPasokanCreateComponent,
-    MitraKesanggupanPasokanEditComponent
+    MitraKesanggupanPasokanEditComponent,
+    MitraShippingOrderComponent,
+    MitraShippingOrderBrowseComponent,
+    MitraShippingOrderRequestSiComponent
   ],
   exports: [
     MitraComponent,
@@ -54,7 +67,10 @@ const appRoutes: Routes = [
     MitraKesanggupanPasokanBrowseComponent,
     MitraKesanggupanPasokanFormComponent,
     MitraKesanggupanPasokanCreateComponent,
-    MitraKesanggupanPasokanEditComponent
+    MitraKesanggupanPasokanEditComponent,
+    MitraShippingOrderComponent,
+    MitraShippingOrderBrowseComponent,
+    MitraShippingOrderRequestSiComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'id'}

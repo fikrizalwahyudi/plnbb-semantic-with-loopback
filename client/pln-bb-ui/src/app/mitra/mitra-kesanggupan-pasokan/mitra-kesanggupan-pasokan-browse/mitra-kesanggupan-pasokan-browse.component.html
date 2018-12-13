@@ -72,13 +72,29 @@
             <td class="right aligned">{{itemEntry.jumlah | number:undefined:'id'}}</td>
             <td class="right aligned">{{itemEntry.harga | currency:'Rp':undefined:undefined:'id'}}</td>
             <td class="center aligned collapsing">
-              <a href="javascript:void(0)"
-                  (click)="delete(itemEntry, item.key)">
-                <i class="trash link icon action-icon"></i>
-              </a>
-              <a [routerLink]="['/mitra', 'kesanggupan-pasokan', itemEntry.id, 'edit']">
-                <i class="edit link icon action-icon"></i>
-              </a>
+              <ng-container *ngIf="!itemEntry.lock">
+                <a href="javascript:void(0)"
+                (click)="delete(itemEntry, item.key)">
+                  <i class="trash link icon action-icon"></i>
+                </a>
+                <a [routerLink]="['/mitra', 'kesanggupan-pasokan', itemEntry.id, 'edit']">
+                  <i class="edit link icon action-icon"></i>
+                </a>
+                <a (click)="lock(itemEntry)">
+                  <i class="unlock link icon action-icon"></i>
+                </a>
+              </ng-container>
+              <ng-container *ngIf="itemEntry.lock">
+                <a>
+                  <i class="trash icon action-icon disabled"></i>
+                </a>
+                <a>
+                  <i class="edit icon action-icon disabled"></i>
+                </a>
+                <a>
+                  <i class="lock icon action-icon green"></i>
+                </a>
+              </ng-container>
             </td>
           </tr>
           <tr>

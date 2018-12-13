@@ -31,11 +31,11 @@ import { PlnbbModule } from './plnbb/plnbb.module';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule', canActivate: [AuthenticatedGuard] },
+  { path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule', canActivate: [AuthenticatedGuard], data: { breadcrumb: 'Administation' } },
 
-  { path: 'mitra', loadChildren: 'app/mitra/mitra.module#MitraModule', canActivate: [AuthenticatedGuard] },
+  { path: 'mitra', loadChildren: 'app/mitra/mitra.module#MitraModule', canActivate: [AuthenticatedGuard], data: { breadcrumb: 'Mitra' } },
   
-  { path: 'plnbb', loadChildren: 'app/plnbb/plnbb.module#PlnbbModule', canActivate: [AuthenticatedGuard] },
+  { path: 'plnbb', loadChildren: 'app/plnbb/plnbb.module#PlnbbModule', canActivate: [AuthenticatedGuard], data: { breadcrumb: 'PLN BB' } },
   
   { path: '', redirectTo: 'admin', pathMatch: 'full' }
 ];

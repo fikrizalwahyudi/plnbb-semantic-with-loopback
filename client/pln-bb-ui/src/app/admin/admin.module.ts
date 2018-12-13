@@ -61,61 +61,60 @@ import { MasterJettyCreateComponent } from './master-jetty/master-jetty-form/mas
 import { MasterJettyEditComponent } from './master-jetty/master-jetty-form/master-jetty-edit.component';
 
 const appRoutes: Routes = [
-  { path: 'admin', component: AdminComponent, children: [
+  { path: 'admin', component: AdminComponent, data: { breadcrumb: 'Administration' }, children: [
     { path: '', redirectTo: 'user', pathMatch: 'full' },
     
-    { path: 'home', component: HomeComponent },
-    { path: 'user', component: MasterUserComponent, children: [
+    { path: 'home', component: HomeComponent, data: { breadcrumb: 'Home' } },
+    { path: 'user', component: MasterUserComponent, data: { breadcrumb: 'User' }, children: [
       { path: '', redirectTo: 'browse', pathMatch: 'full' },
-      { path: 'browse', component: MasterUserBrowseComponent },
-      { path: 'create', component: MasterUserCreateComponent },
-      { path: ':id/edit', component: MasterUserEditComponent }
+      { path: 'browse', component: MasterUserBrowseComponent, data: { breadcrumb: 'Browse' } },
+      { path: 'create', component: MasterUserCreateComponent, data: { breadcrumb: 'Create' } },
+      { path: ':id/edit', component: MasterUserEditComponent, data: { breadcrumb: 'Edit' } }
     ] },
 
-    { path: 'role', component: MasterRoleComponent, children: [
+    { path: 'role', component: MasterRoleComponent, data: { breadcrumb: 'Role' }, children: [
       { path: '', redirectTo: 'browse', pathMatch: 'full' },
-      { path: 'browse', component: MasterRoleBrowseComponent },
-      { path: 'create', component: MasterRoleCreateComponent },
-      { path: ':id/edit', component: MasterRoleEditComponent }
+      { path: 'browse', component: MasterRoleBrowseComponent, data: { breadcrumb: 'Browse' } },
+      { path: 'create', component: MasterRoleCreateComponent, data: { breadcrumb: 'Create' } },
+      { path: ':id/edit', component: MasterRoleEditComponent, data: { breadcrumb: 'Edit' } }
     ] },
 
-    { path: 'tambang', component: MasterTambangComponent, children: [
+    { path: 'tambang', component: MasterTambangComponent, data: { breadcrumb: 'Tambang' }, children: [
       { path: '', redirectTo: 'browse', pathMatch: 'full' },
-      { path: 'browse', component: MasterTambangBrowseComponent },
-      { path: 'create', component: MasterTambangCreateComponent },
-      { path: ':id/edit', component: MasterTambangEditComponent }
+      { path: 'browse', component: MasterTambangBrowseComponent, data: { breadcrumb: 'Browse' } },
+      { path: 'create', component: MasterTambangCreateComponent, data: { breadcrumb: 'Create' } },
+      { path: ':id/edit', component: MasterTambangEditComponent, data: { breadcrumb: 'Edit' } }
     ] },
 
-    { path: 'mitra', component: MasterMitraComponent, children: [
+    { path: 'mitra', component: MasterMitraComponent, data: { breadcrumb: 'Mitra' }, children: [
       { path: '', redirectTo: 'browse', pathMatch: 'full' },
-      { path: 'browse', component: MasterMitraBrowseComponent },
-      { path: 'create', component: MasterMitraCreateComponent },
-      { path: ':id/edit', component: MasterMitraEditComponent },
-      { path: ':id/set-user', component: MasterMitraUserCreateComponent },
+      { path: 'browse', component: MasterMitraBrowseComponent, data: { breadcrumb: 'Browse' } },
+      { path: 'create', component: MasterMitraCreateComponent, data: { breadcrumb: 'Create' } },
+      { path: ':id/edit', component: MasterMitraEditComponent, data: { breadcrumb: 'Edit' } }
     ] },
     
-    { path: 'pltu', component: MasterPltuComponent, children: [
+    { path: 'pltu', component: MasterPltuComponent, data: { breadcrumb: 'PLTU' }, children: [
       { path: '', redirectTo: 'browse', pathMatch: 'full' },
-      { path: 'browse', component: MasterPltuBrowseComponent },
-      { path: 'create', component: MasterPltuCreateComponent },
-      { path: ':id/edit', component: MasterPltuEditComponent }
+      { path: 'browse', component: MasterPltuBrowseComponent, data: { breadcrumb: 'Browse' } },
+      { path: 'create', component: MasterPltuCreateComponent, data: { breadcrumb: 'Create' } },
+      { path: ':id/edit', component: MasterPltuEditComponent, data: { breadcrumb: 'Edit' } }
     ] },
 
-    { path: 'referensi-kontrak', component: MasterReferensiKontrakComponent, children: [
+    { path: 'referensi-kontrak', component: MasterReferensiKontrakComponent, data: { breadcrumb: 'Referensi Kontrak' }, children: [
       { path: '', redirectTo: 'browse', pathMatch: 'full' },
-      { path: 'browse', component: MasterReferensiKontrakBrowseComponent },
-      { path: 'create', component: MasterReferensiKontrakCreateComponent },
-      { path: ':id/edit', component: MasterReferensiKontrakEditComponent },
+      { path: 'browse', component: MasterReferensiKontrakBrowseComponent, data: { breadcrumb: 'Browse' } },
+      { path: 'create', component: MasterReferensiKontrakCreateComponent, data: { breadcrumb: 'Create' } },
+      { path: ':id/edit', component: MasterReferensiKontrakEditComponent, data: { breadcrumb: 'Edit' } },
       { path: ':id/pltu', component: MasterReferensiKontrakPltuComponent },
       { path: ':id/tambang', component: MasterReferensiKontrakTambangComponent }
     ] },
 
     {
-      path: 'jetty', component: MasterJettyComponent, children: [
+      path: 'jetty', component: MasterJettyComponent, data: { breadcrumb: 'Jetty' }, children: [
         { path: '', redirectTo: 'browse', pathMatch: 'full' },
-        { path: 'browse', component: MasterJettyBrowseComponent },
-        { path: 'create', component: MasterJettyCreateComponent },
-        { path: ':id/edit', component: MasterJettyEditComponent },
+        { path: 'browse', component: MasterJettyBrowseComponent, data: { breadcrumb: 'Browse' } },
+        { path: 'create', component: MasterJettyCreateComponent, data: { breadcrumb: 'Create' } },
+        { path: ':id/edit', component: MasterJettyEditComponent, data: { breadcrumb: 'Edit' } },
       ]
     },
   ] }
