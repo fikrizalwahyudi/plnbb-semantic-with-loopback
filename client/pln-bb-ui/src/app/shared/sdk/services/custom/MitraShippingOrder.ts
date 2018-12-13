@@ -9,17 +9,17 @@ import { LoopBackFilter,  } from '../../models/BaseModels';
 import { ErrorHandler } from '../core/error.service';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ReferensiKontrakTambang } from '../../models/ReferensiKontrakTambang';
+import { MitraShippingOrder } from '../../models/MitraShippingOrder';
 import { SocketConnection } from '../../sockets/socket.connections';
-import { Tambang } from '../../models/Tambang';
-import { ReferensiKontrak } from '../../models/ReferensiKontrak';
+import { MitraKesanggupan } from '../../models/MitraKesanggupan';
+import { PlnRencanaPasokan } from '../../models/PlnRencanaPasokan';
 
 
 /**
- * Api services for the `ReferensiKontrakTambang` model.
+ * Api services for the `MitraShippingOrder` model.
  */
 @Injectable()
-export class ReferensiKontrakTambangApi extends BaseLoopBackApi {
+export class MitraShippingOrderApi extends BaseLoopBackApi {
 
   constructor(
     @Inject(HttpClient) protected http: HttpClient,
@@ -32,9 +32,9 @@ export class ReferensiKontrakTambangApi extends BaseLoopBackApi {
   }
 
   /**
-   * Fetches belongsTo relation tambang.
+   * Fetches belongsTo relation mitraKesanggupan.
    *
-   * @param {any} id ReferensiKontrakTambang id
+   * @param {any} id MitraShippingOrder id
    *
    * @param {boolean} refresh 
    *
@@ -44,13 +44,13 @@ export class ReferensiKontrakTambangApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `ReferensiKontrakTambang` object.)
+   * This usually means the response is a `MitraShippingOrder` object.)
    * </em>
    */
-  public getTambang(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+  public getMitraKesanggupan(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/referensi_kontrak_tambang/:id/tambang";
+    "/mitra_shipping_order/:id/mitraKesanggupan";
     let _routeParams: any = {
       id: id
     };
@@ -62,9 +62,9 @@ export class ReferensiKontrakTambangApi extends BaseLoopBackApi {
   }
 
   /**
-   * Fetches belongsTo relation referensiKontrak.
+   * Fetches belongsTo relation rencanaPasokan.
    *
-   * @param {any} id ReferensiKontrakTambang id
+   * @param {any} id MitraShippingOrder id
    *
    * @param {boolean} refresh 
    *
@@ -74,13 +74,13 @@ export class ReferensiKontrakTambangApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `ReferensiKontrakTambang` object.)
+   * This usually means the response is a `MitraShippingOrder` object.)
    * </em>
    */
-  public getReferensiKontrak(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+  public getRencanaPasokan(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/referensi_kontrak_tambang/:id/referensiKontrak";
+    "/mitra_shipping_order/:id/rencanaPasokan";
     let _routeParams: any = {
       id: id
     };
@@ -104,13 +104,13 @@ export class ReferensiKontrakTambangApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `ReferensiKontrakTambang` object.)
+   * This usually means the response is a `MitraShippingOrder` object.)
    * </em>
    */
   public patchOrCreate(data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/referensi_kontrak_tambang";
+    "/mitra_shipping_order";
     let _routeParams: any = {};
     let _postBody: any = {
       data: data
@@ -123,7 +123,7 @@ export class ReferensiKontrakTambangApi extends BaseLoopBackApi {
   /**
    * Patch attributes for a model instance and persist it into the data source.
    *
-   * @param {any} id ReferensiKontrakTambang id
+   * @param {any} id MitraShippingOrder id
    *
    * @param {object} data Request data.
    *
@@ -135,13 +135,13 @@ export class ReferensiKontrakTambangApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `ReferensiKontrakTambang` object.)
+   * This usually means the response is a `MitraShippingOrder` object.)
    * </em>
    */
   public patchAttributes(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/referensi_kontrak_tambang/:id";
+    "/mitra_shipping_order/:id";
     let _routeParams: any = {
       id: id
     };
@@ -155,9 +155,9 @@ export class ReferensiKontrakTambangApi extends BaseLoopBackApi {
 
   /**
    * The name of the model represented by this $resource,
-   * i.e. `ReferensiKontrakTambang`.
+   * i.e. `MitraShippingOrder`.
    */
   public getModelName() {
-    return "ReferensiKontrakTambang";
+    return "MitraShippingOrder";
   }
 }

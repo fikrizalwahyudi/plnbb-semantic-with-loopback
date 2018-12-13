@@ -1,6 +1,7 @@
 import { PersistedDao, PersistedModel } from 'loopback-typescript-core/dist/models/persisted.model';
 import { injectable,inject } from 'inversify';
 import { CommonModel, Property, Relation, Remote } from 'loopback-typescript-core/dist/models/decorators';
+import { MitraKesanggupanTambangDao } from './mitra_kesanggupan_tambang.model';
 
 @injectable()
 export class MitraKesanggupanDao extends PersistedDao
@@ -33,6 +34,9 @@ export class MitraKesanggupanDao extends PersistedDao
 })
 export class MitraKesanggupanModel extends PersistedModel
 {	
+	@inject(MitraKesanggupanTambangDao)
+	mitraTambangDao:MitraKesanggupanTambangDao
+
 	id:any
 
 	@Property('any')
@@ -112,6 +116,19 @@ export class MitraKesanggupanModel extends PersistedModel
 	@Relation("belongsTo", "Jetty", "jettyId")
 	jetty
 
+	@Remote({
+		accepts: [
+			{ arg: 'params', type: 'array', http: { source: 'body' } }
+		],
+		returns: [{type: 'any', root: true}],
+		http: { path: '/patchTambang', verb: 'post' }
+	})
+	async patchTambang(params) {
+		await this.mitraTambangDao.destroyAll({mitraKesanggupanId:this.id})
+
+		return await this.mitraTambangDao.create(params)
+	}
+	
 	@Relation("belongsTo", "Mitra", "mitraId")
 	mitra
 }

@@ -13,6 +13,7 @@ import { MitraKesanggupan } from '../../models/MitraKesanggupan';
 import { SocketConnection } from '../../sockets/socket.connections';
 import { ReferensiKontrak } from '../../models/ReferensiKontrak';
 import { Pltu } from '../../models/Pltu';
+import { Mitra } from '../../models/Mitra';
 import { MitraKesanggupanTambang } from '../../models/MitraKesanggupanTambang';
 import { Jetty } from '../../models/Jetty';
 
@@ -83,6 +84,36 @@ export class MitraKesanggupanApi extends BaseLoopBackApi {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
     "/mitra_kesanggupan/:id/tujuanPltu";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    if (typeof refresh !== 'undefined' && refresh !== null) _urlParams.refresh = refresh;
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Fetches belongsTo relation mitra.
+   *
+   * @param {any} id MitraKesanggupan id
+   *
+   * @param {boolean} refresh 
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `MitraKesanggupan` object.)
+   * </em>
+   */
+  public getMitra(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/mitra_kesanggupan/:id/mitra";
     let _routeParams: any = {
       id: id
     };
@@ -388,6 +419,41 @@ export class MitraKesanggupanApi extends BaseLoopBackApi {
     };
     let _postBody: any = {
       data: data
+    };
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+   *
+   * @param {any} id MitraKesanggupan id
+   *
+   * @param {object} data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `MitraKesanggupan` object.)
+   * </em>
+   */
+  public patchTambang(id: any, params: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "POST";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/mitra_kesanggupan/:id/patchTambang";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {
+      params: params
     };
     let _urlParams: any = {};
     let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);

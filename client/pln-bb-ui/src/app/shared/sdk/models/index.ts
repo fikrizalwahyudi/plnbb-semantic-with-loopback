@@ -30,5 +30,6 @@ export * from './PlnRealisasi';
 export * from './ShippingInstruction';
 export * from './Jetty';
 export * from './PlnRencanaPasokan';
+export * from './MitraShippingOrder';
 export * from './BaseModels';
 export * from './FireLoopRef';

@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { MitraKesanggupanPasokanFormComponent } from './mitra-kesanggupan-pasokan-form.component';
 import { PltuApi } from '../../../shared/sdk/services/custom/Pltu';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Pltu } from '../../../shared/sdk';
+import { MitraKesanggupan, MitraKesanggupanApi, MitraApi, UserApi, ReferensiKontrakApi, ReferensiKontrakPltuApi,ReferensiKontrakTambangApi,MitraKesanggupanTambangApi } from '../../../shared/sdk';
 
 @Component({
   selector: 'mitra-kesanggupan-pasokan-edit',
@@ -17,10 +17,16 @@ export class MitraKesanggupanPasokanEditComponent implements OnInit {
   @ViewChild(MitraKesanggupanPasokanFormComponent)
   formComponent: MitraKesanggupanPasokanFormComponent
 
-  pltu:Pltu
+  mitraKesanggupan:MitraKesanggupan
 
   constructor(
-    private pltuApi: PltuApi,
+    private mitraApi: MitraApi,
+    private userApi:UserApi,
+    private kontrakApi:ReferensiKontrakApi,
+    private kontrakPltuApi:ReferensiKontrakPltuApi,
+    private kontrakTambangApi:ReferensiKontrakTambangApi,
+    private kesanggupanApi:MitraKesanggupanApi,
+    private tambangApi:MitraKesanggupanTambangApi,
     private router:Router,
     private route:ActivatedRoute
   ) { 
@@ -34,10 +40,23 @@ export class MitraKesanggupanPasokanEditComponent implements OnInit {
     this.route.params.subscribe(params => {
       let id = params['id']
 
-      this.pltuApi.findById(id).subscribe(data => {
-        this.pltu = data as Pltu
+      this.kesanggupanApi.findById(id, {include: ['tujuanPltu', 'referensiKontrak', 'jetty', 'sumberTambang'] }).subscribe(data => {
+        this.mitraKesanggupan = data as MitraKesanggupan
+        console.log(this.mitraKesanggupan);
 
-        fg.patchValue(this.pltu)
+        fg.patchValue(this.mitraKesanggupan)
+        if(this.mitraKesanggupan.referensiKontrak){
+          setTimeout(() => {
+            fg.patchValue({referensiKontrakId: {
+              name: this.mitraKesanggupan.referensiKontrak.nomorKontrak,
+              value: this.mitraKesanggupan.referensiKontrak.id,
+              text: this.mitraKesanggupan.referensiKontrak.nomorKontrak
+            }})
+            console.log("kepanggil");
+          }, 10)
+          
+        }
+        
       })
     })
   }
@@ -46,7 +65,7 @@ export class MitraKesanggupanPasokanEditComponent implements OnInit {
     this.formComponent.submitting = true
     this.formComponent.errorMsg = undefined
 
-    this.pltuApi.patchAttributes(this.pltu.id, model).subscribe(data => {
+    this.kesanggupanApi.patchAttributes(this.mitraKesanggupan.id, model).subscribe(data => {
       this.router.navigate(['/admin', 'pltu'])
       this.formComponent.submitting = false
     }, err => {

@@ -2,6 +2,7 @@
 import {
   ReferensiKontrak,
   Pltu,
+  Mitra,
   MitraKesanggupanTambang,
   Jetty
 } from '../index';
@@ -28,9 +29,11 @@ export interface MitraKesanggupanInterface {
   "size1"?: number;
   "size2"?: number;
   "userId"?: any;
+  "mitraId"?: any;
   "id"?: any;
   referensiKontrak?: ReferensiKontrak;
   tujuanPltu?: Pltu;
+  mitra?: Mitra;
   sumberTambang?: MitraKesanggupanTambang[];
   jetty?: Jetty;
 }
@@ -56,9 +59,11 @@ export class MitraKesanggupan implements MitraKesanggupanInterface {
   "size1": number = 0;
   "size2": number = 0;
   "userId": any = <any>null;
+  "mitraId": any = <any>null;
   "id": any = <any>null;
   referensiKontrak: ReferensiKontrak = null;
   tujuanPltu: Pltu = null;
+  mitra: Mitra = null;
   sumberTambang: MitraKesanggupanTambang[] = null;
   jetty: Jetty = null;
   constructor(data?: MitraKesanggupanInterface) {
@@ -174,6 +179,10 @@ export class MitraKesanggupan implements MitraKesanggupanInterface {
           name: 'userId',
           type: 'any'
         },
+        "mitraId": {
+          name: 'mitraId',
+          type: 'any'
+        },
         "id": {
           name: 'id',
           type: 'any'
@@ -194,6 +203,14 @@ export class MitraKesanggupan implements MitraKesanggupanInterface {
           model: 'Pltu',
           relationType: 'belongsTo',
                   keyFrom: 'tujuanPltuId',
+          keyTo: 'id'
+        },
+        mitra: {
+          name: 'mitra',
+          type: 'Mitra',
+          model: 'Mitra',
+          relationType: 'belongsTo',
+                  keyFrom: 'mitraId',
           keyTo: 'id'
         },
         sumberTambang: {

@@ -29,7 +29,7 @@
   </div>
 </div>
 
-<ng-container *ngFor="let item of daftarKesanggupan | keyvalue">
+<ng-container *ngFor="let item of daftarKesanggupan | keyvalue;">
   <a class="ui label month-divider">
     <i class="calendar icon"></i>
     {{item.key}}
@@ -66,17 +66,17 @@
                 rowspan="2">
               <div class="ui blue small label">{{itemEntry.tglPengiriman | date:'dd'}}</div>
             </td>
-            <td class="column-jetty">{{itemEntry.jetty.name}}</td>
+            <td class="column-jetty">{{itemEntry.jetty?.name}}</td>
             <td>{{itemEntry.mode | titlecase}}</td>
             <td>{{itemEntry.tipe | uppercase}}</td>
             <td class="right aligned">{{itemEntry.jumlah | number:undefined:'id'}}</td>
             <td class="right aligned">{{itemEntry.harga | currency:'Rp':undefined:undefined:'id'}}</td>
             <td class="center aligned collapsing">
               <a href="javascript:void(0)"
-                  (click)="delete(item)">
+                  (click)="delete(itemEntry, item.key)">
                 <i class="trash link icon action-icon"></i>
               </a>
-              <a>
+              <a [routerLink]="['/mitra', 'kesanggupan-pasokan', itemEntry.id, 'edit']">
                 <i class="edit link icon action-icon"></i>
               </a>
             </td>

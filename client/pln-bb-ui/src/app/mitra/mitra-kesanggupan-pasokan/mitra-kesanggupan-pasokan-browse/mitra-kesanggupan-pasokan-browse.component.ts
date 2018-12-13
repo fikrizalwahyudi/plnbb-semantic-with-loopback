@@ -61,11 +61,26 @@ export class MitraKesanggupanPasokanBrowseComponent implements OnInit {
   ngOnInit() {
   }
 
-  delete(item) {
-    promptDialog('Delete record kesanggupan?', 'this record will not be recoverable', () => {
-
-    }, () => { })
+  delete(item, key) {
+    this.errorMsg = undefined
+    console.log(item)
+    console.log(key)
+    promptDialog('Delete this record?', 'after deleting, the record will not be recoverable', () => {
+      // this.kesanggupanApi.deleteById(item.id).subscribe(data => {
+      //   this.daftarKesanggupan[key] = this.daftarKesanggupan[key].filter(u => u.id !== item.id)
+      // }, err => {
+      //   this.errorMsg = err.message
+      // })
+    }, () => {})
   }
+  
+  // delete(item) {
+  //   promptDialog('Delete record kesanggupan?', 'this record will not be recoverable', () => {
+
+  //   }, () => { })
+  // }
+
+  
 
   lock(item) {
     this.kesanggupanApi.patchAttributes(item.id, { lock: true }).subscribe(() => {

@@ -9,6 +9,34 @@ export class PlnRencanaDao extends PersistedDao
 	static modelName = 'PlnRencana'
 
 	ModelClass = PlnRencanaModel
+
+	@Remote({
+		accepts: [
+			{ arg: 'params', type: 'array', http: { source: 'body' } }
+		],
+		returns: [{type: 'any', root: true}],
+		http: { path: '/lock', verb: 'post' }
+	})
+	async lock(params) {
+		/*let entries = await this.find({where: {id: {inq: params}}})
+
+		for(let i=0; i<entries.length; i++) {
+			let entry = entries[i] as any
+
+			await entry.updateAttributes({lock: true})
+		}*/
+
+		await this.updateAll({id: {inq: params}}, {lock: true})
+
+		//console.log(entries)
+
+		return params.map(p => {
+			return {
+				id: p,
+				lock: true
+			}
+		})
+	}
 }
 
 @injectable()
@@ -35,8 +63,6 @@ export class PlnRencanaModel extends PersistedModel
 {	
 	id:any
 
-	myass = 'hooh'
-
 	@Property('string')
 	code
 
@@ -51,6 +77,9 @@ export class PlnRencanaModel extends PersistedModel
 
 	@Property('any')
 	tujuanPltuId
+
+	@Property('boolean')
+	lock
 
 	@Relation("belongsTo", "Pltu", "tujuanPltuId")
 	tujuanPltu

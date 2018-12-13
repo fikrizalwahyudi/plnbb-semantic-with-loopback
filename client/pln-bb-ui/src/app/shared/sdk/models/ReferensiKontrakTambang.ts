@@ -1,16 +1,24 @@
 /* tslint:disable */
+import {
+  Tambang,
+  ReferensiKontrak
+} from '../index';
 
 declare var Object: any;
 export interface ReferensiKontrakTambangInterface {
   "referensiKontrakId"?: any;
   "tambangId"?: any;
   "id"?: any;
+  tambang?: Tambang;
+  referensiKontrak?: ReferensiKontrak;
 }
 
 export class ReferensiKontrakTambang implements ReferensiKontrakTambangInterface {
   "referensiKontrakId": any = <any>null;
   "tambangId": any = <any>null;
   "id": any = <any>null;
+  tambang: Tambang = null;
+  referensiKontrak: ReferensiKontrak = null;
   constructor(data?: ReferensiKontrakTambangInterface) {
     Object.assign(this, data);
   }
@@ -58,6 +66,22 @@ export class ReferensiKontrakTambang implements ReferensiKontrakTambangInterface
         },
       },
       relations: {
+        tambang: {
+          name: 'tambang',
+          type: 'Tambang',
+          model: 'Tambang',
+          relationType: 'belongsTo',
+                  keyFrom: 'tambangId',
+          keyTo: 'id'
+        },
+        referensiKontrak: {
+          name: 'referensiKontrak',
+          type: 'ReferensiKontrak',
+          model: 'ReferensiKontrak',
+          relationType: 'belongsTo',
+                  keyFrom: 'referensiKontrakId',
+          keyTo: 'id'
+        },
       }
     }
   }
