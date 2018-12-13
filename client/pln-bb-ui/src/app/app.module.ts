@@ -11,7 +11,6 @@ import { AuthenticatedGuard } from './shared/guards/authenticated.guard';
 import { GlobalService } from './shared/services/global.service';
 import { PltuService } from './shared/services/pltu.service';
 import { RencanaPasokanService } from './shared/services/rencana_pasokan.service';
-import { MyDateRangePickerModule } from 'mydaterangepicker';
 
 import { LoginComponent } from './login/login.component';
 //admin module

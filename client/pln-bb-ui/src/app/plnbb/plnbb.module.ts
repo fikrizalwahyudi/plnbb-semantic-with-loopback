@@ -9,7 +9,7 @@ import { HomeComponent } from '../admin/home/home.component';
 import { PlnBBRealisasiPengirimanBrowseComponent } from './plnbb-realisasi-pengiriman/plnbb-realisasi-pengiriman-browse/plnbb-realisasi-pengiriman-browse.component';
 import { PlnbbRencanaPasokanSiComponent } from './plnbb-rencana-pasokan/plnbb-rencana-pasokan-si/plnbb-rencana-pasokan-si.component';
 import { PlnbbRencanaPasokanSiCreateComponent } from './plnbb-rencana-pasokan/plnbb-rencana-pasokan-si/plnbb-rencana-pasokan-si-create.component'
-import { MyDateRangePickerModule } from 'mydaterangepicker';
+// import { MyDateRangePickerModule } from 'mydaterangepicker';
 
 const appRoutes: Routes = [
   { path: 'plnbb', component: PlnbbComponent, children: [
@@ -31,8 +31,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    RouterModule.forChild(appRoutes),
-    MyDateRangePickerModule
+    RouterModule.forChild(appRoutes)
 
   ],
   declarations: [
@@ -43,8 +42,7 @@ const appRoutes: Routes = [
   ],
   exports : [
     PlnBBRencanaPasokanBrowseComponent,
-    PlnBBRealisasiPengirimanBrowseComponent,
-    MyDateRangePickerModule
+    PlnBBRealisasiPengirimanBrowseComponent
   ]
 })
 export class PlnbbModule { }
