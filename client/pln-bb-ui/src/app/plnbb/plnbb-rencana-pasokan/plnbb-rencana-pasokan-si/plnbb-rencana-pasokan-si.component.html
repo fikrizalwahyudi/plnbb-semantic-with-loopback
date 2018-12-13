@@ -1,0 +1,87 @@
+<div class="ui top attached yellow segment">
+  <div [formGroup]="fg" class="ui form">
+    <div class="ui three column grid">
+      <div class="column">
+        <div class="field">
+          <label>Mitra Pengiriman</label>
+          <div class="field">
+            <input type="text" name="" value={{dataMitraKesanggupan?.referensiKontrak?.mitra?.name}}  readonly>
+          </div>
+        </div>
+        <div class="required field">
+          <label>Laycan Start Date</label>
+          <div class="ui calendar" uiCalendar formControlName="laycanStartDate">
+            <div class="ui input left icon">
+              <i class="calendar icon"></i>
+              <input type="text" placeholder="Date/Time">
+            </div>
+          </div>
+        </div>
+        <div class="required field">
+          <label>Tgl. Pengiriman</label>
+          <div class="ui calendar" uiCalendar formControlName="tgl">
+            <div class="ui input left icon">
+              <i class="calendar icon"></i>
+              <input type="text" placeholder="Date/Time">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="field">
+          <label>Tujuan PLTU</label>
+          <div class="field">
+            <input type="text" name="" value={{dataMitraKesanggupan?.tujuanPltu?.name}} placeholder="Tujuan PLTU" readonly>
+          </div>
+        </div>
+        <div class="required field">
+          <label>Laycan End Date</label>
+          <div class="ui calendar" uiCalendar formControlName="laycanEndDate">
+            <div class="ui input left icon">
+              <i class="calendar icon"></i>
+              <input type="text" placeholder="Date/Time">
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Nama Kapal</label>
+          <div class="field">
+            <input type="text" name="" placeholder="Nama Kapal" formControlName="namaTransport">
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="required field">
+          <label>Mitra Shipping</label>
+          <select class="ui dropdown" formControlName="transportId" uiDropDown>
+            <option value="" disabled hidden>Pilih Mitra</option>
+            <option *ngFor="let item of arrMitraShipping; let index = index" [value]="item.id"><span [innerHTML]="item.name"></span></option>
+          </select>
+        </div>
+        <div class="required field">
+          <label>No SI</label>
+          <div class="field">
+            <input type="text" name="" placeholder="No SI" formControlName="no">
+            <!-- <input type="text" name="" placeholder="No SI" formControlName="kode">
+            <input type="text" name="" placeholder="No SI" formControlName="tahun"> -->
+          </div>
+        </div>
+        <div class="required field">
+          <label>Jetty</label>
+          <select class="ui dropdown" formControlName="jetty" uiDropDown>
+            <option value="" disabled hidden>Pilih Jetty</option>
+            <option *ngFor="let item of arrJetty; let index = index" [value]="item.id"><span [innerHTML]="item.name"></span></option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ui bottom attached segment">
+  <form class="ui form" [formGroup]="fg" (ngSubmit)="save()">
+    <div class="inline field">
+      <button class="ui secondary button" type="button" (click)="reset()">Reset</button>
+      <button class="ui primary button" type="submit" [disabled]="!fg.valid">Submit</button>
+    </div>
+  </form>
+</div>

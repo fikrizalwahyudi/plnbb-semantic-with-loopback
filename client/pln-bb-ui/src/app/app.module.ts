@@ -57,7 +57,8 @@ const appRoutes: Routes = [
     PlnbbModule,
     SharedModule,
     StorageServiceModule,
-    HttpModule
+    HttpModule,
+    
   ],
   exports: [
     RouterModule
@@ -70,7 +71,8 @@ const appRoutes: Routes = [
     UsersService, 
     UserMitraService, 
     ReferensiKontrakService, 
-    MitraService
+    MitraService,
+    
   ],
   bootstrap: [AppComponent]
 })

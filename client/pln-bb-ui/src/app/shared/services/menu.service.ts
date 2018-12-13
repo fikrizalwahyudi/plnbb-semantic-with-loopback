@@ -24,7 +24,7 @@ export class MenuService {
     const isNotAuthenticated = () => { return !accountApi.isAuthenticated() }
 
     this.accountApi.getCurrent({include: {principals: 'role'}}).subscribe(data => {
-      console.log(data)
+      // console.log(data)
       let currentUser = data as User
 
       const isAuthorized = (role) => {
