@@ -34,12 +34,38 @@ export class MitraKesanggupanPasokanCreateComponent implements OnInit {
   }
 
   save(model) {
+    console.log(model);
+
     this.formComponent.submitting = true
     this.formComponent.errorMsg = undefined
+
+    let sumberTambang = model.daftarTambang
+    delete model['daftarTambang']
+
+    if(model.jetty){
+      model.jettyId = model.jetty.value
+      delete model['jetty']
+    }else{
+      delete model['jetty']
+    }
+
+    console.log('tambang', sumberTambang);
+
     model.userId = this.userApi.getCurrentId()
-    this.kesanggupanApi.create(model).subscribe(() => {
-      this.router.navigate(['/mitra', 'kesanggupan-pasokan'])
-      this.formComponent.submitting = false
+    this.kesanggupanApi.create(model).subscribe((kesanggupan:any) => {
+
+      sumberTambang = sumberTambang.map(entry => {
+        return {
+          mitraKesanggupanId: kesanggupan.id,
+          tambangId: entry.tambangId,
+          jumlah:entry.jumlahPasokanTambang
+        }
+      })
+
+      this.kesanggupanApi.patchTambang(kesanggupan.id, sumberTambang).subscribe(data => {
+        this.router.navigate(['/mitra', 'kesanggupan-pasokan'])
+        this.formComponent.submitting = false
+      })
     }, (err) => {
       this.formComponent.errorMsg = err.message
       this.formComponent.submitting = false

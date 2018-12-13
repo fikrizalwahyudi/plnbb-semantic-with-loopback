@@ -43,7 +43,9 @@ const appRoutes: Routes = [
   exports : [
     PlnBBRencanaPasokanBrowseComponent,
     PlnBBRealisasiPengirimanBrowseComponent,
-    PlnbbRencanaPasokanModalComponent
+    PlnbbRencanaPasokanModalComponent,
+    PlnbbRencanaPasokanSiComponent,
+    PlnbbRencanaPasokanSiCreateComponent
   ]
 })
 export class PlnbbModule { }

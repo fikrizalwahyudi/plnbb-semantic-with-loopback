@@ -9,7 +9,7 @@ import { switchMap } from 'rxjs/operators';
 import { ReferensiKontrakPltuApi } from '../../../shared/sdk/services/custom/ReferensiKontrakPltu';
 import { MitraKesanggupanApi } from '../../../shared/sdk/services/custom/MitraKesanggupan';
 import { environment } from '../../../../environments/environment';
-import { MitraKesanggupanTambangApi } from '../../../shared/sdk';
+import { MitraKesanggupanTambangApi, ReferensiKontrakTambangApi } from '../../../shared/sdk';
 import * as _ from 'lodash';
 
 @Component({
@@ -29,18 +29,9 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
   daftarKesanggupan
   daftarKontrak
   pltus
+  tambangs
 
   id
-  tambangUri = `${environment.apiUrl}/api/tambang`
-  searchFilterTambang = {
-    where:{
-      or:[
-        {name: {like: '{query}.*'}},
-        {lokasi: {like: '{query}.*'}}
-      ]
-    },
-    limit: 10
-  }
 
   jettyUri = `${environment.apiUrl}/api/jetty`
   searchFilterJetty = {
@@ -60,6 +51,7 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
     private userApi:UserApi,
     private kontrakApi:ReferensiKontrakApi,
     private kontrakPltuApi:ReferensiKontrakPltuApi,
+    private kontrakTambangApi:ReferensiKontrakTambangApi,
     private kesanggupanApi:MitraKesanggupanApi,
     private tambangApi:MitraKesanggupanTambangApi,
   ) {
@@ -89,7 +81,7 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
       keterangan: null,
       jenisKontrak: [null, [Validators.required]],
       jenisBatubara: [null, [Validators.required]],
-      jettyId: [null, [Validators.required]],
+      jetty: null,
       gcv: [null, [Validators.required]],
       tm: [null, [Validators.required]],
       ash: [null, [Validators.required]],
@@ -113,8 +105,8 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
   }
 
   save() {
-    console.log(this.fg.value)
-    // this.onSave.emit(this.fg.value)
+    // console.log(this.fg.value)
+    this.onSave.emit(this.fg.value)
   }
 
   cancel() {
@@ -125,6 +117,7 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
     this.fg.patchValue({referensiKontrakId: item})
 
     this.daftarKontrak.subscribe(data => {
+      console.log(data);
       let kontrak = data.find(entry => entry.value === item)
 
       if(kontrak) {
@@ -135,20 +128,14 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
             return entry.pltu
           })
         })
-      }
-    })
-  }
 
-  onSearchTambang({response, cb}) {
-    cb({
-      success: true,
-      results: _.values(response).map(item => {
-        return {
-          name: item.name,
-          value: item.id,
-          text: item.name
-        }
-      })
+        this.kontrakTambangApi.find({where:{referensiKontrakId: kontrak.id}, include:'tambang'}).subscribe(data=>{
+          this.tambangs = data.map((entry:any) => {
+            console.log("entry, ", entry);
+            return entry.tambang
+          })
+        })
+      }
     })
   }
 

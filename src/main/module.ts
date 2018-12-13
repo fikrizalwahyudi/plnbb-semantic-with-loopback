@@ -31,6 +31,7 @@ import { PlnRencanaModel } from './models/pln_rencana.model';
 import { PlnRealisasiModel } from "./models/pln_realisasi.model";
 import { ShippingInstructionModel } from './models/shipping_instruction.model';
 import { JettyModel } from './models/jetty.model';
+import { PrintPdfMiddleware } from './middleware/print-pdf.middleware';
 import { PlnRencanaPasokanModel } from "./models/pln_rencana_pasokan.model";
 import { MitraShippingOrderModel } from './models/mitra_shipping_order.model';
 
@@ -39,7 +40,8 @@ import { MitraShippingOrderModel } from './models/mitra_shipping_order.model';
 	middleware: [
 		CreateRoleMiddleware,
 		DeleteRoleMiddleware,
-		PatchRoleMiddleware
+		PatchRoleMiddleware,
+		PrintPdfMiddleware
 	],
 
 	models: [
