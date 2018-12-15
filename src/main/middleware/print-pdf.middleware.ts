@@ -13,90 +13,100 @@ export class PrintPdfMiddleware extends Middleware {
   path = '/printPdf/:id';
   protocol = 'get';
 
-  dateFormat(x){
-    return x.getDate(x) + '/' + x.getMonth(x) + '/' + x.getFullYear(); 
+  dateFormat(x) {
+    return x.getDate(x) + '/' + x.getMonth(x) + '/' + x.getFullYear();
   }
 
   async onRequest(req: any, res: any, next: any) {
     let accountId = req.params.id
 
-    this.siDao.findOne({ where: { id: accountId }, include: [{ mitraKesanggupan:'tujuanPltu'}, 'jettyRel', 'transport'] }).then((si) => {
+    this.siDao.findOne({ where: { id: accountId }, include: [{ mitraKesanggupan: 'tujuanPltu' }, 'jettyRel', 'transport'] }).then((si) => {
       var v = si;
       var x = v['mitraKesanggupan'];
       var y = JSON.stringify(x);
       var z = JSON.parse(y)['tujuanPltu'];
-      // console.log(v);
-      // console.log(x);
-      console.log(z);
 
       var PDFDocument = require('pdfkit');
       var doc = new PDFDocument();
       var fs = require('fs');
-      doc.pipe(fs.createWriteStream('out.pdf'));
-
+      var telp = "Telp: (021) 29122118; (021) 29122182";
+      var fax = "Fax: (021) 22792183";
+      var web = "Website: www.plnbatubara.co.id";
+      
       var rataKiri = 120;
       var fontSize = 11;
+      var pt = 10;
+      doc.pipe(fs.createWriteStream('out.pdf'));
 
-      doc.circle(rataKiri, 40, 25);
-      doc.fontSize(22)
-        .text('PT PLN BATUBARA', rataKiri + 30, 20)
+      doc.image('client/pln-bb-ui/src/assets/1450433146.png', rataKiri - 13, 20, { width: 45 });
+      doc.image('client/pln-bb-ui/src/assets/pln.png', rataKiri +370, 20, { width: 45 });
+      // doc.circle(rataKiri, 40, 25);
+      doc.font("Helvetica-Bold")
+        .fontSize(22)
+        .text('PT PLN BATUBARA', rataKiri + 33, 20 + pt)
         .moveDown()
-        .fontSize(10)
-        .text('Jalan Warung Buncit Raya no.10 Keluarahan Kalibata', rataKiri + 30, 45)
+        .font('Helvetica')
+        .fontSize(9)
+        .text('Jalan Warung Buncit Raya no.10 Keluarahan Kalibata', rataKiri + 33, 45 + pt)
         .moveDown()
-        .text('Kecamatan Pancoran, Jakarta Selatan 12740', rataKiri + 30, 60)
+        .text('Kecamatan Pancoran, Jakarta Selatan 12740', rataKiri + 33, 55 + pt)
         ;
 
+      doc.fontSize(8).moveDown(0.9)
+        .text(telp, rataKiri - 35).moveDown(-1)
+        .text(fax, rataKiri + 150).moveDown(-1)
+        .text(web, rataKiri + 290).moveDown()
+
       doc.save()
-        .moveTo(30, 85)
-        .lineTo(590, 85)
-        .lineTo(590, 87)
-        .lineTo(30, 87)
+        .moveTo(30, 85 + pt)
+        .lineTo(590, 85 + pt)
+        .lineTo(590, 87 + pt)
+        .lineTo(30, 87 + pt)
         .fill("#000000");
 
       doc.save()
-        .moveTo(30, 88)
-        .lineTo(590, 88)
-        .lineTo(590, 91)
-        .lineTo(30, 91)
+        .moveTo(30, 88 + pt)
+        .lineTo(590, 88 + pt)
+        .lineTo(590, 91 + pt)
+        .lineTo(30, 91 + pt)
         .fill("#000000");
 
       doc.fontSize(fontSize)
-        .text('Nomor', rataKiri, 100)
+        .text('Nomor', rataKiri, 100 + pt)
         .text('Lampiran', rataKiri)
         .text('Perihal', rataKiri)
         ;
 
       doc.fontSize(fontSize)
-        .text(':', rataKiri + 60, 100)
+        .text(':', rataKiri + 60, 100 + pt)
         .text(':', rataKiri + 60)
         .text(':', rataKiri + 60)
         ;
 
       doc.fontSize(fontSize)
-        .text(si['no'] + '/' + si['kode'] + '/' + si['tahun'], rataKiri + 70, 100)
+        .text(si['no'] + '/' + si['kode'] + '/' + si['tahun'], rataKiri + 70, 100 + pt)
         .text('-', rataKiri + 70)
         .text('Shipping Instruction \nLaycan ' + this.dateFormat(si['laycanStartDate']) + ' - ' + this.dateFormat(si['laycanEndDate']) + ' \n' + this.dateFormat(si['laycanStartDate']), rataKiri + 70)
         ;
 
       doc.fontSize(fontSize)
-        .text(si['jettyRel']['city'] + ', ' + this.dateFormat(si['tgl']), rataKiri + 260, 100)
+        .text(si['jettyRel']['city'] + ', ' + this.dateFormat(si['tgl']), rataKiri + 260, 100 + pt)
         .text(' ', rataKiri + 70)
         .text('Kepada : \n' + si['transport']['name'], rataKiri + 260)
         ;
-      var isi = 'Sehubungan dengan  rencana pengapalan batu bara oleh PLN Batubara dan menunjuk konfirmasi dari ' + si['transport']['name']+' , mohon agar dapat dilakukan proses pengapalan batubara dengan informasi sebagai berikut:'
+      var isi = 'Sehubungan dengan  rencana pengapalan batu bara oleh PLN Batubara dan menunjuk konfirmasi dari ' + si['transport']['name'] + ' , mohon agar dapat dilakukan proses pengapalan batubara dengan informasi sebagai berikut:'
       doc.fontSize(fontSize)
-        .text('Dengan Hormat', rataKiri + 60, 200)
+        .text('Dengan Hormat', rataKiri + 60, 200 + pt)
         .text(isi, { align: 'justify' })
         .text('', rataKiri + 60)
         ;
 
       var jarak = 160;
-      var space = 300;
+      var space = 300 + pt;
       doc.fontSize(fontSize)
         .text('Shipper', rataKiri + 60, space)
         .text(':', rataKiri + jarak + 60, space)
-        .text(si['transport']['name']+" QQ PT PLN Batubara", rataKiri + jarak + 70, space)
+        .text(si['transport']['name'] + " QQ PT PLN Batubara", rataKiri + jarak + 70, space)
         .text('chareter', rataKiri + 60).moveDown(-1)
         .text(':', rataKiri + jarak + 60).moveDown(-1)
         .text('PT PLN Batubara', rataKiri + jarak + 70).moveDown(0)
@@ -152,7 +162,7 @@ export class PrintPdfMiddleware extends Middleware {
 
 
       function intervalFunc() {
-        res.download('out.pdf')
+        // res.download('out.pdf')
       }
 
       setTimeout(intervalFunc, 500);
