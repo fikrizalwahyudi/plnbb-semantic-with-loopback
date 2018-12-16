@@ -44,7 +44,7 @@ export class MitraKesanggupanPasokanEditComponent implements OnInit {
         this.mitraKesanggupan = data as MitraKesanggupan
         console.log(this.mitraKesanggupan);
 
-        fg.patchValue(this.mitraKesanggupan)
+        fg.patchValue(this.mitraKesanggupan);
         if(this.mitraKesanggupan.referensiKontrak){
           setTimeout(() => {
             fg.patchValue({referensiKontrakId: {
@@ -54,7 +54,6 @@ export class MitraKesanggupanPasokanEditComponent implements OnInit {
             }})
             console.log("kepanggil");
           }, 10)
-          
         }
         
       })

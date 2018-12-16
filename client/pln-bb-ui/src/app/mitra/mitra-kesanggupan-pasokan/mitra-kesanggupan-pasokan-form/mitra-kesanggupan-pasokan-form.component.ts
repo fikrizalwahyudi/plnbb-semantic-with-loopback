@@ -114,7 +114,7 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
   }
 
   onSelectKontrak(item) {
-    this.fg.patchValue({referensiKontrakId: item})
+    // this.fg.patchValue({referensiKontrakId: item})
 
     this.daftarKontrak.subscribe(data => {
       console.log(data);
