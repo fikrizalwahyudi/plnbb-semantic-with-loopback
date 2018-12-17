@@ -29,12 +29,8 @@
         </div>
         <div class="required field">
           <label>Jenis Kontrak</label>
-          <select class="ui dropdown"
-                  formControlName="jenisKontrak"
-                  uiDropDown>
-            <option value=""
-                    disabled
-                    hidden>Pilih Jenis Kontrak</option>
+          <select class="ui dropdown" formControlName="jenisKontrak">
+            <option [value]="null" >Pilih Jenis Kontrak</option>
             <option value="cif">CIF</option>
             <option value="fob">FOB</option>
             <option value="ciffob">CIF & FOB</option>

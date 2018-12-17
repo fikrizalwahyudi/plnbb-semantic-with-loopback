@@ -9,8 +9,9 @@
       <tr>
         <th>Nomor Kontrak</th>
         <th>Nama Pekerjaan</th>
+        <th>Owner</th>
+        <th>Jenis Kontrak</th>
         <th>Tanggal Pekerjaan</th>
-        <th>Jenis</th>
         <th></th>
       </tr>
     </thead>
@@ -18,8 +19,9 @@
       <tr *ngFor="let item of referensiKontrakList">
         <td>{{item.nomorKontrak}}</td>
         <td>{{item.namaPekerjaan}}</td>
+        <td>{{item.mitra.name}}</td>
+        <td>{{convertJenisKontrak(item.jenisKontrak)}}</td>
         <td>{{item.tanggalPekerjaan | date:'mediumDate'}}</td>
-        <td>{{item.jenis}}</td>
         <td class="center aligned collapsing">
           <a href="javascript:void(0)"
              (click)="delete(item)">

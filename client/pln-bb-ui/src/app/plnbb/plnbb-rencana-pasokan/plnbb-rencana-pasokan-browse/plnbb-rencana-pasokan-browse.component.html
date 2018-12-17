@@ -22,9 +22,14 @@
        [ngClass]="{'disabled': selectedDaftarRencana}">
       <i class="download icon"></i> Generate
     </a>
-    <a class="item"
+    <a *ngIf="!isLocked"
+       class="item"
        (click)="lock()">
       <i class="unlock icon"></i> Lock
+    </a>
+    <a *ngIf="isLocked"
+       class="item disabled">
+      <i class="lock icon"></i> Locked
     </a>
   </div>
 </div>
@@ -35,13 +40,13 @@
     {{item.key}}
   </a>
   <div class="ui segment">
-    <table class="ui very basic table">
+    <table class="ui very basic compact table">
       <thead>
         <tr>
-          <th class="four wide">Tujuan PLTU</th>
-          <th class="left aligned collapsing">Total Kebutuhan</th>
-          <th class="right aligned collapsing">Total Pasokan</th>
-          <th class="right aligned collapsing">Total Harga</th>
+          <th class="three wide">Tujuan PLTU</th>
+          <th class="left aligned">Total Kebutuhan (MT)</th>
+          <th class="right aligned">Jumlah Pasokan (MT)</th>
+          <th class="right aligned column-harga">Harga/MT (Ribu)</th>
           <th></th>
         </tr>
       </thead>
@@ -49,12 +54,13 @@
         <ng-container *ngFor="let itemRencana of item.value; let index=index; trackBy:trackByFn"
                       [formGroup]="fgAmounts.controls[itemRencana.index]">
           <tr>
-            <td class="four wide">{{itemRencana.tujuanPltu.name}}</td>
-            <td class="left aligned collapsing">
+            <td class="three wide">{{itemRencana.tujuanPltu.name}}</td>
+            <td class="left aligned">
               <div class="ui transparent left icon fluid input">
                 <input type="number"
                        placeholder="Isi Metric Ton"
-                       formControlName="amount">
+                       formControlName="amount"
+                       [readonly]="isLocked">
                 <i class="weight icon"></i>
               </div>
             </td>
@@ -65,36 +71,56 @@
             </td>
             <td class="right aligned">{{itemRencana.totalHarga | currency:'Rp':undefined:undefined:'id'}}</td>
             <td class="center aligned collapsing">
-              <a (click)="setTotalKebutuhan(itemRencana, fgAmounts.controls[itemRencana.index])">
-                <i class="save link icon action-icon"
-                   [ngClass]="{'red': itemRencana.totalKebutuhan != fgAmounts.controls[itemRencana.index].value.amount}"></i>
-              </a>
-              <a (click)="pickMitra(itemRencana)"
-                 *ngIf="!picking">
-                <i class="external alternate link icon action-icon"></i>
-              </a>
-              <a *ngIf="picking">
-                <i class="spinner loading icon action-icon"></i>
-              </a>
+              <ng-container *ngIf="!isLocked">
+                <a (click)="setTotalKebutuhan(itemRencana, fgAmounts.controls[itemRencana.index])">
+                  <i class="save link icon action-icon"
+                     [ngClass]="{'red': itemRencana.totalKebutuhan != fgAmounts.controls[itemRencana.index].value.amount}"></i>
+                </a>
+                <a (click)="pickMitra(itemRencana)"
+                   *ngIf="!picking">
+                  <i class="external alternate link icon action-icon"></i>
+                </a>
+                <a *ngIf="picking">
+                  <i class="spinner loading icon action-icon"></i>
+                </a>
+              </ng-container>
+              <ng-container *ngIf="isLocked">
+                <a>
+                  <i class="save icon action-icon disabled"></i>
+                </a>
+                <a>
+                  <i class="external alternate icon action-icon disabled"></i>
+                </a>
+              </ng-container>
             </td>
           </tr>
           <tr *ngIf="itemRencana.pasokan.length > 0">
-            <td class="four wide"></td>
+            <td class="three wide"></td>
             <td colspan="3">
               <table class="ui very basic table">
                 <thead>
                   <tr>
-                    <th colspan="4">Daftar Pasokan Oleh Mitra</th>
+                    <th colspan="5">Daftar Pasokan Oleh Mitra</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let itemPasokan of itemRencana.pasokan">
-                    <td class="five wide">
-                      <i class="search link grey icon"></i> {{itemPasokan.mitraKesanggupan?.mitra.name}}
+                    <td class="four wide">
+                      <i class="search link grey icon"></i> {{itemPasokan.mitraKesanggupan?.mitra.code}}
                     </td>
-                    <td class="two wide">{{itemPasokan.mitraKesanggupan?.mode | titlecase}}</td>
-                    <td class="right aligned">{{itemPasokan.mitraKesanggupan?.jumlah | number:undefined:'id'}}</td>
-                    <td class="right aligned">{{itemPasokan.mitraKesanggupan?.harga |
+                    <td class="right aligned">
+                      <div class="ui grey tiny label">
+                        {{itemPasokan.mitraKesanggupan?.tipe | uppercase}}
+                      </div>
+                    </td>
+                    <td class="right aligned">
+                      <div class="ui grey tiny label">
+                        {{itemPasokan.mitraKesanggupan?.mode | uppercase}}
+                      </div>
+                    </td>
+                    <td class="right aligned pr-0 column-jumlah">{{itemPasokan.mitraKesanggupan?.jumlah |
+                      number:undefined:'id'}}</td>
+                    <td class="right aligned column-harga">{{itemPasokan.mitraKesanggupan?.harga |
                       currency:'Rp':undefined:undefined:'id'}}</td>
                   </tr>
                 </tbody>
@@ -108,22 +134,8 @@
   </div>
 </ng-container>
 <div class="mb-5"></div>
-<div class="ui small modal pilih-pasokan">
-  <!-- <div class="header">
-    Pilih Pasokan Dari Mitra
-  </div> -->
-  <div class="content">
-    <app-plnbb-rencana-pasokan-modal [daftarPasokan]="daftarPasokan"
-                                     [buffer]="selectedPasokan"></app-plnbb-rencana-pasokan-modal>
-  </div>
-  <div class="actions">
-    <div class="ui red cancel button">
-      <i class="remove icon"></i>
-      Cancel
-    </div>
-    <div class="ui primary ok button">
-      <i class="checkmark icon"></i>
-      Save
-    </div>
-  </div>
-</div>
+<ui-modal-block (complete)="clearPickMitra()"
+                (approve)="savePickMitra($event)">
+  <app-plnbb-rencana-pasokan-modal [daftarPasokan]="daftarPasokan"
+                                   [buffer]="selectedPasokan"></app-plnbb-rencana-pasokan-modal>
+</ui-modal-block>

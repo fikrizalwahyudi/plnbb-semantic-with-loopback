@@ -33,6 +33,7 @@ import { Jetty } from '../../models/Jetty';
 import { PlnRencanaPasokan } from '../../models/PlnRencanaPasokan';
 import { MitraShippingOrder } from '../../models/MitraShippingOrder';
 import { ReferensiKontrakJetty } from '../../models/ReferensiKontrakJetty';
+import { MitraShippingInstructionRequest } from '../../models/MitraShippingInstructionRequest';
 
 export interface Models { [name: string]: any }
 
@@ -73,6 +74,7 @@ export class SDKModels {
     PlnRencanaPasokan: PlnRencanaPasokan,
     MitraShippingOrder: MitraShippingOrder,
     ReferensiKontrakJetty: ReferensiKontrakJetty,
+    MitraShippingInstructionRequest: MitraShippingInstructionRequest,
     
   };
 

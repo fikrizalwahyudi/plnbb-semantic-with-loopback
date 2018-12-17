@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Pltu, PlnRencanaPasokanApi } from '../../../shared/sdk';
 import { PltuApi } from '../../../shared/sdk';
 import { PlnRencanaApi } from '../../../shared/sdk/services/custom/PlnRencana'
@@ -10,6 +10,8 @@ import { environment } from '../../../../environments/environment';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { HttpClient } from '@angular/common/http';
+import { MitraShippingOrderApi } from '../../../shared/sdk/services/custom/MitraShippingOrder';
+import { ModalBlockComponent } from '../../../shared/commons/modal-block/modal-block.component';
 
 declare var $:any;
 
@@ -20,6 +22,8 @@ declare var $:any;
 })
 export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
 
+  @ViewChild(ModalBlockComponent) modal:ModalBlockComponent
+
   submitting = false
   picking = false
   fgAmounts: FormArray
@@ -27,6 +31,7 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
   daftarBulanRakor = []
   selectedBulanRakorIndex = 0
 
+  daftarRawData = []
   daftarRencana = {}
   daftarPasokan = []
   selectedPasokan:FormArray
@@ -37,7 +42,8 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
     private pltuApi: PltuApi,
     private plnRencanaApi: PlnRencanaApi,
     private plnRencanaPasokanApi:PlnRencanaPasokanApi,
-    private pasokanApi: MitraKesanggupanApi
+    private pasokanApi: MitraKesanggupanApi,
+    private shippingOrder: MitraShippingOrderApi
   ) {
     this.fgAmounts = this.fb.array([])
     this.selectedPasokan = this.fb.array([])
@@ -69,6 +75,8 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
   }
 
   load() {
+    this.daftarRencana = []
+
     for(let i=0; i<this.fgAmounts.length; i++) {
       this.fgAmounts.removeAt(i)
     }
@@ -80,7 +88,8 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
     next.setMonth(now.getMonth() + 1)
 
     this.plnRencanaApi.find({ where: { or: [{ tahun: now.getFullYear(), bulan: now.getMonth() }, { tahun: next.getFullYear(), bulan: next.getMonth() }] }, include: ['tujuanPltu', 'pasokan'] }).subscribe((data:any) => {
-      console.log(data)
+      this.daftarRawData = data
+      //console.log(data)
       // get all mitraKesanggupan
       let daftarKesanggupan = []
       for(let i=0; i<data.length; i++) {
@@ -218,10 +227,11 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
         }))
       }
 
-      //console.log(data)
-      let el = $('.pilih-pasokan') as any
+      this.modal.open(item)
+
+      //let el = $('.pilih-pasokan') as any
   
-      el.modal({
+      /*el.modal({
         closable  : false,
         onDeny    : () => {
           this.clearSelectedPasokan()
@@ -236,8 +246,6 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
             }
           })
 
-          //console.log(selected)
-
           this.http.delete(`${environment.apiUrl}/api/pln_rencana/${item.id}/pasokan`).subscribe(data => {
             this.plnRencanaPasokanApi.create(selected).subscribe(() => {
               this.clearSelectedPasokan()
@@ -249,15 +257,44 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
           })
         }
       })
-      .modal('show')
+      .modal('show')*/
+
+
+    })
+  }
+
+  clearPickMitra() {
+    this.clearSelectedPasokan()
+    this.picking = false
+  }
+
+  savePickMitra(item) {
+    //console.log(item)
+    let selected = this.selectedPasokan.value.filter(entry => entry.checked).map(entry => {
+      return {
+        rencanaId: item.id,
+        mitraKesanggupanId: entry.id
+      }
+    })
+
+    this.http.delete(`${environment.apiUrl}/api/pln_rencana/${item.id}/pasokan`).subscribe(data => {
+      this.plnRencanaPasokanApi.create(selected).subscribe(() => {
+        this.load()
+      })
     })
   }
 
   lock() {
+    let now = new Date()
+    if(now.getMonth() != this.daftarBulanRakor[this.selectedBulanRakorIndex].bulan)
+      return alert('lock hanya bisa di bulan berjalan!')
+
     promptDialog(
       'Lock Hasil Rakor?', 
       'segala perubahan yang ada akan disimpan dan tidak dimungkinkan adanya future update', 
       () => {
+        this.submitting = true
+
         //console.log(this.daftarRencana)
         let hasilRakor = this.daftarRencana[this.daftarBulanRakor[this.selectedBulanRakorIndex].key]
         let flatHasilRakor = []
@@ -269,9 +306,27 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
           }
         }
 
-        //console.log(flatHasilRakor)
+        let daftarPasokan = []
+        for(let i=0; i<flatHasilRakor.length; i++) {
+          for(let j=0; j<flatHasilRakor[i].pasokan.length; j++) {
+            daftarPasokan.push(flatHasilRakor[i].pasokan[j])
+          }
+        }
+
+        //console.log(daftarPasokan)
         this.http.post(`${environment.apiUrl}/api/pln_rencana/lock`, flatHasilRakor.map(e => e.id)).subscribe(data => {
-          console.log(data)
+          //console.log(data)
+          this.shippingOrder.create(daftarPasokan.map(e => {
+            return {
+              tglOrder: new Date(),
+              mitraKesanggupanId: e.mitraKesanggupanId,
+              rencanaPasokanId: e.id,
+              mitraId: e.mitraKesanggupan.mitraId
+            }
+          })).subscribe(() => {
+            this.load()
+            this.submitting = false
+          })
         })
       },
       () => {}
@@ -292,6 +347,20 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
   }
 
   get selectedDaftarRencana() {
+    //console.log(this.daftarRencana[this.daftarBulanRakor[this.selectedBulanRakorIndex].key])
     return this.daftarRencana[this.daftarBulanRakor[this.selectedBulanRakorIndex].key]
+  }
+
+  get isLocked() {
+    let grouping = this.daftarRencana[this.daftarBulanRakor[this.selectedBulanRakorIndex].key]
+
+    for(var key in grouping) {
+      for(let i=0; i<grouping[key].length; i++) {
+        if(grouping[key][i].lock)
+          return true
+      }
+    }
+
+    return false
   }
 }

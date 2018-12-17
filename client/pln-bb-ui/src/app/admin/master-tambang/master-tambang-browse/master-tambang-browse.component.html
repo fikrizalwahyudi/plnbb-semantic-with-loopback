@@ -20,7 +20,7 @@
     <tr *ngFor="let item of tambangs">
       <td>{{item.name}}</td>
       <td>{{item.sertifikat}}</td>
-      <td>{{item.jenisSertifikat}}</td>
+      <td>{{convertJenisSertifikat(item.jenisSertifikat)}}</td>
       <td>{{item.lokasi}}</td>
       <td>{{item.tanggalBerlaku | date}}</td>
       <td>{{item.tanggalHabis | date}}</td>

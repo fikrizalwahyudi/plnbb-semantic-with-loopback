@@ -1,0 +1,162 @@
+<ui-form-block title="Shipping Instruction"
+               [errorMsg]="errorMsg"
+               [submitting]="submitting">
+  <div class="ui two column grid">
+    <div class="column border-right">
+      <form [formGroup]="fg"
+            (ngSubmit)="save()"
+            class="ui form">
+
+        <div class="required field">
+          <label>Nomor Surat</label>
+          <!-- <div class="field">
+            <input type="text"
+                   name=""
+                   placeholder="No SI"
+                   formControlName="no">
+          </div> -->
+          <div class="three fields">
+            <div class="field">
+              <input type="text"
+                     placeholder="no"
+                     formControlName="no">
+            </div>
+            <div class="field">
+              <input type="text"
+                     readonly
+                     formControlName="noRedaksi">
+            </div>
+            <div class="field">
+              <div class="ui calendar"
+                   uiCalendarYear
+                   formControlName="noTahun">
+                <div class="ui input left icon">
+                  <i class="time icon"></i>
+                  <input type="text"
+                         class="calendar-full"
+                         placeholder="tahun">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="required field">
+          <label>Tanggal Surat</label>
+          <div class="ui calendar"
+               uiCalendar
+               formControlName="tglSurat">
+            <div class="ui input left icon">
+              <i class="calendar icon"></i>
+              <input type="text"
+                     placeholder="Date">
+            </div>
+          </div>
+        </div>
+
+        <div class="required field">
+          <label>Laycan</label>
+          <div class="two fields">
+            <div class="field">
+              <div class="ui calendar"
+                   #startCalendar
+                   uiCalendarRange
+                   formControlName="laycanStartDate"
+                   [endCalendar]="endCalendar">
+                <div class="ui input left icon">
+                  <i class="calendar icon"></i>
+                  <input type="text"
+                         placeholder="Date"
+                         class="calendar-full">
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui calendar"
+                   #endCalendar
+                   uiCalendarRange
+                   formControlName="laycanEndDate"
+                   [startCalendar]="startCalendar">
+                <div class="ui input left icon">
+                  <i class="calendar icon"></i>
+                  <input type="text"
+                         placeholder="Date"
+                         class="calendar-full">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="required field">
+          <label>Laycan End Date</label>
+          <div class="ui calendar"
+               uiCalendar
+               formControlName="laycanEndDate">
+            <div class="ui input left icon">
+              <i class="calendar icon"></i>
+              <input type="text"
+                     placeholder="Date">
+            </div>
+          </div>
+        </div> -->
+
+        <div class="required field">
+          <label>Mitra Shipping</label>
+          <div class="ui fluid search normal selection dropdown"
+               uiAsyncDropdown
+               [values]="getMitra"
+               placeholder="Select Mitra"
+               formControlName="transportId"
+               [ngClass]="{'disabled': isCif}">
+            <input type="hidden">
+            <i class="dropdown icon"></i>
+            <div class="default text">Select Mitra</div>
+            <div class="menu"></div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Nama Transport</label>
+          <div class="field"
+               [ngClass]="{'disabled': isCif}">
+            <input type="text"
+                   name=""
+                   placeholder="Nama Kapal"
+                   formControlName="namaTransport"
+                   [readonly]="isCif">
+          </div>
+        </div>
+
+        <div class="required field">
+          <label>Jetty</label>
+          <div class="ui fluid search normal selection dropdown"
+               uiAsyncDropdown
+               [values]="getJetty"
+               placeholder="Select Jetty"
+               formControlName="jettyId">
+            <input type="hidden">
+            <i class="dropdown icon"></i>
+            <div class="default text">Select Jetty</div>
+            <div class="menu"></div>
+          </div>
+        </div>
+
+        <div class="inline field">
+          <button class="ui secondary button"
+                  type="button"
+                  (click)="cancel()">Cancel</button>
+          <button class="ui primary button"
+                  type="submit"
+                  [disabled]="!fg.valid">Submit</button>
+        </div>
+      </form>
+    </div>
+    <div class="column">
+      <div class="fullheight fullwidth"
+           style="background: url(assets/paragraph.png)">
+
+      </div>
+    </div>
+  </div>
+</ui-form-block>

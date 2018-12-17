@@ -8,10 +8,10 @@
   <thead>
     <tr>
       <th>Code</th>
-      <th>Name</th>
-      <th>Address</th>
-      <th>City</th>
-      <th class="center aligned collapsing">Active</th>
+      <th>Nama</th>
+      <th>Wilayah</th>
+      <!-- <th>City</th>
+      <th class="center aligned collapsing">Active</th> -->
       <th></th>
     </tr>
   </thead>
@@ -20,11 +20,11 @@
       <td>{{item.code}}</td>
       <td>{{item.name}}</td>
       <td>{{item.address}}</td>
-      <td>{{item.city}}</td>
+      <!-- <td>{{item.city}}</td>
       <td class="center aligned collapsing">
         <i *ngIf="!item.status" class="ban red icon"></i>
         <i *ngIf="item.status" class="check circle green icon"></i>
-      </td>
+      </td> -->
       <td class="center aligned collapsing">
         <a href="javascript:void(0)" (click)="delete(item)">
           <i class="trash link icon action-icon"></i>
@@ -32,9 +32,9 @@
         <a [routerLink]="['/admin', 'jetty', item.id, 'edit']">
           <i class="edit link icon action-icon"></i>
         </a>
-        <a [routerLink]="['/admin', 'jetty', item.id, 'set-user']">
+        <!-- <a [routerLink]="['/admin', 'jetty', item.id, 'set-user']">
           <i class="edit user icon action-icon"></i>
-        </a>
+        </a> -->
       </td>
     </tr>
   </tbody>

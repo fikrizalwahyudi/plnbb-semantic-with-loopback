@@ -1,45 +1,43 @@
 /* tslint:disable */
 import {
-  MitraKesanggupan,
   Mitra,
-  Jetty
+  Jetty,
+  MitraShippingInstructionRequest
 } from '../index';
 
 declare var Object: any;
 export interface ShippingInstructionInterface {
-  "id"?: any;
-  "no"?: string;
-  "kode"?: string;
-  "tahun"?: string;
-  "tgl"?: Date;
-  "plnRencanasId"?: any;
+  "no"?: number;
+  "noRedaksi"?: string;
+  "noTahun"?: number;
+  "tglSurat"?: Date;
+  "siRequestId"?: any;
   "transportId"?: any;
+  "jettyId"?: any;
   "namaTransport"?: string;
-  "jettysId"?: any;
   "laycanStartDate"?: Date;
   "laycanEndDate"?: Date;
-  "mitraKesanggupanId"?: any;
-  mitraKesanggupan?: MitraKesanggupan;
+  "id"?: any;
   transport?: Mitra;
-  jettyRel?: Jetty;
+  jetty?: Jetty;
+  siRequest?: MitraShippingInstructionRequest;
 }
 
 export class ShippingInstruction implements ShippingInstructionInterface {
-  "id": any = <any>null;
-  "no": string = '';
-  "kode": string = '';
-  "tahun": string = '';
-  "tgl": Date = new Date(0);
-  "plnRencanasId": any = <any>null;
+  "no": number = 0;
+  "noRedaksi": string = '';
+  "noTahun": number = 0;
+  "tglSurat": Date = new Date(0);
+  "siRequestId": any = <any>null;
   "transportId": any = <any>null;
+  "jettyId": any = <any>null;
   "namaTransport": string = '';
-  "jettysId": any = <any>null;
   "laycanStartDate": Date = new Date(0);
   "laycanEndDate": Date = new Date(0);
-  "mitraKesanggupanId": any = <any>null;
-  mitraKesanggupan: MitraKesanggupan = null;
+  "id": any = <any>null;
   transport: Mitra = null;
-  jettyRel: Jetty = null;
+  jetty: Jetty = null;
+  siRequest: MitraShippingInstructionRequest = null;
   constructor(data?: ShippingInstructionInterface) {
     Object.assign(this, data);
   }
@@ -73,41 +71,37 @@ export class ShippingInstruction implements ShippingInstructionInterface {
       path: 'shipping_instruction',
       idName: 'id',
       properties: {
-        "id": {
-          name: 'id',
-          type: 'any'
-        },
         "no": {
           name: 'no',
+          type: 'number'
+        },
+        "noRedaksi": {
+          name: 'noRedaksi',
           type: 'string'
         },
-        "kode": {
-          name: 'kode',
-          type: 'string'
+        "noTahun": {
+          name: 'noTahun',
+          type: 'number'
         },
-        "tahun": {
-          name: 'tahun',
-          type: 'string'
-        },
-        "tgl": {
-          name: 'tgl',
+        "tglSurat": {
+          name: 'tglSurat',
           type: 'Date'
         },
-        "plnRencanasId": {
-          name: 'plnRencanasId',
+        "siRequestId": {
+          name: 'siRequestId',
           type: 'any'
         },
         "transportId": {
           name: 'transportId',
           type: 'any'
         },
+        "jettyId": {
+          name: 'jettyId',
+          type: 'any'
+        },
         "namaTransport": {
           name: 'namaTransport',
           type: 'string'
-        },
-        "jettysId": {
-          name: 'jettysId',
-          type: 'any'
         },
         "laycanStartDate": {
           name: 'laycanStartDate',
@@ -117,20 +111,12 @@ export class ShippingInstruction implements ShippingInstructionInterface {
           name: 'laycanEndDate',
           type: 'Date'
         },
-        "mitraKesanggupanId": {
-          name: 'mitraKesanggupanId',
+        "id": {
+          name: 'id',
           type: 'any'
         },
       },
       relations: {
-        mitraKesanggupan: {
-          name: 'mitraKesanggupan',
-          type: 'MitraKesanggupan',
-          model: 'MitraKesanggupan',
-          relationType: 'belongsTo',
-                  keyFrom: 'plnRencanasId',
-          keyTo: 'id'
-        },
         transport: {
           name: 'transport',
           type: 'Mitra',
@@ -139,12 +125,20 @@ export class ShippingInstruction implements ShippingInstructionInterface {
                   keyFrom: 'transportId',
           keyTo: 'id'
         },
-        jettyRel: {
-          name: 'jettyRel',
+        jetty: {
+          name: 'jetty',
           type: 'Jetty',
           model: 'Jetty',
           relationType: 'belongsTo',
-                  keyFrom: 'jettysId',
+                  keyFrom: 'jettyId',
+          keyTo: 'id'
+        },
+        siRequest: {
+          name: 'siRequest',
+          type: 'MitraShippingInstructionRequest',
+          model: 'MitraShippingInstructionRequest',
+          relationType: 'belongsTo',
+                  keyFrom: 'siRequestId',
           keyTo: 'id'
         },
       }

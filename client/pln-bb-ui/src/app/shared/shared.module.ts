@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CalendarDirective } from './directives/calendar.directive';
-import { DropdownDirective } from './directives/dropdown.dirctive';
+import { DropdownDirective } from './directives/dropdown.directive';
 import { PopupDirective } from './directives/popup.directive';
 import { TimeDirective } from './directives/time.directive';
 import { CacheService } from './services/cache.service';
@@ -21,6 +21,16 @@ import { FormsModule } from '@angular/forms';
 import { SearchDropdownDirective } from './directives/search-dropdown.directive';
 import { KeyValuePipe } from './directives/keyvalue.pipe';
 import { CheckboxDirective } from './directives/checkbox.directive';
+import { LogService } from './services/log.service';
+import { BreadcrumbService } from './services/breadcrumb.service';
+import { BreadcrumbComponent } from './commons/breadcrumb.component';
+import { ModalDirective } from './directives/modal.directive';
+import { ModalBlockComponent } from './commons/modal-block/modal-block.component';
+import { AsyncDropdownDirective } from './directives/async-dropdown.directive';
+import { CalendarYearDirective } from './directives/calendar-year.directive';
+import { CalendarRangeDirective } from './directives/calendar-range.directive';
+import { DigitsMaskDirective } from './directives/digits-mask.directive';
+
 
 @NgModule({
   imports: [
@@ -45,7 +55,14 @@ import { CheckboxDirective } from './directives/checkbox.directive';
     MultiInputComponent,
     SearchDropdownDirective,
     KeyValuePipe,
-    CheckboxDirective
+    CheckboxDirective,
+    BreadcrumbComponent,
+    ModalDirective,
+    ModalBlockComponent,
+    AsyncDropdownDirective,
+    CalendarYearDirective,
+    CalendarRangeDirective,
+    DigitsMaskDirective
   ],
 
   declarations: [
@@ -64,13 +81,22 @@ import { CheckboxDirective } from './directives/checkbox.directive';
     MultiInputComponent,
     SearchDropdownDirective,
     KeyValuePipe,
-    CheckboxDirective
+    CheckboxDirective,
+    BreadcrumbComponent,
+    ModalDirective,
+    ModalBlockComponent,
+    AsyncDropdownDirective,
+    CalendarYearDirective,
+    CalendarRangeDirective,
+    DigitsMaskDirective
   ],
 
   providers: [
     CacheService, 
     AuthenticatedGuard, 
-    MenuService
+    MenuService,
+    LogService,
+    BreadcrumbService
   ]
 })
 export class SharedModule { }

@@ -35,6 +35,7 @@ import { PrintPdfMiddleware } from './middleware/print-pdf.middleware';
 import { PlnRencanaPasokanModel } from "./models/pln_rencana_pasokan.model";
 import { MitraShippingOrderModel } from './models/mitra_shipping_order.model';
 import { ReferensiKontrakJettyModel } from './models/referensi_kontrak_jetty.model';
+import { MitraShippingInstructionRequestModel } from './models/mitra_shipping_instruction_request.model';
 
 @injectable()
 @CommonModule({
@@ -76,7 +77,8 @@ import { ReferensiKontrakJettyModel } from './models/referensi_kontrak_jetty.mod
 		JettyModel,
 		PlnRencanaPasokanModel,
 		MitraShippingOrderModel,
-		ReferensiKontrakJettyModel
+		ReferensiKontrakJettyModel,
+		MitraShippingInstructionRequestModel
 	]
 })
 export class SampleModule extends Module {

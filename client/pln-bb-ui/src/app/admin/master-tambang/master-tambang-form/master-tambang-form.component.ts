@@ -15,20 +15,6 @@ export class MasterTambangFormComponent implements OnInit {
   fg:FormGroup
   errorMsg
   submitting
-  jenisSertifikat = [
-    {
-      id:1,
-      name:"Izin Usaha Pertambangan (IUP)"
-    },
-    {
-      id:2,
-      name:"Izin Usaha Pertambangan Khusus (IUPK)"
-    },
-    {
-      id:3,
-      name:"Izin Pertambangan Rakyat"
-    }
-  ]
 
   constructor(
     private fb:FormBuilder,

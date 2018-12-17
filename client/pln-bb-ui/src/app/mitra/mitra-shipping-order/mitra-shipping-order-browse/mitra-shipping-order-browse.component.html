@@ -1,0 +1,37 @@
+<ui-table-block>
+    <ng-container class="table-block-menu">
+      
+    </ng-container>
+    <thead>
+      <tr>
+        <th>Tujuan PLTU</th>
+        <th>Tanggal</th>
+        <th>Jetty</th>
+        <th>Moda</th>
+        <th class="right aligned">Jumlah</th>
+        <th class="right aligned">Harga</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of so">
+        <td>{{item.mitraKesanggupan.tujuanPltu.name}}</td>
+        <td>{{item.mitraKesanggupan.tglPengiriman | date:'shortDate'}}</td>
+        <td>{{item.mitraKesanggupan.jetty.name}}</td>
+        <td>{{item.mitraKesanggupan.mode | uppercase}}</td>
+        <td class="right aligned">{{item.mitraKesanggupan.jumlah | number}}</td>
+        <td class="right aligned">{{item.mitraKesanggupan.harga | currency:'Rp':undefined:undefined:'id'}}</td>
+        <td class="center aligned collapsing">
+          <a *ngIf="!item.lock" [routerLink]="['/mitra', 'shipping-order', item.id, 'request-si']">
+            <i class="upload link icon action-icon"></i>
+          </a>
+          <a *ngIf="item.lock">
+            <i class="spinner loading icon action-icon"></i>
+          </a>
+          <a>
+            <i class="download icon action-icon disabled"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </ui-table-block>

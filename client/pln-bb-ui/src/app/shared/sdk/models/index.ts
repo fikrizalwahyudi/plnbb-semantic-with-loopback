@@ -32,5 +32,6 @@ export * from './Jetty';
 export * from './PlnRencanaPasokan';
 export * from './MitraShippingOrder';
 export * from './ReferensiKontrakJetty';
+export * from './MitraShippingInstructionRequest';
 export * from './BaseModels';
 export * from './FireLoopRef';
