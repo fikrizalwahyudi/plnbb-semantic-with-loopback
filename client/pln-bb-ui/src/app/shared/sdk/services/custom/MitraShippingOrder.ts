@@ -9,18 +9,18 @@ import { LoopBackFilter,  } from '../../models/BaseModels';
 import { ErrorHandler } from '../core/error.service';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ShippingInstruction } from '../../models/ShippingInstruction';
+import { MitraShippingOrder } from '../../models/MitraShippingOrder';
 import { SocketConnection } from '../../sockets/socket.connections';
 import { MitraKesanggupan } from '../../models/MitraKesanggupan';
+import { PlnRencanaPasokan } from '../../models/PlnRencanaPasokan';
 import { Mitra } from '../../models/Mitra';
-import { Jetty } from '../../models/Jetty';
 
 
 /**
- * Api services for the `ShippingInstruction` model.
+ * Api services for the `MitraShippingOrder` model.
  */
 @Injectable()
-export class ShippingInstructionApi extends BaseLoopBackApi {
+export class MitraShippingOrderApi extends BaseLoopBackApi {
 
   constructor(
     @Inject(HttpClient) protected http: HttpClient,
@@ -35,7 +35,7 @@ export class ShippingInstructionApi extends BaseLoopBackApi {
   /**
    * Fetches belongsTo relation mitraKesanggupan.
    *
-   * @param {any} id ShippingInstruction id
+   * @param {any} id MitraShippingOrder id
    *
    * @param {boolean} refresh 
    *
@@ -45,13 +45,13 @@ export class ShippingInstructionApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `ShippingInstruction` object.)
+   * This usually means the response is a `MitraShippingOrder` object.)
    * </em>
    */
   public getMitraKesanggupan(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping_instruction/:id/mitraKesanggupan";
+    "/mitra_shipping_order/:id/mitraKesanggupan";
     let _routeParams: any = {
       id: id
     };
@@ -63,9 +63,9 @@ export class ShippingInstructionApi extends BaseLoopBackApi {
   }
 
   /**
-   * Fetches belongsTo relation transport.
+   * Fetches belongsTo relation rencanaPasokan.
    *
-   * @param {any} id ShippingInstruction id
+   * @param {any} id MitraShippingOrder id
    *
    * @param {boolean} refresh 
    *
@@ -75,13 +75,13 @@ export class ShippingInstructionApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `ShippingInstruction` object.)
+   * This usually means the response is a `MitraShippingOrder` object.)
    * </em>
    */
-  public getTransport(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+  public getRencanaPasokan(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping_instruction/:id/transport";
+    "/mitra_shipping_order/:id/rencanaPasokan";
     let _routeParams: any = {
       id: id
     };
@@ -93,9 +93,9 @@ export class ShippingInstructionApi extends BaseLoopBackApi {
   }
 
   /**
-   * Fetches belongsTo relation jettyRel.
+   * Fetches belongsTo relation mitra.
    *
-   * @param {any} id ShippingInstruction id
+   * @param {any} id MitraShippingOrder id
    *
    * @param {boolean} refresh 
    *
@@ -105,13 +105,13 @@ export class ShippingInstructionApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `ShippingInstruction` object.)
+   * This usually means the response is a `MitraShippingOrder` object.)
    * </em>
    */
-  public getJettyRel(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+  public getMitra(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping_instruction/:id/jettyRel";
+    "/mitra_shipping_order/:id/mitra";
     let _routeParams: any = {
       id: id
     };
@@ -135,13 +135,13 @@ export class ShippingInstructionApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `ShippingInstruction` object.)
+   * This usually means the response is a `MitraShippingOrder` object.)
    * </em>
    */
   public patchOrCreate(data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping_instruction";
+    "/mitra_shipping_order";
     let _routeParams: any = {};
     let _postBody: any = {
       data: data
@@ -154,7 +154,7 @@ export class ShippingInstructionApi extends BaseLoopBackApi {
   /**
    * Patch attributes for a model instance and persist it into the data source.
    *
-   * @param {any} id ShippingInstruction id
+   * @param {any} id MitraShippingOrder id
    *
    * @param {object} data Request data.
    *
@@ -166,13 +166,13 @@ export class ShippingInstructionApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `ShippingInstruction` object.)
+   * This usually means the response is a `MitraShippingOrder` object.)
    * </em>
    */
   public patchAttributes(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping_instruction/:id";
+    "/mitra_shipping_order/:id";
     let _routeParams: any = {
       id: id
     };
@@ -186,9 +186,9 @@ export class ShippingInstructionApi extends BaseLoopBackApi {
 
   /**
    * The name of the model represented by this $resource,
-   * i.e. `ShippingInstruction`.
+   * i.e. `MitraShippingOrder`.
    */
   public getModelName() {
-    return "ShippingInstruction";
+    return "MitraShippingOrder";
   }
 }

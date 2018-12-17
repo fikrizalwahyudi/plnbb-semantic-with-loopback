@@ -2,7 +2,8 @@
 import {
   Mitra,
   ReferensiKontrakPltu,
-  ReferensiKontrakTambang
+  ReferensiKontrakTambang,
+  ReferensiKontrakJetty
 } from '../index';
 
 declare var Object: any;
@@ -12,10 +13,12 @@ export interface ReferensiKontrakInterface {
   "tanggalPekerjaan"?: Date;
   "status"?: number;
   "mitraId"?: any;
+  "jenisKontrak"?: string;
   "id"?: any;
   mitra?: Mitra;
   pltuPrincipals?: ReferensiKontrakPltu[];
   tambangPrincipals?: ReferensiKontrakTambang[];
+  jettyPrincipals?: ReferensiKontrakJetty[];
 }
 
 export class ReferensiKontrak implements ReferensiKontrakInterface {
@@ -24,10 +27,12 @@ export class ReferensiKontrak implements ReferensiKontrakInterface {
   "tanggalPekerjaan": Date = new Date(0);
   "status": number = 0;
   "mitraId": any = <any>null;
+  "jenisKontrak": string = '';
   "id": any = <any>null;
   mitra: Mitra = null;
   pltuPrincipals: ReferensiKontrakPltu[] = null;
   tambangPrincipals: ReferensiKontrakTambang[] = null;
+  jettyPrincipals: ReferensiKontrakJetty[] = null;
   constructor(data?: ReferensiKontrakInterface) {
     Object.assign(this, data);
   }
@@ -81,6 +86,10 @@ export class ReferensiKontrak implements ReferensiKontrakInterface {
           name: 'mitraId',
           type: 'any'
         },
+        "jenisKontrak": {
+          name: 'jenisKontrak',
+          type: 'string'
+        },
         "id": {
           name: 'id',
           type: 'any'
@@ -107,6 +116,14 @@ export class ReferensiKontrak implements ReferensiKontrakInterface {
           name: 'tambangPrincipals',
           type: 'ReferensiKontrakTambang[]',
           model: 'ReferensiKontrakTambang',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'referensiKontrakId'
+        },
+        jettyPrincipals: {
+          name: 'jettyPrincipals',
+          type: 'ReferensiKontrakJetty[]',
+          model: 'ReferensiKontrakJetty',
           relationType: 'hasMany',
                   keyFrom: 'id',
           keyTo: 'referensiKontrakId'

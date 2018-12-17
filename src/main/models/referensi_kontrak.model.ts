@@ -3,6 +3,7 @@ import { injectable,inject } from 'inversify';
 import { CommonModel, Property, Relation, Remote } from 'loopback-typescript-core/dist/models/decorators';
 import { ReferensiKontrakPltuDao } from './referensi_kontrak_pltu.model';
 import { ReferensiKontrakTambangDao } from './referensi_kontrak_tambang.model';
+import { ReferensiKontrakJettyDao } from './referensi_kontrak_jetty.model';
 
 @injectable()
 export class ReferensiKontrakDao extends PersistedDao
@@ -40,6 +41,9 @@ export class ReferensiKontrakModel extends PersistedModel
 
 	@inject(ReferensiKontrakTambangDao)
 	tambangDao:ReferensiKontrakTambangDao
+	
+	@inject(ReferensiKontrakJettyDao)
+	jettyDao:ReferensiKontrakJettyDao
 
 	id:any
 
@@ -58,6 +62,9 @@ export class ReferensiKontrakModel extends PersistedModel
 	@Property('any')
 	mitraId:any
 
+	@Property('string')
+	jenisKontrak:string
+
 	@Relation("belongsTo", "Mitra", "mitraId")
 	mitra
 
@@ -66,6 +73,9 @@ export class ReferensiKontrakModel extends PersistedModel
 
 	@Relation("hasMany", "ReferensiKontrakTambang", "referensiKontrakId")
 	tambangPrincipals
+
+	@Relation("hasMany", "ReferensiKontrakJetty", "referensiKontrakId")
+	jettyPrincipals
 
 	@Remote({
 		accepts: [
@@ -91,5 +101,20 @@ export class ReferensiKontrakModel extends PersistedModel
 		await this.tambangDao.destroyAll({referensiKontrakId:this.id})
 
 		return await this.tambangDao.create(params)
+	}
+
+	@Remote({
+		accepts: [
+			{ arg: 'params', type: 'array', http: { source: 'body' } }
+		],
+		returns: [{type: 'any', root: true}],
+		http: { path: '/patchJetty', verb: 'post' }
+	})
+	async patchJetty(params) {
+		console.log(params);
+		console.log(this.id)
+		await this.jettyDao.destroyAll({referensiKontrakId:this.id})
+
+		return await this.jettyDao.create(params)
 	}
 }

@@ -35,9 +35,7 @@ export class PlnRencanaPasokanModel extends PersistedModel
 {	
 
 	id:any
-
-	bodoamat = 'dfdfdfd'
-
+	
 	@Property('any')
 	rencanaId:any
 

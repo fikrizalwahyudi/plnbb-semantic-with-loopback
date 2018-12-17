@@ -90,7 +90,7 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
       idt: [null, [Validators.required]],
       size1: [null, [Validators.required]],
       size2: [null, [Validators.required]],
-      daftarTambang: this.fb.array([
+      sumberTambang: this.fb.array([
         this.fb.group({
           tambangId: [null, [Validators.required]],
           jumlahPasokanTambang: [null, [Validators.required]]
@@ -153,19 +153,19 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
   }
 
   addTambang(fg:FormGroup) {
-    const daftarTambang = fg.get('daftarTambang') as FormArray
-    // console.log(daftarTambang);
-    daftarTambang.push(this.fb.group({
+    const sumberTambang = fg.get('sumberTambang') as FormArray
+    // console.log(sumberTambang);
+    sumberTambang.push(this.fb.group({
       tambangId: [null, [Validators.required]],
       jumlahPasokanTambang: [null, [Validators.required]]
     }))
   }
 
   delTambang(i, fg) {
-    const daftarTambang = fg.get('daftarTambang') as FormArray
-    daftarTambang.removeAt(i)
+    const sumberTambang = fg.get('sumberTambang') as FormArray
+    sumberTambang.removeAt(i)
   }
 
-  get daftarTambang() { return this.fg.get('daftarTambang') as FormArray; }
+  get sumberTambang() { return this.fg.get('sumberTambang') as FormArray; }
 
 }

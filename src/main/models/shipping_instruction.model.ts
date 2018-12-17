@@ -47,7 +47,7 @@ export class ShippingInstructionModel extends PersistedModel {
 	tgl: Date
 
 	@Property('any')
-	plnRencanaId: any
+	plnRencanasId: any
 
 	@Property('any')
 	transportId: any
@@ -56,7 +56,7 @@ export class ShippingInstructionModel extends PersistedModel {
 	namaTransport: string
 
 	@Property('any')
-	jettyId: any
+	jettysId: any
 
 	@Property('date')
 	laycanStartDate: Date
@@ -64,12 +64,12 @@ export class ShippingInstructionModel extends PersistedModel {
 	@Property('date')
 	laycanEndDate: Date
 
-	@Relation("belongsTo", "PlnRencana", "plnRencanaId")
-	plnRencana
+	@Relation("belongsTo", "MitraKesanggupan", "plnRencanasId")
+	mitraKesanggupan
 
 	@Relation("belongsTo", "Mitra", "transportId")
 	transport
 
-	@Relation("belongsTo", "Jetty", "jettyId")
-	jetty
+	@Relation("belongsTo", "Jetty", "jettysId")
+	jettyRel
 }

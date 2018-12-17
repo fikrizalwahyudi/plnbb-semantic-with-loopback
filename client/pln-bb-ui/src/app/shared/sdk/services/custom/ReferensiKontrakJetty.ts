@@ -9,18 +9,17 @@ import { LoopBackFilter,  } from '../../models/BaseModels';
 import { ErrorHandler } from '../core/error.service';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ShippingInstruction } from '../../models/ShippingInstruction';
+import { ReferensiKontrakJetty } from '../../models/ReferensiKontrakJetty';
 import { SocketConnection } from '../../sockets/socket.connections';
-import { MitraKesanggupan } from '../../models/MitraKesanggupan';
-import { Mitra } from '../../models/Mitra';
 import { Jetty } from '../../models/Jetty';
+import { ReferensiKontrak } from '../../models/ReferensiKontrak';
 
 
 /**
- * Api services for the `ShippingInstruction` model.
+ * Api services for the `ReferensiKontrakJetty` model.
  */
 @Injectable()
-export class ShippingInstructionApi extends BaseLoopBackApi {
+export class ReferensiKontrakJettyApi extends BaseLoopBackApi {
 
   constructor(
     @Inject(HttpClient) protected http: HttpClient,
@@ -33,9 +32,9 @@ export class ShippingInstructionApi extends BaseLoopBackApi {
   }
 
   /**
-   * Fetches belongsTo relation mitraKesanggupan.
+   * Fetches belongsTo relation jetty.
    *
-   * @param {any} id ShippingInstruction id
+   * @param {any} id ReferensiKontrakJetty id
    *
    * @param {boolean} refresh 
    *
@@ -45,13 +44,13 @@ export class ShippingInstructionApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `ShippingInstruction` object.)
+   * This usually means the response is a `ReferensiKontrakJetty` object.)
    * </em>
    */
-  public getMitraKesanggupan(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+  public getJetty(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping_instruction/:id/mitraKesanggupan";
+    "/referensi_kontrak_jetty/:id/jetty";
     let _routeParams: any = {
       id: id
     };
@@ -63,39 +62,9 @@ export class ShippingInstructionApi extends BaseLoopBackApi {
   }
 
   /**
-   * Fetches belongsTo relation transport.
+   * Fetches belongsTo relation referensiKontrak.
    *
-   * @param {any} id ShippingInstruction id
-   *
-   * @param {boolean} refresh 
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `ShippingInstruction` object.)
-   * </em>
-   */
-  public getTransport(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
-    let _method: string = "GET";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping_instruction/:id/transport";
-    let _routeParams: any = {
-      id: id
-    };
-    let _postBody: any = {};
-    let _urlParams: any = {};
-    if (typeof refresh !== 'undefined' && refresh !== null) _urlParams.refresh = refresh;
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
-   * Fetches belongsTo relation jettyRel.
-   *
-   * @param {any} id ShippingInstruction id
+   * @param {any} id ReferensiKontrakJetty id
    *
    * @param {boolean} refresh 
    *
@@ -105,13 +74,13 @@ export class ShippingInstructionApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `ShippingInstruction` object.)
+   * This usually means the response is a `ReferensiKontrakJetty` object.)
    * </em>
    */
-  public getJettyRel(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+  public getReferensiKontrak(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping_instruction/:id/jettyRel";
+    "/referensi_kontrak_jetty/:id/referensiKontrak";
     let _routeParams: any = {
       id: id
     };
@@ -135,13 +104,13 @@ export class ShippingInstructionApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `ShippingInstruction` object.)
+   * This usually means the response is a `ReferensiKontrakJetty` object.)
    * </em>
    */
   public patchOrCreate(data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping_instruction";
+    "/referensi_kontrak_jetty";
     let _routeParams: any = {};
     let _postBody: any = {
       data: data
@@ -154,7 +123,7 @@ export class ShippingInstructionApi extends BaseLoopBackApi {
   /**
    * Patch attributes for a model instance and persist it into the data source.
    *
-   * @param {any} id ShippingInstruction id
+   * @param {any} id ReferensiKontrakJetty id
    *
    * @param {object} data Request data.
    *
@@ -166,13 +135,13 @@ export class ShippingInstructionApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `ShippingInstruction` object.)
+   * This usually means the response is a `ReferensiKontrakJetty` object.)
    * </em>
    */
   public patchAttributes(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping_instruction/:id";
+    "/referensi_kontrak_jetty/:id";
     let _routeParams: any = {
       id: id
     };
@@ -186,9 +155,9 @@ export class ShippingInstructionApi extends BaseLoopBackApi {
 
   /**
    * The name of the model represented by this $resource,
-   * i.e. `ShippingInstruction`.
+   * i.e. `ReferensiKontrakJetty`.
    */
   public getModelName() {
-    return "ShippingInstruction";
+    return "ReferensiKontrakJetty";
   }
 }
