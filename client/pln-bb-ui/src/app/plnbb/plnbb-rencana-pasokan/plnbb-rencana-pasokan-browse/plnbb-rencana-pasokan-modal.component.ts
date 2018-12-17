@@ -22,7 +22,7 @@ import { FormArray } from '@angular/forms';
           <td>{{item.tglPengiriman | date:'shortDate'}}</td>
           <td>{{item.jenis | uppercase}}</td>
           <td class="right aligned">{{item.jumlah | number}} MT</td>
-          <td class="right aligned">{{item.harga | currency:'Rp':undefined:undefined:'id'}}</td>
+          <td class="right aligned">{{item.harga | currency:'Rp':undefined:undefined:'id'}}/MT</td>
         </tr>
       </tbody>
     </table>

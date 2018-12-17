@@ -34,6 +34,7 @@ import { JettyModel } from './models/jetty.model';
 import { PrintPdfMiddleware } from './middleware/print-pdf.middleware';
 import { PlnRencanaPasokanModel } from "./models/pln_rencana_pasokan.model";
 import { MitraShippingOrderModel } from './models/mitra_shipping_order.model';
+import { MitraShippingInstructionRequestModel } from './models/mitra_shipping_instruction_request.model';
 
 @injectable()
 @CommonModule({
@@ -74,7 +75,8 @@ import { MitraShippingOrderModel } from './models/mitra_shipping_order.model';
 		ShippingInstructionModel,
 		JettyModel,
 		PlnRencanaPasokanModel,
-		MitraShippingOrderModel
+		MitraShippingOrderModel,
+		MitraShippingInstructionRequestModel
 	]
 })
 export class SampleModule extends Module {

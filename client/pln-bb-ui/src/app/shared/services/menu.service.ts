@@ -69,6 +69,13 @@ export class MenuService {
           label: 'Management',
           class: 'book icon',
           canActivate: [isAuthenticated, () => {return isAuthorized('management')}]
+        },
+
+        {
+          path: 'dirop',
+          label: 'Direktur Operasi',
+          class: 'briefcase icon',
+          canActivate: [isAuthenticated, () => {return isAuthorized('dirop')}]
         }
       ]
     })

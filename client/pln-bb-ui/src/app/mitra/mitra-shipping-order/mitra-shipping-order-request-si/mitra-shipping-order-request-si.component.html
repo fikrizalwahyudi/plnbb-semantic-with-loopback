@@ -31,8 +31,8 @@
             </div>
           </div>
         </div>
-        <ng-container *ngIf="dataMitraKesanggupan?.cif">
-          <div class="field">
+        <ng-container *ngIf="dataMitraKesanggupan?.tipe === 'cif'">
+          <!-- <div class="field">
             <label>Mitra Shipping</label>
             <select class="ui dropdown"
                     formControlName="transportId"
@@ -43,7 +43,7 @@
               <option *ngFor="let item of arrMitraShipping; let index = index"
                       [value]="item.id"><span [innerHTML]="item.name"></span></option>
             </select>
-          </div>
+          </div> -->
           <div class="field">
             <label>Nama Kapal</label>
             <div class="field">
@@ -53,10 +53,10 @@
                      formControlName="namaTransport">
             </div>
           </div>
-          <div class="field">
+          <!-- <div class="field">
             <label>Jetty</label>
             <select class="ui dropdown"
-                    formControlName="jetty"
+                    formControlName="jettyId"
                     uiDropDown>
               <option value=""
                       disabled
@@ -64,7 +64,7 @@
               <option *ngFor="let item of arrJetty; let index = index"
                       [value]="item.id"><span [innerHTML]="item.name"></span></option>
             </select>
-          </div>
+          </div> -->
         </ng-container>
 
         <div class="inline field">

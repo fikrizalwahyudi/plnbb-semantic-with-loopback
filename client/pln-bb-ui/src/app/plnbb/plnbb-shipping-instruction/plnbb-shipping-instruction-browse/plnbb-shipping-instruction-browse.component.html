@@ -1,0 +1,39 @@
+<ui-table-block>
+    <ng-container class="table-block-menu">
+      
+    </ng-container>
+    <thead>
+      <tr>
+        <th>Mitra</th>
+        <th>Tujuan PLTU</th>
+        <th>Laycan</th>
+        <th>Jetty</th>
+        <th>Moda</th>
+        <th class="right aligned">Jumlah</th>
+        <th class="right aligned">Harga</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of si">
+        <td>{{item.shippingOrder.mitraKesanggupan.mitra.name}}</td>
+        <td>{{item.shippingOrder.mitraKesanggupan.tujuanPltu.name}}</td>
+        <td>{{item.laycanStartDate | date:'shortDate'}} - {{item.laycanEndDate | date:'shortDate'}}</td>
+        <td>{{item.shippingOrder.mitraKesanggupan.jetty.name}}</td>
+        <td>{{item.shippingOrder.mitraKesanggupan.mode | titlecase}}</td>
+        <td class="right aligned">{{item.shippingOrder.mitraKesanggupan.jumlah | number}}</td>
+        <td class="right aligned">{{item.shippingOrder.mitraKesanggupan.harga | currency:'Rp':undefined:undefined:'id'}}</td>
+        <td class="center aligned collapsing">
+          <a [routerLink]="['/plnbb', 'shipping-instruction', item.id, 'grant']" *ngIf="!item.shippingInstruction">
+            <i class="cogs link icon action-icon"></i>
+          </a>
+          <a *ngIf="item.shippingInstruction">
+            <i class="spinner loading icon action-icon"></i>
+          </a>
+          <a>
+            <i class="download icon action-icon disabled"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </ui-table-block>

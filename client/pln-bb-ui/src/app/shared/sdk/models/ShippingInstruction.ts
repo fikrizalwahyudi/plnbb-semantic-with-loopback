@@ -1,6 +1,6 @@
 /* tslint:disable */
 import {
-  PlnRencana,
+  MitraKesanggupan,
   Mitra,
   Jetty
 } from '../index';
@@ -12,16 +12,16 @@ export interface ShippingInstructionInterface {
   "kode"?: string;
   "tahun"?: string;
   "tgl"?: Date;
-  "plnRencanaId"?: any;
+  "plnRencanasId"?: any;
   "transportId"?: any;
   "namaTransport"?: string;
-  "jettyId"?: any;
+  "jettysId"?: any;
   "laycanStartDate"?: Date;
   "laycanEndDate"?: Date;
   "mitraKesanggupanId"?: any;
-  plnRencana?: PlnRencana;
+  mitraKesanggupan?: MitraKesanggupan;
   transport?: Mitra;
-  jetty?: Jetty;
+  jettyRel?: Jetty;
 }
 
 export class ShippingInstruction implements ShippingInstructionInterface {
@@ -30,16 +30,16 @@ export class ShippingInstruction implements ShippingInstructionInterface {
   "kode": string = '';
   "tahun": string = '';
   "tgl": Date = new Date(0);
-  "plnRencanaId": any = <any>null;
+  "plnRencanasId": any = <any>null;
   "transportId": any = <any>null;
   "namaTransport": string = '';
-  "jettyId": any = <any>null;
+  "jettysId": any = <any>null;
   "laycanStartDate": Date = new Date(0);
   "laycanEndDate": Date = new Date(0);
   "mitraKesanggupanId": any = <any>null;
-  plnRencana: PlnRencana = null;
+  mitraKesanggupan: MitraKesanggupan = null;
   transport: Mitra = null;
-  jetty: Jetty = null;
+  jettyRel: Jetty = null;
   constructor(data?: ShippingInstructionInterface) {
     Object.assign(this, data);
   }
@@ -93,8 +93,8 @@ export class ShippingInstruction implements ShippingInstructionInterface {
           name: 'tgl',
           type: 'Date'
         },
-        "plnRencanaId": {
-          name: 'plnRencanaId',
+        "plnRencanasId": {
+          name: 'plnRencanasId',
           type: 'any'
         },
         "transportId": {
@@ -105,8 +105,8 @@ export class ShippingInstruction implements ShippingInstructionInterface {
           name: 'namaTransport',
           type: 'string'
         },
-        "jettyId": {
-          name: 'jettyId',
+        "jettysId": {
+          name: 'jettysId',
           type: 'any'
         },
         "laycanStartDate": {
@@ -123,12 +123,12 @@ export class ShippingInstruction implements ShippingInstructionInterface {
         },
       },
       relations: {
-        plnRencana: {
-          name: 'plnRencana',
-          type: 'PlnRencana',
-          model: 'PlnRencana',
+        mitraKesanggupan: {
+          name: 'mitraKesanggupan',
+          type: 'MitraKesanggupan',
+          model: 'MitraKesanggupan',
           relationType: 'belongsTo',
-                  keyFrom: 'plnRencanaId',
+                  keyFrom: 'plnRencanasId',
           keyTo: 'id'
         },
         transport: {
@@ -139,12 +139,12 @@ export class ShippingInstruction implements ShippingInstructionInterface {
                   keyFrom: 'transportId',
           keyTo: 'id'
         },
-        jetty: {
-          name: 'jetty',
+        jettyRel: {
+          name: 'jettyRel',
           type: 'Jetty',
           model: 'Jetty',
           relationType: 'belongsTo',
-                  keyFrom: 'jettyId',
+                  keyFrom: 'jettysId',
           keyTo: 'id'
         },
       }

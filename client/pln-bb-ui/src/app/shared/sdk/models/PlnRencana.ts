@@ -11,6 +11,7 @@ export interface PlnRencanaInterface {
   "bulan"?: number;
   "totalKebutuhan"?: number;
   "tujuanPltuId"?: any;
+  "lock"?: boolean;
   "id"?: any;
   tujuanPltu?: Pltu;
   pasokan?: PlnRencanaPasokan[];
@@ -22,6 +23,7 @@ export class PlnRencana implements PlnRencanaInterface {
   "bulan": number = 0;
   "totalKebutuhan": number = 0;
   "tujuanPltuId": any = <any>null;
+  "lock": boolean = false;
   "id": any = <any>null;
   tujuanPltu: Pltu = null;
   pasokan: PlnRencanaPasokan[] = null;
@@ -77,6 +79,10 @@ export class PlnRencana implements PlnRencanaInterface {
         "tujuanPltuId": {
           name: 'tujuanPltuId',
           type: 'any'
+        },
+        "lock": {
+          name: 'lock',
+          type: 'boolean'
         },
         "id": {
           name: 'id',

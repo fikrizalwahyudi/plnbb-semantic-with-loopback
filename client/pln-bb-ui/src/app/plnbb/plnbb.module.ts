@@ -9,7 +9,11 @@ import { HomeComponent } from '../admin/home/home.component';
 import { PlnBBRealisasiPengirimanBrowseComponent } from './plnbb-realisasi-pengiriman/plnbb-realisasi-pengiriman-browse/plnbb-realisasi-pengiriman-browse.component';
 import { PlnbbRencanaPasokanModalComponent } from './plnbb-rencana-pasokan/plnbb-rencana-pasokan-browse/plnbb-rencana-pasokan-modal.component'
 import { PlnbbRencanaPasokanSiComponent } from './plnbb-rencana-pasokan/plnbb-rencana-pasokan-si/plnbb-rencana-pasokan-si.component';
-import { PlnbbRencanaPasokanSiCreateComponent } from './plnbb-rencana-pasokan/plnbb-rencana-pasokan-si/plnbb-rencana-pasokan-si-create.component'
+import { PlnbbRencanaPasokanSiCreateComponent } from './plnbb-rencana-pasokan/plnbb-rencana-pasokan-si/plnbb-rencana-pasokan-si-create.component';
+import { PlnbbShippingInstructionComponent } from './plnbb-shipping-instruction/plnbb-shipping-instruction.component';
+import { PlnbbShippingInstructionBrowseComponent } from './plnbb-shipping-instruction/plnbb-shipping-instruction-browse/plnbb-shipping-instruction-browse.component';
+import { PlnbbShippingInstructionFormComponent } from './plnbb-shipping-instruction/plnbb-shipping-instruction-form/plnbb-shipping-instruction-form.component'
+import { NgxMaskModule } from 'ngx-mask';
 
 const appRoutes: Routes = [
   { path: 'plnbb', component: PlnbbComponent, data: { breadcrumb: 'PLN BB' }, children: [
@@ -19,6 +23,12 @@ const appRoutes: Routes = [
     { path: 'rencana-pasokan', component: PlnBBRencanaPasokanBrowseComponent, data: { breadcrumb: 'Rakor Pasokan' } },
     
     /*{ path: 'rencana-pasokan-si', component: PlnbbRencanaPasokanSiComponent },*/
+
+    { path: 'shipping-instruction', component: PlnbbShippingInstructionComponent, data: { breadcrumb: 'Shipping Instruction' }, children: [
+      { path: '', redirectTo: 'browse', pathMatch: 'full' },
+      { path: 'browse', component: PlnbbShippingInstructionBrowseComponent, data: { breadcrumb: 'Request' } },
+      { path: ':id/grant', component: PlnbbShippingInstructionFormComponent, data: { breadcrumb: 'Grant' } }
+    ]},
 
     { path: 'rencana-pasokan-si/:idMitraKesanggupan', component: PlnbbRencanaPasokanSiComponent },
     /*{ path: 'rencana-pasokan-si/create/:idMitraKesanggupan', component: PlnbbRencanaPasokanSiCreateComponent },
@@ -33,21 +43,28 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    RouterModule.forChild(appRoutes)
+    RouterModule.forChild(appRoutes),
+    NgxMaskModule.forChild()
   ],
   declarations: [
     PlnBBRencanaPasokanBrowseComponent,
     PlnBBRealisasiPengirimanBrowseComponent,
     PlnbbRencanaPasokanModalComponent,
     PlnbbRencanaPasokanSiComponent,
-    PlnbbRencanaPasokanSiCreateComponent
+    PlnbbRencanaPasokanSiCreateComponent,
+    PlnbbShippingInstructionComponent,
+    PlnbbShippingInstructionBrowseComponent,
+    PlnbbShippingInstructionFormComponent
   ],
   exports : [
     PlnBBRencanaPasokanBrowseComponent,
     PlnBBRealisasiPengirimanBrowseComponent,
     PlnbbRencanaPasokanModalComponent,
     PlnbbRencanaPasokanSiComponent,
-    PlnbbRencanaPasokanSiCreateComponent
+    PlnbbRencanaPasokanSiCreateComponent,
+    PlnbbShippingInstructionComponent,
+    PlnbbShippingInstructionBrowseComponent,
+    PlnbbShippingInstructionFormComponent
   ]
 })
 export class PlnbbModule { }

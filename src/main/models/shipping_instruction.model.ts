@@ -25,38 +25,38 @@ export class ShippingInstructionDao extends PersistedDao {
 		forceId: false,
 		mixins: {
 			ObjectidType: {
-				properties: ["mitraKesanggupanId"]
+				properties: ["siRequestId", "transportId", "jettyId"]
 			}
 		}
 	}
 })
 export class ShippingInstructionModel extends PersistedModel {
-	@Property('string')
+	
 	id: any
 
-	@Property('string')
-	no: string
+	@Property('number')
+	no: number
 
 	@Property('string')
-	kode: string
+	noRedaksi: number
 
-	@Property('string')
-	tahun: string
+	@Property('number')
+	noTahun: number
 
 	@Property('date')
-	tgl: Date
+	tglSurat: Date
 
 	@Property('any')
-	plnRencanasId: any
+	siRequestId: any
 
 	@Property('any')
 	transportId: any
 
+	@Property('any')
+	jettyId: any
+
 	@Property('string')
 	namaTransport: string
-
-	@Property('any')
-	jettysId: any
 
 	@Property('date')
 	laycanStartDate: Date
@@ -64,12 +64,12 @@ export class ShippingInstructionModel extends PersistedModel {
 	@Property('date')
 	laycanEndDate: Date
 
-	@Relation("belongsTo", "MitraKesanggupan", "plnRencanasId")
-	mitraKesanggupan
+	@Relation("belongsTo", "MitraShippingInstructionRequest", "siRequestId")
+	siRequest
 
 	@Relation("belongsTo", "Mitra", "transportId")
 	transport
 
-	@Relation("belongsTo", "Jetty", "jettysId")
-	jettyRel
+	@Relation("belongsTo", "Jetty", "jettyId")
+	jetty
 }

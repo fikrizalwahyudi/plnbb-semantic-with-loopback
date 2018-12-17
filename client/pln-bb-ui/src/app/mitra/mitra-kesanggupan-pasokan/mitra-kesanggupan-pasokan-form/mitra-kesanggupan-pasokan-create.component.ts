@@ -49,26 +49,36 @@ export class MitraKesanggupanPasokanCreateComponent implements OnInit {
       delete model['jetty']
     }
 
-    console.log('tambang', sumberTambang);
+    //console.log('tambang', sumberTambang);
 
     model.userId = this.userApi.getCurrentId()
-    this.kesanggupanApi.create(model).subscribe((kesanggupan:any) => {
+    model.tipe = model.jenisKontrak
+    model.jenis = model.jenisBatubara
 
-      sumberTambang = sumberTambang.map(entry => {
-        return {
-          mitraKesanggupanId: kesanggupan.id,
-          tambangId: entry.tambangId,
-          jumlah:entry.jumlahPasokanTambang
-        }
-      })
+    delete model['jenisKontrak']
+    delete model['jenisBatubara']
 
-      this.kesanggupanApi.patchTambang(kesanggupan.id, sumberTambang).subscribe(data => {
-        this.router.navigate(['/mitra', 'kesanggupan-pasokan'])
+    this.mitraApi.findOne({where: {userId: this.userApi.getCurrentId()}}).subscribe((mitra:any) => {
+      model.mitraId = mitra.id
+      
+      this.kesanggupanApi.create(model).subscribe((kesanggupan:any) => {
+
+        sumberTambang = sumberTambang.map(entry => {
+          return {
+            mitraKesanggupanId: kesanggupan.id,
+            tambangId: entry.tambangId,
+            jumlah:entry.jumlahPasokanTambang
+          }
+        })
+  
+        this.kesanggupanApi.patchTambang(kesanggupan.id, sumberTambang).subscribe(data => {
+          this.router.navigate(['/mitra', 'kesanggupan-pasokan'])
+          this.formComponent.submitting = false
+        })
+      }, (err) => {
+        this.formComponent.errorMsg = err.message
         this.formComponent.submitting = false
       })
-    }, (err) => {
-      this.formComponent.errorMsg = err.message
-      this.formComponent.submitting = false
     })
   }
 

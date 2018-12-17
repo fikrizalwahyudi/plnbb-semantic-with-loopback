@@ -28,6 +28,7 @@ import { MitraService } from './shared/services/mitra.service';
 //plnbb module
 import { PlnbbComponent } from './plnbb/plnbb.component';
 import { PlnbbModule } from './plnbb/plnbb.module';
+import {NgxMaskModule} from 'ngx-mask'
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -58,6 +59,7 @@ const appRoutes: Routes = [
     SharedModule,
     StorageServiceModule,
     HttpModule,
+    NgxMaskModule.forRoot()
     
   ],
   exports: [

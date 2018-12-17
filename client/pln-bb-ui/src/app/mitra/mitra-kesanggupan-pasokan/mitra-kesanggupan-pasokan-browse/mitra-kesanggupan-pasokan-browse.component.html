@@ -55,19 +55,18 @@
           <th>Moda</th>
           <th>Tipe</th>
           <th class="right aligned">Jumlah (MT)</th>
-          <th class="right aligned">Harga (Ribu)</th>
+          <th class="right aligned">Harga/MT</th>
           <th class="center aligned collapsing"></th>
         </tr>
       </thead>
       <tbody>
         <ng-container *ngFor="let itemEntry of itemPltu.value">
           <tr>
-            <td class="center top aligned collapsing"
-                rowspan="2">
+            <td class="center top aligned collapsing">
               <div class="ui blue small label">{{itemEntry.tglPengiriman | date:'dd'}}</div>
             </td>
             <td class="column-jetty">{{itemEntry.jetty?.name}}</td>
-            <td>{{itemEntry.mode | titlecase}}</td>
+            <td>{{itemEntry.mode | uppercase}}</td>
             <td>{{itemEntry.tipe | uppercase}}</td>
             <td class="right aligned">{{itemEntry.jumlah | number:undefined:'id'}}</td>
             <td class="right aligned">{{itemEntry.harga | currency:'Rp':undefined:undefined:'id'}}</td>
@@ -81,7 +80,7 @@
                   <i class="edit link icon action-icon"></i>
                 </a>
                 <a (click)="lock(itemEntry)">
-                  <i class="unlock link icon action-icon"></i>
+                  <i class="unlock link red icon action-icon"></i>
                 </a>
               </ng-container>
               <ng-container *ngIf="itemEntry.lock">
@@ -97,7 +96,7 @@
               </ng-container>
             </td>
           </tr>
-          <tr>
+          <!-- <tr>
             <td colspan="5"
                 class="right aligned">
               <div class="ui horizontal list">
@@ -146,7 +145,7 @@
               </div>
             </td>
             <td></td>
-          </tr>
+          </tr> -->
         </ng-container>
       </tbody>
     </table>

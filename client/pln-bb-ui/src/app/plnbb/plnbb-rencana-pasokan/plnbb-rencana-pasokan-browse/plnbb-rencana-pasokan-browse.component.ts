@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Pltu, PlnRencanaPasokanApi } from '../../../shared/sdk';
 import { PltuApi } from '../../../shared/sdk';
 import { PlnRencanaApi } from '../../../shared/sdk/services/custom/PlnRencana'
@@ -11,6 +11,7 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import { HttpClient } from '@angular/common/http';
 import { MitraShippingOrderApi } from '../../../shared/sdk/services/custom/MitraShippingOrder';
+import { ModalBlockComponent } from '../../../shared/commons/modal-block/modal-block.component';
 
 declare var $:any;
 
@@ -20,6 +21,8 @@ declare var $:any;
   styleUrls: ['./plnbb-rencana-pasokan-browse.component.sass']
 })
 export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
+
+  @ViewChild(ModalBlockComponent) modal:ModalBlockComponent
 
   submitting = false
   picking = false
@@ -72,6 +75,8 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
   }
 
   load() {
+    this.daftarRencana = []
+
     for(let i=0; i<this.fgAmounts.length; i++) {
       this.fgAmounts.removeAt(i)
     }
@@ -222,10 +227,11 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
         }))
       }
 
-      //console.log(data)
-      let el = $('.pilih-pasokan') as any
+      this.modal.open(item)
+
+      //let el = $('.pilih-pasokan') as any
   
-      el.modal({
+      /*el.modal({
         closable  : false,
         onDeny    : () => {
           this.clearSelectedPasokan()
@@ -240,8 +246,6 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
             }
           })
 
-          //console.log(selected)
-
           this.http.delete(`${environment.apiUrl}/api/pln_rencana/${item.id}/pasokan`).subscribe(data => {
             this.plnRencanaPasokanApi.create(selected).subscribe(() => {
               this.clearSelectedPasokan()
@@ -253,7 +257,30 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
           })
         }
       })
-      .modal('show')
+      .modal('show')*/
+
+
+    })
+  }
+
+  clearPickMitra() {
+    this.clearSelectedPasokan()
+    this.picking = false
+  }
+
+  savePickMitra(item) {
+    //console.log(item)
+    let selected = this.selectedPasokan.value.filter(entry => entry.checked).map(entry => {
+      return {
+        rencanaId: item.id,
+        mitraKesanggupanId: entry.id
+      }
+    })
+
+    this.http.delete(`${environment.apiUrl}/api/pln_rencana/${item.id}/pasokan`).subscribe(data => {
+      this.plnRencanaPasokanApi.create(selected).subscribe(() => {
+        this.load()
+      })
     })
   }
 
@@ -320,6 +347,7 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
   }
 
   get selectedDaftarRencana() {
+    //console.log(this.daftarRencana[this.daftarBulanRakor[this.selectedBulanRakorIndex].key])
     return this.daftarRencana[this.daftarBulanRakor[this.selectedBulanRakorIndex].key]
   }
 

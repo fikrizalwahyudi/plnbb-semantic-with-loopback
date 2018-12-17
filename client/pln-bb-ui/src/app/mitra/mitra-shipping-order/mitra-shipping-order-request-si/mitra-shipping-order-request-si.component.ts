@@ -9,6 +9,8 @@ import { MitraApi } from '../../../shared/sdk/services/custom/Mitra';
 import { JettyApi } from '../../../shared/sdk/services/custom/Jetty';
 import { ShippingInstructionApi } from '../../../shared/sdk/services/custom/ShippingInstruction';
 import { ShippingInstruction } from '../../../shared/sdk/models/ShippingInstruction';
+import { MitraShippingOrderApi } from '../../../shared/sdk/services/custom/MitraShippingOrder';
+import { MitraShippingInstructionRequestApi } from '../../../shared/sdk/services/custom/MitraShippingInstructionRequest';
 
 @Component({
   selector: 'app-mitra-shipping-order-request-si',
@@ -21,6 +23,7 @@ export class MitraShippingOrderRequestSiComponent implements OnInit {
   submitting
   status = 'baru';
   maxNo = 1;
+  id
 
   fg: FormGroup;
   dataMitraKesanggupan: MitraKesanggupan;
@@ -33,6 +36,8 @@ export class MitraShippingOrderRequestSiComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private mitraKesanggupanApi: MitraKesanggupanApi,
+    private mitraShippingOrderApi: MitraShippingOrderApi,
+    private mitraShippingRequestApi: MitraShippingInstructionRequestApi,
     private mitraApi: MitraApi,
     private jettyApi: JettyApi,
     private shippingInstructionApi: ShippingInstructionApi
@@ -40,9 +45,9 @@ export class MitraShippingOrderRequestSiComponent implements OnInit {
     this.fg = this.fb.group({
       laycanStartDate: [null, [Validators.required]],
       laycanEndDate: [null, [Validators.required]],
-      transportId: null,
+      //transportId: null,
       namaTransport: null,
-      jetty: null
+      //jettyId: null
     });
 
     this.generateNo();
@@ -51,19 +56,16 @@ export class MitraShippingOrderRequestSiComponent implements OnInit {
   ngOnInit() {
     let temp = new ShippingInstruction;
     this.route.params.subscribe(params => {
-      let idMitraKesanggupan = params['idMitraKesanggupan'];
-      this.fg.patchValue({ 'plnRencanaId': idMitraKesanggupan });
-      let cond = {
-        where:
-          { id: idMitraKesanggupan },
-        include: ['tujuanPltu', 'sumberTambang', { referensiKontrak: ['mitra'] }]
-      }
-      this.mitraKesanggupanApi.findOne(cond).subscribe((result: MitraKesanggupan) => {
-        this.dataMitraKesanggupan = result;
+      this.id = params['id']
+      this.mitraShippingOrderApi.findById(this.id, { include: ['mitraKesanggupan', 'rencanaPasokan', 'mitra'] }).subscribe((so: any) => {
 
+        this.dataMitraKesanggupan = so.mitraKesanggupan;
+
+        this.getMitra();
+        this.getJetty();
         //console.log(this.dataMitraKesanggupan)
 
-        this.shippingInstructionApi.findOne({ where: { plnRencanaId: idMitraKesanggupan } }).subscribe((resultShip: ShippingInstruction) => {
+        /*this.shippingInstructionApi.findOne({ where: { plnRencanaId: idMitraKesanggupan } }).subscribe((resultShip: ShippingInstruction) => {
           this.fg.patchValue(resultShip);
           let no = this.fg.controls['no'].value;
           let kode = this.fg.controls['kode'].value;
@@ -81,30 +83,27 @@ export class MitraShippingOrderRequestSiComponent implements OnInit {
               alert('terdapat Error: ' + error.message);
               console.log(error);
             }
-          });
-      },
-        error => {
-          alert('terdapat Error: ' + error.message);
-          console.log(error);
-        });
+          });*/
+
+      })
     });
   }
 
   generateNo() {
     this.fg.patchValue({ 'no': this.maxNo + '/SI/DIRPLNBB/' + new Date().getFullYear() });
-    this.shippingInstructionApi.find({ where: { tahun: new Date().getFullYear()+'' } }).subscribe((result: [ShippingInstruction]) => {
-      
+    this.shippingInstructionApi.find({ where: { tahun: new Date().getFullYear() + '' } }).subscribe((result: [ShippingInstruction]) => {
+
       result.forEach(element => {
         if (parseInt(element.no) >= this.maxNo) {
-          this.maxNo = parseInt(element.no)+1;
+          this.maxNo = parseInt(element.no) + 1;
           console.log(parseInt(element.no));
-          this.fg.patchValue({ 'no': this.maxNo+'/SI/DIRPLNBB/' + new Date().getFullYear() });
+          this.fg.patchValue({ 'no': this.maxNo + '/SI/DIRPLNBB/' + new Date().getFullYear() });
         }
       });
     },
       error => {
-        if(error.status==404){
-        }else{
+        if (error.status == 404) {
+        } else {
           alert('terdapat Error: ' + error.message);
           console.log(error);
         }
@@ -134,16 +133,25 @@ export class MitraShippingOrderRequestSiComponent implements OnInit {
   save() {
     this.submitting = true
     this.errorMsg = undefined
-    let temp = this.fg.controls['no'].value.split('/');
-    this.fg.patchValue({ 'no': temp[0] });
-    this.fg.patchValue({ 'kode': temp[1] + '/' + temp[2] });
-    this.fg.patchValue({ 'tahun': temp[temp.length - 1] });
-    this.shippingInstructionApi.replaceOrCreate(this.fg.value).subscribe(() => {
+    
+    let model = this.fg.value
+    model.tglRequest = new Date()
+    model.shippingOrderId = this.id
+    
+    //console.log(model)
+
+    this.mitraShippingRequestApi.create(model).subscribe(() => {
+      this.mitraShippingOrderApi.patchAttributes(this.id, {lock: true}).subscribe(() => {
+        this.router.navigate(['/mitra', 'shipping-order'])
+      })
+    })
+
+    /*this.shippingInstructionApi.replaceOrCreate(this.fg.value).subscribe(() => {
       this.router.navigate(['/mitra', 'shipping-order'])
     }, (err) => {
       this.errorMsg = err.message
       this.submitting = false
-    })
+    })*/
   }
 
 }
