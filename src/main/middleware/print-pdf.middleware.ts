@@ -20,11 +20,12 @@ export class PrintPdfMiddleware extends Middleware {
   async onRequest(req: any, res: any, next: any) {
     let accountId = req.params.id
 
-    this.siDao.findOne({ where: { id: accountId }, include: [{ mitraKesanggupan: 'tujuanPltu' }, 'jettyRel', 'transport'] }).then((si) => {
+    this.siDao.findOne({ where: { id: accountId }, include: [{ mitraKesanggupan: ['tujuanPltu', { referensiKontrak: 'mitra' }] }, 'jettyRel', 'transport'] }).then((si) => {
       var v = si;
-      var x = v['mitraKesanggupan'];
-      var y = JSON.stringify(x);
-      var z = JSON.parse(y)['tujuanPltu'];
+      var y = v['mitraKesanggupan'];
+      var mitraKesanggupan = JSON.parse(JSON.stringify(y)); //sengaja, karena keluarnya fungsi
+      var z = mitraKesanggupan['tujuanPltu'];
+      console.log(mitraKesanggupan['referensiKontrak']);
 
       var PDFDocument = require('pdfkit');
       var doc = new PDFDocument();
@@ -32,15 +33,16 @@ export class PrintPdfMiddleware extends Middleware {
       var telp = "Telp: (021) 29122118; (021) 29122182";
       var fax = "Fax: (021) 22792183";
       var web = "Website: www.plnbatubara.co.id";
-      
+
       var rataKiri = 120;
       var fontSize = 11;
       var pt = 10;
+      var tempMitra;
+
       doc.pipe(fs.createWriteStream('out.pdf'));
 
-      doc.image('client/pln-bb-ui/src/assets/1450433146.png', rataKiri - 13, 20, { width: 45 });
-      doc.image('client/pln-bb-ui/src/assets/pln.png', rataKiri +370, 20, { width: 45 });
-      // doc.circle(rataKiri, 40, 25);
+      doc.image('client/pln-bb-ui/src/assets/1450433146.png', rataKiri - 16, 20, { width: 45 });
+      doc.image('client/pln-bb-ui/src/assets/pln.png', rataKiri + 370, 20, { width: 45 });
       doc.font("Helvetica-Bold")
         .fontSize(22)
         .text('PT PLN BATUBARA', rataKiri + 33, 20 + pt)
@@ -86,15 +88,26 @@ export class PrintPdfMiddleware extends Middleware {
       doc.fontSize(fontSize)
         .text(si['no'] + '/' + si['kode'] + '/' + si['tahun'], rataKiri + 70, 100 + pt)
         .text('-', rataKiri + 70)
-        .text('Shipping Instruction \nLaycan ' + this.dateFormat(si['laycanStartDate']) + ' - ' + this.dateFormat(si['laycanEndDate']) + ' \n' + this.dateFormat(si['laycanStartDate']), rataKiri + 70)
+        .text('Shipping Instruction \nLaycan ' + this.dateFormat(si['laycanStartDate']) + ' - ' + this.dateFormat(si['laycanEndDate']) + ' \ndi ' + ' ' + si['jettyRel']['name'] + ', ' + si['jettyRel']['address'] + ', ' + si['jettyRel']['city'] + ', ' + si['jettyRel']['province'])
         ;
 
-      doc.fontSize(fontSize)
-        .text(si['jettyRel']['city'] + ', ' + this.dateFormat(si['tgl']), rataKiri + 260, 100 + pt)
-        .text(' ', rataKiri + 70)
-        .text('Kepada : \n' + si['transport']['name'], rataKiri + 260)
-        ;
-      var isi = 'Sehubungan dengan  rencana pengapalan batu bara oleh PLN Batubara dan menunjuk konfirmasi dari ' + si['transport']['name'] + ' , mohon agar dapat dilakukan proses pengapalan batubara dengan informasi sebagai berikut:'
+      if (mitraKesanggupan['referensiKontrak']['jenis'] == 'CIF') {
+        doc.fontSize(fontSize)
+          .text('Jakarta , ' + this.dateFormat(si['tgl']), rataKiri + 260, 100 + pt)
+          .text(' ', rataKiri + 70)
+          .text('Kepada : \n- ' + si['transport']['name'], rataKiri + 260)
+          ;
+        tempMitra = si['transport']['name'];
+      } else {
+        doc.fontSize(fontSize)
+          .text('Jakarta , ' + this.dateFormat(si['tgl']), rataKiri + 260, 100 + pt)
+          .text(' ', rataKiri + 70)
+          .text('Kepada : \n- ' + si['transport']['name'] + '\n- ' + mitraKesanggupan['referensiKontrak']['mitra']['name'], rataKiri + 260)
+          ;
+        tempMitra = si['transport']['name'] + ' dan ' + mitraKesanggupan['referensiKontrak']['mitra']['name'];
+      }
+
+      var isi = 'Sehubungan dengan  rencana pengapalan batubara oleh PLN Batubara dan menunjuk konfirmasi dari ' + si['transport']['name'] + ' , mohon agar dapat dilakukan proses pengapalan batubara dengan informasi sebagai berikut:'
       doc.fontSize(fontSize)
         .text('Dengan Hormat', rataKiri + 60, 200 + pt)
         .text(isi, { align: 'justify' })
@@ -102,11 +115,11 @@ export class PrintPdfMiddleware extends Middleware {
         ;
 
       var jarak = 160;
-      var space = 300 + pt;
+      var space = 260 + pt;
       doc.fontSize(fontSize)
         .text('Shipper', rataKiri + 60, space)
         .text(':', rataKiri + jarak + 60, space)
-        .text(si['transport']['name'] + " QQ PT PLN Batubara", rataKiri + jarak + 70, space)
+        .text(mitraKesanggupan['referensiKontrak']['mitra']['name'] + " QQ PT PLN Batubara", rataKiri + jarak + 70, space)
         .text('chareter', rataKiri + 60).moveDown(-1)
         .text(':', rataKiri + jarak + 60).moveDown(-1)
         .text('PT PLN Batubara', rataKiri + jarak + 70).moveDown(0)
@@ -121,7 +134,7 @@ export class PrintPdfMiddleware extends Middleware {
         .text('Steam Coal', rataKiri + jarak + 70).moveDown(0)
         .text('Jumlah Barang', rataKiri + 60).moveDown(-1)
         .text(':', rataKiri + jarak + 60).moveDown(-1)
-        .text('7500 Ton atau sesuai Draught', rataKiri + jarak + 70).moveDown(0)
+        .text(mitraKesanggupan['jumlah'] + ' Ton atau sesuai Draught', rataKiri + jarak + 70).moveDown(0)
         .text('Nama Kapal/Tongkang', rataKiri + 60).moveDown(-1)
         .text(':', rataKiri + jarak + 60).moveDown(-1)
         .text(si['namaTransport'], rataKiri + jarak + 70).moveDown(0)
@@ -150,57 +163,17 @@ export class PrintPdfMiddleware extends Middleware {
         .text('', rataKiri + jarak + 80)
         .text('DIREKTUR OPERASI', { align: 'center' }).moveDown(4)
         .text('DJOKO MARTONO', { align: 'center' })
-
-
-      // doc.pipe(fs.createWriteStream('out.pdf'));
-      // doc.addPage();
-      // doc.end();
-
-
-      // doc.pipe(fs.createWriteStream(res));
+ 
       doc.end();
 
 
       function intervalFunc() {
         // res.download('out.pdf')
       }
-
       setTimeout(intervalFunc, 500);
     },
       error => {
         console.log('terdapat Error: ' + error.message);
       });
-
   }
-
-
 }
-
-
-// let accountId = req.params.id
-
-// var PDFDocument = require('pdfkit');
-// var doc = new PDFDocument();
-// var fs = require('fs');
-// doc = new PDFDocument();
-// doc.moveTo(300, 75)
-// .lineTo(373, 301)
-// .lineTo(181, 161)
-// .lineTo(419, 161)
-// .lineTo(227, 301)
-// .fill('red', 'even-odd');
-
-// var loremIpsum = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in...';
-
-// doc.y = 320;
-// doc.fillColor('black')
-// doc.text(loremIpsum, {
-//   paragraphGap: 10,
-//   indent: 20,
-//   align: 'justify',
-//   columns: 2
-// });
-
-// doc.pipe(fs.createWriteStream('out.pdf'));
-// res.download('out.pdf');
-// doc.end();
