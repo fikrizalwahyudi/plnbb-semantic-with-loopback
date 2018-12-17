@@ -22,7 +22,10 @@
           <label>Jenis Setifikat</label>
           <select class="ui dropdown" formControlName="jenisSertifikat">
             <option [value]="null">Pilih Jenis Sertifikat</option>
-            <option *ngFor="let item of jenisSertifikat; let index = index" [value]="item.name">{{item.name}}</option>
+            <!-- <option *ngFor="let item of jenisSertifikat; let index = index" [value]="item.name">{{item.name}}</option> -->
+            <option value="Izin Usaha Pertambangan (IUP)">Izin Usaha Pertambangan (IUP)</option>
+            <option value="Izin Usaha Pertambangan Khusus (IUPK)">Izin Usaha Pertambangan Khusus (IUPK)</option>
+            <option value="Izin Pertambangan Rakyat">Izin Pertambangan Rakyat</option>
           </select>
         </div>
         <div class="required field">
