@@ -1,7 +1,8 @@
 /* tslint:disable */
 import {
   MitraKesanggupan,
-  PlnRencanaPasokan
+  PlnRencanaPasokan,
+  Mitra
 } from '../index';
 
 declare var Object: any;
@@ -9,18 +10,22 @@ export interface MitraShippingOrderInterface {
   "tglOrder"?: Date;
   "mitraKesanggupanId"?: any;
   "rencanaPasokanId"?: any;
+  "mitraId"?: any;
   "id"?: any;
   mitraKesanggupan?: MitraKesanggupan;
   rencanaPasokan?: PlnRencanaPasokan;
+  mitra?: Mitra;
 }
 
 export class MitraShippingOrder implements MitraShippingOrderInterface {
   "tglOrder": Date = new Date(0);
   "mitraKesanggupanId": any = <any>null;
   "rencanaPasokanId": any = <any>null;
+  "mitraId": any = <any>null;
   "id": any = <any>null;
   mitraKesanggupan: MitraKesanggupan = null;
   rencanaPasokan: PlnRencanaPasokan = null;
+  mitra: Mitra = null;
   constructor(data?: MitraShippingOrderInterface) {
     Object.assign(this, data);
   }
@@ -66,6 +71,10 @@ export class MitraShippingOrder implements MitraShippingOrderInterface {
           name: 'rencanaPasokanId',
           type: 'any'
         },
+        "mitraId": {
+          name: 'mitraId',
+          type: 'any'
+        },
         "id": {
           name: 'id',
           type: 'any'
@@ -86,6 +95,14 @@ export class MitraShippingOrder implements MitraShippingOrderInterface {
           model: 'PlnRencanaPasokan',
           relationType: 'belongsTo',
                   keyFrom: 'rencanaPasokanId',
+          keyTo: 'id'
+        },
+        mitra: {
+          name: 'mitra',
+          type: 'Mitra',
+          model: 'Mitra',
+          relationType: 'belongsTo',
+                  keyFrom: 'mitraId',
           keyTo: 'id'
         },
       }

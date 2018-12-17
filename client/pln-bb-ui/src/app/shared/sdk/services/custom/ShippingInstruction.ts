@@ -11,7 +11,7 @@ import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ShippingInstruction } from '../../models/ShippingInstruction';
 import { SocketConnection } from '../../sockets/socket.connections';
-import { PlnRencana } from '../../models/PlnRencana';
+import { MitraKesanggupan } from '../../models/MitraKesanggupan';
 import { Mitra } from '../../models/Mitra';
 import { Jetty } from '../../models/Jetty';
 
@@ -33,7 +33,7 @@ export class ShippingInstructionApi extends BaseLoopBackApi {
   }
 
   /**
-   * Fetches belongsTo relation plnRencana.
+   * Fetches belongsTo relation mitraKesanggupan.
    *
    * @param {any} id ShippingInstruction id
    *
@@ -48,10 +48,10 @@ export class ShippingInstructionApi extends BaseLoopBackApi {
    * This usually means the response is a `ShippingInstruction` object.)
    * </em>
    */
-  public getPlnRencana(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+  public getMitraKesanggupan(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping_instruction/:id/plnRencana";
+    "/shipping_instruction/:id/mitraKesanggupan";
     let _routeParams: any = {
       id: id
     };
@@ -93,7 +93,7 @@ export class ShippingInstructionApi extends BaseLoopBackApi {
   }
 
   /**
-   * Fetches belongsTo relation jetty.
+   * Fetches belongsTo relation jettyRel.
    *
    * @param {any} id ShippingInstruction id
    *
@@ -108,10 +108,10 @@ export class ShippingInstructionApi extends BaseLoopBackApi {
    * This usually means the response is a `ShippingInstruction` object.)
    * </em>
    */
-  public getJetty(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+  public getJettyRel(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping_instruction/:id/jetty";
+    "/shipping_instruction/:id/jettyRel";
     let _routeParams: any = {
       id: id
     };

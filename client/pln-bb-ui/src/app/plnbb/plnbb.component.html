@@ -1,43 +1,38 @@
 <div class="ui container fullheight bottom-space">
-    <div class="ui grid mt-5">
-        <div class="three wide column">
-            <div class="ui secondary vertical menu fullwidth">
-            <a class="item"
-                [routerLink]="['/plnbb/home']"
-                routerLinkActive="active">
-                <i class="desktop icon"></i> Home
-            </a>
-            <!-- <div class="ui divider"></div> -->
-            <a class="item"
-                [routerLink]="['/plnbb/rencana-pasokan']"
-                routerLinkActive="active">
-                <i class="file alternate outline icon"></i> Rakor Pasokan
-						</a>
-						<a class="item">
-								<i class="book icon"></i> Shipping Instruction
-						</a>
-            <a class="item"
-                [routerLink]="['/plnbb/realisasi-pengiriman']"
-                routerLinkActive="active">
-                <i class="clipboard outline icon"></i> Monitor Pengiriman
-            </a>
-            <!-- <a class="item"
+	<div class="ui grid mt-5">
+		<div class="three wide column">
+			<div class="ui secondary vertical menu fullwidth">
+				<!-- <a class="item"
+				   [routerLink]="['/plnbb/home']"
+				   routerLinkActive="active">
+					<i class="desktop icon"></i> Home
+				</a> -->
+				<!-- <div class="ui divider"></div> -->
+				<a class="item"
+				   [routerLink]="['/plnbb/rencana-pasokan']"
+				   routerLinkActive="active">
+					<i class="file alternate outline icon"></i> Rakor Pasokan
+				</a>
+				<a class="item"
+				   [routerLink]="['/plnbb/shipping-instruction']"
+				   routerLinkActive="active">
+					<i class="book icon"></i> Shipping Instruction
+				</a>
+				<a class="item"
+				   [routerLink]="['/plnbb/realisasi-pengiriman']"
+				   routerLinkActive="active">
+					<i class="clipboard outline icon"></i> Monitor Pengiriman
+				</a>
+				<!-- <a class="item"
                 href="javascript:;"
                 routerLinkActive="active">
                 <i class="book icon"></i> Laporan Bulanan
             </a> -->
-            </div>
-        </div>
-        <div class="thirteen wide column">
-            <div class="ui breadcrumb mb-1">
-							<a class="section">Home</a>
-							<div class="divider"> / </div>
-							<a class="section">PLN BB</a>
-							<div class="divider"> / </div>
-							<div class="active section">-</div>
-						</div>
-            <router-outlet></router-outlet>
-        </div>
-    </div>
+			</div>
+		</div>
+		<div class="thirteen wide column">
+			<ui-breadcrumb></ui-breadcrumb>
+			<router-outlet></router-outlet>
+		</div>
+	</div>
 </div>
-  
