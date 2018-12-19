@@ -1,6 +1,7 @@
 /* tslint:disable */
 import {
-  MitraKesanggupan
+  MitraShippingOrder,
+  ShippingInstruction
 } from '../index';
 
 declare var Object: any;
@@ -13,7 +14,8 @@ export interface MitraShippingInstructionRequestInterface {
   "id"?: any;
   "mitraKesanggupanId"?: any;
   "rencanaPasokanId"?: any;
-  shippingOrder?: MitraKesanggupan;
+  shippingOrder?: MitraShippingOrder;
+  shippingInstruction?: ShippingInstruction;
 }
 
 export class MitraShippingInstructionRequest implements MitraShippingInstructionRequestInterface {
@@ -25,7 +27,8 @@ export class MitraShippingInstructionRequest implements MitraShippingInstruction
   "id": any = <any>null;
   "mitraKesanggupanId": any = <any>null;
   "rencanaPasokanId": any = <any>null;
-  shippingOrder: MitraKesanggupan = null;
+  shippingOrder: MitraShippingOrder = null;
+  shippingInstruction: ShippingInstruction = null;
   constructor(data?: MitraShippingInstructionRequestInterface) {
     Object.assign(this, data);
   }
@@ -95,11 +98,19 @@ export class MitraShippingInstructionRequest implements MitraShippingInstruction
       relations: {
         shippingOrder: {
           name: 'shippingOrder',
-          type: 'MitraKesanggupan',
-          model: 'MitraKesanggupan',
+          type: 'MitraShippingOrder',
+          model: 'MitraShippingOrder',
           relationType: 'belongsTo',
-                  keyFrom: 'mitraKesanggupanId',
+                  keyFrom: 'shippingOrderId',
           keyTo: 'id'
+        },
+        shippingInstruction: {
+          name: 'shippingInstruction',
+          type: 'ShippingInstruction',
+          model: 'ShippingInstruction',
+          relationType: 'hasOne',
+                  keyFrom: 'id',
+          keyTo: 'siRequestId'
         },
       }
     }

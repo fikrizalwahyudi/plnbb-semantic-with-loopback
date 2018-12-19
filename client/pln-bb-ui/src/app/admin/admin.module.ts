@@ -61,7 +61,7 @@ import { MasterJettyCreateComponent } from './master-jetty/master-jetty-form/mas
 import { MasterJettyEditComponent } from './master-jetty/master-jetty-form/master-jetty-edit.component';
 
 const appRoutes: Routes = [
-  { path: 'admin', component: AdminComponent, data: { breadcrumb: 'Administration' }, children: [
+  { path: '', component: AdminComponent, children: [
     { path: '', redirectTo: 'user', pathMatch: 'full' },
     
     { path: 'home', component: HomeComponent, data: { breadcrumb: 'Home' } },

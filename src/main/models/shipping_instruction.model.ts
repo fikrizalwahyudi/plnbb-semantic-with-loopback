@@ -38,7 +38,7 @@ export class ShippingInstructionModel extends PersistedModel {
 	no: number
 
 	@Property('string')
-	noRedaksi: number
+	noRedaksi: string
 
 	@Property('number')
 	noTahun: number

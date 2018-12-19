@@ -93,7 +93,7 @@ export class MitraShippingOrderRequestSiComponent implements OnInit {
     this.fg.patchValue({ 'no': this.maxNo + '/SI/DIRPLNBB/' + new Date().getFullYear() });
     this.shippingInstructionApi.find({ where: { tahun: new Date().getFullYear() + '' } }).subscribe((result: [ShippingInstruction]) => {
 
-      result.forEach(element => {
+      result.forEach((element:any) => {
         if (parseInt(element.no) >= this.maxNo) {
           this.maxNo = parseInt(element.no) + 1;
           console.log(parseInt(element.no));
