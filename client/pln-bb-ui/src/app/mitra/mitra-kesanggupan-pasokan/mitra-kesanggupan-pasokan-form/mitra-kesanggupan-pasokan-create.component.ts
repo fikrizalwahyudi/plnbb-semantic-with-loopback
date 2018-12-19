@@ -39,8 +39,7 @@ export class MitraKesanggupanPasokanCreateComponent implements OnInit {
     this.formComponent.submitting = true
     this.formComponent.errorMsg = undefined
 
-    let sumberTambang = model.daftarTambang
-    delete model['daftarTambang']
+    let sumberTambang = model.sumberTambang
 
     if(model.jetty){
       model.jettyId = model.jetty.value

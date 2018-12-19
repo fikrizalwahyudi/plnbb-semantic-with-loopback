@@ -39,8 +39,9 @@ export class MasterReferensiKontrakEditComponent implements OnInit {
     this.route.params.subscribe(params => {
       let id = params['id']
 
-      this.referensiKontrakApi.findById(id, {include: ['mitra', 'pltuPrincipals', 'tambangPrincipals']}).subscribe(data => {
+      this.referensiKontrakApi.findById(id, {include: ['mitra', 'pltuPrincipals', 'tambangPrincipals', 'jettyPrincipals']}).subscribe(data => {
         this.referensiKontrak = data as ReferensiKontrak
+        console.log(this.referensiKontrak);
         
         //console.log(this.referensiKontrak)
         
@@ -61,6 +62,12 @@ export class MasterReferensiKontrakEditComponent implements OnInit {
         if(this.referensiKontrak.tambangPrincipals.length > 0) {
           setTimeout(() => {
             fg.patchValue({tambang: this.referensiKontrak.tambangPrincipals.map(entry => entry.tambangId)})
+          }, 10)
+        }
+
+        if(this.referensiKontrak.jettyPrincipals.length > 0) {
+          setTimeout(() => {
+            fg.patchValue({jetty: this.referensiKontrak.jettyPrincipals.map(entry => entry.jettyId)})
           }, 10)
         }
       })
@@ -85,14 +92,24 @@ export class MasterReferensiKontrakEditComponent implements OnInit {
       }
     })
 
+    let jetty = model.jetty.map(entry => {
+      return {
+        referensiKontrakId: this.referensiKontrak.id,
+        jettyId: entry
+      }
+    })
+
     delete model['pltu']
     delete model['tambang']
+    delete model['jetty']
 
     this.referensiKontrakApi.patchAttributes(this.referensiKontrak.id, model).subscribe(data => {
       this.referensiKontrakApi.patchPltu(this.referensiKontrak.id, pltu).subscribe(data => {
         this.referensiKontrakApi.patchTambang(this.referensiKontrak.id, tambang).subscribe(data => {
-          this.router.navigate(['/admin', 'referensi-kontrak'])
-          this.formComponent.submitting = false
+          this.referensiKontrakApi.patchJetty(this.referensiKontrak.id, jetty).subscribe(data =>{
+            this.router.navigate(['/admin', 'referensi-kontrak'])
+            this.formComponent.submitting = false
+          })
         })
       })
     }, err => {

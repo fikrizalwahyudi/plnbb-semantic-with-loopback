@@ -19,6 +19,16 @@ export class MasterTambangBrowseComponent implements OnInit {
     })
   }
 
+  convertJenisSertifikat(item){
+    if(item=='iup'){
+      return 'Izin Usaha Pertambangan (IUP)';
+    }else if(item=='iupk'){
+      return 'Izin Usaha Pertambangan Khusus (IUPK)';
+    }else if(item=='ipr'){
+      return 'Izin Pertambangan Rakyat';
+    }
+  }
+
   ngOnInit() {
   }
 

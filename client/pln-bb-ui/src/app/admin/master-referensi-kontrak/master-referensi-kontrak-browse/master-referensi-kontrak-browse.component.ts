@@ -17,12 +17,23 @@ export class MasterReferensiKontrakBrowseComponent implements OnInit {
   constructor(
     private referensiKontrakApi: ReferensiKontrakApi
   ) { 
-    this.referensiKontrakApi.find({limit: 30}).subscribe(data => {
+    this.referensiKontrakApi.find({limit: 30, include: ['mitra', 'pltuPrincipals', 'tambangPrincipals', 'jettyPrincipals']}).subscribe(data => {
       this.referensiKontrakList = data as ReferensiKontrak[]
+      console.log(this.referensiKontrakList);
     })
   }
 
   ngOnInit() {
+  }
+
+  convertJenisKontrak(item){
+    if(item === 'cif'){
+      return 'CIF'
+    }else if(item === 'fob'){
+      return 'FOB'
+    }else if(item === 'ciffob'){
+      return 'CIF & FOB'
+    }
   }
 
   delete(item) {

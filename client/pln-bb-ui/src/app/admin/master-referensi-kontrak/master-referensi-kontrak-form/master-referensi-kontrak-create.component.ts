@@ -30,9 +30,11 @@ export class MasterReferensiKontrakCreateComponent implements OnInit {
 
     let pltu = model.pltu
     let tambang = model.tambang
+    let jetty = model.jetty
 
     delete model['pltu']
     delete model['tambang']
+    delete model['jetty']
 
     this.referensiKontrakApi.create(model).subscribe((referensiKontrak:any) => {
       pltu = pltu.map(entry => {
@@ -49,10 +51,19 @@ export class MasterReferensiKontrakCreateComponent implements OnInit {
         }
       })
 
+      jetty = jetty.map(entry =>{
+        return {
+          referensiKontrakId : referensiKontrak.id,
+          jettyId: entry
+        }
+      })
+
       this.referensiKontrakApi.patchPltu(referensiKontrak.id, pltu).subscribe(data => {
         this.referensiKontrakApi.patchTambang(referensiKontrak.id, tambang).subscribe(data => {
-          this.router.navigate(['/admin', 'referensi-kontrak'])
-          this.formComponent.submitting = false
+          this.referensiKontrakApi.patchJetty(referensiKontrak.id, jetty).subscribe(data =>{
+            this.router.navigate(['/admin', 'referensi-kontrak'])
+            this.formComponent.submitting = false
+          })
         })
       })
     }, (err) => {

@@ -28,6 +28,15 @@
           </div>
         </div>
         <div class="required field">
+          <label>Jenis Kontrak</label>
+          <select class="ui dropdown" formControlName="jenisKontrak">
+            <option [value]="null" >Pilih Jenis Kontrak</option>
+            <option value="cif">CIF</option>
+            <option value="fob">FOB</option>
+            <option value="ciffob">CIF & FOB</option>
+          </select>
+        </div>
+        <div class="required field">
           <label>Owner</label>
           <div class="ui fluid search normal selection dropdown" uiSearchDropdown [url]="mitraUri" [filter]="searchFilterMitra" (onSearch)="onSearchMitra($event)" formControlName="mitra">
             <input type="hidden">
@@ -47,6 +56,12 @@
           <label>Tambang</label>
           <select multiple class="ui dropdown" uiMultiDropdown [values]="tambang" placeholder="Select Tambang" formControlName="tambang">
             <option value="" disabled hidden>Select Tambang</option>
+          </select>
+        </div>
+        <div class="required field">
+          <label>Jetty</label>
+          <select multiple class="ui dropdown" uiMultiDropdown [values]="jetty" placeholder="Select Jetty" formControlName="jetty">
+            <option value="" disabled hidden>Select Jetty</option>
           </select>
         </div>
         <div class="inline field">

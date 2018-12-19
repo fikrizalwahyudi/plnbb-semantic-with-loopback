@@ -34,6 +34,7 @@ import { JettyModel } from './models/jetty.model';
 import { PrintPdfMiddleware } from './middleware/print-pdf.middleware';
 import { PlnRencanaPasokanModel } from "./models/pln_rencana_pasokan.model";
 import { MitraShippingOrderModel } from './models/mitra_shipping_order.model';
+import { ReferensiKontrakJettyModel } from './models/referensi_kontrak_jetty.model';
 import { MitraShippingInstructionRequestModel } from './models/mitra_shipping_instruction_request.model';
 
 @injectable()
@@ -76,6 +77,7 @@ import { MitraShippingInstructionRequestModel } from './models/mitra_shipping_in
 		JettyModel,
 		PlnRencanaPasokanModel,
 		MitraShippingOrderModel,
+		ReferensiKontrakJettyModel,
 		MitraShippingInstructionRequestModel
 	]
 })

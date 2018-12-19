@@ -31,6 +31,7 @@ export * from './ShippingInstruction';
 export * from './Jetty';
 export * from './PlnRencanaPasokan';
 export * from './MitraShippingOrder';
+export * from './ReferensiKontrakJetty';
 export * from './MitraShippingInstructionRequest';
 export * from './SDKModels';
 export * from './logger.service';
