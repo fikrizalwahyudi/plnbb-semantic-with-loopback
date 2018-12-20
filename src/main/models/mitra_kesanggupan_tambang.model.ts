@@ -18,10 +18,6 @@ export class MitraKesanggupanTambangDao extends PersistedDao
 	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'mitra_kesanggupan_tambang',
-		postgresql: {
-			schema: "plnbbdb",
-			table: MitraKesanggupanTambangDao.tableName
-		},
 		idInjection:true,
 		forceId:false,
 		mixins: {

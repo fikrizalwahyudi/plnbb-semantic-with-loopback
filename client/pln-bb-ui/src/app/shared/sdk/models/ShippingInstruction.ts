@@ -1,8 +1,9 @@
 /* tslint:disable */
 import {
+  MitraShippingInstructionRequest,
   Mitra,
   Jetty,
-  MitraShippingInstructionRequest
+  ShippingInstructionRevision
 } from '../index';
 
 declare var Object: any;
@@ -18,9 +19,10 @@ export interface ShippingInstructionInterface {
   "laycanStartDate"?: Date;
   "laycanEndDate"?: Date;
   "id"?: any;
+  siRequest?: MitraShippingInstructionRequest;
   transport?: Mitra;
   jetty?: Jetty;
-  siRequest?: MitraShippingInstructionRequest;
+  revisions?: ShippingInstructionRevision[];
 }
 
 export class ShippingInstruction implements ShippingInstructionInterface {
@@ -35,9 +37,10 @@ export class ShippingInstruction implements ShippingInstructionInterface {
   "laycanStartDate": Date = new Date(0);
   "laycanEndDate": Date = new Date(0);
   "id": any = <any>null;
+  siRequest: MitraShippingInstructionRequest = null;
   transport: Mitra = null;
   jetty: Jetty = null;
-  siRequest: MitraShippingInstructionRequest = null;
+  revisions: ShippingInstructionRevision[] = null;
   constructor(data?: ShippingInstructionInterface) {
     Object.assign(this, data);
   }
@@ -117,6 +120,14 @@ export class ShippingInstruction implements ShippingInstructionInterface {
         },
       },
       relations: {
+        siRequest: {
+          name: 'siRequest',
+          type: 'MitraShippingInstructionRequest',
+          model: 'MitraShippingInstructionRequest',
+          relationType: 'belongsTo',
+                  keyFrom: 'siRequestId',
+          keyTo: 'id'
+        },
         transport: {
           name: 'transport',
           type: 'Mitra',
@@ -133,13 +144,13 @@ export class ShippingInstruction implements ShippingInstructionInterface {
                   keyFrom: 'jettyId',
           keyTo: 'id'
         },
-        siRequest: {
-          name: 'siRequest',
-          type: 'MitraShippingInstructionRequest',
-          model: 'MitraShippingInstructionRequest',
-          relationType: 'belongsTo',
-                  keyFrom: 'siRequestId',
-          keyTo: 'id'
+        revisions: {
+          name: 'revisions',
+          type: 'ShippingInstructionRevision[]',
+          model: 'ShippingInstructionRevision',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'siId'
         },
       }
     }

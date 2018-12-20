@@ -30,6 +30,7 @@ import { AsyncDropdownDirective } from './directives/async-dropdown.directive';
 import { CalendarYearDirective } from './directives/calendar-year.directive';
 import { CalendarRangeDirective } from './directives/calendar-range.directive';
 import { DigitsMaskDirective } from './directives/digits-mask.directive';
+import { PdfDirective } from './directives/pdf.directive';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { DigitsMaskDirective } from './directives/digits-mask.directive';
     AsyncDropdownDirective,
     CalendarYearDirective,
     CalendarRangeDirective,
-    DigitsMaskDirective
+    DigitsMaskDirective,
+    PdfDirective
   ],
 
   declarations: [
@@ -88,7 +90,8 @@ import { DigitsMaskDirective } from './directives/digits-mask.directive';
     AsyncDropdownDirective,
     CalendarYearDirective,
     CalendarRangeDirective,
-    DigitsMaskDirective
+    DigitsMaskDirective,
+    PdfDirective
   ],
 
   providers: [

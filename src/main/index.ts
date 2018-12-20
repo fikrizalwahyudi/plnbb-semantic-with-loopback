@@ -1,6 +1,6 @@
 import { Writable } from 'stream';
 import { Module } from 'loopback-typescript-core';
-import { SampleModule } from './module';
+import { MainModule } from './module';
 import path from 'path';
 import loopback from 'loopback';
 import http from 'http';
@@ -23,7 +23,7 @@ export = (function(){
 	// let configDir = path.resolve(process.cwd(), './src/resources');
 	let configDir = path.resolve(process.cwd(), (argv.config ? argv.config : './src/resources'));
 	
-	Module.boot(SampleModule, {
+	Module.boot(MainModule, {
 		appRootDir: process.cwd(),
 		appConfigRootDir: configDir,
 		dsRootDir: configDir,

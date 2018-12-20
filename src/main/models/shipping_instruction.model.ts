@@ -3,7 +3,8 @@ import { injectable, inject } from 'inversify';
 import { CommonModel, Property, Relation, Remote } from 'loopback-typescript-core/dist/models/decorators';
 
 @injectable()
-export class ShippingInstructionDao extends PersistedDao {
+export class ShippingInstructionDao extends PersistedDao 
+{
 	static tableName = 'shipping_instruction'
 	static modelName = 'ShippingInstruction'
 
@@ -17,10 +18,6 @@ export class ShippingInstructionDao extends PersistedDao {
 	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'shipping_instruction',
-		postgresql: {
-			schema: "plnbbdb",
-			table: ShippingInstructionDao.tableName
-		},
 		idInjection: true,
 		forceId: false,
 		mixins: {
@@ -72,4 +69,7 @@ export class ShippingInstructionModel extends PersistedModel {
 
 	@Relation("belongsTo", "Jetty", "jettyId")
 	jetty
+
+	@Relation("hasMany", "ShippingInstructionRevision", "siId")
+	revisions
 }

@@ -17,10 +17,6 @@ export class MitraDao extends PersistedDao {
 	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'mitra',
-		postgresql: {
-			schema: "plnbbdb",
-			table: MitraDao.tableName
-		},
 		idInjection:true,
 		forceId:false,
 		mixins: {

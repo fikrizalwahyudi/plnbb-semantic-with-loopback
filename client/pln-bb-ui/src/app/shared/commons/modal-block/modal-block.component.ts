@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ElementRef, Output, EventEmitter, Input } from '@angular/core';
 
 declare var $:any;
 
@@ -8,6 +8,7 @@ declare var $:any;
   styleUrls: ['./modal-block.component.sass']
 })
 export class ModalBlockComponent implements OnInit {
+  @Input() hideActions = false
 
   @Output('deny') onDeny = new EventEmitter()
   @Output('approve') onApprove = new EventEmitter()

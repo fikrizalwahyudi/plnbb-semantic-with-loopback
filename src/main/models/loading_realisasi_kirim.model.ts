@@ -19,11 +19,6 @@ export class LoadingRealisasiKirimDao extends PersistedDao
 	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'loading_realisasi_kirim',
-		postgresql: {
-			schema: "public",
-			table: LoadingRealisasiKirimDao.tableName
-		},
-
 		mixins: {}
 	}
 })

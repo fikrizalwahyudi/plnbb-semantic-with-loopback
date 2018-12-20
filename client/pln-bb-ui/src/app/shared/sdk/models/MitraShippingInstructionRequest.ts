@@ -12,8 +12,6 @@ export interface MitraShippingInstructionRequestInterface {
   "laycanEndDate"?: Date;
   "namaTransport"?: string;
   "id"?: any;
-  "mitraKesanggupanId"?: any;
-  "rencanaPasokanId"?: any;
   shippingOrder?: MitraShippingOrder;
   shippingInstruction?: ShippingInstruction;
 }
@@ -25,8 +23,6 @@ export class MitraShippingInstructionRequest implements MitraShippingInstruction
   "laycanEndDate": Date = new Date(0);
   "namaTransport": string = '';
   "id": any = <any>null;
-  "mitraKesanggupanId": any = <any>null;
-  "rencanaPasokanId": any = <any>null;
   shippingOrder: MitraShippingOrder = null;
   shippingInstruction: ShippingInstruction = null;
   constructor(data?: MitraShippingInstructionRequestInterface) {
@@ -84,14 +80,6 @@ export class MitraShippingInstructionRequest implements MitraShippingInstruction
         },
         "id": {
           name: 'id',
-          type: 'any'
-        },
-        "mitraKesanggupanId": {
-          name: 'mitraKesanggupanId',
-          type: 'any'
-        },
-        "rencanaPasokanId": {
-          name: 'rencanaPasokanId',
           type: 'any'
         },
       },
