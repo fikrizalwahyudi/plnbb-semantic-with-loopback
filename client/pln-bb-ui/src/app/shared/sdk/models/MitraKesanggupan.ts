@@ -2,8 +2,8 @@
 import {
   ReferensiKontrak,
   Pltu,
-  Mitra,
   MitraKesanggupanTambang,
+  Mitra,
   Jetty
 } from '../index';
 
@@ -25,8 +25,8 @@ export interface MitraKesanggupanInterface {
   "id"?: any;
   referensiKontrak?: ReferensiKontrak;
   tujuanPltu?: Pltu;
-  mitra?: Mitra;
   sumberTambang?: MitraKesanggupanTambang[];
+  mitra?: Mitra;
   jetty?: Jetty;
 }
 
@@ -47,8 +47,8 @@ export class MitraKesanggupan implements MitraKesanggupanInterface {
   "id": any = <any>null;
   referensiKontrak: ReferensiKontrak = null;
   tujuanPltu: Pltu = null;
-  mitra: Mitra = null;
   sumberTambang: MitraKesanggupanTambang[] = null;
+  mitra: Mitra = null;
   jetty: Jetty = null;
   constructor(data?: MitraKesanggupanInterface) {
     Object.assign(this, data);
@@ -157,14 +157,6 @@ export class MitraKesanggupan implements MitraKesanggupanInterface {
                   keyFrom: 'tujuanPltuId',
           keyTo: 'id'
         },
-        mitra: {
-          name: 'mitra',
-          type: 'Mitra',
-          model: 'Mitra',
-          relationType: 'belongsTo',
-                  keyFrom: 'mitraId',
-          keyTo: 'id'
-        },
         sumberTambang: {
           name: 'sumberTambang',
           type: 'MitraKesanggupanTambang[]',
@@ -172,6 +164,14 @@ export class MitraKesanggupan implements MitraKesanggupanInterface {
           relationType: 'hasMany',
                   keyFrom: 'id',
           keyTo: 'mitraKesanggupanId'
+        },
+        mitra: {
+          name: 'mitra',
+          type: 'Mitra',
+          model: 'Mitra',
+          relationType: 'belongsTo',
+                  keyFrom: 'mitraId',
+          keyTo: 'id'
         },
         jetty: {
           name: 'jetty',

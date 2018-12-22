@@ -5,8 +5,8 @@ import { MitraApi } from '../../../shared/sdk/services/custom/Mitra';
 import { Mitra } from '../../../shared/sdk/models/Mitra';
 import { UserApi } from '../../../shared/sdk/services/custom/User';
 import { User } from '../../../shared/sdk/models/User';
-import { UserMitraApi } from '../../../shared/sdk/services/custom/UserMitra';
-import { UserMitra } from '../../../shared/sdk/models/UserMitra';
+// import { UserMitraApi } from '../../../shared/sdk/services/custom/UserMitra';
+// import { UserMitra } from '../../../shared/sdk/models/UserMitra';
 
 @Component({
   selector: 'master-user-mitra-form',
@@ -20,7 +20,7 @@ export class MasterUserMitraFormComponent implements OnInit {
   fg:FormGroup
   errorMsg
   submitting
-  userMitras:UserMitra[]
+  // userMitras:UserMitra[]
   mitraIds:any
   userIds:any
   mitras:Mitra[]
@@ -31,33 +31,33 @@ export class MasterUserMitraFormComponent implements OnInit {
     private router:Router,
     private mitraApi: MitraApi,
     private userApi: UserApi,
-    private userMitraApi: UserMitraApi
+    // private userMitraApi: UserMitraApi
   ) { 
     this.fg = this.fb.group({
       user_id: [null, [Validators.required]],
       mitra_id: [null, [Validators.required]]
     })
 
-    this.userMitraApi.find().subscribe(data => {
-      this.userMitras = data as UserMitra[]
-      this.mitraIds = this.userMitras.map(function (e) {
-        return e.userId
-      });
+    // this.userMitraApi.find().subscribe(data => {
+    //   this.userMitras = data as UserMitra[]
+    //   this.mitraIds = this.userMitras.map(function (e) {
+    //     return e.userId
+    //   });
 
-      this.userIds = this.userMitras.map(function (e) {
-        return e.userId
-      });
+    //   this.userIds = this.userMitras.map(function (e) {
+    //     return e.userId
+    //   });
 
-      this.mitraApi.find().subscribe(dataMitra => {
-        this.mitras = dataMitra as Mitra[]
-        this.mitras = this.mitras.filter(d => !this.mitraIds.includes(d.id))
-      })
+    //   this.mitraApi.find().subscribe(dataMitra => {
+    //     this.mitras = dataMitra as Mitra[]
+    //     this.mitras = this.mitras.filter(d => !this.mitraIds.includes(d.id))
+    //   })
 
-      this.userApi.find().subscribe(dataUser => {
-        this.users = dataUser as User[]
-        this.users = this.users.filter(d => !this.userIds.includes(d.id))
-      })
-    })
+    //   this.userApi.find().subscribe(dataUser => {
+    //     this.users = dataUser as User[]
+    //     this.users = this.users.filter(d => !this.userIds.includes(d.id))
+    //   })
+    // })
   }
 
   ngOnInit() {

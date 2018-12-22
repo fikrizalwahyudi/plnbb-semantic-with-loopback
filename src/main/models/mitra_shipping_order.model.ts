@@ -18,10 +18,6 @@ export class MitraShippingOrderDao extends PersistedDao
 	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'mitra_shipping_order',
-		postgresql: {
-			schema: "plnbbdb",
-			table: MitraShippingOrderDao.tableName
-		},
 		idInjection:true,
 		forceId:false,
 		mixins: {

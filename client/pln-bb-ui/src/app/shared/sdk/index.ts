@@ -51,37 +51,26 @@ import { RealTime } from './services/core/real.time';
 import { UserApi } from './services/custom/User';
 import { RoleMappingApi } from './services/custom/RoleMapping';
 import { RoleApi } from './services/custom/Role';
-import { SampleApi } from './services/custom/Sample';
-import { UsersApi } from './services/custom/Users';
-import { MitraApi } from './services/custom/Mitra';
-import { ModesApi } from './services/custom/Modes';
-import { PhoneContactsApi } from './services/custom/PhoneContacts';
 import { PltuApi } from './services/custom/Pltu';
-import { RealisasiKirimApi } from './services/custom/RealisasiKirim';
-import { RencanaPasokanApi } from './services/custom/RencanaPasokan';
-import { RequestShippingApi } from './services/custom/RequestShipping';
-import { TokensApi } from './services/custom/Tokens';
-import { TypesApi } from './services/custom/Types';
-import { UserMitraApi } from './services/custom/UserMitra';
+import { MitraApi } from './services/custom/Mitra';
 import { LoadingRealisasiKirimApi } from './services/custom/LoadingRealisasiKirim';
 import { LocationsApi } from './services/custom/Locations';
-import { SumberTambangApi } from './services/custom/SumberTambang';
 import { TambangApi } from './services/custom/Tambang';
-import { UnloadingRealisasiKirimApi } from './services/custom/UnloadingRealisasiKirim';
-import { ReferensiKontrakApi } from './services/custom/ReferensiKontrak';
+import { ReferensiKontrakJettyApi } from './services/custom/ReferensiKontrakJetty';
 import { ReferensiKontrakMitraApi } from './services/custom/ReferensiKontrakMitra';
 import { ReferensiKontrakPltuApi } from './services/custom/ReferensiKontrakPltu';
 import { ReferensiKontrakTambangApi } from './services/custom/ReferensiKontrakTambang';
-import { MitraKesanggupanApi } from './services/custom/MitraKesanggupan';
+import { ReferensiKontrakApi } from './services/custom/ReferensiKontrak';
 import { MitraKesanggupanTambangApi } from './services/custom/MitraKesanggupanTambang';
-import { PlnRencanaApi } from './services/custom/PlnRencana';
+import { MitraKesanggupanApi } from './services/custom/MitraKesanggupan';
 import { PlnRealisasiApi } from './services/custom/PlnRealisasi';
-import { ShippingInstructionApi } from './services/custom/ShippingInstruction';
 import { JettyApi } from './services/custom/Jetty';
+import { PlnRencanaApi } from './services/custom/PlnRencana';
 import { PlnRencanaPasokanApi } from './services/custom/PlnRencanaPasokan';
 import { MitraShippingOrderApi } from './services/custom/MitraShippingOrder';
-import { ReferensiKontrakJettyApi } from './services/custom/ReferensiKontrakJetty';
 import { MitraShippingInstructionRequestApi } from './services/custom/MitraShippingInstructionRequest';
+import { ShippingInstructionApi } from './services/custom/ShippingInstruction';
+import { ShippingInstructionRevisionApi } from './services/custom/ShippingInstructionRevision';
 /**
 * @module SDKBrowserModule
 * @description
@@ -115,37 +104,26 @@ export class SDKBrowserModule {
         UserApi,
         RoleMappingApi,
         RoleApi,
-        SampleApi,
-        UsersApi,
-        MitraApi,
-        ModesApi,
-        PhoneContactsApi,
         PltuApi,
-        RealisasiKirimApi,
-        RencanaPasokanApi,
-        RequestShippingApi,
-        TokensApi,
-        TypesApi,
-        UserMitraApi,
+        MitraApi,
         LoadingRealisasiKirimApi,
         LocationsApi,
-        SumberTambangApi,
         TambangApi,
-        UnloadingRealisasiKirimApi,
-        ReferensiKontrakApi,
+        ReferensiKontrakJettyApi,
         ReferensiKontrakMitraApi,
         ReferensiKontrakPltuApi,
         ReferensiKontrakTambangApi,
-        MitraKesanggupanApi,
+        ReferensiKontrakApi,
         MitraKesanggupanTambangApi,
-        PlnRencanaApi,
+        MitraKesanggupanApi,
         PlnRealisasiApi,
-        ShippingInstructionApi,
         JettyApi,
+        PlnRencanaApi,
         PlnRencanaPasokanApi,
         MitraShippingOrderApi,
-        ReferensiKontrakJettyApi,
         MitraShippingInstructionRequestApi,
+        ShippingInstructionApi,
+        ShippingInstructionRevisionApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser },
         { provide: SocketDriver, useClass: SocketBrowser }

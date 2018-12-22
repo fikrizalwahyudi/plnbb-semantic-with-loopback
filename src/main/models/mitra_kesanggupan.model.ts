@@ -19,10 +19,6 @@ export class MitraKesanggupanDao extends PersistedDao
 	dataSource: 'plnbbmongodb',
 	settings: {
 		plural: 'mitra_kesanggupan',
-		postgresql: {
-			schema: "plnbbdb",
-			table: MitraKesanggupanDao.tableName
-		},
 		idInjection:true,
 		forceId:false,
 		mixins: {
@@ -90,6 +86,9 @@ export class MitraKesanggupanModel extends PersistedModel
 	@Relation("belongsTo", "Jetty", "jettyId")
 	jetty
 
+	@Relation("belongsTo", "Mitra", "mitraId")
+	mitra
+
 	@Remote({
 		accepts: [
 			{ arg: 'params', type: 'array', http: { source: 'body' } }
@@ -103,6 +102,4 @@ export class MitraKesanggupanModel extends PersistedModel
 		return await this.mitraTambangDao.create(params)
 	}
 	
-	@Relation("belongsTo", "Mitra", "mitraId")
-	mitra
 }

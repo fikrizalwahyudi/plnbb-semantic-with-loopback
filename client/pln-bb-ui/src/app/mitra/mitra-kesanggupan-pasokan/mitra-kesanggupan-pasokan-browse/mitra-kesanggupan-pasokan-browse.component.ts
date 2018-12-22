@@ -7,6 +7,7 @@ import { promptDialog } from '../../../shared/modals/prompt.modal';
 import { MitraKesanggupan } from '../../../shared/sdk/models/MitraKesanggupan';
 import * as moment from 'moment';
 import { MitraApi } from '../../../shared/sdk/services/custom/Mitra';
+import { Router } from '@angular/router';
 
 declare var $: any;
 
@@ -28,7 +29,8 @@ export class MitraKesanggupanPasokanBrowseComponent implements OnInit {
   constructor(
     private userApi: UserApi,
     private mitraApi: MitraApi,
-    private kesanggupanApi: MitraKesanggupanApi
+    private kesanggupanApi: MitraKesanggupanApi,
+    private router:Router
   ) {
     this.load()
   }
@@ -65,26 +67,21 @@ export class MitraKesanggupanPasokanBrowseComponent implements OnInit {
     })
   }
 
-  delete(item, key) {
+  delete(item) {
     this.errorMsg = undefined
     console.log(item)
-    console.log(key)
+    // console.log(key)
     promptDialog('Delete this record?', 'after deleting, the record will not be recoverable', () => {
-      // this.kesanggupanApi.deleteById(item.id).subscribe(data => {
-      //   this.daftarKesanggupan[key] = this.daftarKesanggupan[key].filter(u => u.id !== item.id)
-      // }, err => {
-      //   this.errorMsg = err.message
-      // })
+      this.kesanggupanApi.deleteSumberTambang(item.id).subscribe(data=>{
+        this.kesanggupanApi.deleteById(item.id).subscribe(data => {
+          this.load()
+        })
+      }, err => {
+        this.errorMsg = err.message
+      })
+     
     }, () => {})
   }
-  
-  // delete(item) {
-  //   promptDialog('Delete record kesanggupan?', 'this record will not be recoverable', () => {
-
-  //   }, () => { })
-  // }
-
-  
 
   lock(item) {
     this.kesanggupanApi.patchAttributes(item.id, { lock: true }).subscribe(() => {      

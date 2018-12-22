@@ -1,0 +1,47 @@
+<ui-table-block>
+  <ng-container class="table-block-menu">
+
+  </ng-container>
+  <thead>
+    <tr>
+      <th>Mitra Batubara</th>
+      <th>Mitra Transport</th>
+      <th>Tujuan PLTU</th>
+      <th>Laycan</th>
+      <th>Jetty</th>
+      <th>Moda</th>
+      <th class="right aligned">Jumlah</th>
+      <th class="right aligned">Harga</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of daftarSi">
+      <td>
+        <!-- <a>
+          <i class="search link icon"></i>
+        </a> -->
+        {{item.siRequest.shippingOrder.mitra.code}}
+      </td>
+      <td>{{item.transport.code}}</td>
+      <td>{{item.siRequest.shippingOrder.mitraKesanggupan.tujuanPltu.code}}</td>
+      <td>{{item.laycanStartDate | date:'shortDate'}} - {{item.laycanEndDate | date:'shortDate'}}</td>
+      <td>{{item.jetty.code}}</td>
+      <td>{{item.siRequest.shippingOrder.mitraKesanggupan.mode | uppercase}}</td>
+      <td class="right aligned">{{item.siRequest.shippingOrder.mitraKesanggupan.jumlah | number}}</td>
+      <td class="right aligned">{{item.siRequest.shippingOrder.mitraKesanggupan.harga | currency:'Rp':undefined:undefined:'id'}}</td>
+      <td class="center aligned collapsing">
+        <a [routerLink]="['/dirop', 'shipping-instruction', item.id, 'grant']"
+           *ngIf="!item.shippingInstruction">
+          <i class="cogs link icon action-icon"></i>
+        </a>
+        <a *ngIf="item.shippingInstruction">
+          <i class="spinner loading icon action-icon"></i>
+        </a>
+        <a>
+          <i class="download icon action-icon disabled"></i>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</ui-table-block>

@@ -17,10 +17,6 @@ export class JettyDao extends PersistedDao {
   dataSource: 'plnbbmongodb',
   settings: {
     plural: 'jetty',
-    postgresql: {
-      schema: "plnbbdb",
-      table: JettyDao.tableName
-    },
     idInjection: true,
     forceId: false,
     mixins: {}

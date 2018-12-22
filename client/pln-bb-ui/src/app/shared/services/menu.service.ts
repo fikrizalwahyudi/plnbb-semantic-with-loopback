@@ -45,7 +45,7 @@ export class MenuService {
   
         {
           path: 'mitra',
-          label: 'Mitra Batu',
+          label: 'Mitra Batubara',
           class: 'cogs icon',
           canActivate: [isAuthenticated, () => {return isAuthorized('mitrabatu')}]
         },

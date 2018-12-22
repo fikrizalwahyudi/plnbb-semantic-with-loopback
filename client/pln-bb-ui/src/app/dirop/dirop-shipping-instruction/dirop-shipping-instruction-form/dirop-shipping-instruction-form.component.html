@@ -1,0 +1,35 @@
+<div class="ui secondary menu">
+  <div class="right menu">
+    <a class="item danger-item"
+       (click)="reject()">
+      <i class="ban icon"></i>
+      REJECT
+    </a>
+    <a class="item primary-item"
+       (click)="approve()">
+      <i class="check icon"></i>
+      APPROVE
+    </a>
+  </div>
+</div>
+
+<div class="ui segment mb-5">
+  <div uiPdf></div>
+</div>
+
+<ui-modal-block #approveModal
+                (complete)="complete()"
+                [hideActions]="true">
+
+</ui-modal-block>
+
+<ui-modal-block #rejectModal
+                (complete)="complete()"
+                [hideActions]="true">
+  <div class="ui form">
+    <div class="field">
+      <label>Keterangan</label>
+      <textarea></textarea>
+    </div>
+  </div>
+</ui-modal-block>

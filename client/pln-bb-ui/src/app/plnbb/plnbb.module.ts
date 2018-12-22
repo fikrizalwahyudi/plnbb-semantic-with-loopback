@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { PlnBBRencanaPasokanBrowseComponent } from './plnbb-rencana-pasokan/plnbb-rencana-pasokan-browse/plnbb-rencana-pasokan-browse.component';
 import { PlnbbComponent } from './plnbb.component';
-import { HomeComponent } from '../admin/home/home.component';
 import { PlnBBRealisasiPengirimanBrowseComponent } from './plnbb-realisasi-pengiriman/plnbb-realisasi-pengiriman-browse/plnbb-realisasi-pengiriman-browse.component';
 import { PlnbbRencanaPasokanModalComponent } from './plnbb-rencana-pasokan/plnbb-rencana-pasokan-browse/plnbb-rencana-pasokan-modal.component'
 import { PlnbbRencanaPasokanSiComponent } from './plnbb-rencana-pasokan/plnbb-rencana-pasokan-si/plnbb-rencana-pasokan-si.component';
@@ -16,14 +15,11 @@ import { PlnbbShippingInstructionFormComponent } from './plnbb-shipping-instruct
 import { NgxMaskModule } from 'ngx-mask';
 
 const appRoutes: Routes = [
-  { path: 'plnbb', component: PlnbbComponent, data: { breadcrumb: 'PLN BB' }, children: [
+  { path: '', component: PlnbbComponent, children: [
     { path: '', redirectTo: 'rencana-pasokan', pathMatch: 'full' },
     
-    { path: 'home', component: HomeComponent, data: { breadcrumb: 'Home' } },
     { path: 'rencana-pasokan', component: PlnBBRencanaPasokanBrowseComponent, data: { breadcrumb: 'Rakor Pasokan' } },
     
-    /*{ path: 'rencana-pasokan-si', component: PlnbbRencanaPasokanSiComponent },*/
-
     { path: 'shipping-instruction', component: PlnbbShippingInstructionComponent, data: { breadcrumb: 'Shipping Instruction' }, children: [
       { path: '', redirectTo: 'browse', pathMatch: 'full' },
       { path: 'browse', component: PlnbbShippingInstructionBrowseComponent, data: { breadcrumb: 'Request' } },
@@ -47,6 +43,7 @@ const appRoutes: Routes = [
     NgxMaskModule.forChild()
   ],
   declarations: [
+    PlnbbComponent,
     PlnBBRencanaPasokanBrowseComponent,
     PlnBBRealisasiPengirimanBrowseComponent,
     PlnbbRencanaPasokanModalComponent,
@@ -57,6 +54,7 @@ const appRoutes: Routes = [
     PlnbbShippingInstructionFormComponent
   ],
   exports : [
+    PlnbbComponent,
     PlnBBRencanaPasokanBrowseComponent,
     PlnBBRealisasiPengirimanBrowseComponent,
     PlnbbRencanaPasokanModalComponent,

@@ -1,7 +1,7 @@
 /* tslint:disable */
 import {
-  MitraKesanggupan,
-  Tambang
+  Tambang,
+  MitraKesanggupan
 } from '../index';
 
 declare var Object: any;
@@ -10,8 +10,8 @@ export interface MitraKesanggupanTambangInterface {
   "tambangId"?: any;
   "jumlah"?: number;
   "id"?: any;
-  mitraKesanggupan?: MitraKesanggupan;
   tambang?: Tambang;
+  mitraKesanggupan?: MitraKesanggupan;
 }
 
 export class MitraKesanggupanTambang implements MitraKesanggupanTambangInterface {
@@ -19,8 +19,8 @@ export class MitraKesanggupanTambang implements MitraKesanggupanTambangInterface
   "tambangId": any = <any>null;
   "jumlah": number = 0;
   "id": any = <any>null;
-  mitraKesanggupan: MitraKesanggupan = null;
   tambang: Tambang = null;
+  mitraKesanggupan: MitraKesanggupan = null;
   constructor(data?: MitraKesanggupanTambangInterface) {
     Object.assign(this, data);
   }
@@ -72,20 +72,20 @@ export class MitraKesanggupanTambang implements MitraKesanggupanTambangInterface
         },
       },
       relations: {
-        mitraKesanggupan: {
-          name: 'mitraKesanggupan',
-          type: 'MitraKesanggupan',
-          model: 'MitraKesanggupan',
-          relationType: 'belongsTo',
-                  keyFrom: 'mitraKesanggupanId',
-          keyTo: 'id'
-        },
         tambang: {
           name: 'tambang',
           type: 'Tambang',
           model: 'Tambang',
           relationType: 'belongsTo',
                   keyFrom: 'tambangId',
+          keyTo: 'id'
+        },
+        mitraKesanggupan: {
+          name: 'mitraKesanggupan',
+          type: 'MitraKesanggupan',
+          model: 'MitraKesanggupan',
+          relationType: 'belongsTo',
+                  keyFrom: 'mitraKesanggupanId',
           keyTo: 'id'
         },
       }

@@ -15,11 +15,11 @@ import { MitraShippingOrderComponent } from './mitra-shipping-order/mitra-shippi
 import { MitraShippingOrderBrowseComponent } from './mitra-shipping-order/mitra-shipping-order-browse/mitra-shipping-order-browse.component';
 import { MitraShippingOrderRequestSiComponent } from './mitra-shipping-order/mitra-shipping-order-request-si/mitra-shipping-order-request-si.component';
 
-registerLocaleData(localeId)
+//registerLocaleData(localeId)
 
 const appRoutes: Routes = [
   {
-    path: 'mitra', component: MitraComponent, data: { breadcrumb: 'Mitra' }, children: [
+    path: '', component: MitraComponent, children: [
       { path: '', redirectTo: 'kesanggupan-pasokan', pathMatch: 'full' },
       { path: 'home', component: MitraKesanggupanPasokanComponent, data: { breadcrumb: 'Home' } },
       { path: 'kesanggupan-pasokan', component: MitraKesanggupanPasokanComponent, data: { breadcrumb: 'Pasokan' }, children: [

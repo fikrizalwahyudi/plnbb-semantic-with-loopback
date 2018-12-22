@@ -16,11 +16,11 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of si">
-        <td>{{item.shippingOrder.mitraKesanggupan.mitra.name}}</td>
-        <td>{{item.shippingOrder.mitraKesanggupan.tujuanPltu.name}}</td>
+        <td>{{item.shippingOrder.mitraKesanggupan.mitra.code}}</td>
+        <td>{{item.shippingOrder.mitraKesanggupan.tujuanPltu.code}}</td>
         <td>{{item.laycanStartDate | date:'shortDate'}} - {{item.laycanEndDate | date:'shortDate'}}</td>
-        <td>{{item.shippingOrder.mitraKesanggupan.jetty.name}}</td>
-        <td>{{item.shippingOrder.mitraKesanggupan.mode | titlecase}}</td>
+        <td>{{item.shippingOrder.mitraKesanggupan.jetty.code}}</td>
+        <td>{{item.shippingOrder.mitraKesanggupan.mode | uppercase}}</td>
         <td class="right aligned">{{item.shippingOrder.mitraKesanggupan.jumlah | number}}</td>
         <td class="right aligned">{{item.shippingOrder.mitraKesanggupan.harga | currency:'Rp':undefined:undefined:'id'}}</td>
         <td class="center aligned collapsing">

@@ -13,30 +13,28 @@ import { PltuService } from './shared/services/pltu.service';
 import { RencanaPasokanService } from './shared/services/rencana_pasokan.service';
 
 import { LoginComponent } from './login/login.component';
-//admin module
-import { AdminComponent } from './admin/admin.component';
-import { AdminModule } from './admin/admin.module';
 import { SDKBrowserModule } from './shared/sdk/index';
 import { RolesService } from './shared/services/roles.service';
-//mitra module
-import { MitraComponent } from './mitra/mitra.component';
-import { MitraModule } from './mitra/mitra.module';
 import { UsersService } from './shared/services/users.service';
 import { UserMitraService } from './shared/services/user_mitra.service';
 import { ReferensiKontrakService } from './shared/services/referensi_kontrak.service';
 import { MitraService } from './shared/services/mitra.service';
-//plnbb module
-import { PlnbbComponent } from './plnbb/plnbb.component';
-import { PlnbbModule } from './plnbb/plnbb.module';
 import {NgxMaskModule} from 'ngx-mask'
+
+import localeId from '@angular/common/locales/id';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(localeId)
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule', canActivate: [AuthenticatedGuard], data: { breadcrumb: 'Administation' } },
+  { path: 'admin', loadChildren: './admin/admin.module#AdminModule', canActivate: [AuthenticatedGuard], data: { breadcrumb: 'Administation' } },
 
-  { path: 'mitra', loadChildren: 'app/mitra/mitra.module#MitraModule', canActivate: [AuthenticatedGuard], data: { breadcrumb: 'Mitra' } },
+  { path: 'mitra', loadChildren: './mitra/mitra.module#MitraModule', canActivate: [AuthenticatedGuard], data: { breadcrumb: 'Mitra' } },
   
-  { path: 'plnbb', loadChildren: 'app/plnbb/plnbb.module#PlnbbModule', canActivate: [AuthenticatedGuard], data: { breadcrumb: 'PLN BB' } },
+  { path: 'plnbb', loadChildren: './plnbb/plnbb.module#PlnbbModule', canActivate: [AuthenticatedGuard], data: { breadcrumb: 'PLN BB' } },
+
+  { path: 'dirop', loadChildren: './dirop/dirop.module#DiropModule', canActivate: [AuthenticatedGuard], data: { breadcrumb: 'Direktur Operasi' } },
   
   { path: '', redirectTo: 'admin', pathMatch: 'full' }
 ];
@@ -44,8 +42,7 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    PlnbbComponent
+    LoginComponent
   ],
   imports: [
     FormsModule,
@@ -53,9 +50,6 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     SDKBrowserModule.forRoot(),
     BrowserModule,
-    AdminModule,
-    MitraModule,
-    PlnbbModule,
     SharedModule,
     StorageServiceModule,
     HttpModule,

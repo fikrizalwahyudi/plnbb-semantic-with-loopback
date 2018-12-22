@@ -2,7 +2,7 @@
   <div class="content">
     <ng-content></ng-content>
   </div>
-  <div class="actions">
+  <div class="actions" *ngIf="!hideActions">
     <div class="ui cancel small labeled icon button">
       <i class="close icon"></i>
       Cancel

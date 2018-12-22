@@ -2,178 +2,208 @@ import { Middleware } from 'loopback-typescript-core/dist/middleware/base.middle
 import { injectable, inject } from 'inversify';
 import { ReactiveApp } from 'loopback-typescript-core';
 import { ShippingInstructionDao } from '../models/shipping_instruction.model';
+import { MitraDao } from '../models/mitra.model';
+import { MitraKesanggupanDao } from '../models/mitra_kesanggupan.model';
+import { PlnRencanaPasokanDao } from '../models/pln_rencana_pasokan.model';
+import { MitraShippingOrderDao } from '../models/mitra_shipping_order.model';
+import { MitraShippingInstructionRequestDao } from '../models/mitra_shipping_instruction_request.model';
 
 @injectable()
 export class PrintPdfMiddleware extends Middleware {
   @inject(ReactiveApp)
   ctx: ReactiveApp
+  
   @inject(ShippingInstructionDao)
   siDao: ShippingInstructionDao
+
+  @inject(MitraDao)
+  mitraDao: MitraDao
+
+  @inject(MitraKesanggupanDao)
+  mitraKesanggupanDao:MitraKesanggupanDao
+
+  @inject(PlnRencanaPasokanDao)
+  plnRencanaPasokanDao:PlnRencanaPasokanDao
+
+  @inject(MitraShippingOrderDao)
+  mitraShippingOrderDao:MitraShippingOrderDao
+
+  @inject(MitraShippingInstructionRequestDao)
+  mitraShippingInstructionRequestDao:MitraShippingInstructionRequestDao
 
   path = '/printPdf/:id';
   protocol = 'get';
 
   dateFormat(x) {
+    //console.log(x)
+    if(!(x instanceof Date))
+      x = new Date(x)
+
     return x.getDate(x) + '/' + x.getMonth(x) + '/' + x.getFullYear();
   }
 
+  parseNo(no) {
+    let tmp = no + ''
+    if(tmp.length == 1)
+      return `00${tmp}`
+    else if(tmp.length == 2)
+      return `0${tmp}`
+    else
+      return tmp
+  }
+
   async onRequest(req: any, res: any, next: any) {
-    let accountId = req.params.id
+    let siId = req.params.id
 
-    this.siDao.findOne({ where: { id: accountId }, include: [{ mitraKesanggupan: ['tujuanPltu', { referensiKontrak: 'mitra' }] }, 'jettyRel', 'transport'] }).then((si) => {
-      var v = si;
-      var y = v['mitraKesanggupan'];
-      var mitraKesanggupan = JSON.parse(JSON.stringify(y)); //sengaja, karena keluarnya fungsi
-      var z = mitraKesanggupan['tujuanPltu'];
-      console.log(mitraKesanggupan['referensiKontrak']);
+    let shippingInstruction:any = await this.siDao.findById(siId, {include: ['transport', 'jetty', {'siRequest': {'shippingOrder': {'rencanaPasokan': {'mitraKesanggupan': ['mitra', 'tujuanPltu', 'referensiKontrak', 'jetty']}}}}]})
 
-      var PDFDocument = require('pdfkit');
-      var doc = new PDFDocument();
-      var fs = require('fs');
-      var telp = "Telp: (021) 29122118; (021) 29122182";
-      var fax = "Fax: (021) 22792183";
-      var web = "Website: www.plnbatubara.co.id";
+    shippingInstruction = JSON.parse(JSON.stringify(shippingInstruction))
 
-      var rataKiri = 120;
-      var fontSize = 11;
-      var pt = 10;
-      var tempMitra;
+    var mitraKesanggupan = shippingInstruction.siRequest.shippingOrder.rencanaPasokan.mitraKesanggupan
+    
+    var z = mitraKesanggupan['tujuanPltu'];    
 
-      doc.pipe(fs.createWriteStream('out.pdf'));
+    var PDFDocument = require('pdfkit');
+    var doc = new PDFDocument();
+    var fs = require('fs');
+    var telp = "Telp: (021) 29122118; (021) 29122182";
+    var fax = "Fax: (021) 22792183";
+    var web = "Website: www.plnbatubara.co.id";
 
-      doc.image('client/pln-bb-ui/src/assets/1450433146.png', rataKiri - 16, 20, { width: 45 });
-      doc.image('client/pln-bb-ui/src/assets/pln.png', rataKiri + 370, 20, { width: 45 });
-      doc.font("Helvetica-Bold")
-        .fontSize(22)
-        .text('PT PLN BATUBARA', rataKiri + 33, 20 + pt)
-        .moveDown()
-        .font('Helvetica')
-        .fontSize(9)
-        .text('Jalan Warung Buncit Raya no.10 Keluarahan Kalibata', rataKiri + 33, 45 + pt)
-        .moveDown()
-        .text('Kecamatan Pancoran, Jakarta Selatan 12740', rataKiri + 33, 55 + pt)
-        ;
+    var rataKiri = 120;
+    var fontSize = 11;
+    var pt = 10;
+    var tempMitra;
+
+    //doc.pipe(fs.createWriteStream('out.pdf'));
+    //res.setHeader('Content-disposition', 'attachment; filename="something.pdf"');
+    res.setHeader('Content-type', 'application/pdf');
+
+    doc.pipe(res)
+
+    doc.image('client/pln-bb-ui/src/assets/1450433146.png', rataKiri - 16, 20, { width: 45 });
+    doc.image('client/pln-bb-ui/src/assets/pln.png', rataKiri + 370, 20, { width: 45 });
+    doc.font("Helvetica-Bold")
+      .fontSize(22)
+      .text('PT PLN BATUBARA', rataKiri + 33, 20 + pt)
+      .moveDown()
+      .font('Helvetica')
+      .fontSize(9)
+      .text('Jalan Warung Buncit Raya no.10 Keluarahan Kalibata', rataKiri + 33, 45 + pt)
+      .moveDown()
+      .text('Kecamatan Pancoran, Jakarta Selatan 12740', rataKiri + 33, 55 + pt)
+      ;
 
       doc.fontSize(8).moveDown(0.9)
-        .text(telp, rataKiri - 35).moveDown(-1)
-        .text(fax, rataKiri + 150).moveDown(-1)
-        .text(web, rataKiri + 290).moveDown()
+      .text(telp, rataKiri - 35).moveDown(-1)
+      .text(fax, rataKiri + 150).moveDown(-1)
+      .text(web, rataKiri + 290).moveDown()
 
-      doc.save()
-        .moveTo(30, 85 + pt)
-        .lineTo(590, 85 + pt)
-        .lineTo(590, 87 + pt)
-        .lineTo(30, 87 + pt)
-        .fill("#000000");
+    doc.save()
+      .moveTo(30, 85 + pt)
+      .lineTo(590, 85 + pt)
+      .lineTo(590, 87 + pt)
+      .lineTo(30, 87 + pt)
+      .fill("#000000");
 
-      doc.save()
-        .moveTo(30, 88 + pt)
-        .lineTo(590, 88 + pt)
-        .lineTo(590, 91 + pt)
-        .lineTo(30, 91 + pt)
-        .fill("#000000");
+    doc.save()
+      .moveTo(30, 88 + pt)
+      .lineTo(590, 88 + pt)
+      .lineTo(590, 91 + pt)
+      .lineTo(30, 91 + pt)
+      .fill("#000000");
 
+    doc.fontSize(fontSize)
+      .text('Nomor', rataKiri, 100 + pt)
+      .text('Lampiran', rataKiri)
+      .text('Perihal', rataKiri)
+      ;
+
+    doc.fontSize(fontSize)
+      .text(':', rataKiri + 60, 100 + pt)
+      .text(':', rataKiri + 60)
+      .text(':', rataKiri + 60)
+      ;
+
+    doc.fontSize(fontSize)
+      .text(this.parseNo(shippingInstruction['no']) + '/' + shippingInstruction['noRedaksi'] + '/' + shippingInstruction['noTahun'], rataKiri + 70, 100 + pt)
+      .text('-', rataKiri + 70)
+      .text('Shipping Instruction \nLaycan ' + this.dateFormat(shippingInstruction['laycanStartDate']) + ' - ' + this.dateFormat(shippingInstruction['laycanEndDate']) + ' \ndi ' + ' ' + shippingInstruction['jetty']['name'] + ', ' + shippingInstruction['jetty']['address'] + ', ' + shippingInstruction['jetty']['city'] + ', ' + shippingInstruction['jetty']['province'])
+      ;
+
+    if (mitraKesanggupan['tipe'] == 'cif') {
       doc.fontSize(fontSize)
-        .text('Nomor', rataKiri, 100 + pt)
-        .text('Lampiran', rataKiri)
-        .text('Perihal', rataKiri)
+        .text('Jakarta , ' + this.dateFormat(shippingInstruction['tglSurat']), rataKiri + 260, 100 + pt)
+        .text(' ', rataKiri + 70)
+        .text('Kepada : \n- ' + shippingInstruction['transport']['name'], rataKiri + 260)
         ;
-
+      tempMitra = shippingInstruction['transport']['name'];
+    } else {
       doc.fontSize(fontSize)
-        .text(':', rataKiri + 60, 100 + pt)
-        .text(':', rataKiri + 60)
-        .text(':', rataKiri + 60)
+        .text('Jakarta , ' + this.dateFormat(shippingInstruction['tglSurat']), rataKiri + 260, 100 + pt)
+        .text(' ', rataKiri + 70)
+        .text('Kepada : \n- ' + shippingInstruction['transport']['name'] + '\n- ' + mitraKesanggupan['mitra']['name'], rataKiri + 260)
         ;
+      tempMitra = shippingInstruction['transport']['name'] + ' dan ' + mitraKesanggupan['mitra']['name'];
+    }
 
-      doc.fontSize(fontSize)
-        .text(si['no'] + '/' + si['kode'] + '/' + si['tahun'], rataKiri + 70, 100 + pt)
-        .text('-', rataKiri + 70)
-        .text('Shipping Instruction \nLaycan ' + this.dateFormat(si['laycanStartDate']) + ' - ' + this.dateFormat(si['laycanEndDate']) + ' \ndi ' + ' ' + si['jettyRel']['name'] + ', ' + si['jettyRel']['address'] + ', ' + si['jettyRel']['city'] + ', ' + si['jettyRel']['province'])
-        ;
+    var isi = 'Sehubungan dengan  rencana pengapalan batubara oleh PLN Batubara dan menunjuk konfirmasi dari ' + shippingInstruction['transport']['name'] + ' , mohon agar dapat dilakukan proses pengapalan batubara dengan informasi sebagai berikut:'
+    doc.fontSize(fontSize)
+      .text('Dengan Hormat', rataKiri + 60, 200 + pt)
+      .text(isi, { align: 'justify' })
+      .text('', rataKiri + 60)
+      ;
 
-      if (mitraKesanggupan['referensiKontrak']['jenis'] == 'CIF') {
-        doc.fontSize(fontSize)
-          .text('Jakarta , ' + this.dateFormat(si['tgl']), rataKiri + 260, 100 + pt)
-          .text(' ', rataKiri + 70)
-          .text('Kepada : \n- ' + si['transport']['name'], rataKiri + 260)
-          ;
-        tempMitra = si['transport']['name'];
-      } else {
-        doc.fontSize(fontSize)
-          .text('Jakarta , ' + this.dateFormat(si['tgl']), rataKiri + 260, 100 + pt)
-          .text(' ', rataKiri + 70)
-          .text('Kepada : \n- ' + si['transport']['name'] + '\n- ' + mitraKesanggupan['referensiKontrak']['mitra']['name'], rataKiri + 260)
-          ;
-        tempMitra = si['transport']['name'] + ' dan ' + mitraKesanggupan['referensiKontrak']['mitra']['name'];
-      }
+    var jarak = 160;
+    var space = 260 + pt;
+    doc.fontSize(fontSize)
+      .text('Shipper', rataKiri + 60, space)
+      .text(':', rataKiri + jarak + 60, space)
+      .text(mitraKesanggupan['mitra']['name'] + " QQ PT PLN Batubara", rataKiri + jarak + 70, space)
+      .text('chareter', rataKiri + 60).moveDown(-1)
+      .text(':', rataKiri + jarak + 60).moveDown(-1)
+      .text('PT PLN Batubara', rataKiri + jarak + 70).moveDown(0)
+      .text('Consignee', rataKiri + 60).moveDown(-1)
+      .text(':', rataKiri + jarak + 60).moveDown(-1)
+      .text(z['name'], rataKiri + jarak + 70).moveDown(0)
+      .text('Notify Address', rataKiri + 60).moveDown(-1)
+      .text(':', rataKiri + jarak + 60).moveDown(-1)
+      .text(z['address'], rataKiri + jarak + 70).moveDown(0)
+      .text('Komoditi', rataKiri + 60).moveDown(-1)
+      .text(':', rataKiri + jarak + 60).moveDown(-1)
+      .text('Steam Coal', rataKiri + jarak + 70).moveDown(0)
+      .text('Jumlah Barang', rataKiri + 60).moveDown(-1)
+      .text(':', rataKiri + jarak + 60).moveDown(-1)
+      .text(mitraKesanggupan['jumlah'] + ' Ton atau sesuai Draught', rataKiri + jarak + 70).moveDown(0)
+      .text('Nama Kapal/Tongkang', rataKiri + 60).moveDown(-1)
+      .text(':', rataKiri + jarak + 60).moveDown(-1)
+      .text(shippingInstruction['namaTransport'], rataKiri + jarak + 70).moveDown(0)
+      .text('Pelabuhan Muat', rataKiri + 60).moveDown(-1)
+      .text(':', rataKiri + jarak + 60).moveDown(-1)
+      .text(shippingInstruction['jetty']['name'], rataKiri + jarak + 70).moveDown(0)
+      .text('Laycan', rataKiri + 60).moveDown(-1)
+      .text(':', rataKiri + jarak + 60).moveDown(-1)
+      .text(this.dateFormat(shippingInstruction['laycanStartDate']) + ' - ' + this.dateFormat(shippingInstruction['laycanEndDate']), rataKiri + jarak + 70).moveDown(0)
+      .text('Pelabuhan Bongkar', rataKiri + 60).moveDown(-1)
+      .text(':', rataKiri + jarak + 60).moveDown(-1)
+      .text(z['name'], rataKiri + jarak + 70).moveDown(0)
+      .text('Permintaan Bill of Lading', rataKiri + 60).moveDown(-1)
+      .text(':', rataKiri + jarak + 60).moveDown(-1)
+      .text('Asli 3 rangkap, copy non negotiable 3 rangkap', rataKiri + jarak + 70).moveDown(0)
+      .text('Permintaan Cargo Manifest', rataKiri + 60).moveDown(-1)
+      .text(':', rataKiri + jarak + 60).moveDown(-1)
+      .text('Asli 3 rangkap, copy non negotiable 3 rangkap', rataKiri + jarak + 70).moveDown(0)
+      .text('Permintaan COA,COW,DS', rataKiri + 60).moveDown(-1)
+      .text(':', rataKiri + jarak + 60).moveDown(-1)
+      .text('Asli 1 rangkap, copy 3 rangkap', rataKiri + jarak + 70).moveDown(0)
+      .text('Permintaan SKAB', rataKiri + 60).moveDown(-1)
+      .text(':', rataKiri + jarak + 60).moveDown(-1)
+      .text('Asli 1 rangkap, copy 3 rangkap', rataKiri + jarak + 70).moveDown(1)
+      .text('Demikian disampaikan atas perhatianya diucapkan terimakasih', rataKiri + 60).moveDown(2)
+      .text('', rataKiri + jarak + 80)
+      .text('DIREKTUR OPERASI', { align: 'center' }).moveDown(4)
+      .text('DJOKO MARTONO', { align: 'center' })
 
-      var isi = 'Sehubungan dengan  rencana pengapalan batubara oleh PLN Batubara dan menunjuk konfirmasi dari ' + si['transport']['name'] + ' , mohon agar dapat dilakukan proses pengapalan batubara dengan informasi sebagai berikut:'
-      doc.fontSize(fontSize)
-        .text('Dengan Hormat', rataKiri + 60, 200 + pt)
-        .text(isi, { align: 'justify' })
-        .text('', rataKiri + 60)
-        ;
-
-      var jarak = 160;
-      var space = 260 + pt;
-      doc.fontSize(fontSize)
-        .text('Shipper', rataKiri + 60, space)
-        .text(':', rataKiri + jarak + 60, space)
-        .text(mitraKesanggupan['referensiKontrak']['mitra']['name'] + " QQ PT PLN Batubara", rataKiri + jarak + 70, space)
-        .text('chareter', rataKiri + 60).moveDown(-1)
-        .text(':', rataKiri + jarak + 60).moveDown(-1)
-        .text('PT PLN Batubara', rataKiri + jarak + 70).moveDown(0)
-        .text('Consignee', rataKiri + 60).moveDown(-1)
-        .text(':', rataKiri + jarak + 60).moveDown(-1)
-        .text(z['name'], rataKiri + jarak + 70).moveDown(0)
-        .text('Notify Address', rataKiri + 60).moveDown(-1)
-        .text(':', rataKiri + jarak + 60).moveDown(-1)
-        .text(z['address'], rataKiri + jarak + 70).moveDown(0)
-        .text('Komoditi', rataKiri + 60).moveDown(-1)
-        .text(':', rataKiri + jarak + 60).moveDown(-1)
-        .text('Steam Coal', rataKiri + jarak + 70).moveDown(0)
-        .text('Jumlah Barang', rataKiri + 60).moveDown(-1)
-        .text(':', rataKiri + jarak + 60).moveDown(-1)
-        .text(mitraKesanggupan['jumlah'] + ' Ton atau sesuai Draught', rataKiri + jarak + 70).moveDown(0)
-        .text('Nama Kapal/Tongkang', rataKiri + 60).moveDown(-1)
-        .text(':', rataKiri + jarak + 60).moveDown(-1)
-        .text(si['namaTransport'], rataKiri + jarak + 70).moveDown(0)
-        .text('Pelabuhan Muat', rataKiri + 60).moveDown(-1)
-        .text(':', rataKiri + jarak + 60).moveDown(-1)
-        .text(si['jettyRel']['name'], rataKiri + jarak + 70).moveDown(0)
-        .text('Laycan', rataKiri + 60).moveDown(-1)
-        .text(':', rataKiri + jarak + 60).moveDown(-1)
-        .text(this.dateFormat(si['laycanStartDate']) + ' - ' + this.dateFormat(si['laycanEndDate']), rataKiri + jarak + 70).moveDown(0)
-        .text('Pelabuhan Bongkar', rataKiri + 60).moveDown(-1)
-        .text(':', rataKiri + jarak + 60).moveDown(-1)
-        .text(si['mitraKesanggupan']['tujuanPltu']['name'], rataKiri + jarak + 70).moveDown(0)
-        .text('Permintaan Bill of Lading', rataKiri + 60).moveDown(-1)
-        .text(':', rataKiri + jarak + 60).moveDown(-1)
-        .text('Asli 3 rangkap, copy non negotiable 3 rangkap', rataKiri + jarak + 70).moveDown(0)
-        .text('Permintaan Cargo Manifest', rataKiri + 60).moveDown(-1)
-        .text(':', rataKiri + jarak + 60).moveDown(-1)
-        .text('Asli 3 rangkap, copy non negotiable 3 rangkap', rataKiri + jarak + 70).moveDown(0)
-        .text('Permintaan COA,COW,DS', rataKiri + 60).moveDown(-1)
-        .text(':', rataKiri + jarak + 60).moveDown(-1)
-        .text('Asli 1 rangkap, copy 3 rangkap', rataKiri + jarak + 70).moveDown(0)
-        .text('Permintaan SKAB', rataKiri + 60).moveDown(-1)
-        .text(':', rataKiri + jarak + 60).moveDown(-1)
-        .text('Asli 1 rangkap, copy 3 rangkap', rataKiri + jarak + 70).moveDown(1)
-        .text('Demikian disampaikan atas perhatianya diucapkan terimakasih', rataKiri + 60).moveDown(2)
-        .text('', rataKiri + jarak + 80)
-        .text('DIREKTUR OPERASI', { align: 'center' }).moveDown(4)
-        .text('DJOKO MARTONO', { align: 'center' })
- 
-      doc.end();
-
-
-      function intervalFunc() {
-        // res.download('out.pdf')
-      }
-      setTimeout(intervalFunc, 500);
-    },
-      error => {
-        console.log('terdapat Error: ' + error.message);
-      });
+    doc.end();
   }
 }

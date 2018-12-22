@@ -1,23 +1,10 @@
 import { injectable } from "inversify";
 import { Module, CommonModule } from 'loopback-typescript-core';
-import { SampleModel } from './models/sample.model';
-import { UsersModel } from './models/users.model';
 import { MitraModel } from './models/mitra.model';
-import { ModesModel } from './models/modes.model';
-import { PhoneContactsModel } from './models/phone_contacts.model';
 import { PltuModel } from './models/pltu.model';
-import { RealisasiKirimModel } from './models/realisasi_kirim.model';
-import { RencanaPasokanModel } from './models/rencana_pasokan.model';
-import { RequestShippingModel } from './models/request_shipping.model';
-import { RolesModel } from './models/roles.model';
-import { TokensModel } from './models/tokens.model';
-import { TypesModel } from './models/types.model';
-import { UserMitraModel } from './models/user_mitra.model';
 import { LoadingRealisasiKirimModel } from './models/loading_realisasi_kirim.model';
 import { LocationsModel } from './models/locations.model';
-import { SumberTambangModel } from './models/sumber_tambang.model';
 import { TambangModel } from './models/tambang.model';
-import { UnloadingRealisasiKirimModel } from './models/unloading_realisasi_kirim.model';
 import { ReferensiKontrakModel } from './models/referensi_kontrak.model';
 import { ReferensiKontrakMitraModel } from './models/referensi_kontrak_mitra.model';
 import { ReferensiKontrakPltuModel } from './models/referensi_kontrak_pltu.model';
@@ -36,6 +23,7 @@ import { PlnRencanaPasokanModel } from "./models/pln_rencana_pasokan.model";
 import { MitraShippingOrderModel } from './models/mitra_shipping_order.model';
 import { ReferensiKontrakJettyModel } from './models/referensi_kontrak_jetty.model';
 import { MitraShippingInstructionRequestModel } from './models/mitra_shipping_instruction_request.model';
+import { ShippingInstructionRevisionModel } from './models/shipping_instruction_revision.model';
 
 @injectable()
 @CommonModule({
@@ -47,40 +35,29 @@ import { MitraShippingInstructionRequestModel } from './models/mitra_shipping_in
 	],
 
 	models: [
-		SampleModel,
-		UsersModel,
-		MitraModel,
-		ModesModel,
-		PhoneContactsModel,
 		PltuModel,
-		RealisasiKirimModel,
-		RencanaPasokanModel,
-		RequestShippingModel,
-		//RolesModel,
-		TokensModel,
-		TypesModel,
-		UserMitraModel,
+		MitraModel,
 		LoadingRealisasiKirimModel,
 		LocationsModel,
-		SumberTambangModel,
 		TambangModel,
-		UnloadingRealisasiKirimModel,
-		ReferensiKontrakModel,
+		ReferensiKontrakJettyModel,
 		ReferensiKontrakMitraModel,
 		ReferensiKontrakPltuModel,
 		ReferensiKontrakTambangModel,
-		MitraKesanggupanModel,
+		ReferensiKontrakModel,
 		MitraKesanggupanTambangModel,
-		PlnRencanaModel,
+		MitraKesanggupanModel,
 		PlnRealisasiModel,
-		ShippingInstructionModel,
 		JettyModel,
+		PlnRencanaModel,
 		PlnRencanaPasokanModel,
 		MitraShippingOrderModel,
-		ReferensiKontrakJettyModel,
-		MitraShippingInstructionRequestModel
+		MitraShippingInstructionRequestModel,
+		ShippingInstructionModel,
+		ShippingInstructionRevisionModel,
+		
 	]
 })
-export class SampleModule extends Module {
+export class MainModule extends Module {
 
 }

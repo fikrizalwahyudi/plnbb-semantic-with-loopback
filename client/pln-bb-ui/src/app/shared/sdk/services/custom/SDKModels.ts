@@ -3,37 +3,26 @@ import { Injectable } from '@angular/core';
 import { User } from '../../models/User';
 import { RoleMapping } from '../../models/RoleMapping';
 import { Role } from '../../models/Role';
-import { Sample } from '../../models/Sample';
-import { Users } from '../../models/Users';
-import { Mitra } from '../../models/Mitra';
-import { Modes } from '../../models/Modes';
-import { PhoneContacts } from '../../models/PhoneContacts';
 import { Pltu } from '../../models/Pltu';
-import { RealisasiKirim } from '../../models/RealisasiKirim';
-import { RencanaPasokan } from '../../models/RencanaPasokan';
-import { RequestShipping } from '../../models/RequestShipping';
-import { Tokens } from '../../models/Tokens';
-import { Types } from '../../models/Types';
-import { UserMitra } from '../../models/UserMitra';
+import { Mitra } from '../../models/Mitra';
 import { LoadingRealisasiKirim } from '../../models/LoadingRealisasiKirim';
 import { Locations } from '../../models/Locations';
-import { SumberTambang } from '../../models/SumberTambang';
 import { Tambang } from '../../models/Tambang';
-import { UnloadingRealisasiKirim } from '../../models/UnloadingRealisasiKirim';
-import { ReferensiKontrak } from '../../models/ReferensiKontrak';
+import { ReferensiKontrakJetty } from '../../models/ReferensiKontrakJetty';
 import { ReferensiKontrakMitra } from '../../models/ReferensiKontrakMitra';
 import { ReferensiKontrakPltu } from '../../models/ReferensiKontrakPltu';
 import { ReferensiKontrakTambang } from '../../models/ReferensiKontrakTambang';
-import { MitraKesanggupan } from '../../models/MitraKesanggupan';
+import { ReferensiKontrak } from '../../models/ReferensiKontrak';
 import { MitraKesanggupanTambang } from '../../models/MitraKesanggupanTambang';
-import { PlnRencana } from '../../models/PlnRencana';
+import { MitraKesanggupan } from '../../models/MitraKesanggupan';
 import { PlnRealisasi } from '../../models/PlnRealisasi';
-import { ShippingInstruction } from '../../models/ShippingInstruction';
 import { Jetty } from '../../models/Jetty';
+import { PlnRencana } from '../../models/PlnRencana';
 import { PlnRencanaPasokan } from '../../models/PlnRencanaPasokan';
 import { MitraShippingOrder } from '../../models/MitraShippingOrder';
-import { ReferensiKontrakJetty } from '../../models/ReferensiKontrakJetty';
 import { MitraShippingInstructionRequest } from '../../models/MitraShippingInstructionRequest';
+import { ShippingInstruction } from '../../models/ShippingInstruction';
+import { ShippingInstructionRevision } from '../../models/ShippingInstructionRevision';
 
 export interface Models { [name: string]: any }
 
@@ -44,37 +33,26 @@ export class SDKModels {
     User: User,
     RoleMapping: RoleMapping,
     Role: Role,
-    Sample: Sample,
-    Users: Users,
-    Mitra: Mitra,
-    Modes: Modes,
-    PhoneContacts: PhoneContacts,
     Pltu: Pltu,
-    RealisasiKirim: RealisasiKirim,
-    RencanaPasokan: RencanaPasokan,
-    RequestShipping: RequestShipping,
-    Tokens: Tokens,
-    Types: Types,
-    UserMitra: UserMitra,
+    Mitra: Mitra,
     LoadingRealisasiKirim: LoadingRealisasiKirim,
     Locations: Locations,
-    SumberTambang: SumberTambang,
     Tambang: Tambang,
-    UnloadingRealisasiKirim: UnloadingRealisasiKirim,
-    ReferensiKontrak: ReferensiKontrak,
+    ReferensiKontrakJetty: ReferensiKontrakJetty,
     ReferensiKontrakMitra: ReferensiKontrakMitra,
     ReferensiKontrakPltu: ReferensiKontrakPltu,
     ReferensiKontrakTambang: ReferensiKontrakTambang,
-    MitraKesanggupan: MitraKesanggupan,
+    ReferensiKontrak: ReferensiKontrak,
     MitraKesanggupanTambang: MitraKesanggupanTambang,
-    PlnRencana: PlnRencana,
+    MitraKesanggupan: MitraKesanggupan,
     PlnRealisasi: PlnRealisasi,
-    ShippingInstruction: ShippingInstruction,
     Jetty: Jetty,
+    PlnRencana: PlnRencana,
     PlnRencanaPasokan: PlnRencanaPasokan,
     MitraShippingOrder: MitraShippingOrder,
-    ReferensiKontrakJetty: ReferensiKontrakJetty,
     MitraShippingInstructionRequest: MitraShippingInstructionRequest,
+    ShippingInstruction: ShippingInstruction,
+    ShippingInstructionRevision: ShippingInstructionRevision,
     
   };
 

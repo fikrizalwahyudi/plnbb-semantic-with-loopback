@@ -11,8 +11,8 @@ import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ReferensiKontrakJetty } from '../../models/ReferensiKontrakJetty';
 import { SocketConnection } from '../../sockets/socket.connections';
-import { Jetty } from '../../models/Jetty';
 import { ReferensiKontrak } from '../../models/ReferensiKontrak';
+import { Jetty } from '../../models/Jetty';
 
 
 /**
@@ -29,36 +29,6 @@ export class ReferensiKontrakJettyApi extends BaseLoopBackApi {
     @Optional() @Inject(ErrorHandler) protected errorHandler: ErrorHandler
   ) {
     super(http,  connection,  models, auth, errorHandler);
-  }
-
-  /**
-   * Fetches belongsTo relation jetty.
-   *
-   * @param {any} id ReferensiKontrakJetty id
-   *
-   * @param {boolean} refresh 
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `ReferensiKontrakJetty` object.)
-   * </em>
-   */
-  public getJetty(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
-    let _method: string = "GET";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/referensi_kontrak_jetty/:id/jetty";
-    let _routeParams: any = {
-      id: id
-    };
-    let _postBody: any = {};
-    let _urlParams: any = {};
-    if (typeof refresh !== 'undefined' && refresh !== null) _urlParams.refresh = refresh;
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
   }
 
   /**
@@ -81,6 +51,36 @@ export class ReferensiKontrakJettyApi extends BaseLoopBackApi {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
     "/referensi_kontrak_jetty/:id/referensiKontrak";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    if (typeof refresh !== 'undefined' && refresh !== null) _urlParams.refresh = refresh;
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Fetches belongsTo relation jetty.
+   *
+   * @param {any} id ReferensiKontrakJetty id
+   *
+   * @param {boolean} refresh 
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `ReferensiKontrakJetty` object.)
+   * </em>
+   */
+  public getJetty(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/referensi_kontrak_jetty/:id/jetty";
     let _routeParams: any = {
       id: id
     };
