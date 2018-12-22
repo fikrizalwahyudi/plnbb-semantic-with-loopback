@@ -72,32 +72,6 @@ export class MitraKesanggupanModel extends PersistedModel
 	@Property('boolean')
 	lock:boolean
 
-	@Property('number')
-	gcv:number
-
-	@Property('number')
-	tm:number
-
-	@Property('number')
-	ash:number
-
-	@Property('number')
-	ts:number
-
-	@Property('number')
-	hgi:number
-
-	@Property('number')
-	idt:number
-
-	//70mm
-	@Property('number')
-	size1:number
-
-	//2.38mm
-	@Property('number')
-	size2:number
-
 	@Property('any')
 	userId:any
 

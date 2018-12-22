@@ -40,9 +40,7 @@ export class AsyncDropdownDirective implements ControlValueAccessor {
 							results: data.filter(entry => {
 								if(entry.value === this.selected.value)
 									entry.selected = true
-
 								//console.log(entry)
-
 								return entry
 							})
 						})

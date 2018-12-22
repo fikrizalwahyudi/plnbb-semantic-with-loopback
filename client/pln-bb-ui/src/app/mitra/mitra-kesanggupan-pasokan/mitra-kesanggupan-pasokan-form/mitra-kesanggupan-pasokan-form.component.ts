@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MitraApi } from '../../../shared/sdk/services/custom/Mitra';
 import { Mitra } from '../../../shared/sdk/models/Mitra';
+// import { Pltu } from '../../../shared/sdk/models/Pltu';
 import { UserApi } from '../../../shared/sdk/services/custom/User';
 import { ReferensiKontrakApi } from '../../../shared/sdk/services/custom/ReferensiKontrak';
 import { switchMap } from 'rxjs/operators';
@@ -32,6 +33,7 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
   tambangs
 
   id
+  mitra
 
   jettyUri = `${environment.apiUrl}/api/jetty`
   searchFilterJetty = {
@@ -54,23 +56,28 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
     private kontrakTambangApi:ReferensiKontrakTambangApi,
     private kesanggupanApi:MitraKesanggupanApi,
     private tambangApi:MitraKesanggupanTambangApi,
+    // private pltu:Pltu
   ) {
 
+    this.mitraApi.findOne({where: {userId: this.userApi.getCurrentId()}}).subscribe(data=>{
+      console.log(data);
+      this.mitra = data as Mitra
+    })
 
-    this.daftarKontrak = this.mitraApi.findOne({where: {userId: this.userApi.getCurrentId()}}).pipe(switchMap(data => {
-      let mitra = data as Mitra
+    // this.daftarKontrak = this.mitraApi.findOne({where: {userId: this.userApi.getCurrentId()}}).pipe(switchMap(data => {
+    //   let mitra = data as Mitra
 
-      return this.kontrakApi.find({where: {mitraId: mitra.id}, include: 'pltuPrincipals'}).map(records => {
-        return records.map((entry:any) => {
-          return {
-            name: entry.nomorKontrak,
-            value: entry.id,
-            text: entry.nomorKontrak,
-            item: entry
-          }
-        })
-      })
-    }))
+    //   return this.kontrakApi.find({where: {mitraId: mitra.id}, include: 'pltuPrincipals'}).map(records => {
+    //     return records.map((entry:any) => {
+    //       return {
+    //         name: entry.nomorKontrak,
+    //         value: entry.id,
+    //         text: entry.nomorKontrak,
+    //         item: entry
+    //       }
+    //     })
+    //   })
+    // }))
     this.fg = this.fb.group({
       referensiKontrakId: [null, [Validators.required]],
       tujuanPltuId: [null, [Validators.required]],
@@ -101,6 +108,7 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
    }
 
   ngOnInit() {
+    
     this.onInit.emit(this.fg)
   }
 
@@ -114,29 +122,39 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
   }
 
   onSelectKontrak(item) {
-    // this.fg.patchValue({referensiKontrakId: item})
-
-    this.daftarKontrak.subscribe(data => {
+    console.log(item);
+    this.kontrakApi.find({where:{id:item}, include:[{pltuPrincipals:['pltu']}]}).subscribe(data=>{
       console.log(data);
-      let kontrak = data.find(entry => entry.value === item)
-
-      if(kontrak) {
-        kontrak = kontrak.item
-
-        this.kontrakPltuApi.find({where: {referensiKontrakId: kontrak.id}, include: 'pltu'}).subscribe(data => {
-          this.pltus = data.map((entry:any) => {
-            return entry.pltu
-          })
-        })
-
-        this.kontrakTambangApi.find({where:{referensiKontrakId: kontrak.id}, include:'tambang'}).subscribe(data=>{
-          this.tambangs = data.map((entry:any) => {
-            console.log("entry, ", entry);
-            return entry.tambang
-          })
-        })
-      }
     })
+    // this.fg.patchValue({referensiKontrakId: item})
+    // this.kontrakApi.find({where: {id: item}, include: ['pltuPrincipals', 'tambangPrincipals', 'jettyPrincipals']}).subscribe((data:any)=>{
+    //   console.log(data);
+    //   this.pltus = data[0].pltuPrincipals.map((entry:any) => {
+    //     return entry.pltu
+    //   })
+    // })
+    // this.daftarKontrak.subscribe(data => {
+    //   console.log(data);
+    //   let kontrak = data.find(entry => entry.value === item)
+
+    //   if(kontrak) {
+    //     kontrak = kontrak.item
+    //     console.log(kontrak);
+
+    //     // this.kontrakPltuApi.find({where: {referensiKontrakId: kontrak.id}, include: 'pltu'}).subscribe(data => {
+    //     //   this.pltus = data.map((entry:any) => {
+    //     //     return entry.pltu
+    //     //   })
+    //     // })
+
+    //     // this.kontrakTambangApi.find({where:{referensiKontrakId: kontrak.id}, include:'tambang'}).subscribe(data=>{
+    //     //   this.tambangs = data.map((entry:any) => {
+    //     //     console.log("entry, ", entry);
+    //     //     return entry.tambang
+    //     //   })
+    //     // })
+    //   }
+    // })
   }
 
   onSearchJetty({response, cb}) {
@@ -167,5 +185,24 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
   }
 
   get sumberTambang() { return this.fg.get('sumberTambang') as FormArray; }
+
+  getKontrak = (q?) => {
+    let filter = {
+      limit: 10
+    }
+
+    if (!_.isEmpty(q))
+      filter['where'] = { name: { like: `.*${q}.*`, options: 'i' }, mitraId: this.mitra.id}
+
+    return this.kontrakApi.find(filter).map((data: any) => {
+      return data.map(entry => {
+        console.log(entry);
+        return {
+          name: entry.nomorKontrak,
+          value: entry.id
+        }
+      })
+    });
+  }
 
 }

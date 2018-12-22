@@ -34,11 +34,11 @@ export class ReferensiKontrakPltuModel extends PersistedModel {
 
 	id: any
 
-	@Property('string')
-	referensiKontrakId: string
+	@Property('any')
+	referensiKontrakId: any
 
-	@Property('string')
-	pltuId: string
+	@Property('any')
+	pltuId: any
 
 	@Relation("belongsTo", "Pltu", "pltuId")
 	pltu

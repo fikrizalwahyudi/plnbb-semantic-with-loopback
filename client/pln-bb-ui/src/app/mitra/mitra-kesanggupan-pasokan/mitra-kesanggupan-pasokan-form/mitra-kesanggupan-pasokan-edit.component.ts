@@ -46,14 +46,11 @@ export class MitraKesanggupanPasokanEditComponent implements OnInit {
 
         fg.patchValue(this.mitraKesanggupan);
         if(this.mitraKesanggupan.referensiKontrak){
-          setTimeout(() => {
-            fg.patchValue({referensiKontrakId: {
-              name: this.mitraKesanggupan.referensiKontrak.nomorKontrak,
-              value: this.mitraKesanggupan.referensiKontrak.id,
-              text: this.mitraKesanggupan.referensiKontrak.nomorKontrak
-            }})
-            console.log("kepanggil");
-          }, 10)
+         
+          fg.patchValue({referensiKontrakId: {
+            name: this.mitraKesanggupan.referensiKontrak.nomorKontrak,
+            value: this.mitraKesanggupan.referensiKontrak.id
+          }})
         }
         
       })
