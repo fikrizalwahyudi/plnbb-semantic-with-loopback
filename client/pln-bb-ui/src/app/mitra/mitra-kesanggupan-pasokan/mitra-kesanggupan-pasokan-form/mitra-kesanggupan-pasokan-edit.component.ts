@@ -36,7 +36,7 @@ export class MitraKesanggupanPasokanEditComponent implements OnInit {
     this.route.params.subscribe(params => {
       let id = params['id']
 
-      this.kesanggupanApi.findById(id, {include: ['tujuanPltu', 'referensiKontrak', 'jetty', 'sumberTambang', 'mitra'] }).subscribe(data => {
+      this.kesanggupanApi.findById(id, {include: ['tujuanPltu', 'referensiKontrak', 'jetty', {sumberTambang:['tambang']}, 'mitra'] }).subscribe(data => {
         this.mitraKesanggupan = data as MitraKesanggupan
         console.log(this.mitraKesanggupan)
         // fg.patchValue(this.mitraKesanggupan);
@@ -46,11 +46,17 @@ export class MitraKesanggupanPasokanEditComponent implements OnInit {
               name: this.mitraKesanggupan.referensiKontrak.nomorKontrak,
               value: this.mitraKesanggupan.referensiKontrak.id
             },
-            tujuanPltuId: this.mitraKesanggupan.tujuanPltu.id,
+            tujuanPltuId: {
+              name: this.mitraKesanggupan.tujuanPltu.name,
+              value: this.mitraKesanggupan.tujuanPltu.id
+            },
             tglPengiriman: this.mitraKesanggupan.tglPengiriman,
             mode: this.mitraKesanggupan.mode,
             jenisKontrak: this.mitraKesanggupan.jenisKontrak,
-            jettyId: this.mitraKesanggupan.jettyId,
+            jettyId: {
+              name: this.mitraKesanggupan.jetty.name,
+              value: this.mitraKesanggupan.jetty.id
+            },
             jenisBatubara: this.mitraKesanggupan.jenisBatubara,
             harga: this.mitraKesanggupan.harga,
             jumlah: this.mitraKesanggupan.jumlah,
@@ -62,15 +68,18 @@ export class MitraKesanggupanPasokanEditComponent implements OnInit {
           const faSumberTambang = fg.get('sumberTambang') as FormArray
           console.log(faSumberTambang);
           this.mitraKesanggupan.sumberTambang.map((tambang, index)=>{
-            if(index > 0){
-              faSumberTambang.push(this.fb.group({
-                tambangId: [null, [Validators.required]],
-                jumlahPasokanTambang: [null, [Validators.required]]
-              }));
-            }
+            
+            faSumberTambang.removeAt(index);
+            faSumberTambang.push(this.fb.group({
+              tambangId: [null, [Validators.required]],
+              jumlahPasokanTambang: [null, [Validators.required]]
+            }));
             setTimeout(()=>{
               faSumberTambang.at(index).patchValue({
-                tambangId:tambang.tambangId,
+                tambangId: {
+                  name: tambang.tambang.name,
+                  value: tambang.tambang.id
+                },
                 jumlahPasokanTambang: tambang.jumlah
               });
             }, 10)
@@ -88,12 +97,19 @@ export class MitraKesanggupanPasokanEditComponent implements OnInit {
     
     let sumberTambang = model.sumberTambang
 
+    model.jumlah = 0;
+    sumberTambang.map(each=>{
+      model.jumlah += each.jumlahPasokanTambang
+    })
+
     model.userId = this.userApi.getCurrentId()
     model.referensiKontrakId = model.referensiKontrakId.value
+    model.jettyId = model.jettyId.value
+    model.tujuanPltuId = model.tujuanPltuId.value
 
-    if(model.jenisKontrak != 'cif'){
-      model.jettyId = null
-    }
+    // if(model.jenisKontrak != 'cif'){
+    //   model.jettyId = null
+    // }
 
     this.mitraApi.findOne({where: {userId: this.userApi.getCurrentId()}}).subscribe((mitra:any) => {
       model.mitraId = mitra.id
@@ -101,7 +117,7 @@ export class MitraKesanggupanPasokanEditComponent implements OnInit {
         sumberTambang = sumberTambang.map(entry => {
           return {
             mitraKesanggupanId: kesanggupan.id,
-            tambangId: entry.tambangId,
+            tambangId: entry.tambangId.value,
             jumlah:entry.jumlahPasokanTambang
           }
         })

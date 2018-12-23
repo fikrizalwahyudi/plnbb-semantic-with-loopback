@@ -4,12 +4,9 @@ import { Router } from '@angular/router';
 import { MitraApi } from '../../../shared/sdk/services/custom/Mitra';
 import { Mitra } from '../../../shared/sdk/models/Mitra';
 import { UserApi } from '../../../shared/sdk/services/custom/User';
-import { ReferensiKontrakApi } from '../../../shared/sdk';
+import { MitraKesanggupanApi, ReferensiKontrakPltuApi, ReferensiKontrak, ReferensiKontrakApi, PltuApi,MitraKesanggupanTambangApi, ReferensiKontrakTambangApi, JettyApi, ReferensiKontrakJettyApi, TambangApi } from '../../../shared/sdk';
 import { switchMap } from 'rxjs/operators';
-import { ReferensiKontrakPltuApi } from '../../../shared/sdk/services/custom/ReferensiKontrakPltu';
-import { MitraKesanggupanApi } from '../../../shared/sdk/services/custom/MitraKesanggupan';
 import { environment } from '../../../../environments/environment';
-import { MitraKesanggupanTambangApi, ReferensiKontrakTambangApi } from '../../../shared/sdk';
 import * as _ from 'lodash';
 
 @Component({
@@ -31,6 +28,7 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
   pltus
   tambangs
   jettys
+  referensiKontrak:ReferensiKontrak
 
   id
   mitra
@@ -44,8 +42,11 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
     private kontrakApi:ReferensiKontrakApi,
     private kontrakPltuApi:ReferensiKontrakPltuApi,
     private kontrakTambangApi:ReferensiKontrakTambangApi,
+    private kontrakJettyApi:ReferensiKontrakJettyApi,
     private kesanggupanApi:MitraKesanggupanApi,
-    private tambangApi:MitraKesanggupanTambangApi
+    private tambangApi:TambangApi,
+    private pltuApi:PltuApi,
+    private jettyApi:JettyApi
   ) {
 
     this.mitraApi.findOne({where: {userId: this.userApi.getCurrentId()}}).subscribe(data=>{
@@ -76,22 +77,20 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
 
   ngOnInit() {
     this.onInit.emit(this.fg)
-    // this.onChanges()
   }
 
   calculateJumlah(val, index){
+    var total = 0;
+    console.log(this.st[index], Number(val));
     if(val && this.st[index]){
-      var total = 0;
-      console.log(this.st[index], Number(val));
-      if(this.st[index]){
-        this.fg.value.sumberTambang[index].jumlahPasokanTambang = Number(val);
-        this.fg.value.sumberTambang.map(each=>{
-          total = total + Number(each.jumlahPasokanTambang)
-          this.fg.patchValue({jumlah:total})
-        })
-      }
+      this.fg.value.sumberTambang[index].jumlahPasokanTambang = Number(val);
+      this.fg.value.sumberTambang.map(each=>{
+        total = total + Number(each.jumlahPasokanTambang)
+        this.fg.patchValue({jumlah:total})
+      })
     }
-    
+
+    return total;
   }
 
   save() {
@@ -107,18 +106,7 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
     console.log(referensiKontrakId)
     this.kontrakApi.findById(referensiKontrakId, {include:[{pltuPrincipals:['pltu']}, {tambangPrincipals:['tambang']}, {jettyPrincipals:['jetty']}]}).subscribe((data:any)=>{
       console.log(data)
-      if(this.fg.value.jenisKontrak == null){
-        this.fg.patchValue({jenisKontrak:data.jenisKontrak})
-      }
-      this.pltus = data.pltuPrincipals.map((entry:any) => {
-        return entry.pltu
-      })
-      this.tambangs = data.tambangPrincipals.map((entry:any) => {
-        return entry.tambang
-      })
-      this.jettys = data.jettyPrincipals.map((entry:any)=>{
-        return entry.jetty
-      })
+      this.referensiKontrak = data as ReferensiKontrak
     })
   }
 
@@ -127,12 +115,13 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
     // console.log(sumberTambang);
     sumberTambang.push(this.fb.group({
       tambangId: [null, [Validators.required]],
-      jumlahPasokanTambang: [0, [Validators.required]]
+      jumlahPasokanTambang: [null, [Validators.required]]
     }))
     console.log(sumberTambang);
   }
 
   delTambang(i, fg) {
+    this.calculateJumlah(0,i)
     const sumberTambang = fg.get('sumberTambang') as FormArray
     sumberTambang.removeAt(i)
   }
@@ -156,6 +145,115 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
         }
       })
     });
+  }
+
+  getPltu = (q?) => {
+    let filter = {
+      limit: 10
+    }
+    console.log(this.fg.get('jenisKontrak').value);
+    if(this.fg.get('jenisKontrak').value == 'cif' && this.referensiKontrak){
+      if (!_.isEmpty(q))
+        console.log(this.referensiKontrak.id);
+        filter['where'] = { referensiKontrakId: this.referensiKontrak.id}
+        filter['include'] = {relation:'pltu', scope: {where:{ name: { like: `.*${q}.*`, options: 'i' }}}}
+      return this.kontrakPltuApi.find(filter).map((data: any) => {
+        console.log(data);
+        return data.map((entry) => {
+          if(entry.pltu){
+            return {
+              name: entry.pltu.name,
+              value: entry.pltu.id
+            }
+          }
+        })
+      });
+    }else{
+      if (!_.isEmpty(q))
+        filter['where'] = { name: { like: `.*${q}.*`, options: 'i' }}
+        // filter['include'] = [{pltuPrincipals:['pltu']}, {tambangPrincipals:['tambang']}, {jettyPrincipals:['jetty']}]
+      return this.pltuApi.find(filter).map((data: any) => {
+        return data.map(entry => {
+          // console.log(entry);
+          return {
+            name: entry.name,
+            value: entry.id
+          }
+        })
+      });
+    }    
+  }
+
+  getTambang = (q?) => {
+    let filter = {
+      limit: 10
+    }
+
+    if(this.fg.get('jenisKontrak').value == 'cif' && this.referensiKontrak){
+      if (!_.isEmpty(q))
+        console.log(this.referensiKontrak.id);
+        filter['where'] = { referensiKontrakId: this.referensiKontrak.id}
+        filter['include'] = {relation:'tambang', scope: {where:{ name: { like: `.*${q}.*`, options: 'i' }}}}
+      return this.kontrakTambangApi.find(filter).map((data: any) => {
+        console.log(data);
+        return data.map((entry) => {
+          if(entry.tambang){
+            return {
+              name: entry.tambang.name,
+              value: entry.tambang.id
+            }
+          }
+        })
+      });
+    }else{
+      if (!_.isEmpty(q))
+        filter['where'] = { name: { like: `.*${q}.*`, options: 'i' }}
+      return this.tambangApi.find(filter).map((data: any) => {
+        return data.map(entry => {
+          // console.log(entry);
+          return {
+            name: entry.name,
+            value: entry.id
+          }
+        })
+      });
+    }    
+  }
+
+  getJetty = (q?) => {
+    let filter = {
+      limit: 10
+    }
+
+    if(this.fg.get('jenisKontrak').value == 'cif' && this.referensiKontrak){
+      if (!_.isEmpty(q))
+        console.log(this.referensiKontrak.id);
+        filter['where'] = { referensiKontrakId: this.referensiKontrak.id}
+        filter['include'] = {relation:'jetty', scope: {where:{ name: { like: `.*${q}.*`, options: 'i' }}}}
+      return this.kontrakJettyApi.find(filter).map((data: any) => {
+        console.log(data);
+        return data.map((entry) => {
+          if(entry.jetty){
+            return {
+              name: entry.jetty.name,
+              value: entry.jetty.id
+            }
+          }
+        })
+      });
+    }else{
+      if (!_.isEmpty(q))
+        filter['where'] = { name: { like: `.*${q}.*`, options: 'i' }}
+      return this.jettyApi.find(filter).map((data: any) => {
+        return data.map(entry => {
+          // console.log(entry);
+          return {
+            name: entry.name,
+            value: entry.id
+          }
+        })
+      });
+    }    
   }
 
 }

@@ -36,13 +36,16 @@ export class MitraKesanggupanPasokanCreateComponent implements OnInit {
 
     let sumberTambang = model.sumberTambang
 
+    model.jumlah = 0;
+    sumberTambang.map(each=>{
+      model.jumlah += each.jumlahPasokanTambang
+    })
+
     //console.log('tambang', sumberTambang);
     model.userId = this.userApi.getCurrentId()
     model.referensiKontrakId = model.referensiKontrakId.value
-
-    if(model.jenisKontrak != 'cif'){
-      model.jettyId = null;
-    }
+    model.jettyId = model.jettyId.value
+    model.tujuanPltuId = model.tujuanPltuId.value
 
     this.mitraApi.findOne({where: {userId: this.userApi.getCurrentId()}}).subscribe((mitra:any) => {
       model.mitraId = mitra.id
@@ -50,9 +53,10 @@ export class MitraKesanggupanPasokanCreateComponent implements OnInit {
       this.kesanggupanApi.create(model).subscribe((kesanggupan:any) => {
 
         sumberTambang = sumberTambang.map(entry => {
+          console.log(entry);
           return {
             mitraKesanggupanId: kesanggupan.id,
-            tambangId: entry.tambangId,
+            tambangId: entry.tambangId.value,
             jumlah:entry.jumlahPasokanTambang
           }
         })
