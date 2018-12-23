@@ -81,16 +81,14 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
 
   calculateJumlah(val, index){
     var total = 0;
-    console.log(this.st[index], Number(val));
-    if(val && this.st[index]){
+    // console.log(this.fg.value.sumberTambang[index], Number(val));
+    if(val && this.fg.value.sumberTambang[index]){
       this.fg.value.sumberTambang[index].jumlahPasokanTambang = Number(val);
       this.fg.value.sumberTambang.map(each=>{
         total = total + Number(each.jumlahPasokanTambang)
         this.fg.patchValue({jumlah:total})
       })
     }
-
-    return total;
   }
 
   save() {
@@ -117,12 +115,14 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
       tambangId: [null, [Validators.required]],
       jumlahPasokanTambang: [null, [Validators.required]]
     }))
-    console.log(sumberTambang);
+    // console.log(sumberTambang);
   }
 
   delTambang(i, fg) {
-    this.calculateJumlah(0,i)
     const sumberTambang = fg.get('sumberTambang') as FormArray
+    this.fg.patchValue({jumlah:(this.fg.value.jumlah - Number(fg.value.sumberTambang[i].jumlahPasokanTambang))});
+    // console.log();
+    sumberTambang.at(i).patchValue({jumlahPasokanTambang:null, tambangId:null})
     sumberTambang.removeAt(i)
   }
 
