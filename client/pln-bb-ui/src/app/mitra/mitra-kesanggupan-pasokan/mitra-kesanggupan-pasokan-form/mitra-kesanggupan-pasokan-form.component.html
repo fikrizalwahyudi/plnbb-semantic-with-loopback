@@ -9,26 +9,39 @@
         <h5 class="ui dividing header"> Detail Kesanggupan Pasokan</h5>
         <div class="required field">
           <label>Referensi Kontrak</label>
+          <div class="ui fluid search normal selection dropdown"
+               uiAsyncDropdown
+               [values]="getKontrak"
+               placeholder="Select No Kontrak"
+               (select)="onSelectKontrak($event)"
+               formControlName="referensiKontrakId">
+            <input type="hidden">
+            <i class="dropdown icon"></i>
+            <div class="default text">Select Mitra</div>
+            <div class="menu"></div>
+          </div>
+        </div>
+        <div class="required field">
+          <label>Jenis Kontrak</label>
           <select class="ui dropdown"
-                  formControlName="referensiKontrakId"
-                  (select)="onSelectKontrak($event)"
-                  uiDropDown
-                  [values]="daftarKontrak"
-                  placeholder="Pilih Kontrak">
-
+                  formControlName="jenisKontrak">
+            <option [value]="null" disabled >Pilih Jenis Kontrak</option>
+            <option value="cif">CIF</option>
+            <option value="fob">FOB</option>
           </select>
         </div>
         <div class="required field">
           <label>Tujuan PLTU</label>
-          <select class="ui dropdown"
-                  formControlName="tujuanPltuId"
-                  uiDropDown>
-            <option value=""
-                    disabled
-                    hidden>Pilih PLTU</option>
-            <option *ngFor="let item of pltus; let index = index"
-                    [value]="item.id">{{item.name}}</option>
-          </select>
+          <div class="ui fluid search normal selection dropdown"
+               uiAsyncDropdown
+               [values]="getPltu"
+               placeholder="Select PLTU"
+               formControlName="tujuanPltuId">
+            <input type="hidden">
+            <i class="dropdown icon"></i>
+            <div class="default text">Select PLTU</div>
+            <div class="menu"></div>
+          </div>
         </div>
         <div class="required field">
           <label>Tgl. Pengiriman</label>
@@ -45,29 +58,39 @@
         <div class="required field">
           <label>Mode Pengiriman</label>
           <select class="ui dropdown"
-                  formControlName="mode"
-                  uiDropDown>
-            <option value=""
-                    disabled
-                    hidden>Pilih Mode</option>
+                  formControlName="mode">
+            <option [value]="null" disabled >Pilih Mode Pengiriman</option>
             <option value="tongkang">Tongkang</option>
             <option value="vessels">Vessels</option>
             <option value="trucking">Trucking</option>
           </select>
         </div>
         <div class="required field">
-          <label>Jenis Kontrak</label>
+          <label>Jetty</label>
+          <div class="ui fluid search normal selection dropdown"
+               uiAsyncDropdown
+               [values]="getJetty"
+               placeholder="Select Jetty"
+               formControlName="jettyId">
+            <input type="hidden">
+            <i class="dropdown icon"></i>
+            <div class="default text">Select Jetty</div>
+            <div class="menu"></div>
+          </div>
+        </div>
+        <!-- <div class="required field">
+          <label>Jetty</label>
           <select class="ui dropdown"
-                  formControlName="jenisKontrak"
+                  formControlName="jettyId"
                   uiDropDown>
             <option value=""
                     disabled
-                    hidden>Pilih Jenis Kontrak</option>
-            <option value="cif">CIF</option>
-            <option value="fob">FOB</option>
+                    hidden>Pilih Jetty</option>
+            <option *ngFor="let item of jettys; let index = index"
+                    [value]="item.id">{{item.name}}</option>
           </select>
-        </div>
-        <div class="required field" *ngIf="fg.value.jenisKontrak == 'cif'">
+        </div> -->
+        <!-- <div class="required field" *ngIf="fg.value.jenisKontrak == 'cif'">
           <label>Jetty</label>
           <div class="ui fluid search normal selection dropdown"
                 uiSearchDropdown
@@ -81,15 +104,12 @@
             <div class="menu">
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="required field">
           <label>Jenis Batubara</label>
           <select class="ui dropdown"
-                  formControlName="jenisBatubara"
-                  uiDropDown>
-            <option value=""
-                    disabled
-                    hidden>Pilih Jenis Batubara</option>
+                  formControlName="jenisBatubara">
+            <option [value]="null" disabled >Pilih Jenis Batubara</option>
             <option value="lrc">LRC</option>
             <option value="mrc">MRC</option>
           </select>
@@ -98,7 +118,8 @@
           <label>Jumlah (MT)</label>
           <input type="text"
                   placeholder="Jumlah Tonnase"
-                  formControlName="jumlah">
+                  formControlName="jumlah" 
+                  disabled>
         </div>
         <div class="required field">
           <label>Harga (Ribu)</label>
@@ -126,62 +147,6 @@
       <form [formGroup]="fg"
             (ngSubmit)="save()"
             class="ui form">
-        <h5 class="ui dividing header">Spesifikasi Batubara</h5>
-        <div class="ui two column grid">
-          <div class="column"> 
-            <div class="required field">
-              <label>GCV</label>
-              <input type="text"
-                    placeholder="GCV"
-                    formControlName="gcv">
-            </div>
-            <div class="required field">
-              <label>ASH</label>
-              <input type="text"
-                    placeholder="ASH"
-                    formControlName="ash">
-            </div>
-            <div class="required field">
-              <label>HGI</label>
-              <input type="text"
-                    placeholder="HGI"
-                    formControlName="hgi">
-            </div>
-            <div class="required field">
-              <label>70mm (%)</label>
-              <input type="text"
-                    placeholder="70mm (%)"
-                    formControlName="size1">
-            </div>
-          </div>
-          <div class="column"> 
-            <div class="required field">
-              <label>TM</label>
-              <input type="text"
-                    placeholder="TM"
-                    formControlName="tm">
-            </div>
-            <div class="required field">
-              <label>TS</label>
-              <input type="text"
-                    placeholder="TS"
-                    formControlName="ts">
-            </div>
-            <div class="required field">
-              <label>IDT</label>
-              <input type="text"
-                    placeholder="IDT"
-                    formControlName="idt">
-            </div>
-            <div class="required field">
-              <label>2.38mm</label>
-              <input type="text"
-                    placeholder="2.38mm"
-                    formControlName="size2">
-            </div>
-          </div>
-          
-        </div>
         <h5 class="ui dividing header">Sumber Tambang</h5>
         <div class="column">
           <div class="required field">
@@ -190,7 +155,7 @@
                 *ngFor="let itemTambang of sumberTambang.controls; let i=index; let first = first; let last = last"
                 [formGroup]="itemTambang">
               <div class="field">
-                <div class="required field">
+                <!-- <div class="required field">
                   <select class="ui dropdown"
                           formControlName="tambangId"
                           uiDropDown>
@@ -200,12 +165,24 @@
                     <option *ngFor="let item of tambangs; let index = index"
                             [value]="item.id">{{item.name}}</option>
                   </select>
+                </div> -->
+                <div class="required field">
+                  <div class="ui fluid search normal selection dropdown"
+                        uiAsyncDropdown
+                        [values]="getTambang"
+                        placeholder="Select Tambang"
+                        formControlName="tambangId">
+                    <input type="hidden">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">Select Tambang</div>
+                    <div class="menu"></div>
+                  </div>
                 </div>
               </div>
               <div class="field">
                 <div class="ui action input">
-                  <input type="text"
-                          placeholder="Jumlah" formControlName="jumlahPasokanTambang">
+                  <input type="number"
+                          (ngModelChange)="calculateJumlah($event, i)" [(ngModel)]="st[i]" placeholder="Jumlah" formControlName="jumlahPasokanTambang">
                   <button *ngIf="last"
                           class="ui icon button"
                           (click)="addTambang(fg)">

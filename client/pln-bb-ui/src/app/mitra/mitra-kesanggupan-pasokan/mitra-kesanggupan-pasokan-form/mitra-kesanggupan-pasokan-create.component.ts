@@ -1,10 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MitraApi } from '../../../shared/sdk/services/custom/Mitra';
-import { Mitra } from '../../../shared/sdk/models/Mitra';
 import { UserApi } from '../../../shared/sdk/services/custom/User';
-import { ReferensiKontrakApi } from '../../../shared/sdk/services/custom/ReferensiKontrak';
-import { ReferensiKontrakPltuApi } from '../../../shared/sdk/services/custom/ReferensiKontrakPltu';
 import { MitraKesanggupanApi } from '../../../shared/sdk/services/custom/MitraKesanggupan';
 import { MitraKesanggupanPasokanFormComponent } from './mitra-kesanggupan-pasokan-form.component';
 
@@ -24,8 +21,6 @@ export class MitraKesanggupanPasokanCreateComponent implements OnInit {
     private router:Router,
     private mitraApi: MitraApi,
     private userApi:UserApi,
-    private kontrakApi:ReferensiKontrakApi,
-    private kontrakPltuApi:ReferensiKontrakPltuApi,
     private kesanggupanApi:MitraKesanggupanApi
   ) { }
 
@@ -41,21 +36,16 @@ export class MitraKesanggupanPasokanCreateComponent implements OnInit {
 
     let sumberTambang = model.sumberTambang
 
-    if(model.jetty){
-      model.jettyId = model.jetty.value
-      delete model['jetty']
-    }else{
-      delete model['jetty']
-    }
+    model.jumlah = 0;
+    sumberTambang.map(each=>{
+      model.jumlah += each.jumlahPasokanTambang
+    })
 
     //console.log('tambang', sumberTambang);
-
     model.userId = this.userApi.getCurrentId()
-    model.tipe = model.jenisKontrak
-    model.jenis = model.jenisBatubara
-
-    delete model['jenisKontrak']
-    delete model['jenisBatubara']
+    model.referensiKontrakId = model.referensiKontrakId.value
+    model.jettyId = model.jettyId.value
+    model.tujuanPltuId = model.tujuanPltuId.value
 
     this.mitraApi.findOne({where: {userId: this.userApi.getCurrentId()}}).subscribe((mitra:any) => {
       model.mitraId = mitra.id
@@ -63,9 +53,10 @@ export class MitraKesanggupanPasokanCreateComponent implements OnInit {
       this.kesanggupanApi.create(model).subscribe((kesanggupan:any) => {
 
         sumberTambang = sumberTambang.map(entry => {
+          console.log(entry);
           return {
             mitraKesanggupanId: kesanggupan.id,
-            tambangId: entry.tambangId,
+            tambangId: entry.tambangId.value,
             jumlah:entry.jumlahPasokanTambang
           }
         })

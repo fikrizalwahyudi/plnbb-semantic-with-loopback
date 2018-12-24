@@ -3,20 +3,20 @@ import { Injectable } from '@angular/core';
 import { User } from '../../models/User';
 import { RoleMapping } from '../../models/RoleMapping';
 import { Role } from '../../models/Role';
-import { Mitra } from '../../models/Mitra';
 import { Pltu } from '../../models/Pltu';
+import { Mitra } from '../../models/Mitra';
 import { LoadingRealisasiKirim } from '../../models/LoadingRealisasiKirim';
 import { Locations } from '../../models/Locations';
 import { Tambang } from '../../models/Tambang';
-import { ReferensiKontrak } from '../../models/ReferensiKontrak';
+import { ReferensiKontrakJetty } from '../../models/ReferensiKontrakJetty';
 import { ReferensiKontrakMitra } from '../../models/ReferensiKontrakMitra';
 import { ReferensiKontrakPltu } from '../../models/ReferensiKontrakPltu';
 import { ReferensiKontrakTambang } from '../../models/ReferensiKontrakTambang';
-import { MitraKesanggupan } from '../../models/MitraKesanggupan';
+import { ReferensiKontrak } from '../../models/ReferensiKontrak';
 import { MitraKesanggupanTambang } from '../../models/MitraKesanggupanTambang';
+import { MitraKesanggupan } from '../../models/MitraKesanggupan';
 import { PlnRealisasi } from '../../models/PlnRealisasi';
 import { Jetty } from '../../models/Jetty';
-import { ReferensiKontrakJetty } from '../../models/ReferensiKontrakJetty';
 import { PlnRencana } from '../../models/PlnRencana';
 import { PlnRencanaPasokan } from '../../models/PlnRencanaPasokan';
 import { MitraShippingOrder } from '../../models/MitraShippingOrder';
@@ -34,20 +34,20 @@ export class SDKModels {
     User: User,
     RoleMapping: RoleMapping,
     Role: Role,
-    Mitra: Mitra,
     Pltu: Pltu,
+    Mitra: Mitra,
     LoadingRealisasiKirim: LoadingRealisasiKirim,
     Locations: Locations,
     Tambang: Tambang,
-    ReferensiKontrak: ReferensiKontrak,
+    ReferensiKontrakJetty: ReferensiKontrakJetty,
     ReferensiKontrakMitra: ReferensiKontrakMitra,
     ReferensiKontrakPltu: ReferensiKontrakPltu,
     ReferensiKontrakTambang: ReferensiKontrakTambang,
-    MitraKesanggupan: MitraKesanggupan,
+    ReferensiKontrak: ReferensiKontrak,
     MitraKesanggupanTambang: MitraKesanggupanTambang,
+    MitraKesanggupan: MitraKesanggupan,
     PlnRealisasi: PlnRealisasi,
     Jetty: Jetty,
-    ReferensiKontrakJetty: ReferensiKontrakJetty,
     PlnRencana: PlnRencana,
     PlnRencanaPasokan: PlnRencanaPasokan,
     MitraShippingOrder: MitraShippingOrder,

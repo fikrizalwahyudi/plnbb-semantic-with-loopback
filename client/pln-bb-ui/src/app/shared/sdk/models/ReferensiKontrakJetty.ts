@@ -1,7 +1,7 @@
 /* tslint:disable */
 import {
-  Jetty,
-  ReferensiKontrak
+  ReferensiKontrak,
+  Jetty
 } from '../index';
 
 declare var Object: any;
@@ -9,16 +9,16 @@ export interface ReferensiKontrakJettyInterface {
   "referensiKontrakId"?: any;
   "jettyId"?: any;
   "id"?: any;
-  jetty?: Jetty;
   referensiKontrak?: ReferensiKontrak;
+  jetty?: Jetty;
 }
 
 export class ReferensiKontrakJetty implements ReferensiKontrakJettyInterface {
   "referensiKontrakId": any = <any>null;
   "jettyId": any = <any>null;
   "id": any = <any>null;
-  jetty: Jetty = null;
   referensiKontrak: ReferensiKontrak = null;
+  jetty: Jetty = null;
   constructor(data?: ReferensiKontrakJettyInterface) {
     Object.assign(this, data);
   }
@@ -66,20 +66,20 @@ export class ReferensiKontrakJetty implements ReferensiKontrakJettyInterface {
         },
       },
       relations: {
-        jetty: {
-          name: 'jetty',
-          type: 'Jetty',
-          model: 'Jetty',
-          relationType: 'belongsTo',
-                  keyFrom: 'jettyId',
-          keyTo: 'id'
-        },
         referensiKontrak: {
           name: 'referensiKontrak',
           type: 'ReferensiKontrak',
           model: 'ReferensiKontrak',
           relationType: 'belongsTo',
                   keyFrom: 'referensiKontrakId',
+          keyTo: 'id'
+        },
+        jetty: {
+          name: 'jetty',
+          type: 'Jetty',
+          model: 'Jetty',
+          relationType: 'belongsTo',
+                  keyFrom: 'jettyId',
           keyTo: 'id'
         },
       }

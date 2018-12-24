@@ -21,7 +21,7 @@ export class AsyncDropdownDirective implements ControlValueAccessor {
   @Output('select') onChange = new EventEmitter()
 
 	propagateChange
-	selected
+	selected:any
 
   constructor(private el:ElementRef) { 
     //console.log('async drospdown initiated')
@@ -38,11 +38,11 @@ export class AsyncDropdownDirective implements ControlValueAccessor {
 						callback({
 							success: true,
 							results: data.filter(entry => {
-								if(entry.value === this.selected.value)
+								if(this.selected != undefined){
+									if(entry.value === this.selected.value)
 									entry.selected = true
-
+								}
 								//console.log(entry)
-
 								return entry
 							})
 						})

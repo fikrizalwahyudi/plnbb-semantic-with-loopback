@@ -41,27 +41,31 @@ import { ShippingModel } from "./models/shipping.model";
 	],
 
 	models: [
-		MitraModel,
 		PltuModel,
+		MitraModel,
 		LoadingRealisasiKirimModel,
 		LocationsModel,
 		TambangModel,
-		ReferensiKontrakModel,
+		ReferensiKontrakJettyModel,
 		ReferensiKontrakMitraModel,
 		ReferensiKontrakPltuModel,
 		ReferensiKontrakTambangModel,
-		MitraKesanggupanModel,
+		ReferensiKontrakModel,
 		MitraKesanggupanTambangModel,
+		MitraKesanggupanModel,
 		PlnRealisasiModel,
 		JettyModel,
-		ReferensiKontrakJettyModel,
 		PlnRencanaModel,
 		PlnRencanaPasokanModel,
 		MitraShippingOrderModel,
 		MitraShippingInstructionRequestModel,
 		ShippingInstructionModel,
 		ShippingInstructionRevisionModel,
+<<<<<<< HEAD
 		ShippingModel
+=======
+		
+>>>>>>> 2f6190bde87867eb1aecc3107e40d91248217074
 	]
 })
 export class MainModule extends Module {

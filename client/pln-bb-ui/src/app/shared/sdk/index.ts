@@ -51,20 +51,20 @@ import { RealTime } from './services/core/real.time';
 import { UserApi } from './services/custom/User';
 import { RoleMappingApi } from './services/custom/RoleMapping';
 import { RoleApi } from './services/custom/Role';
-import { MitraApi } from './services/custom/Mitra';
 import { PltuApi } from './services/custom/Pltu';
+import { MitraApi } from './services/custom/Mitra';
 import { LoadingRealisasiKirimApi } from './services/custom/LoadingRealisasiKirim';
 import { LocationsApi } from './services/custom/Locations';
 import { TambangApi } from './services/custom/Tambang';
-import { ReferensiKontrakApi } from './services/custom/ReferensiKontrak';
+import { ReferensiKontrakJettyApi } from './services/custom/ReferensiKontrakJetty';
 import { ReferensiKontrakMitraApi } from './services/custom/ReferensiKontrakMitra';
 import { ReferensiKontrakPltuApi } from './services/custom/ReferensiKontrakPltu';
 import { ReferensiKontrakTambangApi } from './services/custom/ReferensiKontrakTambang';
-import { MitraKesanggupanApi } from './services/custom/MitraKesanggupan';
+import { ReferensiKontrakApi } from './services/custom/ReferensiKontrak';
 import { MitraKesanggupanTambangApi } from './services/custom/MitraKesanggupanTambang';
+import { MitraKesanggupanApi } from './services/custom/MitraKesanggupan';
 import { PlnRealisasiApi } from './services/custom/PlnRealisasi';
 import { JettyApi } from './services/custom/Jetty';
-import { ReferensiKontrakJettyApi } from './services/custom/ReferensiKontrakJetty';
 import { PlnRencanaApi } from './services/custom/PlnRencana';
 import { PlnRencanaPasokanApi } from './services/custom/PlnRencanaPasokan';
 import { MitraShippingOrderApi } from './services/custom/MitraShippingOrder';
@@ -105,20 +105,20 @@ export class SDKBrowserModule {
         UserApi,
         RoleMappingApi,
         RoleApi,
-        MitraApi,
         PltuApi,
+        MitraApi,
         LoadingRealisasiKirimApi,
         LocationsApi,
         TambangApi,
-        ReferensiKontrakApi,
+        ReferensiKontrakJettyApi,
         ReferensiKontrakMitraApi,
         ReferensiKontrakPltuApi,
         ReferensiKontrakTambangApi,
-        MitraKesanggupanApi,
+        ReferensiKontrakApi,
         MitraKesanggupanTambangApi,
+        MitraKesanggupanApi,
         PlnRealisasiApi,
         JettyApi,
-        ReferensiKontrakJettyApi,
         PlnRencanaApi,
         PlnRencanaPasokanApi,
         MitraShippingOrderApi,

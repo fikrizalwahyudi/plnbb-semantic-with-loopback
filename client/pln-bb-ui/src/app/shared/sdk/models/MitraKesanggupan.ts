@@ -2,8 +2,8 @@
 import {
   ReferensiKontrak,
   Pltu,
-  Mitra,
   MitraKesanggupanTambang,
+  Mitra,
   Jetty
 } from '../index';
 
@@ -20,21 +20,13 @@ export interface MitraKesanggupanInterface {
   "jenisBatubara"?: string;
   "jettyId"?: any;
   "lock"?: boolean;
-  "gcv"?: number;
-  "tm"?: number;
-  "ash"?: number;
-  "ts"?: number;
-  "hgi"?: number;
-  "idt"?: number;
-  "size1"?: number;
-  "size2"?: number;
   "userId"?: any;
   "mitraId"?: any;
   "id"?: any;
   referensiKontrak?: ReferensiKontrak;
   tujuanPltu?: Pltu;
-  mitra?: Mitra;
   sumberTambang?: MitraKesanggupanTambang[];
+  mitra?: Mitra;
   jetty?: Jetty;
 }
 
@@ -50,21 +42,13 @@ export class MitraKesanggupan implements MitraKesanggupanInterface {
   "jenisBatubara": string = '';
   "jettyId": any = <any>null;
   "lock": boolean = false;
-  "gcv": number = 0;
-  "tm": number = 0;
-  "ash": number = 0;
-  "ts": number = 0;
-  "hgi": number = 0;
-  "idt": number = 0;
-  "size1": number = 0;
-  "size2": number = 0;
   "userId": any = <any>null;
   "mitraId": any = <any>null;
   "id": any = <any>null;
   referensiKontrak: ReferensiKontrak = null;
   tujuanPltu: Pltu = null;
-  mitra: Mitra = null;
   sumberTambang: MitraKesanggupanTambang[] = null;
+  mitra: Mitra = null;
   jetty: Jetty = null;
   constructor(data?: MitraKesanggupanInterface) {
     Object.assign(this, data);
@@ -143,38 +127,6 @@ export class MitraKesanggupan implements MitraKesanggupanInterface {
           name: 'lock',
           type: 'boolean'
         },
-        "gcv": {
-          name: 'gcv',
-          type: 'number'
-        },
-        "tm": {
-          name: 'tm',
-          type: 'number'
-        },
-        "ash": {
-          name: 'ash',
-          type: 'number'
-        },
-        "ts": {
-          name: 'ts',
-          type: 'number'
-        },
-        "hgi": {
-          name: 'hgi',
-          type: 'number'
-        },
-        "idt": {
-          name: 'idt',
-          type: 'number'
-        },
-        "size1": {
-          name: 'size1',
-          type: 'number'
-        },
-        "size2": {
-          name: 'size2',
-          type: 'number'
-        },
         "userId": {
           name: 'userId',
           type: 'any'
@@ -205,14 +157,6 @@ export class MitraKesanggupan implements MitraKesanggupanInterface {
                   keyFrom: 'tujuanPltuId',
           keyTo: 'id'
         },
-        mitra: {
-          name: 'mitra',
-          type: 'Mitra',
-          model: 'Mitra',
-          relationType: 'belongsTo',
-                  keyFrom: 'mitraId',
-          keyTo: 'id'
-        },
         sumberTambang: {
           name: 'sumberTambang',
           type: 'MitraKesanggupanTambang[]',
@@ -220,6 +164,14 @@ export class MitraKesanggupan implements MitraKesanggupanInterface {
           relationType: 'hasMany',
                   keyFrom: 'id',
           keyTo: 'mitraKesanggupanId'
+        },
+        mitra: {
+          name: 'mitra',
+          type: 'Mitra',
+          model: 'Mitra',
+          relationType: 'belongsTo',
+                  keyFrom: 'mitraId',
+          keyTo: 'id'
         },
         jetty: {
           name: 'jetty',
