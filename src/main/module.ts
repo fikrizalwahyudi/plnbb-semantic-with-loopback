@@ -61,11 +61,7 @@ import { ShippingModel } from "./models/shipping.model";
 		MitraShippingInstructionRequestModel,
 		ShippingInstructionModel,
 		ShippingInstructionRevisionModel,
-<<<<<<< HEAD
 		ShippingModel
-=======
-		
->>>>>>> 2f6190bde87867eb1aecc3107e40d91248217074
 	]
 })
 export class MainModule extends Module {
