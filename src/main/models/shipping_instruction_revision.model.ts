@@ -17,7 +17,10 @@ export class ShippingInstructionRevisionDao extends PersistedDao
 	dao: ShippingInstructionRevisionDao,
 	dataSource: 'plnbbmongodb',
 	settings: {
-		plural: 'shipping_instruction',
+		plural: 'shipping_instruction_revision',
+		mongodb: {
+      allowExtendedOperators: true
+    },
 		idInjection: true,
 		forceId: false,
 		mixins: {
@@ -35,7 +38,7 @@ export class ShippingInstructionRevisionModel extends PersistedModel {
 	keterangan: string
 
 	@Property('number')
-	noRevisi: Date
+	noRevisi: number
 
 	@Property('date')
 	tglRevisi: Date

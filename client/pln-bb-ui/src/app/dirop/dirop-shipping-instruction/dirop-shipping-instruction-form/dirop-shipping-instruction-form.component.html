@@ -18,18 +18,51 @@
 </div>
 
 <ui-modal-block #approveModal
-                (complete)="complete()"
-                [hideActions]="true">
-
+                (complete)="doComplete()"
+                [hideActions]="true"
+                size="mini">
+  <form class="ui form"
+        [formGroup]="approveFg"
+        (ngSubmit)="doApprove()">
+    <div class="field">
+      <label>Password</label>
+      <input type="password" formControlName="pin">
+    </div>
+    <div class="right aligned inline field">
+      <button class="ui red button"
+              type="button"
+              (click)="doApprove(true)">Cancel</button>
+      <button class="ui primary button"
+              type="submit"
+              [disabled]="!approveFg.valid">Submit</button>
+    </div>
+  </form>
 </ui-modal-block>
 
 <ui-modal-block #rejectModal
-                (complete)="complete()"
-                [hideActions]="true">
-  <div class="ui form">
+                (complete)="doComplete()"
+                [hideActions]="true"
+                size="mini">
+  <form class="ui form"
+        [formGroup]="rejectFg"
+        (ngSubmit)="doReject()">
     <div class="field">
       <label>Keterangan</label>
-      <textarea></textarea>
+      <textarea formControlName="keterangan"></textarea>
     </div>
-  </div>
+    <div class="right aligned inline field">
+      <ng-container *ngIf="!submitting">
+        <button class="ui red button"
+        type="button"
+        (click)="doReject(true)">Cancel</button>
+        <button class="ui primary button"
+                type="submit"
+                [disabled]="!rejectFg.valid">Submit</button>
+      </ng-container>
+      <ng-container *ngIf="submitting">
+        <button class="ui red disabled button" type="cancel">Cancel</button>
+        <button class="ui primary disabled loading button" type="button">Loading</button>
+      </ng-container>
+    </div>
+  </form>
 </ui-modal-block>

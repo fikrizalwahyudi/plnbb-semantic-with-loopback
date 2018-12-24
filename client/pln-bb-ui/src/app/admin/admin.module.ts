@@ -48,10 +48,6 @@ import { MasterReferensiKontrakFormComponent } from './master-referensi-kontrak/
 import { MasterReferensiKontrakBrowseComponent } from './master-referensi-kontrak/master-referensi-kontrak-browse/master-referensi-kontrak-browse.component';
 import { MasterReferensiKontrakCreateComponent } from './master-referensi-kontrak/master-referensi-kontrak-form/master-referensi-kontrak-create.component';
 import { MasterReferensiKontrakEditComponent } from './master-referensi-kontrak/master-referensi-kontrak-form/master-referensi-kontrak-edit.component';
-import { MasterUserMitraComponent } from './master-user-mitra/master-user-mitra.component';
-import { MasterUserMitraBrowseComponent } from './master-user-mitra/master-user-mitra-browse/master-user-mitra-browse.component';
-import { MasterUserMitraFormComponent } from './master-user-mitra/master-user-mitra-form/master-user-mitra-form.component';
-import { MasterUserMitraCreateComponent } from './master-user-mitra/master-user-mitra-form/master-user-mitra-create.component';
 import { MasterReferensiKontrakPltuComponent } from './master-referensi-kontrak/master-referensi-kontrak-pltu/master-referensi-kontrak-pltu.component';
 import { MasterReferensiKontrakTambangComponent } from './master-referensi-kontrak/master-referensi-kontrak-tambang/master-referensi-kontrak-tambang.component';
 import { MasterJettyComponent } from './master-jetty/master-jetty.component';

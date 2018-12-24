@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { DiropShippingInstructionBrowseComponent } from './dirop-shipping-instruction/dirop-shipping-instruction-browse/dirop-shipping-instruction-browse.component';
 import { DiropShippingInstructionFormComponent } from './dirop-shipping-instruction/dirop-shipping-instruction-form/dirop-shipping-instruction-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
   { path: '', component: DiropComponent, children: [
@@ -24,7 +25,9 @@ const appRoutes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(appRoutes),
-    SharedModule
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   declarations: [DiropComponent, DiropShippingInstructionComponent, DiropShippingInstructionBrowseComponent, DiropShippingInstructionFormComponent],
   exports: [DiropComponent, DiropShippingInstructionComponent, DiropShippingInstructionBrowseComponent, DiropShippingInstructionFormComponent]

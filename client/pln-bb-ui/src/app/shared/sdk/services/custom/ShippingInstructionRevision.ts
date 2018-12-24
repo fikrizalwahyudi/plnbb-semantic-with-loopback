@@ -49,7 +49,7 @@ export class ShippingInstructionRevisionApi extends BaseLoopBackApi {
   public getSi(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping_instruction/:id/si";
+    "/shipping_instruction_revision/:id/si";
     let _routeParams: any = {
       id: id
     };
@@ -79,7 +79,7 @@ export class ShippingInstructionRevisionApi extends BaseLoopBackApi {
   public patchOrCreate(data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping_instruction";
+    "/shipping_instruction_revision";
     let _routeParams: any = {};
     let _postBody: any = {
       data: data
@@ -110,7 +110,7 @@ export class ShippingInstructionRevisionApi extends BaseLoopBackApi {
   public patchAttributes(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping_instruction/:id";
+    "/shipping_instruction_revision/:id";
     let _routeParams: any = {
       id: id
     };

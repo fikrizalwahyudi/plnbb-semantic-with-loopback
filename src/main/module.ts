@@ -24,14 +24,20 @@ import { MitraShippingOrderModel } from './models/mitra_shipping_order.model';
 import { ReferensiKontrakJettyModel } from './models/referensi_kontrak_jetty.model';
 import { MitraShippingInstructionRequestModel } from './models/mitra_shipping_instruction_request.model';
 import { ShippingInstructionRevisionModel } from './models/shipping_instruction_revision.model';
+import { SignPdfMiddleware } from "./middleware/sign-pdf.middleware";
+import { DownloadPdfMiddleware } from './middleware/download-pdf.middleware';
+import { ShippingModel } from "./models/shipping.model";
 
 @injectable()
 @CommonModule({
+	
 	middleware: [
 		CreateRoleMiddleware,
 		DeleteRoleMiddleware,
 		PatchRoleMiddleware,
-		PrintPdfMiddleware
+		PrintPdfMiddleware,
+		SignPdfMiddleware,
+		DownloadPdfMiddleware
 	],
 
 	models: [
@@ -54,7 +60,8 @@ import { ShippingInstructionRevisionModel } from './models/shipping_instruction_
 		MitraShippingOrderModel,
 		MitraShippingInstructionRequestModel,
 		ShippingInstructionModel,
-		ShippingInstructionRevisionModel
+		ShippingInstructionRevisionModel,
+		ShippingModel
 	]
 })
 export class MainModule extends Module {

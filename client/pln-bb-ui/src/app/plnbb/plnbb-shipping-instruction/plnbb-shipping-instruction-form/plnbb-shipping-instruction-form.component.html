@@ -154,9 +154,29 @@
     </div>
     <div class="column">
       <div class="fullheight fullwidth"
-           style="background: url(assets/paragraph.png)">
+           style="background: url(assets/paragraph.png)"
+           *ngIf="(siRequest ? !siRequest.shippingInstruction : true)">
 
+      </div>
+      <div class="ui form"
+           *ngIf="(siRequest ? siRequest.shippingInstruction : false)">
+        <div class="field">
+          <label>Keterangan Revisi</label>
+          <div class="ui top aligned very relaxed divided list">
+            <div class="item"
+                 *ngFor="let item of daftarRevisi | slice:0:5; let first=first">
+              <div class="right floated content">
+                <div class="description">{{item.tglRevisi | date:'short'}}</div>
+              </div>
+              <i class="exclamation circle icon" [ngClass]="{'red':first}"></i>
+              <div class="content revision">
+                {{item.keterangan}}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </ui-form-block>
+<div class="mb-5"></div>

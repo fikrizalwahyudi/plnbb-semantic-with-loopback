@@ -24,15 +24,32 @@
         <td class="right aligned">{{item.shippingOrder.mitraKesanggupan.jumlah | number}}</td>
         <td class="right aligned">{{item.shippingOrder.mitraKesanggupan.harga | currency:'Rp':undefined:undefined:'id'}}</td>
         <td class="center aligned collapsing">
-          <a [routerLink]="['/plnbb', 'shipping-instruction', item.id, 'grant']" *ngIf="!item.shippingInstruction">
-            <i class="cogs link icon action-icon"></i>
-          </a>
-          <a *ngIf="item.shippingInstruction">
-            <i class="spinner loading icon action-icon"></i>
-          </a>
-          <a>
-            <i class="download icon action-icon disabled"></i>
-          </a>
+          <ng-container *ngIf="!item.shippingInstruction">
+            <a [routerLink]="['/plnbb', 'shipping-instruction', item.id, 'grant']">
+              <i class="cogs link icon action-icon"></i>
+            </a>
+            <a>
+              <i class="download icon action-icon disabled"></i>
+            </a>
+          </ng-container>
+          <ng-container *ngIf="item.shippingInstruction">
+            <a *ngIf="item.shippingInstruction.status == 1">
+              <i class="spinner loading icon action-icon"></i>
+            </a>
+            <a [routerLink]="['/plnbb', 'shipping-instruction', item.id, 'grant']" *ngIf="item.shippingInstruction.status == 2">
+              <i class="cogs link red icon action-icon"></i>
+            </a>
+            <a *ngIf="item.shippingInstruction.status == 3">
+              <i class="cogs disabled icon action-icon"></i>
+            </a>
+
+            <a *ngIf="item.shippingInstruction.status < 3">
+              <i class="download icon action-icon disabled"></i>
+            </a>
+            <a *ngIf="item.shippingInstruction.status == 3" (click)="download(item.shippingInstruction)">
+              <i class="download green link icon action-icon"></i>
+            </a>
+          </ng-container>
         </td>
       </tr>
     </tbody>

@@ -61,6 +61,9 @@ export class ShippingInstructionModel extends PersistedModel {
 	@Property('date')
 	laycanEndDate: Date
 
+	@Property('number')
+	status: number // 0: New Request, 1: Need Approval, 2: Rejected, 3: Approved
+
 	@Relation("belongsTo", "MitraShippingInstructionRequest", "siRequestId")
 	siRequest
 

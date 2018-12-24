@@ -22,5 +22,6 @@ export * from './MitraShippingOrder';
 export * from './MitraShippingInstructionRequest';
 export * from './ShippingInstruction';
 export * from './ShippingInstructionRevision';
+export * from './Shipping';
 export * from './BaseModels';
 export * from './FireLoopRef';

@@ -11,6 +11,7 @@ import { ShippingInstructionApi } from '../../../shared/sdk/services/custom/Ship
 import { ShippingInstruction } from '../../../shared/sdk/models/ShippingInstruction';
 import { Observable } from 'rxjs/Rx';
 import * as _ from 'lodash';
+import { ShippingInstructionRevisionApi } from '../../../shared/sdk/services/custom/ShippingInstructionRevision';
 
 @Component({
   selector: 'app-plnbb-shipping-instruction-form',
@@ -25,9 +26,11 @@ export class PlnbbShippingInstructionFormComponent implements OnInit {
   maxNo = 1
   isCif = false
   siRequest
+  siRevisions
 
   fg: FormGroup;
   dataMitraKesanggupan: MitraKesanggupan;
+  daftarRevisi
   //arrMitraShipping: [Mitra];
   //arrJetty: [Jetty];
   tempDate: Object;
@@ -42,7 +45,8 @@ export class PlnbbShippingInstructionFormComponent implements OnInit {
     private mitraApi: MitraApi,
     private jettyApi: JettyApi,
     private siRequestApi: MitraShippingInstructionRequestApi,
-    private shippingInstructionApi: ShippingInstructionApi
+    private shippingInstructionApi: ShippingInstructionApi,
+    private siRevisionApi: ShippingInstructionRevisionApi
   ) {
     this.fg = this.fb.group({
       no: [1, [Validators.required]],
@@ -55,10 +59,6 @@ export class PlnbbShippingInstructionFormComponent implements OnInit {
       namaTransport: [null, [Validators.required]],
       jettyId: [null, [Validators.required]]
     });
-
-    this.generateNo()
-    //this.jettyObserver = this.getJetty()
-    //this.mitraObserver = this.getMitra()
   }
 
   ngOnInit() {
@@ -68,25 +68,52 @@ export class PlnbbShippingInstructionFormComponent implements OnInit {
       this.siRequestApi.findById(id, { include: [{ 'shippingOrder': { 'mitraKesanggupan': ['jetty', 'mitra'] }}, 'shippingInstruction'] }).subscribe((data: any) => {
         this.siRequest = data
         
-        this.fg.patchValue({
-          laycanStartDate: data.laycanStartDate,
-          laycanEndDate: data.laycanEndDate,
-          namaTransport: data.namaTransport,
-          jettyId: {
-            name: data.shippingOrder.mitraKesanggupan.jetty.name,
-            value: data.shippingOrder.mitraKesanggupan.jetty.id
-          }
-        })
+        if(this.siRequest.shippingInstruction) {
+          this.siRevisionApi.find({where: {siId: data.shippingInstruction.id}, order: ['tglRevisi DESC']}).subscribe(dataRevision => {
+            this.daftarRevisi = dataRevision
+          })
 
-        if (data.shippingOrder.mitraKesanggupan.tipe === 'cif') {
+          //this.fg.patchValue(Object.assign({}, //this.siRequest.shippingInstruction, {jettyId: {}}))
+
+          this.shippingInstructionApi.findById(this.siRequest.shippingInstruction.id, {include: ['transport', 'jetty']}).subscribe((dataSi:any) => {
+            //console.log(dataSi)
+            this.fg.patchValue(Object.assign({}, dataSi, {
+              jettyId: {
+                name: dataSi.jetty.name,
+                value: dataSi.jetty.id
+              },
+              transportId: {
+                name: dataSi.transport.name,
+                value: dataSi.transport.id
+              }
+            }))
+
+            if (data.shippingOrder.mitraKesanggupan.tipe === 'cif') 
+              this.isCif = true
+          })
+        } else {
+          this.generateNo()
+
           this.fg.patchValue({
-            transportId: {
-              name: data.shippingOrder.mitraKesanggupan.mitra.name,
-              value: data.shippingOrder.mitraKesanggupan.mitra.id
+            laycanStartDate: data.laycanStartDate,
+            laycanEndDate: data.laycanEndDate,
+            namaTransport: data.namaTransport,
+            jettyId: {
+              name: data.shippingOrder.mitraKesanggupan.jetty.name,
+              value: data.shippingOrder.mitraKesanggupan.jetty.id
             }
           })
 
-          this.isCif = true
+          if (data.shippingOrder.mitraKesanggupan.tipe === 'cif') {
+            this.fg.patchValue({
+              transportId: {
+                name: data.shippingOrder.mitraKesanggupan.mitra.name,
+                value: data.shippingOrder.mitraKesanggupan.mitra.id
+              }
+            })
+
+            this.isCif = true
+          }
         }
       })
     })
@@ -94,11 +121,12 @@ export class PlnbbShippingInstructionFormComponent implements OnInit {
 
   generateNo() {
     this.shippingInstructionApi.findOne({
-      where: { tahun: new Date().getFullYear() },
+      where: { noTahun: new Date().getFullYear() },
       order: 'no DESC'
     }).subscribe((result: any) => {
-      
+      this.fg.patchValue({no: result.no + 1})
     }, error => {
+      this.fg.patchValue({no: 1})
       //this.errorMsg = error.message
     });
   }
@@ -112,16 +140,34 @@ export class PlnbbShippingInstructionFormComponent implements OnInit {
     model.siRequestId = this.siRequest.id
     model.transportId = model.transportId.value
     model.jettyId = model.jettyId.value
+    model.noTahun = model.noTahun.getFullYear()
 
     //console.log(model)
-    this.shippingInstructionApi.create(model).subscribe(data => {
-      this.submitting = false
 
-      this.router.navigate(['/plnbb', 'shipping-instruction'])
-    }, err => {
-      this.submitting = true
-      this.errorMsg = err.message
-    })
+    if(this.siRequest.shippingInstruction) {
+      model.status = 1
+
+      this.shippingInstructionApi.patchAttributes(this.siRequest.shippingInstruction.id, model).subscribe(data => {
+        this.submitting = false
+  
+        this.router.navigate(['/plnbb', 'shipping-instruction'])
+      }, err => {
+        this.submitting = false
+        this.errorMsg = err.message
+      })
+    } else {
+      model.status = 1
+      this.shippingInstructionApi.create(model).subscribe(data => {
+        this.submitting = false
+  
+        this.router.navigate(['/plnbb', 'shipping-instruction'])
+      }, err => {
+        this.submitting = false
+        this.errorMsg = err.message
+      })
+    }
+
+    //console.log(this.fg.value)
   }
 
   getJetty = (q?) => {

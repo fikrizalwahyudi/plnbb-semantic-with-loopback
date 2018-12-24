@@ -22,15 +22,38 @@
         <td class="right aligned">{{item.mitraKesanggupan.jumlah | number}}</td>
         <td class="right aligned">{{item.mitraKesanggupan.harga | currency:'Rp':undefined:undefined:'id'}}</td>
         <td class="center aligned collapsing">
-          <a *ngIf="!item.lock" [routerLink]="['/mitra', 'shipping-order', item.id, 'request-si']">
-            <i class="upload link icon action-icon"></i>
-          </a>
-          <a *ngIf="item.lock">
-            <i class="spinner loading icon action-icon"></i>
-          </a>
-          <a>
-            <i class="download icon action-icon disabled"></i>
-          </a>
+          <ng-container *ngIf="!item.siRequest">
+            <a [routerLink]="['/mitra', 'shipping-order', item.id, 'request-si']">
+              <i class="upload link icon action-icon"></i>
+            </a>
+            <a>
+              <i class="download icon action-icon disabled"></i>
+            </a>
+          </ng-container>
+          <ng-container *ngIf="item.siRequest">
+            <ng-container *ngIf="!item.siRequest.shippingInstruction">
+              <a>
+                <i class="spinner loading icon action-icon"></i>
+              </a>
+              <a>
+                <i class="download icon action-icon disabled"></i>
+              </a>
+            </ng-container>
+            <ng-container *ngIf="item.siRequest.shippingInstruction">
+              <a *ngIf="item.siRequest.shippingInstruction.status != 3">
+                <i class="spinner loading icon action-icon"></i>
+              </a>
+              <a *ngIf="item.siRequest.shippingInstruction.status == 3">
+                <i class="check circle green icon action-icon"></i>
+              </a>
+              <a *ngIf="item.siRequest.shippingInstruction.status != 3">
+                <i class="download icon action-icon disabled"></i>
+              </a>
+              <a *ngIf="item.siRequest.shippingInstruction.status == 3" (click)="download(item.siRequest.shippingInstruction)">
+                <i class="download green link icon action-icon"></i>
+              </a>
+            </ng-container>
+          </ng-container>
         </td>
       </tr>
     </tbody>

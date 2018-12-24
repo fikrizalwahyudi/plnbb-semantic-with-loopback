@@ -2,7 +2,8 @@
 import {
   MitraKesanggupan,
   PlnRencanaPasokan,
-  Mitra
+  Mitra,
+  MitraShippingInstructionRequest
 } from '../index';
 
 declare var Object: any;
@@ -15,6 +16,7 @@ export interface MitraShippingOrderInterface {
   mitraKesanggupan?: MitraKesanggupan;
   rencanaPasokan?: PlnRencanaPasokan;
   mitra?: Mitra;
+  siRequest?: MitraShippingInstructionRequest;
 }
 
 export class MitraShippingOrder implements MitraShippingOrderInterface {
@@ -26,6 +28,7 @@ export class MitraShippingOrder implements MitraShippingOrderInterface {
   mitraKesanggupan: MitraKesanggupan = null;
   rencanaPasokan: PlnRencanaPasokan = null;
   mitra: Mitra = null;
+  siRequest: MitraShippingInstructionRequest = null;
   constructor(data?: MitraShippingOrderInterface) {
     Object.assign(this, data);
   }
@@ -104,6 +107,14 @@ export class MitraShippingOrder implements MitraShippingOrderInterface {
           relationType: 'belongsTo',
                   keyFrom: 'mitraId',
           keyTo: 'id'
+        },
+        siRequest: {
+          name: 'siRequest',
+          type: 'MitraShippingInstructionRequest',
+          model: 'MitraShippingInstructionRequest',
+          relationType: 'hasOne',
+                  keyFrom: 'id',
+          keyTo: 'shippingOrderId'
         },
       }
     }

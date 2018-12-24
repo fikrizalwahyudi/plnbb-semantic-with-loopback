@@ -1,17 +1,17 @@
 <div class="ui menu">
-  <a class="active item">
+  <a class="item" [routerLink]="['/mitra', 'kesanggupan-pasokan', 'browse', 'available']" routerLinkActive="active" >
     Available
   </a>
-  <a class="item">
+  <a class="item" [routerLink]="['/mitra', 'kesanggupan-pasokan', 'browse', 'inprogress']" routerLinkActive="active">
     In Progress
   </a>
-  <a class="item">
+  <a class="item" [routerLink]="['/mitra', 'kesanggupan-pasokan', 'browse', 'delayed']" routerLinkActive="active">
     Delayed
   </a>
-  <a class="item">
+  <a class="item" [routerLink]="['/mitra', 'kesanggupan-pasokan', 'browse', 'complete']" routerLinkActive="active">
     Complete
   </a>
-  <a class="item">
+  <a class="item" [routerLink]="['/mitra', 'kesanggupan-pasokan', 'browse', 'expired']" routerLinkActive="active">
     Expired
   </a>
   <div class="right menu">
@@ -29,128 +29,5 @@
   </div>
 </div>
 
-<ng-container *ngFor="let item of daftarKesanggupan | keyvalue;">
-  <a class="ui label month-divider">
-    <i class="calendar icon"></i>
-    {{item.key}}
-  </a>
-
-  <div class="ui segment" *ngFor="let itemPltu of item.value | keyvalue">
-    <!-- <div class="ui grid">
-          <div class="three wide column"> -->
-    <h5 class="ui header">
-      <i class="table icon"></i>
-      <div class="content">
-        {{daftarPltu[itemPltu.key].name}}
-        <div class="sub header">{{daftarPltu[itemPltu.key].address}}</div>
-      </div>
-    </h5>
-    <!-- </div>
-          <div class="thirteen wide column"> -->
-    <table class="ui very basic single line compact table">
-      <thead>
-        <tr>
-          <th class="center aligned collapsing">Tanggal</th>
-          <th>Jetty</th>
-          <th>Moda</th>
-          <th>Tipe</th>
-          <th class="right aligned">Jumlah (MT)</th>
-          <th class="right aligned">Harga/MT</th>
-          <th class="center aligned collapsing"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <ng-container *ngFor="let itemEntry of itemPltu.value">
-          <tr>
-            <td class="center top aligned collapsing">
-              <div class="ui blue small label">{{itemEntry.tglPengiriman | date:'dd'}}</div>
-            </td>
-            <td class="column-jetty">{{itemEntry.jetty?.name}}</td>
-            <td>{{itemEntry.mode | uppercase}}</td>
-            <td>{{itemEntry.tipe | uppercase}}</td>
-            <td class="right aligned">{{itemEntry.jumlah | number:undefined:'id'}}</td>
-            <td class="right aligned">{{itemEntry.harga | currency:'Rp':undefined:undefined:'id'}}</td>
-            <td class="center aligned collapsing">
-              <ng-container *ngIf="!itemEntry.lock">
-                <a href="javascript:void(0)"
-                (click)="delete(itemEntry, item.key)">
-                  <i class="trash link icon action-icon"></i>
-                </a>
-                <a [routerLink]="['/mitra', 'kesanggupan-pasokan', itemEntry.id, 'edit']">
-                  <i class="edit link icon action-icon"></i>
-                </a>
-                <a (click)="lock(itemEntry)">
-                  <i class="unlock link red icon action-icon"></i>
-                </a>
-              </ng-container>
-              <ng-container *ngIf="itemEntry.lock">
-                <a>
-                  <i class="trash icon action-icon disabled"></i>
-                </a>
-                <a>
-                  <i class="edit icon action-icon disabled"></i>
-                </a>
-                <a>
-                  <i class="lock icon action-icon green"></i>
-                </a>
-              </ng-container>
-            </td>
-          </tr>
-          <!-- <tr>
-            <td colspan="5"
-                class="right aligned">
-              <div class="ui horizontal list">
-                <div class="item">
-                  <div class="ui grey image small label">
-                    JENIS
-                    <div class="detail">LRC</div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="ui grey image small label">
-                    GCV
-                    <div class="detail">{{itemEntry.gcv | number}}Kcal/Kg</div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="ui grey image small label">
-                    TM
-                    <div class="detail">{{itemEntry.tm | number}}%</div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="ui grey image small label">
-                    ASH
-                    <div class="detail">{{itemEntry.ash | number}}%</div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="ui grey image small label">
-                    TS
-                    <div class="detail">{{itemEntry.ts | number}}%</div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="ui grey image small label">
-                    HGI
-                    <div class="detail">{{itemEntry.hgi | number}}%</div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="ui grey image small label">
-                    IDT
-                    <div class="detail">{{itemEntry.idt | number}}%</div>
-                  </div>
-                </div>
-              </div>
-            </td>
-            <td></td>
-          </tr> -->
-        </ng-container>
-      </tbody>
-    </table>
-    <!-- </div>
-        </div> -->
-  </div>
-</ng-container>
+<router-outlet></router-outlet>
 <div class="mb-5"></div>

@@ -49,8 +49,8 @@ export class ShippingInstructionRevision implements ShippingInstructionRevisionI
   public static getModelDefinition() {
     return {
       name: 'ShippingInstructionRevision',
-      plural: 'shipping_instruction',
-      path: 'shipping_instruction',
+      plural: 'shipping_instruction_revision',
+      path: 'shipping_instruction_revision',
       idName: 'id',
       properties: {
         "keterangan": {

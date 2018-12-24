@@ -9,6 +9,7 @@ declare var $:any;
 })
 export class ModalBlockComponent implements OnInit {
   @Input() hideActions = false
+  @Input() size = 'small'
 
   @Output('deny') onDeny = new EventEmitter()
   @Output('approve') onApprove = new EventEmitter()

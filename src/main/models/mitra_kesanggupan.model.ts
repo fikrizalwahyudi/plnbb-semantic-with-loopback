@@ -54,6 +54,9 @@ export class MitraKesanggupanModel extends PersistedModel
 	mode:string
 
 	@Property('string')
+	tipe: string
+
+	@Property('string')
 	keterangan:string
 
 	@Property('string')

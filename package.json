@@ -15,6 +15,7 @@
     "loopback-connector-postgresql": "^3.4.0",
     "loopback-objectid-mixin": "^1.0.1",
     "loopback-typescript-core": "git+https://github.com/bejorock/loopback-typescript-core.git",
+    "node-signpdf": "^0.3.0",
     "pdfkit": "^0.8.3",
     "ts-node": "^7.0.1",
     "typescript": "^3.2.1",

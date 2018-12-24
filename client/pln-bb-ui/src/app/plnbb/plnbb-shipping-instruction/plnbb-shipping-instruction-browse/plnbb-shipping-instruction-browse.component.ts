@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MitraShippingInstructionRequestApi } from '../../../shared/sdk/services/custom/MitraShippingInstructionRequest';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-plnbb-shipping-instruction-browse',
@@ -21,5 +22,9 @@ export class PlnbbShippingInstructionBrowseComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  download(item) {
+    window.open(`${environment.apiUrl}/pdf/si/${item.id}/download`)
+  } 
 
 }

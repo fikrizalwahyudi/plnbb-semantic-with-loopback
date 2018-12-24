@@ -1,12 +1,16 @@
 import { Middleware } from 'loopback-typescript-core/dist/middleware/base.middleware';
 import { injectable, inject } from 'inversify';
 import { ReactiveApp } from 'loopback-typescript-core';
+import { PltuDao } from '../models/pltu.model';
 
 @injectable()
 export class CreateRoleMiddleware extends Middleware
 {
 	@inject(ReactiveApp)
 	ctx:ReactiveApp
+
+	@inject(PltuDao)
+	pltuDao:PltuDao
 
 	path = '/middleware/roles/:accountId';	
 	protocol = 'post';

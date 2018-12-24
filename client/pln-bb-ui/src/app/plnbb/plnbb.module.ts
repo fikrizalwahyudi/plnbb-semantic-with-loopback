@@ -18,7 +18,7 @@ const appRoutes: Routes = [
   { path: '', component: PlnbbComponent, children: [
     { path: '', redirectTo: 'rencana-pasokan', pathMatch: 'full' },
     
-    { path: 'rencana-pasokan', component: PlnBBRencanaPasokanBrowseComponent, data: { breadcrumb: 'Rakor Pasokan' } },
+    { path: 'rencana-pasokan', component: PlnBBRencanaPasokanBrowseComponent, data: { breadcrumb: 'Rakor Pengiriman' } },
     
     { path: 'shipping-instruction', component: PlnbbShippingInstructionComponent, data: { breadcrumb: 'Shipping Instruction' }, children: [
       { path: '', redirectTo: 'browse', pathMatch: 'full' },

@@ -15,6 +15,6 @@ export class PdfDirective {
 
 	ngOnInit() {
 		//console.log(`${environment.apiUrl}/printPdf/5c17a1cbb351164d4d76daa8`)
-		PDFObject.embed(`http://localhost:3000/printPdf/5c17a1cbb351164d4d76daa8`, this.el.nativeElement)
+		PDFObject.embed(`http://localhost:3000/pdf/si/5c17a1cbb351164d4d76daa8/preview`, this.el.nativeElement)
 	}
 }

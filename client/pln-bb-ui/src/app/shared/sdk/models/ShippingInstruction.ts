@@ -18,6 +18,7 @@ export interface ShippingInstructionInterface {
   "namaTransport"?: string;
   "laycanStartDate"?: Date;
   "laycanEndDate"?: Date;
+  "status"?: number;
   "id"?: any;
   siRequest?: MitraShippingInstructionRequest;
   transport?: Mitra;
@@ -36,6 +37,7 @@ export class ShippingInstruction implements ShippingInstructionInterface {
   "namaTransport": string = '';
   "laycanStartDate": Date = new Date(0);
   "laycanEndDate": Date = new Date(0);
+  "status": number = 0;
   "id": any = <any>null;
   siRequest: MitraShippingInstructionRequest = null;
   transport: Mitra = null;
@@ -113,6 +115,10 @@ export class ShippingInstruction implements ShippingInstructionInterface {
         "laycanEndDate": {
           name: 'laycanEndDate',
           type: 'Date'
+        },
+        "status": {
+          name: 'status',
+          type: 'number'
         },
         "id": {
           name: 'id',

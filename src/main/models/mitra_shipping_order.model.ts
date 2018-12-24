@@ -51,4 +51,7 @@ export class MitraShippingOrderModel extends PersistedModel
 
 	@Relation("belongsTo", "Mitra", "mitraId")
 	mitra
+
+	@Relation("hasOne", "MitraShippingInstructionRequest", "shippingOrderId")
+	siRequest
 }
