@@ -62,6 +62,9 @@ export class ShippingUnloadingModel extends PersistedModel {
     commenceUnloading: Date
     
     @Property('date')
-	completeUnloading: Date
+    completeUnloading: Date
+    
+    @Property('any')
+    shippingId:any
 
 }

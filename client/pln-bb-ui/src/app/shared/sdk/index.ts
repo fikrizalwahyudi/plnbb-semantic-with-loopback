@@ -72,6 +72,7 @@ import { MitraShippingInstructionRequestApi } from './services/custom/MitraShipp
 import { ShippingInstructionApi } from './services/custom/ShippingInstruction';
 import { ShippingInstructionRevisionApi } from './services/custom/ShippingInstructionRevision';
 import { ShippingApi } from './services/custom/Shipping';
+import { ShippingUnloadingApi } from './services/custom/ShippingUnloading';
 /**
 * @module SDKBrowserModule
 * @description
@@ -126,6 +127,7 @@ export class SDKBrowserModule {
         ShippingInstructionApi,
         ShippingInstructionRevisionApi,
         ShippingApi,
+        ShippingUnloadingApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser },
         { provide: SocketDriver, useClass: SocketBrowser }
