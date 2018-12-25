@@ -15,6 +15,7 @@ export interface ShippingUnloadingInterface {
   "commenceUnloading"?: Date;
   "completeUnloading"?: Date;
   "shippingId"?: any;
+  "status"?: number;
   "id"?: any;
 }
 
@@ -32,6 +33,7 @@ export class ShippingUnloading implements ShippingUnloadingInterface {
   "commenceUnloading": Date = new Date(0);
   "completeUnloading": Date = new Date(0);
   "shippingId": any = <any>null;
+  "status": number = 0;
   "id": any = <any>null;
   constructor(data?: ShippingUnloadingInterface) {
     Object.assign(this, data);
@@ -117,6 +119,10 @@ export class ShippingUnloading implements ShippingUnloadingInterface {
         "shippingId": {
           name: 'shippingId',
           type: 'any'
+        },
+        "status": {
+          name: 'status',
+          type: 'number'
         },
         "id": {
           name: 'id',

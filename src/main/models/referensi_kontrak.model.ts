@@ -63,7 +63,7 @@ export class ReferensiKontrakModel extends PersistedModel
 	mitraId:any
 
 	@Property('string')
-	jenisKontrak:string
+	tipe:string
 
 	@Relation("belongsTo", "Mitra", "mitraId")
 	mitra

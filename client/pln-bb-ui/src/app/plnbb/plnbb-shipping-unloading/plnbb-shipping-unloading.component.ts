@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ShippingUnloadingApi } from '../../shared/sdk/services/custom/ShippingUnloading';
+import { ShippingApi } from '../../shared/sdk/services/custom/Shipping';
 
 @Component({
   selector: 'app-plnbb-shipping-unloading',
@@ -20,7 +21,8 @@ export class PlnbbShippingUnloadingComponent implements OnInit {
     private fb:FormBuilder,
     private router:Router,
     private route:ActivatedRoute,
-    private shiipingUnloadingApi:ShippingUnloadingApi
+    private shippingUnloadingApi:ShippingUnloadingApi,
+    private shippingApi:ShippingApi
   ) { 
     this.fg = this.fb.group({
       gcv: [null, [Validators.required]],
@@ -63,16 +65,22 @@ export class PlnbbShippingUnloadingComponent implements OnInit {
 
     let model = this.fg.value
     model.shippingId = this.shippingId
+    model.status = 3
 
-    this.shiipingUnloadingApi.create(model).subscribe(data => {
-      this.submitting = false
-
-      this.router.navigate(['/plnbb', 'monitoring-pengiriman'])
+    this.shippingUnloadingApi.create(model).subscribe(data => {
+      this.shippingApi.patchAttributes(this.shippingId, {status:3}).subscribe(obj=>{
+        this.submitting = false
+        this.router.navigate(['/plnbb', 'monitoring-pengiriman'])
+      })
     }, err => {
       this.submitting = false
       this.errorMsg = err.message
     })
     
+  }
+
+  cancel() {
+    this.router.navigate(['/plnbb', 'monitoring-pengiriman'])
   }
 
 }

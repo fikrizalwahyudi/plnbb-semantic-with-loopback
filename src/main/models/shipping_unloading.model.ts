@@ -67,4 +67,7 @@ export class ShippingUnloadingModel extends PersistedModel {
     @Property('any')
     shippingId:any
 
+    @Property('number')
+    status: number
+
 }

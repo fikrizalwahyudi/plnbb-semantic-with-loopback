@@ -22,6 +22,7 @@ export interface ShippingInterface {
   "moda"?: string;
   "tipe"?: string;
   "jenisBatubara"?: string;
+  "status"?: number;
   "id"?: any;
   mitra?: Mitra;
   transport?: Mitra;
@@ -45,6 +46,7 @@ export class Shipping implements ShippingInterface {
   "moda": string = '';
   "tipe": string = '';
   "jenisBatubara": string = '';
+  "status": number = 0;
   "id": any = <any>null;
   mitra: Mitra = null;
   transport: Mitra = null;
@@ -136,6 +138,10 @@ export class Shipping implements ShippingInterface {
         "jenisBatubara": {
           name: 'jenisBatubara',
           type: 'string'
+        },
+        "status": {
+          name: 'status',
+          type: 'number'
         },
         "id": {
           name: 'id',

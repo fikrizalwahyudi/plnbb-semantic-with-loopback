@@ -24,6 +24,8 @@ export class MasterReferensiKontrakFormComponent implements OnInit {
   errorMsg
   submitting
 
+  isValidation = false
+
   mitraUri = `${environment.apiUrl}/api/mitra`
   searchFilterMitra = {
     where:{
@@ -74,15 +76,16 @@ export class MasterReferensiKontrakFormComponent implements OnInit {
       namaPekerjaan: [null, [Validators.required]],
       tanggalPekerjaan: [new Date(), [Validators.required]],
       mitra: [null, [Validators.required]],
-      pltu: [null, [Validators.required]],
-      jetty: [null, [Validators.required]],
-      tambang: [null, [Validators.required]],
-      jenisKontrak: null
+      pltu: null,
+      jetty: null,
+      tambang: null,
+      tipe: [null, [Validators.required]]
     })
    }
 
   ngOnInit() {
     this.onInit.emit(this.fg)
+    this.onChanges();
   }
 
   save() {
@@ -94,6 +97,32 @@ export class MasterReferensiKontrakFormComponent implements OnInit {
 
     this.onSave.emit(model)
   }
+
+  onChanges(): void {
+    this.fg.get('tipe').valueChanges.subscribe(val => {
+      console.log(val);
+      if(val=='cif'){
+        this.isValidation = true;
+        this.fg.controls['pltu'].setValidators([Validators.required]);
+        this.fg.controls['jetty'].setValidators([Validators.required]);
+        this.fg.controls['tambang'].setValidators([Validators.required]);
+        this.fg.controls['pltu'].updateValueAndValidity();
+        this.fg.controls['jetty'].updateValueAndValidity();
+        this.fg.controls['tambang'].updateValueAndValidity();
+      }else{
+        this.isValidation = false;
+        this.fg.controls['pltu'].clearValidators();
+        this.fg.controls['jetty'].clearValidators();
+        this.fg.controls['tambang'].clearValidators();
+        this.fg.controls['pltu'].updateValueAndValidity();
+        this.fg.controls['jetty'].updateValueAndValidity();
+        this.fg.controls['tambang'].updateValueAndValidity();
+      }
+
+      console.log(this.fg);
+    });
+  }
+
 
   cancel() {
     this.router.navigate(['/admin', 'referensi-kontrak'])
