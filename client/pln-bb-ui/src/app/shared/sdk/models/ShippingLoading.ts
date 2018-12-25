@@ -14,6 +14,7 @@ export interface ShippingLoadingInterface {
   "size1"?: number;
   "size2"?: number;
   "coaCow"?: string;
+  "status"?: number;
   "shippingId"?: any;
   "id"?: any;
   shipping?: Shipping;
@@ -29,6 +30,7 @@ export class ShippingLoading implements ShippingLoadingInterface {
   "size1": number = 0;
   "size2": number = 0;
   "coaCow": string = '';
+  "status": number = 0;
   "shippingId": any = <any>null;
   "id": any = <any>null;
   shipping: Shipping = null;
@@ -100,6 +102,10 @@ export class ShippingLoading implements ShippingLoadingInterface {
         "coaCow": {
           name: 'coaCow',
           type: 'string'
+        },
+        "status": {
+          name: 'status',
+          type: 'number'
         },
         "shippingId": {
           name: 'shippingId',

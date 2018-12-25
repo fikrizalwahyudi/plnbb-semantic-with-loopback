@@ -52,12 +52,12 @@ export class MitraKesanggupanPasokanEditComponent implements OnInit {
             },
             tglPengiriman: this.mitraKesanggupan.tglPengiriman,
             mode: this.mitraKesanggupan.mode,
-            jenisKontrak: this.mitraKesanggupan.jenisKontrak,
+            tipe: this.mitraKesanggupan.tipe,
             jettyId: {
               name: this.mitraKesanggupan.jetty.name,
               value: this.mitraKesanggupan.jetty.id
             },
-            jenisBatubara: this.mitraKesanggupan.jenisBatubara,
+            jenis: this.mitraKesanggupan.jenis,
             harga: this.mitraKesanggupan.harga,
             jumlah: this.mitraKesanggupan.jumlah,
             keterangan: this.mitraKesanggupan.keterangan
@@ -107,7 +107,7 @@ export class MitraKesanggupanPasokanEditComponent implements OnInit {
     model.jettyId = model.jettyId.value
     model.tujuanPltuId = model.tujuanPltuId.value
 
-    // if(model.jenisKontrak != 'cif'){
+    // if(model.tipe != 'cif'){
     //   model.jettyId = null
     // }
 
