@@ -29,7 +29,9 @@
         </div>
         <div class="required field">
           <label>Jenis Kontrak</label>
-          <select class="ui dropdown" formControlName="jenisKontrak">
+          <select class="ui dropdown" 
+            formControlName="tipe"
+            (select)="onSelectTipeKontrak($event)">
             <option [value]="null" >Pilih Jenis Kontrak</option>
             <option value="cif">CIF</option>
             <option value="fob">FOB</option>
@@ -46,19 +48,19 @@
             </div>
           </div>
         </div>
-        <div class="required field">
+        <div class="field" [ngClass]="{'required':isValidation}">
           <label>PLTU</label>
           <select multiple class="ui dropdown" uiMultiDropdown [values]="pltu" placeholder="Select Pltu" formControlName="pltu">
             <option value="" disabled hidden>Select Pltu</option>
           </select>
         </div>
-        <div class="required field">
+        <div class="field" [ngClass]="{'required':isValidation}">
           <label>Tambang</label>
           <select multiple class="ui dropdown" uiMultiDropdown [values]="tambang" placeholder="Select Tambang" formControlName="tambang">
             <option value="" disabled hidden>Select Tambang</option>
           </select>
         </div>
-        <div class="required field">
+        <div class="field" [ngClass]="{'required':isValidation}">
           <label>Jetty</label>
           <select multiple class="ui dropdown" uiMultiDropdown [values]="jetty" placeholder="Select Jetty" formControlName="jetty">
             <option value="" disabled hidden>Select Jetty</option>

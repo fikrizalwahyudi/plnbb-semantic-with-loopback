@@ -25,5 +25,6 @@ export * from './ShippingInstructionRevision';
 export * from './Shipping';
 export * from './ShippingLoading';
 export * from './Document';
+export * from './ShippingUnloading';
 export * from './SDKModels';
 export * from './logger.service';

@@ -74,6 +74,7 @@ import { ShippingInstructionRevisionApi } from './services/custom/ShippingInstru
 import { ShippingApi } from './services/custom/Shipping';
 import { ShippingLoadingApi } from './services/custom/ShippingLoading';
 import { DocumentApi } from './services/custom/Document';
+import { ShippingUnloadingApi } from './services/custom/ShippingUnloading';
 /**
 * @module SDKBrowserModule
 * @description
@@ -130,6 +131,7 @@ export class SDKBrowserModule {
         ShippingApi,
         ShippingLoadingApi,
         DocumentApi,
+        ShippingUnloadingApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser },
         { provide: SocketDriver, useClass: SocketBrowser }

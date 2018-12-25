@@ -29,6 +29,7 @@ import { DownloadPdfMiddleware } from './middleware/download-pdf.middleware';
 import { ShippingModel } from "./models/shipping.model";
 import { DocumentModel } from "./models/document.model";
 import { ShippingLoadingModel } from './models/shipping_loading.model';
+import { ShippingUnloadingModel } from './models/shipping_unloading.model';
 
 @injectable()
 @CommonModule({
@@ -65,7 +66,8 @@ import { ShippingLoadingModel } from './models/shipping_loading.model';
 		ShippingInstructionRevisionModel,
 		ShippingModel,
 		ShippingLoadingModel,
-		DocumentModel
+		DocumentModel,
+		ShippingUnloadingModel
 	]
 })
 export class MainModule extends Module {

@@ -70,6 +70,9 @@ export class ShippingModel extends PersistedModel {
 	@Property('string')
 	jenisBatubara: string
 
+	@Property('number')
+	status: number
+
 	@Relation('belongsTo', 'Mitra', 'mitraId')
 	mitra
 

@@ -1,67 +1,58 @@
 /* tslint:disable */
-import {
-  Shipping
-} from '../index';
 
 declare var Object: any;
-export interface ShippingLoadingInterface {
+export interface ShippingUnloadingInterface {
   "gcv"?: number;
-  "hgi"?: number;
-  "idt"?: number;
   "ash"?: number;
+  "hgi"?: number;
   "tm"?: number;
   "ts"?: number;
+  "idt"?: number;
   "size1"?: number;
   "size2"?: number;
-  "coaCow"?: string;
-  "ta"?: Date;
+  "timeArrival"?: Date;
   "berthing"?: Date;
-  "commenceLoading"?: Date;
-  "completeLoading"?: Date;
-  "timesheets"?: string;
-  "status"?: number;
+  "commenceUnloading"?: Date;
+  "completeUnloading"?: Date;
   "shippingId"?: any;
+  "status"?: number;
   "id"?: any;
-  shipping?: Shipping;
 }
 
-export class ShippingLoading implements ShippingLoadingInterface {
+export class ShippingUnloading implements ShippingUnloadingInterface {
   "gcv": number = 0;
-  "hgi": number = 0;
-  "idt": number = 0;
   "ash": number = 0;
+  "hgi": number = 0;
   "tm": number = 0;
   "ts": number = 0;
+  "idt": number = 0;
   "size1": number = 0;
   "size2": number = 0;
-  "coaCow": string = '';
-  "ta": Date = new Date(0);
+  "timeArrival": Date = new Date(0);
   "berthing": Date = new Date(0);
-  "commenceLoading": Date = new Date(0);
-  "completeLoading": Date = new Date(0);
-  "timesheets": string = '';
-  "status": number = 0;
+  "commenceUnloading": Date = new Date(0);
+  "completeUnloading": Date = new Date(0);
   "shippingId": any = <any>null;
+  "status": number = 0;
   "id": any = <any>null;
-  shipping: Shipping = null;
-  constructor(data?: ShippingLoadingInterface) {
+  constructor(data?: ShippingUnloadingInterface) {
     Object.assign(this, data);
   }
   /**
    * The name of the model represented by this $resource,
-   * i.e. `ShippingLoading`.
+   * i.e. `ShippingUnloading`.
    */
   public static getModelName() {
-    return "ShippingLoading";
+    return "ShippingUnloading";
   }
   /**
   * @method factory
   * @author Jonathan Casarrubias
   * @license MIT
-  * This method creates an instance of ShippingLoading for dynamic purposes.
+  * This method creates an instance of ShippingUnloading for dynamic purposes.
   **/
-  public static factory(data: ShippingLoadingInterface): ShippingLoading{
-    return new ShippingLoading(data);
+  public static factory(data: ShippingUnloadingInterface): ShippingUnloading{
+    return new ShippingUnloading(data);
   }
   /**
   * @method getModelDefinition
@@ -72,25 +63,21 @@ export class ShippingLoading implements ShippingLoadingInterface {
   **/
   public static getModelDefinition() {
     return {
-      name: 'ShippingLoading',
-      plural: 'shipping_loading',
-      path: 'shipping_loading',
+      name: 'ShippingUnloading',
+      plural: 'shipping_unloading',
+      path: 'shipping_unloading',
       idName: 'id',
       properties: {
         "gcv": {
           name: 'gcv',
           type: 'number'
         },
-        "hgi": {
-          name: 'hgi',
-          type: 'number'
-        },
-        "idt": {
-          name: 'idt',
-          type: 'number'
-        },
         "ash": {
           name: 'ash',
+          type: 'number'
+        },
+        "hgi": {
+          name: 'hgi',
           type: 'number'
         },
         "tm": {
@@ -101,6 +88,10 @@ export class ShippingLoading implements ShippingLoadingInterface {
           name: 'ts',
           type: 'number'
         },
+        "idt": {
+          name: 'idt',
+          type: 'number'
+        },
         "size1": {
           name: 'size1',
           type: 'number'
@@ -109,37 +100,29 @@ export class ShippingLoading implements ShippingLoadingInterface {
           name: 'size2',
           type: 'number'
         },
-        "coaCow": {
-          name: 'coaCow',
-          type: 'string'
-        },
-        "ta": {
-          name: 'ta',
+        "timeArrival": {
+          name: 'timeArrival',
           type: 'Date'
         },
         "berthing": {
           name: 'berthing',
           type: 'Date'
         },
-        "commenceLoading": {
-          name: 'commenceLoading',
+        "commenceUnloading": {
+          name: 'commenceUnloading',
           type: 'Date'
         },
-        "completeLoading": {
-          name: 'completeLoading',
+        "completeUnloading": {
+          name: 'completeUnloading',
           type: 'Date'
-        },
-        "timesheets": {
-          name: 'timesheets',
-          type: 'string'
-        },
-        "status": {
-          name: 'status',
-          type: 'number'
         },
         "shippingId": {
           name: 'shippingId',
           type: 'any'
+        },
+        "status": {
+          name: 'status',
+          type: 'number'
         },
         "id": {
           name: 'id',
@@ -147,14 +130,6 @@ export class ShippingLoading implements ShippingLoadingInterface {
         },
       },
       relations: {
-        shipping: {
-          name: 'shipping',
-          type: 'Shipping',
-          model: 'Shipping',
-          relationType: 'belongsTo',
-                  keyFrom: 'shippingId',
-          keyTo: 'id'
-        },
       }
     }
   }

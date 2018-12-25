@@ -26,6 +26,7 @@ import { ShippingInstructionRevision } from '../../models/ShippingInstructionRev
 import { Shipping } from '../../models/Shipping';
 import { ShippingLoading } from '../../models/ShippingLoading';
 import { Document } from '../../models/Document';
+import { ShippingUnloading } from '../../models/ShippingUnloading';
 
 export interface Models { [name: string]: any }
 
@@ -59,6 +60,7 @@ export class SDKModels {
     Shipping: Shipping,
     ShippingLoading: ShippingLoading,
     Document: Document,
+    ShippingUnloading: ShippingUnloading,
     
   };
 
