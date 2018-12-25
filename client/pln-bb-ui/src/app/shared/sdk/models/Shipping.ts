@@ -4,7 +4,8 @@ import {
   ReferensiKontrak,
   Pltu,
   Jetty,
-  ShippingInstruction
+  ShippingInstruction,
+  ShippingLoading
 } from '../index';
 
 declare var Object: any;
@@ -29,6 +30,7 @@ export interface ShippingInterface {
   tujuanPltu?: Pltu;
   jetty?: Jetty;
   si?: ShippingInstruction;
+  loading?: ShippingLoading;
 }
 
 export class Shipping implements ShippingInterface {
@@ -52,6 +54,7 @@ export class Shipping implements ShippingInterface {
   tujuanPltu: Pltu = null;
   jetty: Jetty = null;
   si: ShippingInstruction = null;
+  loading: ShippingLoading = null;
   constructor(data?: ShippingInterface) {
     Object.assign(this, data);
   }
@@ -190,6 +193,14 @@ export class Shipping implements ShippingInterface {
           relationType: 'belongsTo',
                   keyFrom: 'siId',
           keyTo: 'id'
+        },
+        loading: {
+          name: 'loading',
+          type: 'ShippingLoading',
+          model: 'ShippingLoading',
+          relationType: 'hasOne',
+                  keyFrom: 'id',
+          keyTo: 'shippingId'
         },
       }
     }

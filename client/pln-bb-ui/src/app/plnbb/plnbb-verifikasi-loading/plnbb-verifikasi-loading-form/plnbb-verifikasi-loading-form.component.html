@@ -7,11 +7,113 @@
             (ngSubmit)="save()"
             class="ui form">
 
+        <div class="required field">
+          <label>Gross Calorific Value</label>
+          <div class="ui right labeled input">
+            <input type="number"
+                   formControlName="gcv"
+                   readonly>
+            <div class="ui basic label">
+              Kcal/Kg
+            </div>
+          </div>
+        </div>
+        <div class="required field">
+          <label>Hardgrove Grindability Index</label>
+          <div class="ui right labeled input">
+            <input type="number"
+                   formControlName="hgi"
+                   readonly>
+            <div class="ui basic label">
+              Point
+            </div>
+          </div>
+        </div>
+        <div class="required field">
+          <label>Initial Deformation Temp.</label>
+          <div class="ui right labeled input">
+            <input type="number"
+                   formControlName="idt"
+                   readonly>
+            <div class="ui basic label">
+              &#176;C
+            </div>
+          </div>
+        </div>
+        <div class="required field">
+          <label>Ash Content</label>
+          <div class="ui right labeled input">
+            <input type="number"
+                   formControlName="ash"
+                   readonly>
+            <div class="ui basic label">
+              %
+            </div>
+          </div>
+        </div>
+        <div class="required field">
+          <label>Total Moisture</label>
+          <div class="ui right labeled input">
+            <input type="number"
+                   formControlName="tm"
+                   readonly>
+            <div class="ui basic label">
+              %
+            </div>
+          </div>
+        </div>
+        <div class="required field">
+          <label>Total Sulphur</label>
+          <div class="ui right labeled input">
+            <input type="number"
+                   formControlName="ts"
+                   readonly>
+            <div class="ui basic label">
+              %
+            </div>
+          </div>
+        </div>
+        <div class="required field">
+          <label>70mm</label>
+          <div class="ui right labeled input">
+            <input type="number"
+                   formControlName="size1"
+                   readonly>
+            <div class="ui basic label">
+              %
+            </div>
+          </div>
+        </div>
+        <div class="required field">
+          <label>2.38mm</label>
+          <div class="ui right labeled input">
+            <input type="number"
+                   formControlName="size2"
+                   readonly>
+            <div class="ui basic label">
+              %
+            </div>
+          </div>
+        </div>
+
+        <div class="inline field">
+          <button class="ui secondary button"
+                  type="button"
+                  (click)="cancel()">Reject</button>
+          <button class="ui primary button"
+                  type="submit"
+                  [disabled]="!fg.valid">Approve</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="eleven wide column">
+      <div class="ui form" [formGroup]="fg">
         <input type="file"
                style="display: none;"
                (change)="fileCoaCowChange($event)"
                #file1>
-        <div class="required field">
+        <!-- <div class="required field">
           <label>Dokumen Coa Cow</label>
           <div class="ui action input">
             <input type="text"
@@ -24,104 +126,9 @@
               Browse
             </button>
           </div>
-        </div>
+        </div> -->
 
-        <div class="required field">
-          <label>Gross Calorific Value</label>
-          <div class="ui right labeled input">
-            <input type="number"
-                   formControlName="gcv">
-            <div class="ui basic label">
-              Kcal/Kg
-            </div>
-          </div>
-        </div>
-        <div class="required field">
-          <label>Hardgrove Grindability Index</label>
-          <div class="ui right labeled input">
-            <input type="number"
-                   formControlName="hgi">
-            <div class="ui basic label">
-              Point
-            </div>
-          </div>
-        </div>
-        <div class="required field">
-          <label>Initial Deformation Temp.</label>
-          <div class="ui right labeled input">
-            <input type="number"
-                   formControlName="idt">
-            <div class="ui basic label">
-              &#176;C
-            </div>
-          </div>
-        </div>
-        <div class="required field">
-          <label>Ash Content</label>
-          <div class="ui right labeled input">
-            <input type="number"
-                   formControlName="ash">
-            <div class="ui basic label">
-              %
-            </div>
-          </div>
-        </div>
-        <div class="required field">
-          <label>Total Moisture</label>
-          <div class="ui right labeled input">
-            <input type="number"
-                   formControlName="tm">
-            <div class="ui basic label">
-              %
-            </div>
-          </div>
-        </div>
-        <div class="required field">
-          <label>Total Sulphur</label>
-          <div class="ui right labeled input">
-            <input type="number"
-                   formControlName="ts">
-            <div class="ui basic label">
-              %
-            </div>
-          </div>
-        </div>
-        <div class="required field">
-          <label>70mm</label>
-          <div class="ui right labeled input">
-            <input type="number"
-                   formControlName="size1">
-            <div class="ui basic label">
-              %
-            </div>
-          </div>
-        </div>
-        <div class="required field">
-          <label>2.38mm</label>
-          <div class="ui right labeled input">
-            <input type="number"
-                   formControlName="size2">
-            <div class="ui basic label">
-              %
-            </div>
-          </div>
-        </div>
-
-        <div class="inline field">
-          <button class="ui secondary button"
-                  type="button"
-                  (click)="cancel()">Cancel</button>
-          <button class="ui primary button"
-                  type="submit"
-                  [disabled]="!fg.valid">Submit</button>
-        </div>
-      </form>
-    </div>
-
-    <div class="eleven wide column">
-      <div class="ui form"
-           [formGroup]="fg">
-        <div uiPdf [url]="file"></div>
+        <div *ngIf="loading" uiPdf [url]="docUrl"></div>
       </div>
     </div>
   </div>

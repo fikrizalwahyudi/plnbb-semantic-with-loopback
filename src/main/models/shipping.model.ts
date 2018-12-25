@@ -87,4 +87,7 @@ export class ShippingModel extends PersistedModel {
 
 	@Relation('belongsTo', 'ShippingInstruction', 'siId')
 	si
+
+	@Relation('hasOne', 'ShippingLoading', 'shippingId')
+	loading
 }

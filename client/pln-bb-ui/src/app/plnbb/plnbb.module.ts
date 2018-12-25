@@ -13,6 +13,12 @@ import { PlnbbShippingInstructionComponent } from './plnbb-shipping-instruction/
 import { PlnbbShippingInstructionBrowseComponent } from './plnbb-shipping-instruction/plnbb-shipping-instruction-browse/plnbb-shipping-instruction-browse.component';
 import { PlnbbShippingInstructionFormComponent } from './plnbb-shipping-instruction/plnbb-shipping-instruction-form/plnbb-shipping-instruction-form.component'
 import { NgxMaskModule } from 'ngx-mask';
+import { PlnbbVerifikasiLoadingComponent } from './plnbb-verifikasi-loading/plnbb-verifikasi-loading.component';
+import { PlnbbVerifikasiSailingComponent } from './plnbb-verifikasi-sailing/plnbb-verifikasi-sailing.component';
+import { PlnbbVerifikasiSailingBrowseComponent } from './plnbb-verifikasi-sailing/plnbb-verifikasi-sailing-browse/plnbb-verifikasi-sailing-browse.component';
+import { PlnbbVerifikasiSailingFormComponent } from './plnbb-verifikasi-sailing/plnbb-verifikasi-sailing-form/plnbb-verifikasi-sailing-form.component';
+import { PlnbbVerifikasiLoadingBrowseComponent } from './plnbb-verifikasi-loading/plnbb-verifikasi-loading-browse/plnbb-verifikasi-loading-browse.component';
+import { PlnbbVerifikasiLoadingFormComponent } from './plnbb-verifikasi-loading/plnbb-verifikasi-loading-form/plnbb-verifikasi-loading-form.component';
 
 const appRoutes: Routes = [
   { path: '', component: PlnbbComponent, children: [
@@ -25,6 +31,18 @@ const appRoutes: Routes = [
       { path: 'browse', component: PlnbbShippingInstructionBrowseComponent, data: { breadcrumb: 'Request' } },
       { path: ':id/grant', component: PlnbbShippingInstructionFormComponent, data: { breadcrumb: 'Grant' } }
     ]},
+
+    { path: 'verifikasi-loading', component: PlnbbVerifikasiLoadingComponent, data: { breadcrumb: 'Verifikasi Loading' }, children: [
+      { path: '', redirectTo: 'browse', pathMatch: 'full' },
+      { path: 'browse', component: PlnbbVerifikasiLoadingBrowseComponent, data: { breadcrumb: 'Browse' } },
+      { path: ':id/grant', component: PlnbbVerifikasiLoadingFormComponent, data: { breadcrumb: 'Grant' } }
+    ] },
+
+    { path: 'verifikasi-sailing', component: PlnbbVerifikasiSailingComponent, data: { breadcrumb: 'Verifikasi Sailing' }, children: [
+      { path: '', redirectTo: 'browse', pathMatch: 'full' },
+      { path: 'browse', component: PlnbbVerifikasiSailingBrowseComponent, data: { breadcrumb: 'Browse' } },
+      { path: ':id/grant', component: PlnbbVerifikasiSailingFormComponent, data: { breadcrumb: 'Grant' } }
+    ] },
 
     { path: 'rencana-pasokan-si/:idMitraKesanggupan', component: PlnbbRencanaPasokanSiComponent },
     /*{ path: 'rencana-pasokan-si/create/:idMitraKesanggupan', component: PlnbbRencanaPasokanSiCreateComponent },
@@ -51,7 +69,13 @@ const appRoutes: Routes = [
     PlnbbRencanaPasokanSiCreateComponent,
     PlnbbShippingInstructionComponent,
     PlnbbShippingInstructionBrowseComponent,
-    PlnbbShippingInstructionFormComponent
+    PlnbbShippingInstructionFormComponent,
+    PlnbbVerifikasiLoadingComponent,
+    PlnbbVerifikasiSailingComponent,
+    PlnbbVerifikasiSailingBrowseComponent,
+    PlnbbVerifikasiSailingFormComponent,
+    PlnbbVerifikasiLoadingBrowseComponent,
+    PlnbbVerifikasiLoadingFormComponent
   ],
   exports : [
     PlnbbComponent,
@@ -62,7 +86,13 @@ const appRoutes: Routes = [
     PlnbbRencanaPasokanSiCreateComponent,
     PlnbbShippingInstructionComponent,
     PlnbbShippingInstructionBrowseComponent,
-    PlnbbShippingInstructionFormComponent
+    PlnbbShippingInstructionFormComponent,
+    PlnbbVerifikasiLoadingComponent,
+    PlnbbVerifikasiSailingComponent,
+    PlnbbVerifikasiSailingBrowseComponent,
+    PlnbbVerifikasiSailingFormComponent,
+    PlnbbVerifikasiLoadingBrowseComponent,
+    PlnbbVerifikasiLoadingFormComponent
   ]
 })
 export class PlnbbModule { }

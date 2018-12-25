@@ -27,6 +27,8 @@ import { ShippingInstructionRevisionModel } from './models/shipping_instruction_
 import { SignPdfMiddleware } from "./middleware/sign-pdf.middleware";
 import { DownloadPdfMiddleware } from './middleware/download-pdf.middleware';
 import { ShippingModel } from "./models/shipping.model";
+import { DocumentModel } from "./models/document.model";
+import { ShippingLoadingModel } from './models/shipping_loading.model';
 
 @injectable()
 @CommonModule({
@@ -61,7 +63,9 @@ import { ShippingModel } from "./models/shipping.model";
 		MitraShippingInstructionRequestModel,
 		ShippingInstructionModel,
 		ShippingInstructionRevisionModel,
-		ShippingModel
+		ShippingModel,
+		ShippingLoadingModel,
+		DocumentModel
 	]
 })
 export class MainModule extends Module {

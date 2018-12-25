@@ -24,6 +24,8 @@ import { MitraShippingInstructionRequest } from '../../models/MitraShippingInstr
 import { ShippingInstruction } from '../../models/ShippingInstruction';
 import { ShippingInstructionRevision } from '../../models/ShippingInstructionRevision';
 import { Shipping } from '../../models/Shipping';
+import { ShippingLoading } from '../../models/ShippingLoading';
+import { Document } from '../../models/Document';
 
 export interface Models { [name: string]: any }
 
@@ -55,6 +57,8 @@ export class SDKModels {
     ShippingInstruction: ShippingInstruction,
     ShippingInstructionRevision: ShippingInstructionRevision,
     Shipping: Shipping,
+    ShippingLoading: ShippingLoading,
+    Document: Document,
     
   };
 

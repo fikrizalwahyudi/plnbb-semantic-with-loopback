@@ -1,28 +1,26 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
+import { Shipping } from '../../../shared/sdk/models/Shipping';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
-import { ShippingLoadingApi } from '../../shared/sdk/services/custom/ShippingLoading';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ShippingApi } from '../../shared/sdk';
-import { Shipping } from '../../shared/sdk/models/Shipping';
-import { PdfDirective } from '../../shared/directives/pdf.directive';
+import { ShippingApi } from '../../../shared/sdk/services/custom/Shipping';
+import { ShippingLoadingApi } from '../../../shared/sdk/services/custom/ShippingLoading';
+import { Observable } from 'rxjs/Rx';
+import { environment } from '../../../../environments/environment.prod';
+import { ShippingLoading } from '../../../shared/sdk/models/ShippingLoading';
 
 @Component({
-  selector: 'app-mitra-shipping-loading',
-  templateUrl: './mitra-shipping-loading.component.html',
-  styleUrls: ['./mitra-shipping-loading.component.sass']
+  selector: 'app-plnbb-verifikasi-loading-form',
+  templateUrl: './plnbb-verifikasi-loading-form.component.html',
+  styleUrls: ['./plnbb-verifikasi-loading-form.component.sass']
 })
-export class MitraShippingLoadingComponent implements OnInit {
-
-  @ViewChild(PdfDirective)
-  pdfEl:PdfDirective
+export class PlnbbVerifikasiLoadingFormComponent implements OnInit {
 
   fg:FormGroup
   file
   fileUri:any = {}
   shipping:Shipping
+  loading:ShippingLoading
 
   constructor(
     private fb:FormBuilder,
@@ -50,13 +48,17 @@ export class MitraShippingLoadingComponent implements OnInit {
     this.route.params.subscribe(params => {
       let id = params['id']
 
-      this.shippingApi.findById(id, {include: 'loading'}).subscribe(data => {
-        this.shipping = data as Shipping
-        
-        //console.log(this.shipping)
-        if(this.shipping.loading) {
-          this.fg.patchValue(this.shipping.loading)
-        }
+      this.loadingApi.findById(id).subscribe((data:any) => {
+        this.loading = data as ShippingLoading
+
+        this.shippingApi.findById(data.shippingId, {include: 'loading'}).subscribe(data => {
+          this.shipping = data as Shipping
+          
+          //console.log(this.shipping)
+          if(this.shipping.loading) {
+            this.fg.patchValue(this.shipping.loading)
+          }
+        })
       })
     })
 
@@ -75,8 +77,6 @@ export class MitraShippingLoadingComponent implements OnInit {
           this.fileUri = file;
 
           this.fg.patchValue({coaCow: file.name})
-
-          this.pdfEl.reload(undefined, this.file)
         } else {
           alert('can only accept pdf file');
           return false;
@@ -108,7 +108,7 @@ export class MitraShippingLoadingComponent implements OnInit {
   save() {
     let model = this.fg.value
 
-    this.uploadCoaCow().subscribe((data:any) => {
+    /*this.uploadCoaCow().subscribe((data:any) => {
       //console.log(data)
       if(data) {
         let file = data.result.files.file[0]
@@ -122,6 +122,11 @@ export class MitraShippingLoadingComponent implements OnInit {
       this.loadingApi.upsertWithWhere({shippingId: this.shipping.id}, model).subscribe(data => {
         this.router.navigate(['/mitra', 'kesanggupan-pasokan', 'browse', 'inprogress'])
       })
-    })
+    })*/
+
+    
   }
+
+  get docUrl() { return `${environment.apiUrl}/api/documents/coacow-loading/download/${this.loading.coaCow}` }
+
 }

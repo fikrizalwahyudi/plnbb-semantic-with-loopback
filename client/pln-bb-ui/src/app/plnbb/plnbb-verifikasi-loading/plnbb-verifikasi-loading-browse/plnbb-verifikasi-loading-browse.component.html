@@ -1,0 +1,35 @@
+<ui-table-block>
+  <ng-container class="table-block-menu">
+    
+  </ng-container>
+  <thead>
+    <tr>
+      <th>Mitra</th>
+      <th>Transport</th>
+      <th>Tujuan PLTU</th>
+      <th>Laycan</th>
+      <th>Jetty</th>
+      <th>Moda</th>
+      <th class="right aligned">Jumlah</th>
+      <th class="right aligned">Harga</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of daftarShipping">
+      <td>{{item.shipping.mitra.code}}</td>
+      <td>{{item.shipping.transport.code}}</td>
+      <td>{{item.shipping.tujuanPltu.code}}</td>
+      <td>{{item.shipping.laycanStartDate | date:'shortDate'}} - {{item.shipping.laycanEndDate | date:'shortDate'}}</td>
+      <td>{{item.shipping.jetty.code}}</td>
+      <td>{{item.shipping.moda | uppercase}}</td>
+      <td class="right aligned">{{item.shipping.jumlah | number}}</td>
+      <td class="right aligned">{{item.shipping.harga | currency:'Rp':undefined:undefined:'id'}}</td>
+      <td class="center aligned collapsing">
+        <a [routerLink]="['/plnbb', 'verifikasi-loading', item.id, 'grant']" routerLinkActive="router-link-active" >
+          <i class="edit link icon action-icon"></i>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</ui-table-block>

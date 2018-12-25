@@ -46,8 +46,11 @@ import { Mitra } from '../../../shared/sdk/models/Mitra';
                 <td class="right aligned">{{itemEntry.jumlah | number:undefined:'id'}}</td>
                 <td class="right aligned">{{itemEntry.harga | currency:'Rp':undefined:undefined:'id'}}</td>
                 <td class="center aligned collapsing">
-                  <a [routerLink]="['/mitra', 'kesanggupan-pasokan', itemEntry.id, 'loading']">
+                  <a *ngIf="!itemEntry.loading" [routerLink]="['/mitra', 'kesanggupan-pasokan', itemEntry.id, 'loading']">
                     <i class="box link icon action-icon red"></i>
+                  </a>
+                  <a *ngIf="itemEntry.loading">
+                    <i class="box icon action-icon green"></i>
                   </a>
                 </td>
               </tr>
@@ -70,7 +73,7 @@ export class MitraKesanggupanPasokanInprogressComponent implements OnInit {
     private shippingApi:ShippingApi
   ) { 
     this.mitraApi.findOne({where: {userId: this.userApi.getCurrentId()}}).subscribe((mitra:Mitra) => {
-      this.shippingApi.find({where: {mitraId: mitra.id}, include: ['jetty', 'mitra', 'referensiKontrak', 'si', 'transport', 'tujuanPltu']}).subscribe(data => {
+      this.shippingApi.find({where: {mitraId: mitra.id}, include: ['jetty', 'mitra', 'referensiKontrak', 'si', 'transport', 'tujuanPltu', 'loading']}).subscribe(data => {
         let buffer: any = _.groupBy(data, (entry: Shipping) => {
           let date = new Date(entry.laycanStartDate)
           return moment(date).format('MMMM YYYY')

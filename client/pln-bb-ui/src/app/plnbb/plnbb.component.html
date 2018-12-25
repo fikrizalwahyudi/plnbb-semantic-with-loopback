@@ -1,7 +1,7 @@
 <div class="ui container fullheight bottom-space">
 	<div class="ui grid mt-5">
 		<div class="three wide column">
-			<div class="ui secondary vertical menu fullwidth">
+			<div class="ui secondary vertical menu">
 				<!-- <a class="item"
 				   [routerLink]="['/plnbb/home']"
 				   routerLinkActive="active">
@@ -14,15 +14,40 @@
 					<i class="file alternate outline icon"></i> Rakor Pengiriman
 				</a>
 				<a class="item"
-				   [routerLink]="['/plnbb/shipping-instruction']"
-				   routerLinkActive="active">
-					<i class="book icon"></i> Shipping Instruction
-				</a>
-				<a class="item"
 				   [routerLink]="['/plnbb/realisasi-pengiriman']"
 				   routerLinkActive="active">
-					<i class="clipboard outline icon"></i> Monitor Pengiriman
+					<i class="laptop icon"></i> Monitor Pengiriman
 				</a>
+
+				<a class="item"
+				   [routerLink]="['/plnbb/shipping-instruction']"
+				   routerLinkActive="active">
+					Shipping Instruction
+					<div class="ui label">0</div>
+				</a>
+
+				<div class="ui divider"></div>
+
+				<a class="item"
+				   [routerLink]="['/plnbb/verifikasi-loading']"
+				   routerLinkActive="active">
+					Loading
+					<div class="ui label">0</div>
+				</a>
+				<a class="item"
+				   [routerLink]="['/plnbb/verifikasi-sailing']"
+				   routerLinkActive="active">
+					Sailing
+					<div class="ui label">0</div>
+				</a>
+				<!-- <a class="item">
+					Unloading
+					<div class="ui label">0</div>
+				</a>
+				<a class="item">
+					Umpire
+					<div class="ui label">0</div>
+				</a> -->
 				<!-- <a class="item"
                 href="javascript:;"
                 routerLinkActive="active">
