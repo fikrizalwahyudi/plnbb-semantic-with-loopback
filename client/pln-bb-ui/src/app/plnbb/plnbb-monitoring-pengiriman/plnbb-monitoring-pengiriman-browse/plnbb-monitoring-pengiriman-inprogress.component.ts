@@ -6,7 +6,7 @@ import { MitraApi } from '../../../shared/sdk/services/custom/Mitra';
 import { Mitra } from '../../../shared/sdk/models/Mitra';
 
 @Component({
-  selector: 'app-mitra-kesanggupan-pasokan-inprogress',
+  selector: 'app-plnbb-monitoring-pengiriman-inprogress',
   template: `
     <ng-container *ngFor="let item of daftarPengiriman | keyvalue;">
       <a class="ui label month-divider">
@@ -40,17 +40,14 @@ import { Mitra } from '../../../shared/sdk/models/Mitra';
                 <td class="center top aligned collapsing">
                   <div class="ui blue small label">{{itemEntry.laycanStartDate | date:'dd'}} - {{itemEntry.laycanEndDate | date:'dd'}}</div>
                 </td>
-                <td class="four wide column-jetty">{{itemEntry.jetty.name}}</td>
+                <td class="column-jetty">{{itemEntry.jetty.name}}</td>
                 <td>{{itemEntry.moda | uppercase}}</td>
                 <td>{{itemEntry.tipe | uppercase}}</td>
                 <td class="right aligned">{{itemEntry.jumlah | number:undefined:'id'}}</td>
                 <td class="right aligned">{{itemEntry.harga | currency:'Rp':undefined:undefined:'id'}}</td>
                 <td class="center aligned collapsing">
-                  <a *ngIf="!itemEntry.loading" [routerLink]="['/mitra', 'kesanggupan-pasokan', itemEntry.id, 'loading']">
-                    <i class="box link icon action-icon red"></i>
-                  </a>
-                  <a *ngIf="itemEntry.loading">
-                    <i class="box icon action-icon green"></i>
+                  <a [routerLink]="['/plnbb', 'monitoring-pengiriman', itemEntry.id, 'unloading']">
+                    <i class="dolly flatbed link icon action-icon red"></i>
                   </a>
                 </td>
               </tr>
@@ -62,7 +59,7 @@ import { Mitra } from '../../../shared/sdk/models/Mitra';
   `,
   styles: []
 })
-export class MitraKesanggupanPasokanInprogressComponent implements OnInit {
+export class PlnbbMonitoringPengirimanInprogressComponent implements OnInit {
 
   daftarPengiriman
   daftarPltu = {}
@@ -73,7 +70,7 @@ export class MitraKesanggupanPasokanInprogressComponent implements OnInit {
     private shippingApi:ShippingApi
   ) { 
     this.mitraApi.findOne({where: {userId: this.userApi.getCurrentId()}}).subscribe((mitra:Mitra) => {
-      this.shippingApi.find({where: {mitraId: mitra.id}, include: ['jetty', 'mitra', 'referensiKontrak', 'si', 'transport', 'tujuanPltu', 'loading']}).subscribe(data => {
+      this.shippingApi.find({where: {mitraId: mitra.id}, include: ['jetty', 'mitra', 'referensiKontrak', 'si', 'transport', 'tujuanPltu']}).subscribe(data => {
         let buffer: any = _.groupBy(data, (entry: Shipping) => {
           let date = new Date(entry.laycanStartDate)
           return moment(date).format('MMMM YYYY')

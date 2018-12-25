@@ -105,7 +105,11 @@ export class PlnbbVerifikasiLoadingFormComponent implements OnInit {
     });
   }
 
-  save() {
+  reject() {
+    
+  }
+
+  approve() {
     let model = this.fg.value
 
     /*this.uploadCoaCow().subscribe((data:any) => {
@@ -124,7 +128,7 @@ export class PlnbbVerifikasiLoadingFormComponent implements OnInit {
       })
     })*/
 
-    
+
   }
 
   get docUrl() { return `${environment.apiUrl}/api/documents/coacow-loading/download/${this.loading.coaCow}` }

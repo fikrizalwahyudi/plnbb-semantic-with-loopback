@@ -43,7 +43,7 @@ import * as _ from 'lodash';
                 <td class="center top aligned collapsing">
                   <div class="ui blue small label">{{itemEntry.tglPengiriman | date:'dd'}}</div>
                 </td>
-                <td class="column-jetty">{{itemEntry.jetty?.name}}</td>
+                <td class="four wide column-jetty">{{itemEntry.jetty?.name}}</td>
                 <td>{{itemEntry.mode | uppercase}}</td>
                 <td>{{itemEntry.tipe | uppercase}}</td>
                 <td class="right aligned">{{itemEntry.jumlah | number:undefined:'id'}}</td>

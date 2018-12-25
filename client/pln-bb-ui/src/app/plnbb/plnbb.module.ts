@@ -11,7 +11,14 @@ import { PlnbbRencanaPasokanSiComponent } from './plnbb-rencana-pasokan/plnbb-re
 import { PlnbbRencanaPasokanSiCreateComponent } from './plnbb-rencana-pasokan/plnbb-rencana-pasokan-si/plnbb-rencana-pasokan-si-create.component';
 import { PlnbbShippingInstructionComponent } from './plnbb-shipping-instruction/plnbb-shipping-instruction.component';
 import { PlnbbShippingInstructionBrowseComponent } from './plnbb-shipping-instruction/plnbb-shipping-instruction-browse/plnbb-shipping-instruction-browse.component';
-import { PlnbbShippingInstructionFormComponent } from './plnbb-shipping-instruction/plnbb-shipping-instruction-form/plnbb-shipping-instruction-form.component'
+import { PlnbbShippingInstructionFormComponent } from './plnbb-shipping-instruction/plnbb-shipping-instruction-form/plnbb-shipping-instruction-form.component';
+import { PlnbbMonitoringPengirimanComponent } from './plnbb-monitoring-pengiriman/plnbb-monitoring-pengiriman.component';
+import { PlnbbMonitoringPengirimanBrowseComponent } from './plnbb-monitoring-pengiriman/plnbb-monitoring-pengiriman-browse/plnbb-monitoring-pengiriman-browse.component';
+import { PlnbbMonitoringPengirimanInprogressComponent } from './plnbb-monitoring-pengiriman/plnbb-monitoring-pengiriman-browse/plnbb-monitoring-pengiriman-inprogress.component';
+import { PlnbbMonitoringPengirimanDelayedComponent } from './plnbb-monitoring-pengiriman/plnbb-monitoring-pengiriman-browse/plnbb-monitoring-pengiriman-delayed.component';
+import { PlnbbMonitoringPengirimanCompleteComponent } from './plnbb-monitoring-pengiriman/plnbb-monitoring-pengiriman-browse/plnbb-monitoring-pengiriman-complete.component';
+import { PlnbbMonitoringPengirimanExpiredComponent } from './plnbb-monitoring-pengiriman/plnbb-monitoring-pengiriman-browse/plnbb-monitoring-pengiriman-expired.component';
+import { PlnbbShippingUnloadingComponent } from './plnbb-shipping-unloading/plnbb-shipping-unloading.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { PlnbbVerifikasiLoadingComponent } from './plnbb-verifikasi-loading/plnbb-verifikasi-loading.component';
 import { PlnbbVerifikasiSailingComponent } from './plnbb-verifikasi-sailing/plnbb-verifikasi-sailing.component';
@@ -43,6 +50,18 @@ const appRoutes: Routes = [
       { path: 'browse', component: PlnbbVerifikasiSailingBrowseComponent, data: { breadcrumb: 'Browse' } },
       { path: ':id/grant', component: PlnbbVerifikasiSailingFormComponent, data: { breadcrumb: 'Grant' } }
     ] },
+    
+    { path: 'monitoring-pengiriman', component: PlnbbMonitoringPengirimanComponent, data: { breadcrumb: 'Monitoring Pengiriman' }, children: [
+      { path: '', redirectTo: 'browse', pathMatch: 'full' },
+      { path: 'browse', component: PlnbbMonitoringPengirimanBrowseComponent, data: { breadcrumb: 'Catalog'}, children: [
+        { path: '', redirectTo: 'inprogress', pathMatch: 'full' },
+          { path: 'inprogress', component: PlnbbMonitoringPengirimanInprogressComponent, data: { breadcrumb: 'In Progress' } },
+          { path: 'delayed', component: PlnbbMonitoringPengirimanDelayedComponent, data: { breadcrumb: 'Delayed' } },
+          { path: 'complete', component: PlnbbMonitoringPengirimanCompleteComponent, data: { breadcrumb: 'Complete' } },
+          { path: 'expired', component: PlnbbMonitoringPengirimanExpiredComponent, data: { breadcrumb: 'Expired' } }
+      ]},
+      { path: ':id/unloading', component: PlnbbShippingUnloadingComponent, data: { breadcrumb: 'Unloading' } }
+    ]},
 
     { path: 'rencana-pasokan-si/:idMitraKesanggupan', component: PlnbbRencanaPasokanSiComponent },
     /*{ path: 'rencana-pasokan-si/create/:idMitraKesanggupan', component: PlnbbRencanaPasokanSiCreateComponent },
@@ -75,7 +94,14 @@ const appRoutes: Routes = [
     PlnbbVerifikasiSailingBrowseComponent,
     PlnbbVerifikasiSailingFormComponent,
     PlnbbVerifikasiLoadingBrowseComponent,
-    PlnbbVerifikasiLoadingFormComponent
+    PlnbbVerifikasiLoadingFormComponent,
+    PlnbbMonitoringPengirimanComponent,
+    PlnbbMonitoringPengirimanBrowseComponent,
+    PlnbbMonitoringPengirimanInprogressComponent,
+    PlnbbMonitoringPengirimanDelayedComponent,
+    PlnbbMonitoringPengirimanCompleteComponent,
+    PlnbbMonitoringPengirimanExpiredComponent,
+    PlnbbShippingUnloadingComponent
   ],
   exports : [
     PlnbbComponent,
@@ -92,7 +118,14 @@ const appRoutes: Routes = [
     PlnbbVerifikasiSailingBrowseComponent,
     PlnbbVerifikasiSailingFormComponent,
     PlnbbVerifikasiLoadingBrowseComponent,
-    PlnbbVerifikasiLoadingFormComponent
+    PlnbbVerifikasiLoadingFormComponent,
+    PlnbbMonitoringPengirimanComponent,
+    PlnbbMonitoringPengirimanBrowseComponent,
+    PlnbbMonitoringPengirimanInprogressComponent,
+    PlnbbMonitoringPengirimanDelayedComponent,
+    PlnbbMonitoringPengirimanCompleteComponent,
+    PlnbbMonitoringPengirimanExpiredComponent,
+    PlnbbShippingUnloadingComponent
   ]
 })
 export class PlnbbModule { }
