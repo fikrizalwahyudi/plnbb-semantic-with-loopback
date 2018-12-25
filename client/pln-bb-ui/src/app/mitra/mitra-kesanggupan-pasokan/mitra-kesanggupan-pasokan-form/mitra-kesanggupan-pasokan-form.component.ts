@@ -62,8 +62,8 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
       harga: [null, [Validators.required]],
       mode: [null, [Validators.required]],
       keterangan: null,
-      jenisKontrak: [null, [Validators.required]],
-      jenisBatubara: [null, [Validators.required]],
+      tipe: [null, [Validators.required]],
+      jenis: [null, [Validators.required]],
       jettyId: null,
       sumberTambang: this.fb.array([
         this.fb.group({
@@ -151,8 +151,8 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
     let filter = {
       limit: 10
     }
-    console.log(this.fg.get('jenisKontrak').value);
-    if(this.fg.get('jenisKontrak').value == 'cif' && this.referensiKontrak){
+    console.log(this.fg.get('tipe').value);
+    if(this.fg.get('tipe').value == 'cif' && this.referensiKontrak){
       if (!_.isEmpty(q))
         console.log(this.referensiKontrak.id);
         filter['where'] = { referensiKontrakId: this.referensiKontrak.id}
@@ -189,7 +189,7 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
       limit: 10
     }
 
-    if(this.fg.get('jenisKontrak').value == 'cif' && this.referensiKontrak){
+    if(this.fg.get('tipe').value == 'cif' && this.referensiKontrak){
       if (!_.isEmpty(q))
         console.log(this.referensiKontrak.id);
         filter['where'] = { referensiKontrakId: this.referensiKontrak.id}
@@ -225,7 +225,7 @@ export class MitraKesanggupanPasokanFormComponent implements OnInit {
       limit: 10
     }
 
-    if(this.fg.get('jenisKontrak').value == 'cif' && this.referensiKontrak){
+    if(this.fg.get('tipe').value == 'cif' && this.referensiKontrak){
       if (!_.isEmpty(q))
         console.log(this.referensiKontrak.id);
         filter['where'] = { referensiKontrakId: this.referensiKontrak.id}

@@ -15,9 +15,9 @@ export interface MitraKesanggupanInterface {
   "jumlah"?: number;
   "harga"?: number;
   "mode"?: string;
+  "tipe"?: string;
   "keterangan"?: string;
-  "jenisKontrak"?: string;
-  "jenisBatubara"?: string;
+  "jenis"?: string;
   "jettyId"?: any;
   "lock"?: boolean;
   "userId"?: any;
@@ -37,9 +37,9 @@ export class MitraKesanggupan implements MitraKesanggupanInterface {
   "jumlah": number = 0;
   "harga": number = 0;
   "mode": string = '';
+  "tipe": string = '';
   "keterangan": string = '';
-  "jenisKontrak": string = '';
-  "jenisBatubara": string = '';
+  "jenis": string = '';
   "jettyId": any = <any>null;
   "lock": boolean = false;
   "userId": any = <any>null;
@@ -107,16 +107,16 @@ export class MitraKesanggupan implements MitraKesanggupanInterface {
           name: 'mode',
           type: 'string'
         },
+        "tipe": {
+          name: 'tipe',
+          type: 'string'
+        },
         "keterangan": {
           name: 'keterangan',
           type: 'string'
         },
-        "jenisKontrak": {
-          name: 'jenisKontrak',
-          type: 'string'
-        },
-        "jenisBatubara": {
-          name: 'jenisBatubara',
+        "jenis": {
+          name: 'jenis',
           type: 'string'
         },
         "jettyId": {

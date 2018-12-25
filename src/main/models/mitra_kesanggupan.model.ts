@@ -60,10 +60,7 @@ export class MitraKesanggupanModel extends PersistedModel
 	keterangan:string
 
 	@Property('string')
-	jenisKontrak:string
-
-	@Property('string')
-	jenisBatubara
+	jenis:string
 
 	@Property('any')
 	jettyId
