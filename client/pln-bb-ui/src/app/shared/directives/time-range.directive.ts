@@ -1,21 +1,21 @@
 import { Directive, ElementRef, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import * as _ from 'lodash'
 import * as moment from 'moment';
-import * as _ from 'lodash';
 
 declare var $:any;
 
 @Directive({
-  selector: '[uiCalendarRange]',
+  selector: '[uiTimeRange]',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CalendarRangeDirective),
+      useExisting: forwardRef(() => TimeRangeDirective),
       multi: true
     }
   ]
 })
-export class CalendarRangeDirective implements ControlValueAccessor {
+export class TimeRangeDirective implements ControlValueAccessor {
 
 	@Input() startCalendar
 	@Input() endCalendar
@@ -43,13 +43,12 @@ export class CalendarRangeDirective implements ControlValueAccessor {
 
   ngOnInit() {
 		let opts:any = {
-      type: 'date',
+      type: 'datetime',
       onChange: (date, text, mode) => {
-        //console.log(date instanceof Date)
         if(this.propagateChange)
           this.propagateChange(date)
-      },
-      parser: {
+			},
+			parser: {
 				date: (text, settings) => {
 					if(_.isEmpty(text))
 						return null

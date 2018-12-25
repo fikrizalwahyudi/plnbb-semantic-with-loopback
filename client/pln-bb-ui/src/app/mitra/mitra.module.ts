@@ -20,6 +20,7 @@ import { MitraKesanggupanPasokanDelayedComponent } from './mitra-kesanggupan-pas
 import { MitraKesanggupanPasokanExpiredComponent } from './mitra-kesanggupan-pasokan/mitra-kesanggupan-pasokan-browse/mitra-kesanggupan-pasokan-expired.component';
 import { MitraKesanggupanPasokanCompleteComponent } from './mitra-kesanggupan-pasokan/mitra-kesanggupan-pasokan-browse/mitra-kesanggupan-pasokan-complete.component';
 import { MitraShippingLoadingComponent } from './mitra-shipping-loading/mitra-shipping-loading.component';
+import { MitraInfoLoadingComponent } from './mitra-info-loading/mitra-info-loading.component';
 
 //registerLocaleData(localeId)
 
@@ -40,7 +41,8 @@ const appRoutes: Routes = [
         ] },
         { path: 'create', component: MitraKesanggupanPasokanCreateComponent, data: { breadcrumb: 'Create' } },
         { path: ':id/edit', component: MitraKesanggupanPasokanEditComponent, data: { breadcrumb: 'Edit' } },
-        { path: ':id/loading', component: MitraShippingLoadingComponent, data: { breadcrumb: 'Loading' } }
+        { path: ':id/loading', component: MitraShippingLoadingComponent, data: { breadcrumb: 'Loading' } },
+        { path: 'info/:id/loading', component: MitraInfoLoadingComponent, data: { breadcrumb: 'Info Loading' } }
       ] },
 
       { path: 'shipping-order', component: MitraShippingOrderComponent, data: { breadcrumb: 'Shipping Order' }, children: [
@@ -78,7 +80,8 @@ const appRoutes: Routes = [
     MitraKesanggupanPasokanDelayedComponent,
     MitraKesanggupanPasokanExpiredComponent,
     MitraKesanggupanPasokanCompleteComponent,
-    MitraShippingLoadingComponent
+    MitraShippingLoadingComponent,
+    MitraInfoLoadingComponent
   ],
   exports: [
     MitraComponent,
@@ -96,7 +99,8 @@ const appRoutes: Routes = [
     MitraKesanggupanPasokanDelayedComponent,
     MitraKesanggupanPasokanExpiredComponent,
     MitraKesanggupanPasokanCompleteComponent,
-    MitraShippingLoadingComponent
+    MitraShippingLoadingComponent,
+    MitraInfoLoadingComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'id'}

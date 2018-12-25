@@ -14,6 +14,10 @@ export interface ShippingLoadingInterface {
   "size1"?: number;
   "size2"?: number;
   "coaCow"?: string;
+  "ta"?: Date;
+  "berthing"?: Date;
+  "commenceLoading"?: Date;
+  "completeLoading"?: Date;
   "status"?: number;
   "shippingId"?: any;
   "id"?: any;
@@ -30,6 +34,10 @@ export class ShippingLoading implements ShippingLoadingInterface {
   "size1": number = 0;
   "size2": number = 0;
   "coaCow": string = '';
+  "ta": Date = new Date(0);
+  "berthing": Date = new Date(0);
+  "commenceLoading": Date = new Date(0);
+  "completeLoading": Date = new Date(0);
   "status": number = 0;
   "shippingId": any = <any>null;
   "id": any = <any>null;
@@ -102,6 +110,22 @@ export class ShippingLoading implements ShippingLoadingInterface {
         "coaCow": {
           name: 'coaCow',
           type: 'string'
+        },
+        "ta": {
+          name: 'ta',
+          type: 'Date'
+        },
+        "berthing": {
+          name: 'berthing',
+          type: 'Date'
+        },
+        "commenceLoading": {
+          name: 'commenceLoading',
+          type: 'Date'
+        },
+        "completeLoading": {
+          name: 'completeLoading',
+          type: 'Date'
         },
         "status": {
           name: 'status',

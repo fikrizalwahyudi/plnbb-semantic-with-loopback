@@ -58,6 +58,21 @@ export class ShippingLoadingModel extends PersistedModel {
 	@Property('string')
 	coaCow: string
 
+	@Property('date')
+	ta: Date
+
+	@Property('date')
+	berthing: Date
+
+	@Property('date')
+	commenceLoading: Date
+
+	@Property('date')
+	completeLoading: Date
+
+	@Property('string')
+	timesheets: string
+
 	@Property('number')
 	status: number // 0: Rejected, 1: Mitra Input, 2: PLN Input, 3: Valid
 

@@ -31,6 +31,8 @@ import { CalendarYearDirective } from './directives/calendar-year.directive';
 import { CalendarRangeDirective } from './directives/calendar-range.directive';
 import { DigitsMaskDirective } from './directives/digits-mask.directive';
 import { PdfDirective } from './directives/pdf.directive';
+import { FormBlockBasicComponent } from './commons/form-block/form-block-basic.component';
+import { TimeRangeDirective } from './directives/time-range.directive';
 
 
 @NgModule({
@@ -64,7 +66,9 @@ import { PdfDirective } from './directives/pdf.directive';
     CalendarYearDirective,
     CalendarRangeDirective,
     DigitsMaskDirective,
-    PdfDirective
+    PdfDirective,
+    FormBlockBasicComponent,
+    TimeRangeDirective
   ],
 
   declarations: [
@@ -91,7 +95,9 @@ import { PdfDirective } from './directives/pdf.directive';
     CalendarYearDirective,
     CalendarRangeDirective,
     DigitsMaskDirective,
-    PdfDirective
+    PdfDirective,
+    FormBlockBasicComponent,
+    TimeRangeDirective
   ],
 
   providers: [

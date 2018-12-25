@@ -1,101 +1,179 @@
 <ui-form-block title="Informasi Loading"
                [errorMsg]="errorMsg"
                [submitting]="submitting">
+
+  <div class="ui secondary pointing menu">
+    <a class="item"
+       (click)="tab(1)"
+       [ngClass]="{'active': (viewTab == 1)}">
+      Coa Cow
+    </a>
+    <a class="item"
+       (click)="tab(2)"
+       [ngClass]="{'active': (viewTab == 2)}">
+      Timesheets
+    </a>
+  </div>
+
   <div class="ui grid">
-    <div class="five wide column border-right">
+    <div class="five wide column">
       <form [formGroup]="fg"
             (ngSubmit)="approve()"
             class="ui form">
 
-        <div class="required field">
-          <label>Gross Calorific Value</label>
-          <div class="ui right labeled input">
-            <input type="number"
-                   formControlName="gcv"
-                   readonly>
-            <div class="ui basic label">
-              Kcal/Kg
+        <ng-container *ngIf="viewTab == 1">
+          <div class="required field">
+            <label>Gross Calorific Value</label>
+            <div class="ui right labeled input">
+              <input type="number"
+                     formControlName="gcv"
+                     readonly>
+              <div class="ui basic label">
+                Kcal/Kg
+              </div>
             </div>
           </div>
-        </div>
-        <div class="required field">
-          <label>Hardgrove Grindability Index</label>
-          <div class="ui right labeled input">
-            <input type="number"
-                   formControlName="hgi"
-                   readonly>
-            <div class="ui basic label">
-              Point
+          <div class="required field">
+            <label>Hardgrove Grindability Index</label>
+            <div class="ui right labeled input">
+              <input type="number"
+                     formControlName="hgi"
+                     readonly>
+              <div class="ui basic label">
+                Point
+              </div>
             </div>
           </div>
-        </div>
-        <div class="required field">
-          <label>Initial Deformation Temp.</label>
-          <div class="ui right labeled input">
-            <input type="number"
-                   formControlName="idt"
-                   readonly>
-            <div class="ui basic label">
-              &#176;C
+          <div class="required field">
+            <label>Initial Deformation Temp.</label>
+            <div class="ui right labeled input">
+              <input type="number"
+                     formControlName="idt"
+                     readonly>
+              <div class="ui basic label">
+                &#176;C
+              </div>
             </div>
           </div>
-        </div>
-        <div class="required field">
-          <label>Ash Content</label>
-          <div class="ui right labeled input">
-            <input type="number"
-                   formControlName="ash"
-                   readonly>
-            <div class="ui basic label">
-              %
+          <div class="required field">
+            <label>Ash Content</label>
+            <div class="ui right labeled input">
+              <input type="number"
+                     formControlName="ash"
+                     readonly>
+              <div class="ui basic label">
+                %
+              </div>
             </div>
           </div>
-        </div>
-        <div class="required field">
-          <label>Total Moisture</label>
-          <div class="ui right labeled input">
-            <input type="number"
-                   formControlName="tm"
-                   readonly>
-            <div class="ui basic label">
-              %
+          <div class="required field">
+            <label>Total Moisture</label>
+            <div class="ui right labeled input">
+              <input type="number"
+                     formControlName="tm"
+                     readonly>
+              <div class="ui basic label">
+                %
+              </div>
             </div>
           </div>
-        </div>
-        <div class="required field">
-          <label>Total Sulphur</label>
-          <div class="ui right labeled input">
-            <input type="number"
-                   formControlName="ts"
-                   readonly>
-            <div class="ui basic label">
-              %
+          <div class="required field">
+            <label>Total Sulphur</label>
+            <div class="ui right labeled input">
+              <input type="number"
+                     formControlName="ts"
+                     readonly>
+              <div class="ui basic label">
+                %
+              </div>
             </div>
           </div>
-        </div>
-        <div class="required field">
-          <label>70mm</label>
-          <div class="ui right labeled input">
-            <input type="number"
-                   formControlName="size1"
-                   readonly>
-            <div class="ui basic label">
-              %
+          <div class="required field">
+            <label>70mm</label>
+            <div class="ui right labeled input">
+              <input type="number"
+                     formControlName="size1"
+                     readonly>
+              <div class="ui basic label">
+                %
+              </div>
             </div>
           </div>
-        </div>
-        <div class="required field">
-          <label>2.38mm</label>
-          <div class="ui right labeled input">
-            <input type="number"
-                   formControlName="size2"
-                   readonly>
-            <div class="ui basic label">
-              %
+          <div class="required field">
+            <label>2.38mm</label>
+            <div class="ui right labeled input">
+              <input type="number"
+                     formControlName="size2"
+                     readonly>
+              <div class="ui basic label">
+                %
+              </div>
             </div>
           </div>
-        </div>
+        </ng-container>
+        <ng-container *ngIf="viewTab == 2">
+          <div class="required field">
+            <label>Time Arrival</label>
+            <div class="ui calendar"
+                 uiTimeRange
+                 formControlName="ta"
+                 #ta
+                 [endCalendar]="berthing">
+              <div class="ui input left icon">
+                <i class="calendar icon"></i>
+                <input type="text"
+                       placeholder="Date/Time">
+              </div>
+            </div>
+          </div>
 
+          <div class="required field">
+            <label>Berthing</label>
+            <div class="ui calendar"
+                 uiTimeRange
+                 formControlName="berthing"
+                 #berthing
+                 [startCalendar]="ta"
+                 [endCalendar]="commenceLoading">
+              <div class="ui input left icon">
+                <i class="calendar icon"></i>
+                <input type="text"
+                       placeholder="Date/Time">
+              </div>
+            </div>
+          </div>
+
+          <div class="required field">
+            <label>Commence Loading</label>
+            <div class="ui calendar"
+                 uiTimeRange
+                 formControlName="commenceLoading"
+                 #commenceLoading
+                 [startCalendar]="berthing"
+                 [endCalendar]="completeLoading">
+              <div class="ui input left icon">
+                <i class="calendar icon"></i>
+                <input type="text"
+                       placeholder="Date/Time">
+              </div>
+            </div>
+          </div>
+
+          <div class="required field">
+            <label>Complete Loading</label>
+            <div class="ui calendar"
+                 uiTimeRange
+                 formControlName="completeLoading"
+                 #completeLoading
+                 [startCalendar]="commenceLoading">
+              <div class="ui input left icon">
+                <i class="calendar icon"></i>
+                <input type="text"
+                       placeholder="Date/Time">
+              </div>
+            </div>
+          </div>
+        </ng-container>
         <div class="inline field">
           <button class="ui secondary button"
                   type="button"
@@ -108,7 +186,8 @@
     </div>
 
     <div class="eleven wide column">
-      <div class="ui form" [formGroup]="fg">
+      <div class="ui form"
+           [formGroup]="fg">
         <input type="file"
                style="display: none;"
                (change)="fileCoaCowChange($event)"
@@ -128,7 +207,8 @@
           </div>
         </div> -->
 
-        <div *ngIf="loading" uiPdf [url]="docUrl"></div>
+        <div *ngIf="loading"
+             uiPdf></div>
       </div>
     </div>
   </div>

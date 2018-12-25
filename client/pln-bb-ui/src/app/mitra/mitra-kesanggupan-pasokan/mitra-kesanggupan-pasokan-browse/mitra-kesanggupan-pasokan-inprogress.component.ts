@@ -46,11 +46,14 @@ import { Mitra } from '../../../shared/sdk/models/Mitra';
                 <td class="right aligned">{{itemEntry.jumlah | number:undefined:'id'}}</td>
                 <td class="right aligned">{{itemEntry.harga | currency:'Rp':undefined:undefined:'id'}}</td>
                 <td class="center aligned collapsing">
-                  <a *ngIf="!itemEntry.loading" [routerLink]="['/mitra', 'kesanggupan-pasokan', itemEntry.id, 'loading']">
+                  <a *ngIf="!itemEntry.loading || (itemEntry.loading.status == 0)" [routerLink]="['/mitra', 'kesanggupan-pasokan', itemEntry.id, 'loading']">
                     <i class="box link icon action-icon red"></i>
                   </a>
-                  <a *ngIf="itemEntry.loading">
-                    <i class="box icon action-icon green"></i>
+                  <a *ngIf="itemEntry.loading && itemEntry.loading.status == 3" [routerLink]="['/mitra', 'kesanggupan-pasokan', itemEntry.id, 'loading']">
+                    <i class="box link icon action-icon green"></i>
+                  </a>
+                  <a *ngIf="itemEntry.loading && itemEntry.loading.status == 1">
+                    <i class="spinner loading icon action-icon"></i>
                   </a>
                 </td>
               </tr>

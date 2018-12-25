@@ -26,6 +26,8 @@ import { PlnbbVerifikasiSailingBrowseComponent } from './plnbb-verifikasi-sailin
 import { PlnbbVerifikasiSailingFormComponent } from './plnbb-verifikasi-sailing/plnbb-verifikasi-sailing-form/plnbb-verifikasi-sailing-form.component';
 import { PlnbbVerifikasiLoadingBrowseComponent } from './plnbb-verifikasi-loading/plnbb-verifikasi-loading-browse/plnbb-verifikasi-loading-browse.component';
 import { PlnbbVerifikasiLoadingFormComponent } from './plnbb-verifikasi-loading/plnbb-verifikasi-loading-form/plnbb-verifikasi-loading-form.component';
+import { PlnbbInfoLoadingComponent } from './plnbb-info-loading/plnbb-info-loading.component';
+import { PlnbbInfoUnloadingComponent } from './plnbb-info-unloading/plnbb-info-unloading.component';
 
 const appRoutes: Routes = [
   { path: '', component: PlnbbComponent, children: [
@@ -101,7 +103,9 @@ const appRoutes: Routes = [
     PlnbbMonitoringPengirimanDelayedComponent,
     PlnbbMonitoringPengirimanCompleteComponent,
     PlnbbMonitoringPengirimanExpiredComponent,
-    PlnbbShippingUnloadingComponent
+    PlnbbShippingUnloadingComponent,
+    PlnbbInfoLoadingComponent,
+    PlnbbInfoUnloadingComponent
   ],
   exports : [
     PlnbbComponent,
@@ -125,7 +129,9 @@ const appRoutes: Routes = [
     PlnbbMonitoringPengirimanDelayedComponent,
     PlnbbMonitoringPengirimanCompleteComponent,
     PlnbbMonitoringPengirimanExpiredComponent,
-    PlnbbShippingUnloadingComponent
+    PlnbbShippingUnloadingComponent,
+    PlnbbInfoLoadingComponent,
+    PlnbbInfoUnloadingComponent
   ]
 })
 export class PlnbbModule { }

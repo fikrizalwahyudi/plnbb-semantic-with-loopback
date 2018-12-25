@@ -35,7 +35,9 @@ const appRoutes: Routes = [
   { path: 'plnbb', loadChildren: './plnbb/plnbb.module#PlnbbModule', canActivate: [AuthenticatedGuard], data: { breadcrumb: 'PLN BB' } },
 
   { path: 'dirop', loadChildren: './dirop/dirop.module#DiropModule', canActivate: [AuthenticatedGuard], data: { breadcrumb: 'Direktur Operasi' } },
-  
+
+  { path: 'info', loadChildren: './info/info.module#InfoModule', canActivate: [AuthenticatedGuard], data: { breadcrumb: 'Info' } },
+
   { path: '', redirectTo: 'admin', pathMatch: 'full' }
 ];
 
