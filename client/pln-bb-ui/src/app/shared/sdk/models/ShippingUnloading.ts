@@ -1,4 +1,7 @@
 /* tslint:disable */
+import {
+  Shipping
+} from '../index';
 
 declare var Object: any;
 export interface ShippingUnloadingInterface {
@@ -10,13 +13,16 @@ export interface ShippingUnloadingInterface {
   "idt"?: number;
   "size1"?: number;
   "size2"?: number;
-  "timeArrival"?: Date;
+  "coaCow"?: string;
+  "ta"?: Date;
   "berthing"?: Date;
   "commenceUnloading"?: Date;
   "completeUnloading"?: Date;
-  "shippingId"?: any;
+  "timesheets"?: string;
   "status"?: number;
+  "shippingId"?: any;
   "id"?: any;
+  shipping?: Shipping;
 }
 
 export class ShippingUnloading implements ShippingUnloadingInterface {
@@ -28,13 +34,16 @@ export class ShippingUnloading implements ShippingUnloadingInterface {
   "idt": number = 0;
   "size1": number = 0;
   "size2": number = 0;
-  "timeArrival": Date = new Date(0);
+  "coaCow": string = '';
+  "ta": Date = new Date(0);
   "berthing": Date = new Date(0);
   "commenceUnloading": Date = new Date(0);
   "completeUnloading": Date = new Date(0);
-  "shippingId": any = <any>null;
+  "timesheets": string = '';
   "status": number = 0;
+  "shippingId": any = <any>null;
   "id": any = <any>null;
+  shipping: Shipping = null;
   constructor(data?: ShippingUnloadingInterface) {
     Object.assign(this, data);
   }
@@ -100,8 +109,12 @@ export class ShippingUnloading implements ShippingUnloadingInterface {
           name: 'size2',
           type: 'number'
         },
-        "timeArrival": {
-          name: 'timeArrival',
+        "coaCow": {
+          name: 'coaCow',
+          type: 'string'
+        },
+        "ta": {
+          name: 'ta',
           type: 'Date'
         },
         "berthing": {
@@ -116,13 +129,17 @@ export class ShippingUnloading implements ShippingUnloadingInterface {
           name: 'completeUnloading',
           type: 'Date'
         },
-        "shippingId": {
-          name: 'shippingId',
-          type: 'any'
+        "timesheets": {
+          name: 'timesheets',
+          type: 'string'
         },
         "status": {
           name: 'status',
           type: 'number'
+        },
+        "shippingId": {
+          name: 'shippingId',
+          type: 'any'
         },
         "id": {
           name: 'id',
@@ -130,6 +147,14 @@ export class ShippingUnloading implements ShippingUnloadingInterface {
         },
       },
       relations: {
+        shipping: {
+          name: 'shipping',
+          type: 'Shipping',
+          model: 'Shipping',
+          relationType: 'belongsTo',
+                  keyFrom: 'shippingId',
+          keyTo: 'id'
+        },
       }
     }
   }

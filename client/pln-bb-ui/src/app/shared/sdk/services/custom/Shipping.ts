@@ -17,6 +17,7 @@ import { Pltu } from '../../models/Pltu';
 import { Jetty } from '../../models/Jetty';
 import { ShippingInstruction } from '../../models/ShippingInstruction';
 import { ShippingLoading } from '../../models/ShippingLoading';
+import { ShippingUnloading } from '../../models/ShippingUnloading';
 
 
 /**
@@ -54,7 +55,7 @@ export class ShippingApi extends BaseLoopBackApi {
   public getMitra(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping_/:id/mitra";
+    "/shipping/:id/mitra";
     let _routeParams: any = {
       id: id
     };
@@ -84,7 +85,7 @@ export class ShippingApi extends BaseLoopBackApi {
   public getTransport(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping_/:id/transport";
+    "/shipping/:id/transport";
     let _routeParams: any = {
       id: id
     };
@@ -114,7 +115,7 @@ export class ShippingApi extends BaseLoopBackApi {
   public getReferensiKontrak(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping_/:id/referensiKontrak";
+    "/shipping/:id/referensiKontrak";
     let _routeParams: any = {
       id: id
     };
@@ -144,7 +145,7 @@ export class ShippingApi extends BaseLoopBackApi {
   public getTujuanPltu(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping_/:id/tujuanPltu";
+    "/shipping/:id/tujuanPltu";
     let _routeParams: any = {
       id: id
     };
@@ -174,7 +175,7 @@ export class ShippingApi extends BaseLoopBackApi {
   public getJetty(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping_/:id/jetty";
+    "/shipping/:id/jetty";
     let _routeParams: any = {
       id: id
     };
@@ -204,7 +205,7 @@ export class ShippingApi extends BaseLoopBackApi {
   public getSi(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping_/:id/si";
+    "/shipping/:id/si";
     let _routeParams: any = {
       id: id
     };
@@ -234,7 +235,7 @@ export class ShippingApi extends BaseLoopBackApi {
   public getLoading(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping_/:id/loading";
+    "/shipping/:id/loading";
     let _routeParams: any = {
       id: id
     };
@@ -266,7 +267,7 @@ export class ShippingApi extends BaseLoopBackApi {
   public createLoading(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping_/:id/loading";
+    "/shipping/:id/loading";
     let _routeParams: any = {
       id: id
     };
@@ -299,7 +300,7 @@ export class ShippingApi extends BaseLoopBackApi {
   public updateLoading(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PUT";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping_/:id/loading";
+    "/shipping/:id/loading";
     let _routeParams: any = {
       id: id
     };
@@ -325,7 +326,127 @@ export class ShippingApi extends BaseLoopBackApi {
   public destroyLoading(id: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping_/:id/loading";
+    "/shipping/:id/loading";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Fetches hasOne relation unloading.
+   *
+   * @param {any} id Shipping id
+   *
+   * @param {boolean} refresh 
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Shipping` object.)
+   * </em>
+   */
+  public getUnloading(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/shipping/:id/unloading";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    if (typeof refresh !== 'undefined' && refresh !== null) _urlParams.refresh = refresh;
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Creates a new instance in unloading of this model.
+   *
+   * @param {any} id Shipping id
+   *
+   * @param {object} data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Shipping` object.)
+   * </em>
+   */
+  public createUnloading(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "POST";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/shipping/:id/unloading";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {
+      data: data
+    };
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Update unloading of this model.
+   *
+   * @param {any} id Shipping id
+   *
+   * @param {object} data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Shipping` object.)
+   * </em>
+   */
+  public updateUnloading(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "PUT";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/shipping/:id/unloading";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {
+      data: data
+    };
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Deletes unloading of this model.
+   *
+   * @param {any} id Shipping id
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * This method returns no data.
+   */
+  public destroyUnloading(id: any, customHeaders?: Function): Observable<any> {
+    let _method: string = "DELETE";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/shipping/:id/unloading";
     let _routeParams: any = {
       id: id
     };
@@ -354,7 +475,7 @@ export class ShippingApi extends BaseLoopBackApi {
   public patchOrCreate(data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping_";
+    "/shipping";
     let _routeParams: any = {};
     let _postBody: any = {
       data: data
@@ -385,7 +506,7 @@ export class ShippingApi extends BaseLoopBackApi {
   public patchAttributes(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping_/:id";
+    "/shipping/:id";
     let _routeParams: any = {
       id: id
     };
@@ -418,7 +539,40 @@ export class ShippingApi extends BaseLoopBackApi {
   public createManyLoading(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping_/:id/loading";
+    "/shipping/:id/loading";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {
+      data: data
+    };
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Creates a new instance in unloading of this model.
+   *
+   * @param {any} id Shipping id
+   *
+   * @param {object} data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns {object[]} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Shipping` object.)
+   * </em>
+   */
+  public createManyUnloading(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
+    let _method: string = "POST";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/shipping/:id/unloading";
     let _routeParams: any = {
       id: id
     };

@@ -136,11 +136,11 @@ export class PlnbbShippingInstructionFormComponent implements OnInit {
     this.errorMsg = undefined
 
     let model = this.fg.value
-
+    //console.log(model)
     model.siRequestId = this.siRequest.id
     model.transportId = model.transportId.value
     model.jettyId = model.jettyId.value
-    model.noTahun = model.noTahun.getFullYear()
+    //model.noTahun = model.noTahun.getFullYear()
 
     //console.log(model)
 

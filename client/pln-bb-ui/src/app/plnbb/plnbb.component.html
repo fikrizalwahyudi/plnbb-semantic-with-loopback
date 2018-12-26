@@ -23,7 +23,8 @@
 				   [routerLink]="['/plnbb/shipping-instruction']"
 				   routerLinkActive="active">
 					Shipping Instruction
-					<div class="ui label">0</div>
+					<div *ngIf="countSi > 0" class="ui red label">{{countSi}}</div>
+					<i *ngIf="countSi == 0" class="archive icon"></i>
 				</a>
 
 				<!-- <div class="ui divider"></div> -->
@@ -32,7 +33,8 @@
 				   [routerLink]="['/plnbb/verifikasi-loading']"
 				   routerLinkActive="active">
 					Loading
-					<div class="ui label">0</div>
+					<div *ngIf="countLoading > 0" class="ui red label">{{countLoading}}</div>
+					<i *ngIf="countLoading == 0" class="box icon"></i>
 				</a>
 				<!-- <a class="item"
 				   [routerLink]="['/plnbb/verifikasi-sailing']"

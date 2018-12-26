@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DiropComponent implements OnInit {
 
+  countSi = 0
+
   constructor() { }
 
   ngOnInit() {

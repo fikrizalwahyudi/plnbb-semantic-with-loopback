@@ -17,7 +17,7 @@ export class ShippingDao extends PersistedDao
 	dao: ShippingDao,
 	dataSource: 'plnbbmongodb',
 	settings: {
-		plural: 'shipping_',
+		plural: 'shipping',
 		idInjection: true,
 		forceId: false,
 		mixins: {
@@ -93,4 +93,7 @@ export class ShippingModel extends PersistedModel {
 
 	@Relation('hasOne', 'ShippingLoading', 'shippingId')
 	loading
+
+	@Relation('hasOne', 'ShippingUnloading', 'shippingId')
+	unloading
 }

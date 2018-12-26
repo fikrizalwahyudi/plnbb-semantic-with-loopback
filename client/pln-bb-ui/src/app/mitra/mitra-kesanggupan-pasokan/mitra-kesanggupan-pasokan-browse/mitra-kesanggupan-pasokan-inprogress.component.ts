@@ -76,7 +76,7 @@ export class MitraKesanggupanPasokanInprogressComponent implements OnInit {
     private shippingApi:ShippingApi
   ) { 
     this.mitraApi.findOne({where: {userId: this.userApi.getCurrentId()}}).subscribe((mitra:Mitra) => {
-      this.shippingApi.find({where: {mitraId: mitra.id}, include: ['jetty', 'mitra', 'referensiKontrak', 'si', 'transport', 'tujuanPltu', 'loading']}).subscribe(data => {
+      this.shippingApi.find({where: {mitraId: mitra.id, status: {neq: 3}}, include: ['jetty', 'mitra', 'referensiKontrak', 'si', 'transport', 'tujuanPltu', 'loading']}).subscribe(data => {
         let buffer: any = _.groupBy(data, (entry: Shipping) => {
           let date = new Date(entry.laycanStartDate)
           return moment(date).format('MMMM YYYY')

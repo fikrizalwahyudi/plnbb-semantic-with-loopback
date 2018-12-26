@@ -5,7 +5,8 @@ import {
   Pltu,
   Jetty,
   ShippingInstruction,
-  ShippingLoading
+  ShippingLoading,
+  ShippingUnloading
 } from '../index';
 
 declare var Object: any;
@@ -32,6 +33,7 @@ export interface ShippingInterface {
   jetty?: Jetty;
   si?: ShippingInstruction;
   loading?: ShippingLoading;
+  unloading?: ShippingUnloading;
 }
 
 export class Shipping implements ShippingInterface {
@@ -57,6 +59,7 @@ export class Shipping implements ShippingInterface {
   jetty: Jetty = null;
   si: ShippingInstruction = null;
   loading: ShippingLoading = null;
+  unloading: ShippingUnloading = null;
   constructor(data?: ShippingInterface) {
     Object.assign(this, data);
   }
@@ -86,8 +89,8 @@ export class Shipping implements ShippingInterface {
   public static getModelDefinition() {
     return {
       name: 'Shipping',
-      plural: 'shipping_',
-      path: 'shipping_',
+      plural: 'shipping',
+      path: 'shipping',
       idName: 'id',
       properties: {
         "mitraId": {
@@ -204,6 +207,14 @@ export class Shipping implements ShippingInterface {
           name: 'loading',
           type: 'ShippingLoading',
           model: 'ShippingLoading',
+          relationType: 'hasOne',
+                  keyFrom: 'id',
+          keyTo: 'shippingId'
+        },
+        unloading: {
+          name: 'unloading',
+          type: 'ShippingUnloading',
+          model: 'ShippingUnloading',
           relationType: 'hasOne',
                   keyFrom: 'id',
           keyTo: 'shippingId'

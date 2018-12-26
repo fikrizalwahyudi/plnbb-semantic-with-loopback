@@ -122,7 +122,8 @@
               <div class="ui input left icon">
                 <i class="calendar icon"></i>
                 <input type="text"
-                       placeholder="Date/Time">
+                       placeholder="Date/Time"
+                       disabled>
               </div>
             </div>
           </div>
@@ -138,7 +139,8 @@
               <div class="ui input left icon">
                 <i class="calendar icon"></i>
                 <input type="text"
-                       placeholder="Date/Time">
+                       placeholder="Date/Time"
+                       disabled>
               </div>
             </div>
           </div>
@@ -154,7 +156,8 @@
               <div class="ui input left icon">
                 <i class="calendar icon"></i>
                 <input type="text"
-                       placeholder="Date/Time">
+                       placeholder="Date/Time"
+                       disabled>
               </div>
             </div>
           </div>
@@ -169,12 +172,13 @@
               <div class="ui input left icon">
                 <i class="calendar icon"></i>
                 <input type="text"
-                       placeholder="Date/Time">
+                       placeholder="Date/Time"
+                       disabled>
               </div>
             </div>
           </div>
         </ng-container>
-        <div class="inline field">
+        <div class="inline field" *ngIf="!readonly">
           <button class="ui secondary button"
                   type="button"
                   (click)="reject()">Reject</button>
@@ -213,3 +217,4 @@
     </div>
   </div>
 </ui-form-block>
+<div class="mb-5"></div>

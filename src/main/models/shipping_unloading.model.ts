@@ -50,10 +50,13 @@ export class ShippingUnloadingModel extends PersistedModel {
     size1: number
     
     @Property('number')
-	size2: number
+    size2: number
+    
+    @Property('string')
+	coaCow: string
     
     @Property('date')
-    timeArrival: Date
+    ta: Date
     
     @Property('date')
     berthing: Date
@@ -64,10 +67,16 @@ export class ShippingUnloadingModel extends PersistedModel {
     @Property('date')
     completeUnloading: Date
     
-    @Property('any')
-    shippingId:any
+    @Property('string')
+	timesheets: string
 
     @Property('number')
-    status: number
+	status: number // 0: Rejected, 1: Mitra Input, 2: PLN Input, 3: Valid
+
+	@Property('any')
+	shippingId: any
+
+	@Relation('belongsTo', 'Shipping', 'shippingId')
+	shipping
 
 }

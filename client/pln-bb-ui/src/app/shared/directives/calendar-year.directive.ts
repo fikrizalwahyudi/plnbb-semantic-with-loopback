@@ -45,17 +45,7 @@ export class CalendarYearDirective implements ControlValueAccessor {
         //console.log(date instanceof Date)
         if(this.propagateChange)
           this.propagateChange(date)
-      },
-      parser: {
-				date: (text, settings) => {
-					if(_.isEmpty(text))
-						return null
-
-					let tmp = moment(text)
-
-					return tmp.toDate()
-				}
-			}
+      }
     });
   }
 }

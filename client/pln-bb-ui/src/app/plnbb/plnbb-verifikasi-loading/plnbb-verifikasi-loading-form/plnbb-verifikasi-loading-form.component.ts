@@ -28,6 +28,7 @@ export class PlnbbVerifikasiLoadingFormComponent implements OnInit {
   shipping:Shipping
   loading:ShippingLoading
   viewTab = 1
+  readonly = false
 
   constructor(
     private fb:FormBuilder,
@@ -63,6 +64,9 @@ export class PlnbbVerifikasiLoadingFormComponent implements OnInit {
 
       this.loadingApi.findById(id).subscribe((data:any) => {
         this.loading = data as ShippingLoading
+
+        if(this.loading.status == 3)
+          this.readonly = true
 
         this.shippingApi.findById(data.shippingId, {include: 'loading'}).subscribe(data => {
           this.shipping = data as Shipping

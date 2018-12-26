@@ -6,7 +6,8 @@
            [routerLink]="['/dirop/shipping-instruction']"
            routerLinkActive="active">
           Shipping Instruction
-          <div class="ui label">0</div>
+          <div *ngIf="countSi > 0" class="ui label">{{countSi}}</div>
+          <i *ngIf="countSi == 0" class="archive icon"></i>
         </a>
       </div>
     </div>

@@ -1,142 +1,226 @@
 <ui-form-block title="Informasi Unloading"
                [errorMsg]="errorMsg"
                [submitting]="submitting">
-  <div class="ui two column grid">
-    <div class="column border-right">
+
+  <div class="ui secondary pointing menu">
+    <a class="item"
+       (click)="tab(1)"
+       [ngClass]="{'active': (viewTab == 1)}">
+      Coa Cow
+    </a>
+    <a class="item"
+       (click)="tab(2)"
+       [ngClass]="{'active': (viewTab == 2)}">
+      Timesheets
+    </a>
+  </div>
+
+  <div class="ui grid">
+    <div class="five wide column">
       <form [formGroup]="fg"
             (ngSubmit)="save()"
             class="ui form">
 
-        <div class="required field">
-          <label>Gross Calorific Value</label>
-          <div class="ui right labeled input">
-            <input type="number"
-                   formControlName="gcv">
-            <div class="ui basic label">
-              Kcal/Kg
-            </div>
-          </div>
-        </div>
-        <div class="required field">
-          <label>Ash Content</label>
-          <div class="ui right labeled input">
-            <input type="number"
-                   formControlName="ash">
-            <div class="ui basic label">
-              %
-            </div>
-          </div>
-        </div>
-        <div class="required field">
-          <label>Total Moisture</label>
-          <div class="ui right labeled input">
-            <input type="number"
-                   formControlName="tm">
-            <div class="ui basic label">
-              %
-            </div>
-          </div>
-        </div>
-        <div class="required field">
-          <label>Total Sulphur</label>
-          <div class="ui right labeled input">
-            <input type="number"
-                   formControlName="ts">
-            <div class="ui basic label">
-              %
-            </div>
-          </div>
-        </div>
-        <div class="required field">
-          <label>70mm</label>
-          <div class="ui right labeled input">
-            <input type="number"
-                   formControlName="size1">
-            <div class="ui basic label">
-              %
-            </div>
-          </div>
-        </div>
-        <div class="required field">
-          <label>2.38mm</label>
-          <div class="ui right labeled input">
-            <input type="number"
-                   formControlName="size2">
-            <div class="ui basic label">
-              %
-            </div>
-          </div>
-        </div>
-        <div class="required field">
-          <label>Hardgrove Grindability Index</label>
-          <div class="ui right labeled input">
-            <input type="number"
-                    formControlName="hgi">
-            <div class="ui basic label">
-              Point
-            </div>
-          </div>
-        </div>
-        <div class="required field">
-          <label>Initial Deformation Temp.</label>
-          <div class="ui right labeled input">
-            <input type="number"
-                    formControlName="idt">
-            <div class="ui basic label">
-              &#176;C
-            </div>
-          </div>
-        </div>
-        <div class="required field">
-          <label>Time Arrival</label>
-          <div class="ui calendar"
-               uiTime
-               formControlName="timeArrival">
-            <div class="ui input left icon">
-              <i class="calendar icon"></i>
+        <ng-container *ngIf="viewTab == 1">
+          <input type="file"
+                 style="display: none;"
+                 (change)="fileCoaCowChange($event)"
+                 #file1>
+          <div class="required field">
+            <label>Dokumen Coa Cow</label>
+            <div class="ui action input">
               <input type="text"
-                     placeholder="Time Arrival">
+                     placeholder="Browse file..."
+                     readonly
+                     formControlName="coaCow">
+              <button type="button"
+                      class="ui icon button"
+                      (click)="file1.click()"
+                      [disabled]="readonly">
+                Browse
+              </button>
             </div>
           </div>
-        </div>
-        <div class="required field">
-          <label>Berthing</label>
-          <div class="ui calendar"
-               uiTime
-               formControlName="berthing">
-            <div class="ui input left icon">
-              <i class="calendar icon"></i>
-              <input type="text"
-                     placeholder="Berthing">
-            </div>
-          </div>
-        </div>
-        <div class="required field">
-          <label>Commence Unloading</label>
-          <div class="ui calendar"
-               uiTime
-               formControlName="commenceUnloading">
-            <div class="ui input left icon">
-              <i class="calendar icon"></i>
-              <input type="text"
-                     placeholder="Commence Unloading">
-            </div>
-          </div>
-        </div>
-        <div class="required field">
-          <label>Complete Unloading</label>
-          <div class="ui calendar"
-               uiTime
-               formControlName="completeUnloading">
-            <div class="ui input left icon">
-              <i class="calendar icon"></i>
-              <input type="text"
-                     placeholder="Complete Unloading">
-            </div>
-          </div>
-        </div>
 
-        <div class="inline field">
+          <div class="required field">
+            <label>Gross Calorific Value</label>
+            <div class="ui right labeled input">
+              <input type="number"
+                     formControlName="gcv"
+                     [readonly]="readonly">
+              <div class="ui basic label">
+                Kcal/Kg
+              </div>
+            </div>
+          </div>
+          <div class="required field">
+            <label>Hardgrove Grindability Index</label>
+            <div class="ui right labeled input">
+              <input type="number"
+                     formControlName="hgi"
+                     [readonly]="readonly">
+              <div class="ui basic label">
+                Point
+              </div>
+            </div>
+          </div>
+          <div class="required field">
+            <label>Initial Deformation Temp.</label>
+            <div class="ui right labeled input">
+              <input type="number"
+                     formControlName="idt"
+                     [readonly]="readonly">
+              <div class="ui basic label">
+                &#176;C
+              </div>
+            </div>
+          </div>
+          <div class="required field">
+            <label>Ash Content</label>
+            <div class="ui right labeled input">
+              <input type="number"
+                     formControlName="ash"
+                     [readonly]="readonly">
+              <div class="ui basic label">
+                %
+              </div>
+            </div>
+          </div>
+          <div class="required field">
+            <label>Total Moisture</label>
+            <div class="ui right labeled input">
+              <input type="number"
+                     formControlName="tm"
+                     [readonly]="readonly">
+              <div class="ui basic label">
+                %
+              </div>
+            </div>
+          </div>
+          <div class="required field">
+            <label>Total Sulphur</label>
+            <div class="ui right labeled input">
+              <input type="number"
+                     formControlName="ts"
+                     [readonly]="readonly">
+              <div class="ui basic label">
+                %
+              </div>
+            </div>
+          </div>
+          <div class="required field">
+            <label>70mm</label>
+            <div class="ui right labeled input">
+              <input type="number"
+                     formControlName="size1"
+                     [readonly]="readonly">
+              <div class="ui basic label">
+                %
+              </div>
+            </div>
+          </div>
+          <div class="required field">
+            <label>2.38mm</label>
+            <div class="ui right labeled input">
+              <input type="number"
+                     formControlName="size2"
+                     [readonly]="readonly">
+              <div class="ui basic label">
+                %
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="viewTab == 2">
+          <input type="file"
+                 style="display: none;"
+                 (change)="fileTimesheetsChange($event)"
+                 #file2>
+          <div class="required field">
+            <label>Dokumen Timesheets</label>
+            <div class="ui action input">
+              <input type="text"
+                     placeholder="Browse file..."
+                     readonly
+                     formControlName="timesheets">
+              <button type="button"
+                      class="ui icon button"
+                      (click)="file2.click()"
+                      [disabled]="readonly">
+                Browse
+              </button>
+            </div>
+          </div>
+
+          <div class="required field">
+            <label>Time Arrival</label>
+            <div class="ui calendar"
+                 uiTimeRange
+                 formControlName="ta"
+                 #ta
+                 [endCalendar]="berthing">
+              <div class="ui input left icon">
+                <i class="calendar icon"></i>
+                <input type="text"
+                       placeholder="Date/Time"
+                       [disabled]="readonly">
+              </div>
+            </div>
+          </div>
+
+          <div class="required field">
+            <label>Berthing</label>
+            <div class="ui calendar"
+                 uiTimeRange
+                 formControlName="berthing"
+                 #berthing
+                 [startCalendar]="ta"
+                 [endCalendar]="commenceUnloading">
+              <div class="ui input left icon">
+                <i class="calendar icon"></i>
+                <input type="text"
+                       placeholder="Date/Time"
+                       [disabled]="readonly">
+              </div>
+            </div>
+          </div>
+
+          <div class="required field">
+            <label>Commence Unloading</label>
+            <div class="ui calendar"
+                 uiTimeRange
+                 formControlName="commenceUnloading"
+                 #commenceUnloading
+                 [startCalendar]="berthing"
+                 [endCalendar]="completeUnloading">
+              <div class="ui input left icon">
+                <i class="calendar icon"></i>
+                <input type="text"
+                       placeholder="Date/Time"
+                       [disabled]="readonly">
+              </div>
+            </div>
+          </div>
+
+          <div class="required field">
+            <label>Complete Unloading</label>
+            <div class="ui calendar"
+                 uiTimeRange
+                 formControlName="completeUnloading"
+                 #completeUnloading
+                 [startCalendar]="commenceUnloading">
+              <div class="ui input left icon">
+                <i class="calendar icon"></i>
+                <input type="text"
+                       placeholder="Date/Time"
+                       [disabled]="readonly">
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <div class="inline field" *ngIf="!readonly">
           <button class="ui secondary button"
                   type="button"
                   (click)="cancel()">Cancel</button>
@@ -147,19 +231,11 @@
       </form>
     </div>
 
-    <div class="column">
+    <div class="eleven wide column">
       <div class="ui form">
-        <input type="file" multiple style="display: none;" (change)="fileCoaCowChange($event)" #file1>
-        <div class="required field">
-          <label>Dokumen Coa Cow</label>
-          <div class="ui action input">
-            <input type="text" placeholder="Browse file..." readonly>
-            <button type="button" class="ui icon button" (click)="file1.click()">
-              Browse
-            </button>
-          </div>
-        </div>
+        <div uiPdf></div>
       </div>
     </div>
   </div>
 </ui-form-block>
+<div class="mb-5"></div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MitraShippingInstructionRequestApi } from '../shared/sdk/services/custom/MitraShippingInstructionRequest';
+import { ShippingLoadingApi } from '../shared/sdk/services/custom/ShippingLoading';
 
 declare var $: any;
 @Component({
@@ -7,29 +9,24 @@ declare var $: any;
   styleUrls: ['./plnbb.component.sass']
 })
 export class PlnbbComponent implements OnInit {
-  id: string = 'dashboard';
-  constructor() {
-    $(document)
-      .ready(function () {
-        $('.ui.menu .ui.dropdown').dropdown({
-          on: 'hover'
-        });
-        $('.ui.menu a.item')
-          .on('click', function () {
-            $(this)
-              .addClass('active')
-              .siblings()
-              .removeClass('active');
-          });
-      });
+  
+  countSi = 0
+  countLoading = 0
+
+  constructor(
+    private siRequestApi:MitraShippingInstructionRequestApi,
+    private loadingApi:ShippingLoadingApi
+  ) {
+    this.siRequestApi.count().subscribe(({count}) => {
+      this.countSi = count
+    })
+
+    this.loadingApi.count({status: 1}).subscribe(({count}) => {
+      this.countLoading = count
+    })
   }
 
   ngOnInit() {
-  }
-
-  onSelect(dummy: string) {
-    this.id = dummy;
-    console.log(dummy);
   }
 
 }

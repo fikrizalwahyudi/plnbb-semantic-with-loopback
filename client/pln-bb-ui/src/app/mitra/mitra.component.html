@@ -17,7 +17,8 @@
 				   [routerLink]="['/mitra/shipping-order']"
 				   routerLinkActive="active">
 					Shipping Order
-					<div class="ui label">0</div>
+					<div *ngIf="countSo > 0" class="ui red label">{{countSo}}</div>
+					<i *ngIf="countSo == 0" class="book icon"></i>
 				</a>
 				<!-- <a class="item"
                 href="javascript:;"

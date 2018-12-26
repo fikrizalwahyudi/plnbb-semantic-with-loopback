@@ -14,7 +14,7 @@
 </div>
 
 <div class="ui segment mb-5">
-  <div uiPdf [siId]="si.id"></div>
+  <div *ngIf="si" uiPdf [siId]="si.id"></div>
 </div>
 
 <ui-modal-block #approveModal
