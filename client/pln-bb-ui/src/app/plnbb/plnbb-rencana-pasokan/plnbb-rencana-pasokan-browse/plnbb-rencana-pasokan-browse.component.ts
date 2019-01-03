@@ -12,6 +12,7 @@ import * as moment from 'moment';
 import { HttpClient } from '@angular/common/http';
 import { MitraShippingOrderApi } from '../../../shared/sdk/services/custom/MitraShippingOrder';
 import { ModalBlockComponent } from '../../../shared/commons/modal-block/modal-block.component';
+import {ExcelService} from '../../../shared/services/excel.service';
 
 declare var $:any;
 
@@ -34,6 +35,8 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
   daftarRawData = []
   daftarRencana = {}
   daftarPasokan = []
+  daftarKesanggupanPasokan = []
+  daftarDataToExport = [];
   selectedPasokan:FormArray
 
   constructor(
@@ -43,7 +46,8 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
     private plnRencanaApi: PlnRencanaApi,
     private plnRencanaPasokanApi:PlnRencanaPasokanApi,
     private pasokanApi: MitraKesanggupanApi,
-    private shippingOrder: MitraShippingOrderApi
+    private shippingOrder: MitraShippingOrderApi,
+    private excelService:ExcelService
   ) {
     this.fgAmounts = this.fb.array([])
     this.selectedPasokan = this.fb.array([])
@@ -106,7 +110,10 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
       }
 
       this.pasokanApi.find({where:{id: {inq: daftarKesanggupan.map(e => e.id)}}, include: ['jetty', 'mitra', 'tujuanPltu']}).subscribe((dataKesanggupan:any) => {
-        //console.log(dataKesanggupan)
+        console.log(dataKesanggupan)
+        // this.daftarKesanggupanPasokan = dataKesanggupan;
+        console.log(daftarKesanggupan);
+        this.daftarDataToExport = daftarKesanggupan;
         //daftarKesanggupan = dataKesanggupan
 
         for(let i=0; i<daftarKesanggupan.length; i++) {
@@ -142,7 +149,7 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
         })
       }
 
-      //console.log(this.daftarRencana)
+      console.log(this.daftarRencana)
     })
   }
 
@@ -363,4 +370,94 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
 
     return false
   }
+
+  exportToExcelSebelumRakor():void {
+    this.pasokanApi.find({include:['mitra', 'tujuanPltu', 'jetty', 'referensiKontrak'], order: ['jumlah DESC', 'harga ASC']}).subscribe((data:any) => {
+      // console.log(this.daftarKesanggupanPasokan);
+      this.daftarKesanggupanPasokan = data;
+      console.log(_.groupBy(this.daftarKesanggupanPasokan, function (value) {
+        return value.tujuanPltu.name;
+      }))
+      var groupDaftarKesanggupan = _.groupBy(this.daftarKesanggupanPasokan, function (value) {
+        return value.tujuanPltu.name;
+      });
+      
+      let listExport = []
+
+      for (var key in groupDaftarKesanggupan) {
+        console.log(key, groupDaftarKesanggupan[key]);
+        listExport.push({
+          "Tujuan PLTU" : key
+        })
+        if(groupDaftarKesanggupan[key].length > 0){
+          groupDaftarKesanggupan[key].map(each=>{
+            listExport.push({
+              "Tujuan PLTU" : null,
+              "Mitra": each.mitra.name,
+              "Tipe": each.tipe.toUpperCase(),
+              "Mode": each.mode == 'tkg' ? "Tongkang" : each.mode == 'vsl' ? "Vessels" : "Trucking",
+              "Jetty": each.jetty.name,
+              "Jenis Batubara": each.jenis.toUpperCase(),
+              "GCV": each.gcv,
+              "TM": each.tm,
+              "ASH": each.ash,
+              "TS": each.ts,
+              "HGI": each.hgi,
+              "IDT": each.idt,
+              "70 mm (%)": each.size1,
+              "2.38 mm (%)": each.size2
+            })
+          })
+        }
+      }
+      console.log(listExport);
+      this.excelService.exportAsExcelFile(listExport, 'PLNBB_SEBELUM_RAKOR');
+    })    
+  }
+
+  exportToExcelSesudahRakor():void {
+    console.log(this.daftarDataToExport);
+    console.log(_.groupBy(this.daftarDataToExport, function (value) {
+      return value.value.mitraKesanggupan.tujuanPltu.name;
+    }))
+    var groupDaftarKesanggupan = _.groupBy(this.daftarDataToExport, function (value) {
+      return value.value.mitraKesanggupan.tujuanPltu.name;
+    });
+    
+    let listExport = []
+
+    for (var key in groupDaftarKesanggupan) {
+      console.log(key, groupDaftarKesanggupan[key]);
+      listExport.push({
+        "Tujuan PLTU" : key,
+        "length" : groupDaftarKesanggupan[key].length
+      })
+      if(groupDaftarKesanggupan[key].length > 0){
+        groupDaftarKesanggupan[key].map(each=>{
+          listExport.push({
+            "Tujuan PLTU" : null,
+            "BulanTahun" : each.rencana.code,
+            "Mitra": each.value.mitraKesanggupan.mitra.name,
+            "Tipe": each.value.mitraKesanggupan.tipe.toUpperCase(),
+            "Mode": each.value.mitraKesanggupan.mode == 'tkg' ? "Tongkang" : each.value.mitraKesanggupan.mode == 'vsl' ? "Vessels" : "Trucking",
+            "Jumlah Pasokan (MT)": each.value.mitraKesanggupan.jumlah,
+            "Harga/MT (Ribu)": each.value.mitraKesanggupan.harga,
+            "Jetty": each.value.mitraKesanggupan.jetty.name,
+            "Jenis Batubara": each.value.mitraKesanggupan.jenis.toUpperCase(),
+            "GCV": each.value.mitraKesanggupan.gcv,
+            "TM": each.value.mitraKesanggupan.tm,
+            "ASH": each.value.mitraKesanggupan.ash,
+            "TS": each.value.mitraKesanggupan.ts,
+            "HGI": each.value.mitraKesanggupan.hgi,
+            "IDT": each.value.mitraKesanggupan.idt,
+            "70 mm (%)": each.value.mitraKesanggupan.size1,
+            "2.38 mm (%)": each.value.mitraKesanggupan.size2
+          })
+        })
+      }
+    }
+    console.log(listExport);
+    this.excelService.exportAsExcelFileWithSheet(this.daftarBulanRakor ,listExport, 'PLNBB_SESUDAH_RAKOR');
+  }
+  
 }

@@ -33,6 +33,7 @@ import { DigitsMaskDirective } from './directives/digits-mask.directive';
 import { PdfDirective } from './directives/pdf.directive';
 import { FormBlockBasicComponent } from './commons/form-block/form-block-basic.component';
 import { TimeRangeDirective } from './directives/time-range.directive';
+import { ExcelService } from './services/excel.service';
 
 
 @NgModule({
@@ -105,7 +106,8 @@ import { TimeRangeDirective } from './directives/time-range.directive';
     AuthenticatedGuard, 
     MenuService,
     LogService,
-    BreadcrumbService
+    BreadcrumbService,
+    ExcelService
   ]
 })
 export class SharedModule { }

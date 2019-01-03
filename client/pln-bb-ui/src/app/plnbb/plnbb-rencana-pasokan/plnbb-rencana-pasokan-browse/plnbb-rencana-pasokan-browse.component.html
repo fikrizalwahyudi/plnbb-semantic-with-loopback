@@ -31,7 +31,22 @@
        class="item disabled">
       <i class="lock icon"></i> Locked
     </a>
+    <div class="right ui dropdown item" uiDropDown >
+      <span>Export Data</span> 
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        <a class="item"
+          (click)="exportToExcelSebelumRakor()">
+          <i class="download icon"></i> Sebelum Rakor
+        </a>
+        <a class="item"
+          (click)="exportToExcelSesudahRakor()">
+          <i class="download icon"></i> Sesudah Rakor
+        </a>
+      </div>
+    </div>
   </div>
+  
 </div>
 
 <ng-container *ngFor="let item of selectedDaftarRencana | keyvalue; trackBy:trackByFn">
