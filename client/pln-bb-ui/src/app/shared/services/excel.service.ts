@@ -11,7 +11,7 @@ export class ExcelService {
 
     public exportAsExcelFile(json: any[], excelFileName: string): void {
         const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json);
-        const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet,'datas':worksheet }, SheetNames: ['datas', 'data'] };
+        const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
         const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
         this.saveAsExcelFile(excelBuffer, excelFileName);
     }
@@ -39,6 +39,14 @@ export class ExcelService {
         worksheets = Object.assign({}, worksheets);
 
         const workbook: any = { Sheets: worksheets, SheetNames: sheets };
+        const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+        this.saveAsExcelFile(excelBuffer, excelFileName);
+    }
+
+    public exportAsExcelMonitoringPasokan(json: any[], excelFileName: string): void {
+        const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json);
+        console.log(worksheet);
+        const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet,'datas':worksheet }, SheetNames: ['datas', 'data'] };
         const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
         this.saveAsExcelFile(excelBuffer, excelFileName);
     }

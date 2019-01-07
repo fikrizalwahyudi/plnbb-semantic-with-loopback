@@ -1,8 +1,9 @@
 /* tslint:disable */
 import {
-  MitraShippingInstructionRequest,
+  Shipping,
   Mitra,
   Jetty,
+  MitraShippingInstructionRequest,
   ShippingInstructionRevision
 } from '../index';
 
@@ -20,9 +21,10 @@ export interface ShippingInstructionInterface {
   "laycanEndDate"?: Date;
   "status"?: number;
   "id"?: any;
-  siRequest?: MitraShippingInstructionRequest;
+  shipping?: Shipping[];
   transport?: Mitra;
   jetty?: Jetty;
+  siRequest?: MitraShippingInstructionRequest;
   revisions?: ShippingInstructionRevision[];
 }
 
@@ -39,9 +41,10 @@ export class ShippingInstruction implements ShippingInstructionInterface {
   "laycanEndDate": Date = new Date(0);
   "status": number = 0;
   "id": any = <any>null;
-  siRequest: MitraShippingInstructionRequest = null;
+  shipping: Shipping[] = null;
   transport: Mitra = null;
   jetty: Jetty = null;
+  siRequest: MitraShippingInstructionRequest = null;
   revisions: ShippingInstructionRevision[] = null;
   constructor(data?: ShippingInstructionInterface) {
     Object.assign(this, data);
@@ -126,13 +129,13 @@ export class ShippingInstruction implements ShippingInstructionInterface {
         },
       },
       relations: {
-        siRequest: {
-          name: 'siRequest',
-          type: 'MitraShippingInstructionRequest',
-          model: 'MitraShippingInstructionRequest',
-          relationType: 'belongsTo',
-                  keyFrom: 'siRequestId',
-          keyTo: 'id'
+        shipping: {
+          name: 'shipping',
+          type: 'Shipping[]',
+          model: 'Shipping',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'siId'
         },
         transport: {
           name: 'transport',
@@ -148,6 +151,14 @@ export class ShippingInstruction implements ShippingInstructionInterface {
           model: 'Jetty',
           relationType: 'belongsTo',
                   keyFrom: 'jettyId',
+          keyTo: 'id'
+        },
+        siRequest: {
+          name: 'siRequest',
+          type: 'MitraShippingInstructionRequest',
+          model: 'MitraShippingInstructionRequest',
+          relationType: 'belongsTo',
+                  keyFrom: 'siRequestId',
           keyTo: 'id'
         },
         revisions: {

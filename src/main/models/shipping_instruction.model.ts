@@ -75,4 +75,7 @@ export class ShippingInstructionModel extends PersistedModel {
 
 	@Relation("hasMany", "ShippingInstructionRevision", "siId")
 	revisions
+
+	@Relation("hasMany", "Shipping", "siId")
+	shipping
 }

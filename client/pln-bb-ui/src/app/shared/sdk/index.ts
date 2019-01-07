@@ -51,6 +51,9 @@ import { RealTime } from './services/core/real.time';
 import { UserApi } from './services/custom/User';
 import { RoleMappingApi } from './services/custom/RoleMapping';
 import { RoleApi } from './services/custom/Role';
+import { PlnRencanaApi } from './services/custom/PlnRencana';
+import { ShippingApi } from './services/custom/Shipping';
+import { ShippingInstructionApi } from './services/custom/ShippingInstruction';
 import { PltuApi } from './services/custom/Pltu';
 import { MitraApi } from './services/custom/Mitra';
 import { LoadingRealisasiKirimApi } from './services/custom/LoadingRealisasiKirim';
@@ -65,13 +68,10 @@ import { MitraKesanggupanTambangApi } from './services/custom/MitraKesanggupanTa
 import { MitraKesanggupanApi } from './services/custom/MitraKesanggupan';
 import { PlnRealisasiApi } from './services/custom/PlnRealisasi';
 import { JettyApi } from './services/custom/Jetty';
-import { PlnRencanaApi } from './services/custom/PlnRencana';
 import { PlnRencanaPasokanApi } from './services/custom/PlnRencanaPasokan';
 import { MitraShippingOrderApi } from './services/custom/MitraShippingOrder';
 import { MitraShippingInstructionRequestApi } from './services/custom/MitraShippingInstructionRequest';
-import { ShippingInstructionApi } from './services/custom/ShippingInstruction';
 import { ShippingInstructionRevisionApi } from './services/custom/ShippingInstructionRevision';
-import { ShippingApi } from './services/custom/Shipping';
 import { ShippingLoadingApi } from './services/custom/ShippingLoading';
 import { DocumentApi } from './services/custom/Document';
 import { ShippingUnloadingApi } from './services/custom/ShippingUnloading';
@@ -108,6 +108,9 @@ export class SDKBrowserModule {
         UserApi,
         RoleMappingApi,
         RoleApi,
+        PlnRencanaApi,
+        ShippingApi,
+        ShippingInstructionApi,
         PltuApi,
         MitraApi,
         LoadingRealisasiKirimApi,
@@ -122,13 +125,10 @@ export class SDKBrowserModule {
         MitraKesanggupanApi,
         PlnRealisasiApi,
         JettyApi,
-        PlnRencanaApi,
         PlnRencanaPasokanApi,
         MitraShippingOrderApi,
         MitraShippingInstructionRequestApi,
-        ShippingInstructionApi,
         ShippingInstructionRevisionApi,
-        ShippingApi,
         ShippingLoadingApi,
         DocumentApi,
         ShippingUnloadingApi,

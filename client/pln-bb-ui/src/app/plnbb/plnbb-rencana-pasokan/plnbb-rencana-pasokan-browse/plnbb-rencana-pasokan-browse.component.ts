@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Pltu, PlnRencanaPasokanApi } from '../../../shared/sdk';
+import { Pltu, PlnRencanaPasokanApi, PlnRealisasiApi } from '../../../shared/sdk';
 import { PltuApi } from '../../../shared/sdk';
 import { PlnRencanaApi } from '../../../shared/sdk/services/custom/PlnRencana'
 import { PlnRencana } from '../../../shared/sdk/models/PlnRencana'
@@ -47,7 +47,8 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
     private plnRencanaPasokanApi:PlnRencanaPasokanApi,
     private pasokanApi: MitraKesanggupanApi,
     private shippingOrder: MitraShippingOrderApi,
-    private excelService:ExcelService
+    private excelService:ExcelService,
+    private plnRealiasiApi: PlnRealisasiApi
   ) {
     this.fgAmounts = this.fb.array([])
     this.selectedPasokan = this.fb.array([])
@@ -460,4 +461,223 @@ export class PlnBBRencanaPasokanBrowseComponent implements OnInit {
     this.excelService.exportAsExcelFileWithSheet(this.daftarBulanRakor ,listExport, 'PLNBB_SESUDAH_RAKOR');
   }
   
+  exportToExcelMonitoringPasokan(){
+    this.plnRealiasiApi.find({include:[{si:[{shipping:['tujuanPltu', 'loading', 'unloading']},'jetty']},{plnRencana:['tujuanPltu']}]}).subscribe(snap=>{
+      console.log(snap);
+      console.log(new Date().setMonth(0))
+      let listExport = [];
+      let totalTgl = 0;
+      let totalJumlah = 0;
+      let totalBl = 0;
+      let totalDs = 0;
+      let spasi = {};
+
+      snap.map((each:any)=>{
+        let subTotalTgl = each.si.shipping.length;
+        let subJumlah = 0;
+        let subTotalBl = 0;
+        let subTotalDs = 0;
+        let subTotalLoadDurationDay = 0.0;
+        let subTotalSailDurationDay = 0.0;
+        let subTotalQueueDurationDay = 0.0;
+        let subTotalUnloadDurationDay = 0.0;
+        each.si.shipping.map((data:any,i)=>{
+          subJumlah += data.jumlah;
+          subTotalBl += data.harga;
+          subTotalDs += data.harga;
+          console.log(i);
+           let obj = {
+            "PLTU" : each.plnRencana.tujuanPltu.name,
+            "Bulan" : each.plnRencana.code.split(" ",1)[0],
+            "Status" : null,
+            "Realisasi Waktu PLTU" : null,
+            "Realisasi Waktu Mitra" : null,
+            "Kode Telat" : null,
+            "Tgl" : null,
+            "Tipe" : data.jenis ? data.jenis.toUpperCase() : null,
+            "Jumlah" : data.jumlah,
+            "Mitra Konf.": null,
+            "Mitra Real.": null,
+            "Tb/Bg":each.si.namaTransport,
+            "Skema": data.tipe ? data.tipe.toUpperCase() : null,
+            "No. SI" : each.si.no,
+            "Tgl. SI" : moment(each.si.tglSurat).format('D/M'),
+            "Laycan" : moment(each.si.laycanStartDate).format('D/M'),
+            "Jetty" : each.si.jetty.name,
+            "Provinsi": each.si.jetty.province,
+            "TA POL" : moment(data.loading.ta).format('DD/MM/YY HH:mm'),
+            "Berthing" : moment(data.loading.berthing).format('DD/MM/YY HH:mm'),
+            "Commence Loading" : moment(data.loading.commenceLoading).format('DD/MM/YY HH:mm'),
+            "Complete Loading" : moment(data.loading.completeLoading).format('DD/MM/YY HH:mm'),
+            "B/L": data.harga,
+            "D/S":data.harga,
+            "TA POD" : moment(data.unloading.ta).format('DD/MM/YY HH:mm'),
+            "Berthing " : moment(data.unloading.berthing).format('DD/MM/YY HH:mm'),
+            "Commence Unloading" : moment(data.unloading.commenceUnlooading).format('DD/MM/YY HH:mm'),
+            "Complete Unloading" : moment(data.unloading.completeUnloading).format('DD/MM/YY HH:mm'),
+            "GCV (Load)": data.loading.gcv,
+            "TM (Load)": data.loading.tm,
+            "Ash (Load)" : data.loading.ash,
+            "TS (Load)" : data.loading.ts,
+            "HGI (Load)" : data.loading.hgi,
+            "IDT (Load)" : data.loading.idt,
+            "70 mm (Load)" : data.loading.size1,
+            "2.38 mm (Load)" : data.loading.size2,
+            "GCV (Unload)" : data.unloading.gcv,
+            "TM (Unload)" : data.unloading.tm,
+            "Ash (Unload)" : data.unloading.ash,
+            "TS (Unload)" : data.unloading.ts,
+            "HGI (Unload)" : data.unloading.hgi,
+            "IDT (Unload)" : data.unloading.idt,
+            "70 mm (Unload)" : data.unloading.size1,
+            "2.38 mm (Unload)" : data.unloading.size2,
+            "Stat. Ump." : null ? "No" : "Yes", 
+            "GCV (Ump.)" : null ? 0 : 0, 
+            "TM (Ump.)" : null ? 0 : 0,
+            "Ash (Ump.)" : null ? 0 : 0,
+            "TS (Ump.)" : null ? 0 : 0,
+            "HGI (Ump.)" : null ? 0 : 0,
+            "IDT (Ump.)" : null ? 0 : 0, 
+            "Load Duration (Day)" : null ? 0.0 : 0.0,
+            "Sail Duration (Day)" : null ? 0.0 : 0.0,
+            "Queue Duration (Day)" : null ? 0.0 : 0.0,
+            "Unload Duration (Day)" : null ? 0.0 : 0.0
+          };
+
+          console.log(obj);
+          listExport.push(obj);
+        })
+
+        let subTotal = {
+          "PLTU" : "Subtotal",
+          "Bulan" : null,
+          "Status" : null,
+          "Realisasi Waktu PLTU" : null,
+          "Realisasi Waktu Mitra" : null,
+          "Kode Telat" : null,
+          "Tgl" : subTotalTgl,
+          "Tipe" : null,
+          "Jumlah" : subJumlah,
+          "Mitra Konf.": null,
+          "Mitra Real.": null,
+          "Tb/Bg":null,
+          "Skema": null,
+          "No. SI" : null,
+          "Tgl. SI" : null,
+          "Laycan" : null,
+          "Jetty" : null,
+          "Provinsi": null,
+          "TA POL" : null,
+          "Berthing" : null,
+          "Commence Loading" : null,
+          "Complete Loading" : null,
+          "B/L": subTotalBl,
+          "D/S":subTotalDs,
+          "TA POD" : null,
+          "Berthing " : null,
+          "Commence Unloading" : null,
+          "Complete Unloading" : null,
+          "GCV (Load)": null,
+          "TM (Load)": null,
+          "Ash (Load)" : null,
+          "TS (Load)" : null,
+          "HGI (Load)" : null,
+          "IDT (Load)" : null,
+          "70 mm (Load)" : null,
+          "2.38 mm (Load)" : null,
+          "GCV (Unload)" : null,
+          "TM (Unload)" : null,
+          "Ash (Unload)" : null,
+          "TS (Unload)" : null ,
+          "HGI (Unload)" : null,
+          "IDT (Unload)" : null,
+          "70 mm (Unload)" : null,
+          "2.38 mm (Unload)" : null,
+          "Stat. Ump." : null, 
+          "GCV (Ump.)" : null, 
+          "TM (Ump.)" : null,
+          "Ash (Ump.)" : null,
+          "TS (Ump.)" : null,
+          "HGI (Ump.)" : null,
+          "IDT (Ump.)" : null, 
+          "Load Duration (Day)" : subTotalLoadDurationDay,
+          "Sail Duration (Day)" : subTotalSailDurationDay,
+          "Queue Duration (Day)" : subTotalQueueDurationDay,
+          "Unload Duration (Day)" : subTotalUnloadDurationDay
+        };
+
+        totalTgl += subTotalTgl;
+        totalJumlah += subJumlah;
+        totalBl += subTotalBl;
+        totalDs += subTotalDs;
+
+        listExport.push(subTotal);
+        listExport.push(spasi);
+      })
+
+      let total = {
+        "PLTU" : "Total",
+        "Bulan" : null,
+        "Status" : null,
+        "Realisasi Waktu PLTU" : null,
+        "Realisasi Waktu Mitra" : null,
+        "Kode Telat" : null,
+        "Tgl" : totalTgl,
+        "Tipe" : null,
+        "Jumlah" : totalJumlah,
+        "Mitra Konf.": null,
+        "Mitra Real.": null,
+        "Tb/Bg":null,
+        "Skema": null,
+        "No. SI" : null,
+        "Tgl. SI" : null,
+        "Laycan" : null,
+        "Jetty" : null,
+        "Provinsi": null,
+        "TA POL" : null,
+        "Berthing" : null,
+        "Commence Loading" : null,
+        "Complete Loading" : null,
+        "B/L": totalBl,
+        "D/S":totalDs,
+        "TA POD" : null,
+        "Berthing " : null,
+        "Commence Unloading" : null,
+        "Complete Unloading" : null,
+        "GCV (Load)": null,
+        "TM (Load)": null,
+        "Ash (Load)" : null,
+        "TS (Load)" : null,
+        "HGI (Load)" : null,
+        "IDT (Load)" : null,
+        "70 mm (Load)" : null,
+        "2.38 mm (Load)" : null,
+        "GCV (Unload)" : null,
+        "TM (Unload)" : null,
+        "Ash (Unload)" : null,
+        "TS (Unload)" : null ,
+        "HGI (Unload)" : null,
+        "IDT (Unload)" : null,
+        "70 mm (Unload)" : null,
+        "2.38 mm (Unload)" : null,
+        "Stat. Ump." : null, 
+        "GCV (Ump.)" : null, 
+        "TM (Ump.)" : null,
+        "Ash (Ump.)" : null,
+        "TS (Ump.)" : null,
+        "HGI (Ump.)" : null,
+        "IDT (Ump.)" : null, 
+        "Load Duration (Day)" : null,
+        "Sail Duration (Day)" : null,
+        "Queue Duration (Day)" : null,
+        "Unload Duration (Day)" : null
+      };
+
+      listExport.push(total);
+      listExport.push(spasi);
+      
+      this.excelService.exportAsExcelMonitoringPasokan(listExport, 'MONITORING_PASOKAN');
+    })
+  }
+
 }

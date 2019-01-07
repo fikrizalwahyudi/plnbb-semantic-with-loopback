@@ -1,10 +1,10 @@
 /* tslint:disable */
 import {
+  ShippingInstruction,
+  Pltu,
   Mitra,
   ReferensiKontrak,
-  Pltu,
   Jetty,
-  ShippingInstruction,
   ShippingLoading,
   ShippingUnloading
 } from '../index';
@@ -23,15 +23,15 @@ export interface ShippingInterface {
   "harga"?: number;
   "moda"?: string;
   "tipe"?: string;
-  "jenisBatubara"?: string;
+  "jenis"?: string;
   "status"?: number;
   "id"?: any;
+  si?: ShippingInstruction;
+  tujuanPltu?: Pltu;
   mitra?: Mitra;
   transport?: Mitra;
   referensiKontrak?: ReferensiKontrak;
-  tujuanPltu?: Pltu;
   jetty?: Jetty;
-  si?: ShippingInstruction;
   loading?: ShippingLoading;
   unloading?: ShippingUnloading;
 }
@@ -49,15 +49,15 @@ export class Shipping implements ShippingInterface {
   "harga": number = 0;
   "moda": string = '';
   "tipe": string = '';
-  "jenisBatubara": string = '';
+  "jenis": string = '';
   "status": number = 0;
   "id": any = <any>null;
+  si: ShippingInstruction = null;
+  tujuanPltu: Pltu = null;
   mitra: Mitra = null;
   transport: Mitra = null;
   referensiKontrak: ReferensiKontrak = null;
-  tujuanPltu: Pltu = null;
   jetty: Jetty = null;
-  si: ShippingInstruction = null;
   loading: ShippingLoading = null;
   unloading: ShippingUnloading = null;
   constructor(data?: ShippingInterface) {
@@ -141,8 +141,8 @@ export class Shipping implements ShippingInterface {
           name: 'tipe',
           type: 'string'
         },
-        "jenisBatubara": {
-          name: 'jenisBatubara',
+        "jenis": {
+          name: 'jenis',
           type: 'string'
         },
         "status": {
@@ -155,6 +155,22 @@ export class Shipping implements ShippingInterface {
         },
       },
       relations: {
+        si: {
+          name: 'si',
+          type: 'ShippingInstruction',
+          model: 'ShippingInstruction',
+          relationType: 'belongsTo',
+                  keyFrom: 'siId',
+          keyTo: 'id'
+        },
+        tujuanPltu: {
+          name: 'tujuanPltu',
+          type: 'Pltu',
+          model: 'Pltu',
+          relationType: 'belongsTo',
+                  keyFrom: 'tujuanPltuId',
+          keyTo: 'id'
+        },
         mitra: {
           name: 'mitra',
           type: 'Mitra',
@@ -179,28 +195,12 @@ export class Shipping implements ShippingInterface {
                   keyFrom: 'referensiKontrakId',
           keyTo: 'id'
         },
-        tujuanPltu: {
-          name: 'tujuanPltu',
-          type: 'Pltu',
-          model: 'Pltu',
-          relationType: 'belongsTo',
-                  keyFrom: 'tujuanPltuId',
-          keyTo: 'id'
-        },
         jetty: {
           name: 'jetty',
           type: 'Jetty',
           model: 'Jetty',
           relationType: 'belongsTo',
                   keyFrom: 'jettyId',
-          keyTo: 'id'
-        },
-        si: {
-          name: 'si',
-          type: 'ShippingInstruction',
-          model: 'ShippingInstruction',
-          relationType: 'belongsTo',
-                  keyFrom: 'siId',
           keyTo: 'id'
         },
         loading: {

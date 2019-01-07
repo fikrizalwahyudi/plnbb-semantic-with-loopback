@@ -68,7 +68,7 @@ export class ShippingModel extends PersistedModel {
 	tipe: string
 
 	@Property('string')
-	jenisBatubara: string
+	jenis: string
 
 	@Property('number')
 	status: number

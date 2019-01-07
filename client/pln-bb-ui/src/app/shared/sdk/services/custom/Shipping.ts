@@ -11,11 +11,11 @@ import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Shipping } from '../../models/Shipping';
 import { SocketConnection } from '../../sockets/socket.connections';
+import { ShippingInstruction } from '../../models/ShippingInstruction';
+import { Pltu } from '../../models/Pltu';
 import { Mitra } from '../../models/Mitra';
 import { ReferensiKontrak } from '../../models/ReferensiKontrak';
-import { Pltu } from '../../models/Pltu';
 import { Jetty } from '../../models/Jetty';
-import { ShippingInstruction } from '../../models/ShippingInstruction';
 import { ShippingLoading } from '../../models/ShippingLoading';
 import { ShippingUnloading } from '../../models/ShippingUnloading';
 
@@ -34,6 +34,66 @@ export class ShippingApi extends BaseLoopBackApi {
     @Optional() @Inject(ErrorHandler) protected errorHandler: ErrorHandler
   ) {
     super(http,  connection,  models, auth, errorHandler);
+  }
+
+  /**
+   * Fetches belongsTo relation si.
+   *
+   * @param {any} id Shipping id
+   *
+   * @param {boolean} refresh 
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Shipping` object.)
+   * </em>
+   */
+  public getSi(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/shipping/:id/si";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    if (typeof refresh !== 'undefined' && refresh !== null) _urlParams.refresh = refresh;
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
+   * Fetches belongsTo relation tujuanPltu.
+   *
+   * @param {any} id Shipping id
+   *
+   * @param {boolean} refresh 
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Shipping` object.)
+   * </em>
+   */
+  public getTujuanPltu(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/shipping/:id/tujuanPltu";
+    let _routeParams: any = {
+      id: id
+    };
+    let _postBody: any = {};
+    let _urlParams: any = {};
+    if (typeof refresh !== 'undefined' && refresh !== null) _urlParams.refresh = refresh;
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
   }
 
   /**
@@ -127,36 +187,6 @@ export class ShippingApi extends BaseLoopBackApi {
   }
 
   /**
-   * Fetches belongsTo relation tujuanPltu.
-   *
-   * @param {any} id Shipping id
-   *
-   * @param {boolean} refresh 
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `Shipping` object.)
-   * </em>
-   */
-  public getTujuanPltu(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
-    let _method: string = "GET";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping/:id/tujuanPltu";
-    let _routeParams: any = {
-      id: id
-    };
-    let _postBody: any = {};
-    let _urlParams: any = {};
-    if (typeof refresh !== 'undefined' && refresh !== null) _urlParams.refresh = refresh;
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
    * Fetches belongsTo relation jetty.
    *
    * @param {any} id Shipping id
@@ -176,36 +206,6 @@ export class ShippingApi extends BaseLoopBackApi {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
     "/shipping/:id/jetty";
-    let _routeParams: any = {
-      id: id
-    };
-    let _postBody: any = {};
-    let _urlParams: any = {};
-    if (typeof refresh !== 'undefined' && refresh !== null) _urlParams.refresh = refresh;
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
-  }
-
-  /**
-   * Fetches belongsTo relation si.
-   *
-   * @param {any} id Shipping id
-   *
-   * @param {boolean} refresh 
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `Shipping` object.)
-   * </em>
-   */
-  public getSi(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
-    let _method: string = "GET";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/shipping/:id/si";
     let _routeParams: any = {
       id: id
     };

@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { User } from '../../models/User';
 import { RoleMapping } from '../../models/RoleMapping';
 import { Role } from '../../models/Role';
+import { PlnRencana } from '../../models/PlnRencana';
+import { Shipping } from '../../models/Shipping';
+import { ShippingInstruction } from '../../models/ShippingInstruction';
 import { Pltu } from '../../models/Pltu';
 import { Mitra } from '../../models/Mitra';
 import { LoadingRealisasiKirim } from '../../models/LoadingRealisasiKirim';
@@ -17,13 +20,10 @@ import { MitraKesanggupanTambang } from '../../models/MitraKesanggupanTambang';
 import { MitraKesanggupan } from '../../models/MitraKesanggupan';
 import { PlnRealisasi } from '../../models/PlnRealisasi';
 import { Jetty } from '../../models/Jetty';
-import { PlnRencana } from '../../models/PlnRencana';
 import { PlnRencanaPasokan } from '../../models/PlnRencanaPasokan';
 import { MitraShippingOrder } from '../../models/MitraShippingOrder';
 import { MitraShippingInstructionRequest } from '../../models/MitraShippingInstructionRequest';
-import { ShippingInstruction } from '../../models/ShippingInstruction';
 import { ShippingInstructionRevision } from '../../models/ShippingInstructionRevision';
-import { Shipping } from '../../models/Shipping';
 import { ShippingLoading } from '../../models/ShippingLoading';
 import { Document } from '../../models/Document';
 import { ShippingUnloading } from '../../models/ShippingUnloading';
@@ -37,6 +37,9 @@ export class SDKModels {
     User: User,
     RoleMapping: RoleMapping,
     Role: Role,
+    PlnRencana: PlnRencana,
+    Shipping: Shipping,
+    ShippingInstruction: ShippingInstruction,
     Pltu: Pltu,
     Mitra: Mitra,
     LoadingRealisasiKirim: LoadingRealisasiKirim,
@@ -51,13 +54,10 @@ export class SDKModels {
     MitraKesanggupan: MitraKesanggupan,
     PlnRealisasi: PlnRealisasi,
     Jetty: Jetty,
-    PlnRencana: PlnRencana,
     PlnRencanaPasokan: PlnRencanaPasokan,
     MitraShippingOrder: MitraShippingOrder,
     MitraShippingInstructionRequest: MitraShippingInstructionRequest,
-    ShippingInstruction: ShippingInstruction,
     ShippingInstructionRevision: ShippingInstructionRevision,
-    Shipping: Shipping,
     ShippingLoading: ShippingLoading,
     Document: Document,
     ShippingUnloading: ShippingUnloading,

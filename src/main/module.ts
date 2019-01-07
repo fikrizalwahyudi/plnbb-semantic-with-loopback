@@ -44,6 +44,9 @@ import { ShippingUnloadingModel } from './models/shipping_unloading.model';
 	],
 
 	models: [
+		PlnRencanaModel,
+		ShippingModel,
+		ShippingInstructionModel,
 		PltuModel,
 		MitraModel,
 		LoadingRealisasiKirimModel,
@@ -58,13 +61,13 @@ import { ShippingUnloadingModel } from './models/shipping_unloading.model';
 		MitraKesanggupanModel,
 		PlnRealisasiModel,
 		JettyModel,
-		PlnRencanaModel,
+		// PlnRencanaModel,
 		PlnRencanaPasokanModel,
 		MitraShippingOrderModel,
 		MitraShippingInstructionRequestModel,
-		ShippingInstructionModel,
+		// ShippingInstructionModel,
 		ShippingInstructionRevisionModel,
-		ShippingModel,
+		// ShippingModel,
 		ShippingLoadingModel,
 		DocumentModel,
 		ShippingUnloadingModel
